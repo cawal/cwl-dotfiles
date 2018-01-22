@@ -35,7 +35,7 @@ font pango:Annonymous Pro 10
 # finds out, if available)
  bar {
         status_command i3status
-        tray_output primary
+        tray_output none #$leftMonitor
 	position bottom
 	workspace_buttons no
 }
@@ -43,7 +43,7 @@ font pango:Annonymous Pro 10
 bar {
   i3bar_command i3bar
   status_command python3 ~/.config/i3/statusbar1.py
-  tray_output primary #LVDS1
+  tray_output $leftMonitor #LVDS1
   position top
   workspace_buttons yes
   colors {
