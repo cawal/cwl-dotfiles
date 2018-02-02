@@ -1,7 +1,14 @@
 #!/bin/zsh
 
-i3_config_file="$HOME/.i3/config"
-i3_includes_file="$HOME/.i3/config.d/i3_configs.conf"
+i3_config_file="$HOME/.config/i3/config"
+i3_includes_file="$HOME/.config/i3/config.d/i3_configs.conf"
+INCLUDES_DIR="$HOME/.config/i3/config.d"
+HOSTNAME=$(hostname)
+
+# get all files from default config and host specific config:
+find "${INCLUDES_DIR}/default" -print -exec cp -f {} "${INCLUDES_DIR}" \;
+# overwrite default config with host specific
+find "${INCLUDES_DIR}/${HOSTNAME}/" -print -exec cp -f {} "${INCLUDES_DIR}/" \;
 
 if [[ -f "$i3_includes_file" ]]; then
   [[ -f "$i3_config_file" ]] && rm "$i3_config_file"
@@ -12,7 +19,7 @@ if [[ -f "$i3_includes_file" ]]; then
   echo "#### EDIT THE FILES HERE: ~/.i3/config.d/**/*" >> "$i3_config_file"
 
   include_file() {
-    cat "$HOME/.i3/config.d/$1" >> "$i3_config_file"
+    cat "${INCLUDES_DIR}/$1" >> "$i3_config_file"
   }
 
   get_file_name_from_line () {
