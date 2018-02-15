@@ -1,0 +1,6 @@
+bindings.conf
+colors.conf
+desktop.conf
+host-specific.conf
+startup-processes.conf
+vars.conf
