@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from i3pystatus import Status, Module
-from i3pystatus.updates import pacman, cower
+from i3pystatus.updates import aptget
 
 status = Status(standalone=True, interval=1)
 
@@ -20,17 +20,16 @@ status.register("battery", format="{status} {remaining}  ", alert=True,
 #                format_working = "Checking updates...",
 #                color = "#FFFF00", color_no_updates = "#FFFFFF",
 #                color_working = "#00FF00", interval = 3600,
-#                backends = [pacman.Pacman()])
+#                backends = [aptget.AptGet())])
 
 status.register("temp", format="{temp}°C ⛄", alert_temp=60, interval=5)
 
 status.register("cpu_usage",
-                format=(" {{usage_cpu{}:3}}%" * 4).format(*range(4)),
+                format=("CPU: " + " {{usage_cpu{}:3}}%" * 4).format(*range(4)),
                 interval=2)
-status.register("cpu_usage_bar", interval=2, hints=nosep)
+#status.register("cpu_usage_bar", interval=2, hints=nosep)
 
-status.register("mem", format=" {percent_used_mem}% ", color="#FFFFFF",
+status.register("mem", format="RAM: {percent_used_mem}% ", color="#FFFFFF",
                 interval=5)
 #status.register("mem_bar", interval=5, hints=nosep)
-
 status.run()

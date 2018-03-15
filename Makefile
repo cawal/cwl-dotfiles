@@ -7,7 +7,7 @@ UPDATE = apt update
 
 all: desktop-environment 
 
-desktop-environment: kde-connect-indicator drivers
+desktop-environment: i3 kde-connect-indicator drivers
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -17,6 +17,11 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} install kdeconnect indicator-kdeconnect
 
+i3: i3-python
+	${INSTALL} i3
+
+i3-python:
+	${INSTALL} python-tz python-tzlocal
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
