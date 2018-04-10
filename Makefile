@@ -26,6 +26,11 @@ zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
 
+keepassxc:
+	sudo add-apt-repository ppa:phoerious/keepassxc
+	${UPDATE}
+	${INSTALL} keepassxc
+
 google-chrome:
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	dpkg -i google-chrome-stable_current_amd64.deb
