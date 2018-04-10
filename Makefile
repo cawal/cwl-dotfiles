@@ -17,8 +17,11 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} install kdeconnect indicator-kdeconnect
 
-i3: i3-python
+i3: notifications i3-python
 	${INSTALL} i3
+
+notifications:
+	${INSTALL} dunst
 
 i3-python:
 	${INSTALL} python-tz python-tzlocal
