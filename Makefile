@@ -7,10 +7,14 @@ UPDATE = apt update
 
 all: desktop-environment 
 
-desktop-environment: i3 kde-connect-indicator drivers
+desktop-environment: i3 kde-connect-indicator drivers flashfocus
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
+
+flashfocus:
+	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
+	pip install flashfocus
 
 kde-connect-indicator:
 	add-apt-repository ppa:webupd8team/indicator-kdeconnect
