@@ -32,10 +32,10 @@
 !------------------------------------------------------------------------------
 ! u r x v t
 
-uRxvt*geometry:         112x22  
-uRxvt*urlLauncher:         firefox  
-uRxvt*scrollBar:        false
-uRxvt*scrollBar_right:        true
-uRxvt*scrollColor:        #000000
+urxvt*geometry:         	112x22  
+urxvt*urlLauncher:         	firefox  
+urxvt*scrollBar:        	false
+urxvt*scrollBar_right:       	false
+urxvt*scrollColor:        	#000000
 
-urxvt.font: xft:Hack:pixelsize=12
+urxvt.font: xft:Hack:pixelsize=13

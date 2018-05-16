@@ -1,1 +1,3 @@
+!#include ".Xresources.d/0-defaults"
 #include ".Xresources.d/rofi"
+#include ".Xresources.d/urxvt"
