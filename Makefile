@@ -5,7 +5,13 @@ UPDATE = apt update
 
 
 
-all: desktop-environment 
+all: desktop-environment link-all
+
+link-all: link-xresources
+
+link-xresources:
+	stow Xresources --target=${HOME}
+	xrdb ${HOME}/.Xresources
 
 desktop-environment: i3 kde-connect-indicator drivers flashfocus
 
