@@ -1,0 +1,5 @@
+#!/bin/bash
+# Use the locate database to find PDF locations, then 
+# rofi to select by name
+
+locate pdf | rofi -dmenu -separator "\n" | xargs -d '\n'  mimeopen

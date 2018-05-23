@@ -41,7 +41,7 @@ rofi.bg-urgent:                      #F7941E
 ! Foreground color for highlighted urgent row
 rofi.hlfg-urgent:                    #000000
 ! Background color for highlighted urgent row
-rofi.hlbg-urgent:                    
+rofi.hlbg-urgent:                    #F7941E 
 
 
 
