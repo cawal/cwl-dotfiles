@@ -59,5 +59,5 @@ geeknote:
 	${INSTALL} python-setuptools* python-dev git
 	cd ${GIT_THIRD_PARTY_FOLDER}; git clone git://github.com/VitaliyRodnenko/geeknote.git; cd geeknote; git pull origin master; python setup.py install
 
-development-tools:
-	${INSTALL} httpie jq
+web-service-development-tools:
+	${INSTALL} httpie jq tcpflow
