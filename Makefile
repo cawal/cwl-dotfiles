@@ -13,7 +13,7 @@ link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
-desktop-environment: i3 kde-connect-indicator drivers flashfocus
+desktop-environment: i3 i3-python notifications kde-connect-indicator drivers flashfocus
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -38,6 +38,9 @@ i3-python:
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
+
+ranger:
+	${INSTALL} ranger
 
 keepassxc:
 	sudo add-apt-repository ppa:phoerious/keepassxc
