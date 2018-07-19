@@ -1,4 +1,4 @@
-GIT_REPOS_ROOT_FOLDER = ~/git/
+GIT_:qREPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
 INSTALL = apt install -y
 UPDATE = apt update
@@ -64,3 +64,6 @@ geeknote:
 
 web-service-development-tools:
 	${INSTALL} httpie jq tcpflow
+
+link-conky:
+	stow conky --target=${HOME}
