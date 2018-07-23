@@ -57,7 +57,9 @@ ${voffset 50}
 #${font Arial:pixelsize=10}
 GIT
 ${hr}
-GEAS-RIM: ${execi 60 git --git-dir /home/cawal/git/lssb/geas-rim/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
+RESTaurant:    ${execi 60 git --git-dir /home/cawal/git/lssb/RESTaurant/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
+Activity-REST: ${execi 60 git --git-dir /home/cawal/git/lssb/Activity-REST/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
+GEAS-RIM:      ${execi 60 git --git-dir /home/cawal/git/lssb/geas-rim/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
 
 ${hr}
 Wireless: ${alignr}${addrs wlp3s0}
