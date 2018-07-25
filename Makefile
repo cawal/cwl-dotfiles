@@ -1,8 +1,8 @@
-GIT_:qREPOS_ROOT_FOLDER = ~/git/
+GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
 INSTALL = apt install -y
 UPDATE = apt update
-
+ADD_REPOSITORY='add-apt-repository -y'
 
 
 all: desktop-environment link-all
@@ -13,7 +13,7 @@ link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
-desktop-environment: i3 i3-python notifications kde-connect-indicator drivers flashfocus
+desktop-environment: i3 i3-python notifications kde-connect-indicator flashfocus
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -25,10 +25,22 @@ flashfocus:
 kde-connect-indicator:
 	add-apt-repository ppa:webupd8team/indicator-kdeconnect
 	${UPDATE}
-	${INSTALL} install kdeconnect indicator-kdeconnect
+	${INSTALL} kdeconnect indicator-kdeconnect
 
-i3: notifications i3-python
+i3: notifications i3-python py3status rofi wallpaper
 	${INSTALL} i3
+
+py3status:
+	${INSTALL} py3status
+
+rofi:
+	${INSTALL} rofi
+
+wallpaper:
+	${INSTALL} nitrogen
+
+version-control:
+	${INSTALL} git mercurial
 
 notifications:
 	${INSTALL} dunst
@@ -38,6 +50,9 @@ i3-python:
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
+
+vi:
+	${INSTALL} neovim
 
 ranger:
 	${INSTALL} ranger
