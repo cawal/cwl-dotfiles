@@ -16,7 +16,7 @@ link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
-desktop-environment: i3 i3-python notifications kde-connect-indicator flashfocus
+desktop-environment: i3 kde-connect-indicator flashfocus
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -30,8 +30,13 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
 
-i3: notifications i3-python py3status rofi wallpaper
+i3: notifications i3-bar rofi wallpaper compositor
 	${INSTALL} i3
+
+i3-bar: py3status i3-python
+
+compositor:
+	${INSTALL} compton
 
 py3status:
 	${INSTALL} py3status
@@ -49,7 +54,7 @@ notifications:
 	${INSTALL} dunst
 
 i3-python:
-	${INSTALL} python-tz python-tzlocal
+	${INSTALL} python3-tz python3-tzlocal
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
@@ -71,28 +76,46 @@ keepassxc:
 	${INSTALL} keepassxc
 
 google-chrome:
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	dpkg -i google-chrome-stable_current_amd64.deb
-	rm google-chrome-stable_current_amd64.deb
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
 
 mendeley:
-	wget -O mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-	${INSTALL} libqtwebkit4
-	dpkg -i mendeleydesktop.deb
-	rm mendeleydesktop.deb
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
+	${INSTALL} libqtwebkit4 gconf2
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} mendeleydesktop.deb
 
-geeknote: version-control
-	${INSTALL} python-setuptools* python-dev git
-	cd ${GIT_THIRD_PARTY_FOLDER}; git clone git://github.com/VitaliyRodnenko/geeknote.git; cd geeknote; git pull origin master; python setup.py install
-
-web-service-development-tools:
+web-service-development-tools: insomnia
 	${INSTALL} httpie jq tcpflow
+
+insomnia:
+	echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+	wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+	${UPDATE}
+	${INSTALL} insomnia
+#	snap install insomnia
+
 
 link-conky:
 	stow conky --target=${HOME}
 
 build-tools:
 	${INSTALL} maven gradle gpp ant 
+
+oracle-java-8:
+	${ADD_REPOSITORY} ppa:webupd8team/java
+	${UPDATE}
+	${INSTALL} oracle-java8-installer
+
+oracle-java-10:
+	${ADD_REPOSITORY} ppa:linuxuprising/java
+	${UPDATE}
+	${INSTALL} oracle-java10-installer
+
+openjdk-11:
+	${INSTALL} openjdk-11-jdk
+
+openjdk-8:
+	${INSTALL} openjdk-8-jdk icedtea-8-plugin
 
 conky-notifications:
 	${INSTALL} conky-all
