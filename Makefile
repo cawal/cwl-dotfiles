@@ -1,8 +1,11 @@
 GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
 INSTALL = apt install -y
+INSTALL_LOCAL=dpkg -i
 UPDATE = apt update
-ADD_REPOSITORY='add-apt-repository -y'
+ADD_REPOSITORY=add-apt-repository -y
+DOWNLOAD_AS=wget -O
+AT_TEMP_FOLDER=cd /tmp/ ; 
 
 
 all: desktop-environment link-all
@@ -40,7 +43,7 @@ wallpaper:
 	${INSTALL} nitrogen
 
 version-control:
-	${INSTALL} git mercurial
+	${INSTALL} git mercurial mercurial-git subversion
 
 notifications:
 	${INSTALL} dunst
@@ -51,6 +54,11 @@ zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
 
+#dropbox:
+#	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
+#	${INSTALL} python-gtk2 libpango1.0-0
+#	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb 
+
 vi:
 	${INSTALL} neovim
 
@@ -58,7 +66,7 @@ ranger:
 	${INSTALL} ranger
 
 keepassxc:
-	sudo add-apt-repository ppa:phoerious/keepassxc
+	${ADD_REPOSITORY} ppa:phoerious/keepassxc
 	${UPDATE}
 	${INSTALL} keepassxc
 
@@ -73,7 +81,7 @@ mendeley:
 	dpkg -i mendeleydesktop.deb
 	rm mendeleydesktop.deb
 
-geeknote:
+geeknote: version-control
 	${INSTALL} python-setuptools* python-dev git
 	cd ${GIT_THIRD_PARTY_FOLDER}; git clone git://github.com/VitaliyRodnenko/geeknote.git; cd geeknote; git pull origin master; python setup.py install
 
@@ -82,3 +90,17 @@ web-service-development-tools:
 
 link-conky:
 	stow conky --target=${HOME}
+
+build-tools:
+	${INSTALL} maven gradle gpp ant 
+
+conky-notifications:
+	${INSTALL} conky-all
+
+writing: latex markdown
+
+markdown:
+	${INSTALL} pandoc
+
+latex:
+	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber
