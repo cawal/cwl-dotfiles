@@ -59,6 +59,9 @@ zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
 
+image-manipulation:
+	${INSTALL} inkscape gimp imagemagick
+
 #dropbox:
 #	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
 #	${INSTALL} python-gtk2 libpango1.0-0
