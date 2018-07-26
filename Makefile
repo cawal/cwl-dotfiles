@@ -24,6 +24,8 @@ desktop-configuration:
 icon-themes:
 	${INSTALL} numix-icon-theme
 
+gtk-themes:
+	${INSTALL} arc-theme
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -123,6 +125,10 @@ oracle-java-10:
 	${ADD_REPOSITORY} ppa:linuxuprising/java
 	${UPDATE}
 	${INSTALL} oracle-java10-installer
+
+
+cli-administration:
+	${INSTALL} ppa-purge
 
 openjdk-11:
 	${INSTALL} openjdk-11-jdk
