@@ -16,7 +16,14 @@ link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
-desktop-environment: i3 kde-connect-indicator flashfocus
+desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration
+
+desktop-configuration:
+	${INSTALL} lxappearance
+
+icon-themes:
+	${INSTALL} numix-icon-theme
+
 
 drivers:
 	${INSTALL} bcmwl-kernel-source 
@@ -90,6 +97,9 @@ mendeley:
 web-service-development-tools: insomnia
 	${INSTALL} httpie jq tcpflow
 
+web-development:
+	${INSTALL} jekyll
+
 insomnia:
 	echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 	wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
@@ -129,4 +139,4 @@ markdown:
 	${INSTALL} pandoc
 
 latex:
-	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber
+	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool
