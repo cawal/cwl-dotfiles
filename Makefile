@@ -10,11 +10,14 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 all: desktop-environment link-all
 
-link-all: link-xresources
+link-all: link-xresources link-login-shell
 
 link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
+
+link-login-shell:
+	stow login-shell --target=${HOME}
 
 desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration
 
@@ -146,3 +149,7 @@ markdown:
 
 latex:
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool
+
+
+terminal:
+	${INSTALL} rxvt-unicode
