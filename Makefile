@@ -105,6 +105,10 @@ mendeley:
 web-service-development-tools: insomnia
 	${INSTALL} httpie jq tcpflow
 
+hostess:
+	${AT_TEMP_FILE} git clone https://github.com/cbednarski/hostess
+	${AT_TEMP_FILE} cd hostess && make	&& make install
+
 web-development:
 	${INSTALL} jekyll
 
