@@ -85,6 +85,9 @@ vi:
 ranger:
 	${INSTALL} ranger
 
+video-player:
+	${INSTALL} vlc
+
 keepassxc:
 	${ADD_REPOSITORY} ppa:phoerious/keepassxc
 	${UPDATE}
@@ -142,7 +145,7 @@ openjdk-8:
 conky-notifications:
 	${INSTALL} conky-all
 
-writing: latex markdown
+writing: latex markdown office-suite
 
 markdown:
 	${INSTALL} pandoc
@@ -150,6 +153,21 @@ markdown:
 latex:
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool
 
+office-suite:
+	${INSTALL} libreoffice
 
 terminal:
 	${INSTALL} rxvt-unicode
+
+screenruler:
+	${INSTALL} screenruler
+
+q:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
+	${AT_TEMP_FOLDER} dpkg -i q.deb
+
+#screenshot:
+#	${INSTALL} spectacle
+
+fonts:
+	${INSTALL} ubuntu-restricted-extras
