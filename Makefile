@@ -67,6 +67,7 @@ notifications:
 
 i3-python:
 	${INSTALL} python3-tz python3-tzlocal
+
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
@@ -104,10 +105,6 @@ mendeley:
 
 web-service-development-tools: insomnia
 	${INSTALL} httpie jq tcpflow
-
-hostess:
-	${AT_TEMP_FILE} git clone https://github.com/cbednarski/hostess
-	${AT_TEMP_FILE} cd hostess && make	&& make install
 
 web-development:
 	${INSTALL} jekyll
@@ -175,3 +172,8 @@ q:
 
 fonts:
 	${INSTALL} ubuntu-restricted-extras
+
+autokey:
+	${ADD_REPOSITORY} ppa:sporkwitch/autokey
+	${UPDATE}
+	${INSTALL} autokey-gtk
