@@ -83,8 +83,11 @@ image-manipulation:
 vi:
 	${INSTALL} neovim
 
-ranger:
+ranger-install:
 	${INSTALL} ranger
+
+link-ranger:
+	stow ranger --target=${HOME}/.config/ranger	
 
 video-player:
 	${INSTALL} vlc
