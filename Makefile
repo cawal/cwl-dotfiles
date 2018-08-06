@@ -24,6 +24,9 @@ desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration
 desktop-configuration:
 	${INSTALL} lxappearance
 
+bb-dependencies:
+	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3
+
 icon-themes:
 	${INSTALL} numix-icon-theme
 
