@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SPOTIFY_PLAYLIST=spotify:user:12149882260:playlist:5iLAAP225VLUyMtXpRhhUT
+
+spotify &
+sleep 10
+sp open "${SPOTIFY_PLAYLIST}"

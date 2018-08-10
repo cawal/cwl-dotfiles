@@ -15,6 +15,8 @@ link-all: link-xresources link-login-shell
 link-xresources:
 	stow Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
+link-bin:
+	stow bin --target=${HOME}/bin/
 
 link-login-shell:
 	stow login-shell --target=${HOME}
