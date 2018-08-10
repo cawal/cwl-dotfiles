@@ -1,0 +1,8 @@
+# https://github.com/kenyonj/i3-create-config
+<#include vars.conf>
+<#include host-specific.conf>
+<#include startup-processes.conf>
+<#include colors.conf>
+<#include desktop.conf>
+<#include bindings.conf>
+
