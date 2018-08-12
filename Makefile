@@ -21,7 +21,7 @@ link-bin:
 link-login-shell:
 	stow login-shell --target=${HOME}
 
-desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration
+desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration diodon
 
 desktop-configuration:
 	${INSTALL} lxappearance
@@ -46,6 +46,9 @@ kde-connect-indicator:
 	add-apt-repository ppa:webupd8team/indicator-kdeconnect
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
+
+diodon:
+	${INSTALL} diodon
 
 i3: notifications i3-bar rofi wallpaper compositor
 	${INSTALL} i3
