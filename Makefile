@@ -142,8 +142,16 @@ oracle-java-10:
 	${INSTALL} oracle-java10-installer
 
 
-cli-administration:
+cli-administration: osquery ppapurge
+
+ppapurge:
 	${INSTALL} ppa-purge
+
+osquery:
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
+	${ADD_REPOSITORY} 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
+	${UPDATE}
+	${INSTALL} osquery
 
 openjdk-11:
 	${INSTALL} openjdk-11-jdk
