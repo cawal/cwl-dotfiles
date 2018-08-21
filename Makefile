@@ -170,8 +170,8 @@ writing: latex markdown office-suite
 markdown:
 	${INSTALL} pandoc
 
-latex:
-	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool
+latex: abntex2
+	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese
 
 office-suite:
 	${INSTALL} libreoffice
