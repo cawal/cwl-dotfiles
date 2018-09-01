@@ -165,7 +165,7 @@ openjdk-8:
 conky-notifications:
 	${INSTALL} conky-all
 
-writing: latex markdown office-suite
+writing: latex markdown office-suite gedit
 
 markdown:
 	${INSTALL} pandoc
@@ -175,7 +175,8 @@ latex: abntex2
 
 office-suite:
 	${INSTALL} libreoffice
-
+gedit:
+	${INSTALL} gedit
 terminal:
 	${INSTALL} rxvt-unicode
 
