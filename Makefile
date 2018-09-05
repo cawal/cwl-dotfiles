@@ -168,7 +168,7 @@ openjdk-8:
 conky-notifications:
 	${INSTALL} conky-all
 
-writing: latex markdown office-suite gedit zathura
+writing: latex markdown office-suite gedit graphviz zathura
 
 zathura:
 	${INSTALL} zathura
@@ -183,6 +183,10 @@ office-suite:
 	${INSTALL} libreoffice
 gedit:
 	${INSTALL} gedit
+
+graphviz:
+	${INSTALL} graphviz
+
 terminal:
 	${INSTALL} rxvt-unicode
 
