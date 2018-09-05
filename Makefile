@@ -94,6 +94,9 @@ vi:
 ranger-install:
 	${INSTALL} ranger
 
+package-files:
+	${INSTALL} file-roller
+
 link-ranger:
 	stow ranger --target=${HOME}/.config/ranger	
 
@@ -165,7 +168,10 @@ openjdk-8:
 conky-notifications:
 	${INSTALL} conky-all
 
-writing: latex markdown office-suite gedit
+writing: latex markdown office-suite gedit zathura
+
+zathura:
+	${INSTALL} zathura
 
 markdown:
 	${INSTALL} pandoc
