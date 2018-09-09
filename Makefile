@@ -10,21 +10,16 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 all: desktop-environment link-all
 
-link-all: link-xresources link-login-shell
-
-link-xresources:
-	stow Xresources --target=${HOME}
-	xrdb ${HOME}/.Xresources
-link-bin:
-	stow bin --target=${HOME}/bin/
-
-link-login-shell:
-	stow login-shell --target=${HOME}
 
 desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration diodon
 
 desktop-configuration:
 	${INSTALL} lxappearance
+
+web-browser: firefox
+
+firefox:
+	${INSTALL} firefox
 
 bb-dependencies:
 	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3
@@ -97,8 +92,6 @@ ranger-install:
 package-files:
 	${INSTALL} file-roller
 
-link-ranger:
-	stow ranger --target=${HOME}/.config/ranger	
 
 video-player:
 	${INSTALL} vlc
@@ -131,8 +124,6 @@ insomnia:
 #	snap install insomnia
 
 
-link-conky:
-	stow conky --target=${HOME}
 
 build-tools:
 	${INSTALL} maven gradle gpp ant 
@@ -213,3 +204,24 @@ spotify:
 	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 	${UPDATE}
 	${INSTALL} spotify-client
+
+
+# stow all configuration files ------------------------------------------
+
+link-all: link-bin link-conky link-login-shell link-ranger link-xresources 
+
+link-conky:
+	stow -R conky --target=${HOME}
+
+link-bin:
+	stow -R bin --target=${HOME}/bin/
+
+link-login-shell:
+	stow -R login-shell --target=${HOME}
+
+link-ranger:
+	stow -R ranger --target=${HOME}/.config/ranger	
+
+link-xresources:
+	stow -R Xresources --target=${HOME}
+	xrdb ${HOME}/.Xresources
