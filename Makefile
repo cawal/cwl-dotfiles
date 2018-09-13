@@ -76,7 +76,7 @@ zsh:
 	chsh -s /bin/zsh
 
 image-manipulation:
-	${INSTALL} inkscape gimp imagemagick
+	${INSTALL} inkscape gimp imagemagick gpick
 
 #dropbox:
 #	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb

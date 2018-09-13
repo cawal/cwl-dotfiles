@@ -37,5 +37,5 @@ urxvt*urlLauncher:         	firefox
 urxvt*scrollBar:        	false
 urxvt*scrollBar_right:       	false
 urxvt*scrollColor:        	#000000
-
-urxvt.font: xft:Hack:pixelsize=13
+urxvt*internalBorder: 		3
+urxvt.font: 			xft:Hack:pixelsize=13
