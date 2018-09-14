@@ -219,6 +219,10 @@ link-bin:
 link-login-shell:
 	stow -R login-shell --target=${HOME}
 
+link-polybar:
+	mkdir -p ${HOME}/.config/polybar/
+	stow -R polybar --target=${HOME}/.config/polybar/
+
 link-ranger:
 	stow -R ranger --target=${HOME}/.config/ranger	
 
