@@ -233,6 +233,12 @@ link-bin:
 link-login-shell:
 	stow -R login-shell --target=${HOME}
 
+link-neovim:
+	mkdir -p ${HOME}/.local/share/nvim/site/autoload/ 
+	cd neovim; stow -R autoload --target=${HOME}/.local/share/nvim/site/autoload/
+	mkdir -p ${HOME}/.config/nvim/
+	cd neovim; stow -R config --target=${HOME}/.config/nvim/
+
 link-polybar:
 	mkdir -p ${HOME}/.config/polybar/
 	stow -R polybar --target=${HOME}/.config/polybar/
