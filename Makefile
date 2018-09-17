@@ -42,6 +42,9 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
 
+jabref-dependencies: openjdk-8
+	${INSTALL} openjfx
+
 diodon:
 	${INSTALL} diodon
 
@@ -55,6 +58,17 @@ compositor:
 
 py3status:
 	${INSTALL} py3status
+
+polybar: polybar-dependencies
+	${AT_TEMP_FOLDER} git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
+	${AT_TEMP_FOLDER} mkdir polybar/build; cd polybar/build; cmake ..; make install
+
+polybar-dependencies:
+	${INSTALL} cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
+	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev 
+
+
+
 
 rofi:
 	${INSTALL} rofi
@@ -229,3 +243,8 @@ link-ranger:
 link-xresources:
 	stow -R Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
+
+link-zathura:
+	mkdir -p ${HOME}/.config/zathura/
+	stow -R zathura --target=${HOME}/.config/zathura/
+

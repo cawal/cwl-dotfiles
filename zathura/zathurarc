@@ -1,0 +1,3 @@
+set synctex true
+set synctex-editor-command "vim +%{line} %{input}"
+set synctex-editor-command "echo %{input}:%{line}"
