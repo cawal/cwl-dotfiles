@@ -16,6 +16,16 @@ desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration d
 desktop-configuration:
 	${INSTALL} lxappearance
 
+
+docker: docker-ce-edge 
+
+docker-ce-edge:
+	$(if $(shell which docker),$(error "Docker already installed"),)
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com 
+	${AT_TEMP_FOLDER} sh get-docker.sh 
+	usermod -aG docker `whoami`
+	 
+
 web-browser: firefox
 
 firefox:
