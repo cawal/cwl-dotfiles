@@ -39,3 +39,7 @@ urxvt*scrollBar_right:       	false
 urxvt*scrollColor:        	#000000
 urxvt*internalBorder: 		3
 urxvt.font: 			xft:Hack:pixelsize=13
+! horizontal spacing of letters
+urxvt.letterSpace:		0
+!urxvt.perl-ext: resize,fullscreen
+!urxvt.keysym.F11: perl:fullscreen:switch
