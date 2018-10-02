@@ -31,8 +31,12 @@ web-browser: firefox
 firefox:
 	${INSTALL} firefox
 
+bb: bb-dependencies
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} warsaw.deb https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} warsaw.deb
+
 bb-dependencies:
-	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3
+	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3 python-openssl
 
 icon-themes:
 	${INSTALL} numix-icon-theme
@@ -185,13 +189,13 @@ conky-notifications:
 
 writing: latex markdown office-suite gedit graphviz zathura
 
-zathura:
+zathura: FORCE
 	${INSTALL} zathura
 
 markdown:
 	${INSTALL} pandoc
 
-latex: abntex2
+latex: 
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese
 
 office-suite:
@@ -264,3 +268,7 @@ link-zathura:
 	mkdir -p ${HOME}/.config/zathura/
 	stow -R zathura --target=${HOME}/.config/zathura/
 
+
+
+
+FORCE:
