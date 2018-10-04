@@ -58,3 +58,14 @@ PrependListWith
 AppendListWith
 PrependEach
 AppendEach
+metamodels
+XMI
+#onvinient
+convinient/!
+#nputDatasets
+InputDatasets/!
+inputDatasets
+outputDatasets
+functionalEntity
+aadl
+cli
