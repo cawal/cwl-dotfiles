@@ -87,6 +87,9 @@ polybar-dependencies:
 rofi:
 	${INSTALL} rofi
 
+telegram:
+	snap install telegram-sergiusens
+
 wallpaper:
 	${INSTALL} nitrogen
 
