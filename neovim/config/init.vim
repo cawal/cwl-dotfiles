@@ -2,8 +2,14 @@
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } "File navigator
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } "Zen mode
+
+Plug 'dpelle/vim-LanguageTool'
 "Plug 'ying17zi/vim-live-latex-preview'
+
 call plug#end()
+
+" configs for dpelle/vim-LanguageTool
+let g:languagetool_jar='$HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
 
 
 " KEY MAPPINGS------------------------------------------------------
