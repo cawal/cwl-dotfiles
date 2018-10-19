@@ -1,3 +1,5 @@
+let mapleader = "\\"
+
 " PLUGINS --------------------------------------------------------
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
@@ -15,11 +17,18 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 " KEY MAPPINGS------------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 
+" Toggle Zen mode
+function! ToggleZenMode()
+	:NERDTreeClose
+	:Goyo
+endfunction
+
 " Toggle file navigator
 map <F12> :NERDTreeToggle <Enter>
+nnoremap <leader>f :NERDTreeToggle <Enter>
 
-" Toggle Zen mode
-map <F11> :Goyo <Enter> 
+map <F11> :call ToggleZenMode()<cr>
+nmap <leader>z :call ToggleZenMode()<cr> 
 
 " Grammar checking
 map <F5> :GrammarousCheck <Enter>
