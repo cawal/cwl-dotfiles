@@ -37,3 +37,6 @@ nmap <leader>z :call CWLToggleZenMode()<cr>
 " Grammar checking
 map <F5> :GrammarousCheck <Enter>
 map <F6> :GrammarousReset <Enter>
+
+
+nnoremap ; :
