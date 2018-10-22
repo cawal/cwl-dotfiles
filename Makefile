@@ -199,7 +199,11 @@ markdown:
 	${INSTALL} pandoc
 
 latex: 
-	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese
+	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
+
+beamer-theme-metropolis: latex
+	${AT_TEMP_FOLDER}  git clone https://github.com/matze/mtheme.git
+	${AT_TEMP_FOLDER}  cd mtheme; make sty && make install
 
 office-suite:
 	${INSTALL} libreoffice
