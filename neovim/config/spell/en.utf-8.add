@@ -76,3 +76,10 @@ URI's
 uri
 AAD
 AADL2Ecore
+InstanceExecution
+MultiplicityElement
+minimumCardinality
+maximumCardinality
+defaultValue
+ParameterType
+InputDataset
