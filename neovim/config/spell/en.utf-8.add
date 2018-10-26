@@ -85,3 +85,7 @@ ParameterType
 InputDataset
 XMI
 XMI
+blastn
+blastp
+blastx
+FASTA
