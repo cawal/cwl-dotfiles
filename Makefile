@@ -158,7 +158,7 @@ insomnia:
 
 
 build-tools:
-	${INSTALL} maven gradle gpp ant 
+	${INSTALL} maven gradle gpp ant checkinstall make
 
 oracle-java-8:
 	${ADD_REPOSITORY} ppa:webupd8team/java

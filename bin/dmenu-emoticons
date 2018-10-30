@@ -3,6 +3,6 @@
 # Shows the selected character in dunst if running.
 # From https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicodehttps://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicode
 
-grep -v "#" ~/bin/unicode-emoticons.txt | dmenu -i -l 20 -fn Monospace-10 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
+grep -v "#" ~/bin/unicode-emoticons.txt | dmenu -i -l 20 -fn Monospace-15 | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
 
 pgrep -x dunst >/dev/null && notify-send "$(xclip -o -selection clipboard) copied to clipboard."
