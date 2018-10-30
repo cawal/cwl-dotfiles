@@ -13,6 +13,9 @@ all: desktop-environment link-all
 
 desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration diodon
 
+clipboard-tools: diodon
+	${INSTALL} xclip
+
 desktop-configuration:
 	${INSTALL} lxappearance
 
@@ -80,8 +83,6 @@ polybar: polybar-dependencies
 polybar-dependencies:
 	${INSTALL} cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
 	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev 
-
-
 
 
 rofi:
