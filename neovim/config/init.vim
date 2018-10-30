@@ -11,6 +11,12 @@ Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } "Grammar checking
 
 call plug#end()
 
+
+" CONFIGS ------------------------------------------------------
+" Better splits
+set splitbelow
+set splitright
+
 " Config for grammarous
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
 
