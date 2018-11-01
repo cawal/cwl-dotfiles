@@ -241,6 +241,10 @@ spotify:
 	${UPDATE}
 	${INSTALL} spotify-client
 
+skype:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
+	${AT_TEMP_FOLDER} dpkg -i skype.deb
+
 
 # stow all configuration files ------------------------------------------
 
