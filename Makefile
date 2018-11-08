@@ -28,6 +28,10 @@ docker-ce-edge:
 	${AT_TEMP_FOLDER} sh get-docker.sh 
 	usermod -aG docker `whoami`
 	 
+baobab:
+	${INSTALL} baobab
+
+
 
 web-browser: firefox
 
@@ -210,6 +214,9 @@ office-suite:
 	${INSTALL} libreoffice
 gedit:
 	${INSTALL} gedit
+
+ktikz:
+	${INSTALL} ktikz
 
 graphviz:
 	${INSTALL} graphviz
