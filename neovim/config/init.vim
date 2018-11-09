@@ -44,5 +44,6 @@ nmap <leader>z :call CWLToggleZenMode()<cr>
 map <F5> :GrammarousCheck <Enter>
 map <F6> :GrammarousReset <Enter>
 
+nnoremap <Esc><Esc> :noh<Enter>
 
 nnoremap ; :
