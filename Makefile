@@ -203,6 +203,10 @@ zathura: FORCE
 markdown:
 	${INSTALL} pandoc
 
+
+calibre:
+	${INSTALL} calibre
+
 latex: 
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 
