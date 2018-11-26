@@ -208,7 +208,7 @@ calibre:
 	${INSTALL} calibre
 
 latex: 
-	${INSTALL} texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
+	${INSTALL} texlive-latex-base texlive-latex-extra texlive-humanities texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 
 beamer-theme-metropolis: latex
 	${AT_TEMP_FOLDER}  git clone https://github.com/matze/mtheme.git
