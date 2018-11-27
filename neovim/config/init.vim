@@ -46,4 +46,7 @@ map <F6> :GrammarousReset <Enter>
 
 nnoremap <Esc><Esc> :noh<Enter>
 
+" Join with previous line (symmetric with J)
+nnoremap K kJ
+
 nnoremap ; :
