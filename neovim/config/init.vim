@@ -55,4 +55,6 @@ nnoremap ; :
 
 " AUTOCOMMANDS -----------------------------------------------------------
 " 
-autocmd FileType tex :Goyo 80
+augroup CustomTeX : 
+	autocmd FileType tex :Goyo 80
+augroup END
