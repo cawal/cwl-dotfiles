@@ -16,6 +16,7 @@ call plug#end()
 " Better splits
 set splitbelow
 set splitright
+filetype on
 
 " Config for grammarous
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
@@ -50,3 +51,8 @@ nnoremap <Esc><Esc> :noh<Enter>
 nnoremap K kJ
 
 nnoremap ; :
+
+
+" AUTOCOMMANDS -----------------------------------------------------------
+" 
+autocmd FileType tex :Goyo 80
