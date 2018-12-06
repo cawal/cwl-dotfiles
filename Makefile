@@ -257,6 +257,17 @@ skype:
 	${AT_TEMP_FOLDER} dpkg -i skype.deb
 
 
+language-servers: ls-bash
+
+# https://github.com/mads-hartmann/bash-language-server
+ls-bash: 
+	npm i -g bash-language-server
+
+# https://github.com/theia-ide/typescript-language-server
+ls-typescript:
+	npm install -g typescript-language-server
+	npm install -g typescript
+
 # stow all configuration files ------------------------------------------
 
 link-all: link-bin link-conky link-login-shell link-ranger link-xresources 

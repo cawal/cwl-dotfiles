@@ -7,9 +7,37 @@ call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } "File navigator
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } "Zen mode
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } "Grammar checking
+
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 "Plug 'ying17zi/vim-live-latex-preview'
 
 call plug#end()
+
+
+augroup filetype_typescript
+    autocmd!
+    autocmd BufReadPost *.ts setlocal filetype=typescript
+augroup END
+
+
+" Language servers
+" Bash: https://github.com/mads-hartmann/bash-language-server
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start'],
+    \ 'typescript': ['typescript-language-server', '--stdio'],
+    \ }
+
+nnoremap <F4> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> <Leader>K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 " CONFIGS ------------------------------------------------------
