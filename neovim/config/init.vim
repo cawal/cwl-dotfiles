@@ -13,7 +13,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'junegunn/fzf'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
+Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
 "Plug 'ying17zi/vim-live-latex-preview'
 
 call plug#end()
