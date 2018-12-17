@@ -6,7 +6,11 @@ HOSTNAME := ${shell hostname}
 create_config:
 	gpp -H -D${HOSTNAME}=1 -o ${RESULT_FILE} ${MASTER_FILE}
 
-#.bartemplate.bar:
-#	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  $*.bar $<
-#
-#bars: top-left.bar top-right.bar bottom-right.bar 
+.bartemplate.bar:
+	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  $*.bar $<
+
+bars: top-left.bar
+
+top-left.bar: 
+	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
+

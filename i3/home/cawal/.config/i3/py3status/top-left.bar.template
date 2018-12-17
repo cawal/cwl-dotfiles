@@ -1,0 +1,81 @@
+# https://py3status.readthedocs.io/en/latest/modules.html#window-title
+general {
+	color = "#DDDDDD"	#"#222222"
+	color_good = "#DDDDDD"	#"#222222"
+	color_bad = "#F7941E"	#"#830000"
+	color_degraded = "#00AAAA"
+	color_charging = "#00AAAA"
+}
+
+
+apt_updates {
+    format = "[\?not_zero APT: {apt} updates]"
+}
+
+battery_level {
+	format = "BAT: {percent}%"
+}
+
+clock {
+	format = "{America/Sao_Paulo}"
+	format_time = "%Y-%m-%d %H:%M"	
+}
+
+keyboard_locks {
+	format = "[\?if=caps_lock&color=good C|\?color=bad C] "
+	format += "[\?if=num_lock&color=good N|\?color=bad N] "
+	format += "[\?if=scroll_lock&color=good S|\?color=bad S]"
+	cache_timeout = 1
+	color_bad = "#AAAAAA"
+}
+
+pomodoro { # https://py3status.readthedocs.io/en/latest/modules.html#pomodoro
+	format = "{mmss}" # default ‘\?if=is_started [\?if=is_stopped \[\] moc| [\?if=is_paused \|\|][\?if=is_playing >] {title}]’)
+	color_bad = "#DDDDDD"	#"#222222"
+	color_degraded = "#DDDDDD"	#"#222222"
+	color_good = "#DDDDDD"	#"#222222"
+}
+<#ifdef navi>
+volume_status {
+	thresholds = [
+		(0, "#830000"),
+		(10, "#DDDDDD"),
+		(101, "#830000")
+	]
+	command = "amixer"
+	button_up = 4
+	button_down = 5
+	button_mute = 91
+	format =  "[\?if=is_input 😮|♪]: {percentage}%"
+}
+<#endif>
+
+<#ifdef neuromancer>
+volume_status {
+	thresholds = [
+		(0, "#830000"),
+		(10, "#DDDDDD"),
+		(101, "#830000")
+	]
+	command = "amixer"
+	device =  "pulse"
+	channel = "Master"
+	card = "1"
+	button_up = 4
+	button_down = 5
+	button_mute = 91
+	format =  "[\?if=is_input 😮|♪]: {percentage}%"
+}
+<#endif>
+window_title {
+	format = '[\?max_length=120 {title}]'
+	max-width = 120 #default 120
+}
+
+order += window_title
+order += pomodoro
+order += battery_level
+order += volume_status
+order += apt_updates
+order += keyboard_locks
+order += clock

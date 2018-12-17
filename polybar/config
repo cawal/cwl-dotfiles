@@ -99,6 +99,10 @@
 	inherit = section/left
 	monitor = ${env:MONITOR:LVDS-1}
 
+[bar/neuromancerLeft]
+	inherit = section/left
+	monitor = ${env:MONITOR:HDMI-1}
+
 [bar/naviRight]
 	inherit = section/right
 	monitor = ${env:MONITOR:VGA-1}
