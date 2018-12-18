@@ -35,6 +35,7 @@ pomodoro { # https://py3status.readthedocs.io/en/latest/modules.html#pomodoro
 	color_degraded = "#DDDDDD"	#"#222222"
 	color_good = "#DDDDDD"	#"#222222"
 }
+
 <#ifdef navi>
 volume_status {
 	thresholds = [
@@ -49,7 +50,6 @@ volume_status {
 	format =  "[\?if=is_input 😮|♪]: {percentage}%"
 }
 <#endif>
-
 <#ifdef neuromancer>
 volume_status {
 	thresholds = [
@@ -67,6 +67,7 @@ volume_status {
 	format =  "[\?if=is_input 😮|♪]: {percentage}%"
 }
 <#endif>
+
 window_title {
 	format = '[\?max_length=120 {title}]'
 	max-width = 120 #default 120

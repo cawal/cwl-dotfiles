@@ -43,9 +43,9 @@ isReady
 FailedAnalysisInstance
 SucceededAnalysisInstance
 errorReport
-failedAnalyses
-succeededAnalyses
-nonExecutedAnalyses
+#ailedAnalyses
+#ucceededAnalyses
+#onExecutedAnalyses
 AnalysisJob
 uid
 nonExecutedAnalysis
@@ -138,3 +138,9 @@ BNF
 JUnit
 ArchUnit
 Webber2010
+nonExecutedAnalyses/!
+succeededAnalyses/!
+failedAnalyses/!
+nonExecutedInstances
+succeededInstances
+failedInstances

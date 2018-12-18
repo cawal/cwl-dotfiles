@@ -13,4 +13,5 @@ bars: top-left.bar
 
 top-left.bar: 
 	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
+	cd ${BARS_DIRECTORY} ; gpp -U "<#" ">" "\B" "|" ">" "<" ">" "#" ""  -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
 
