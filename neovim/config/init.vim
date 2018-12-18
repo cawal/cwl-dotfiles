@@ -6,6 +6,7 @@ call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } "File navigator
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } "Zen mode
+Plug 'junegunn/vim-easy-align' 
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } "Grammar checking
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
@@ -39,6 +40,11 @@ nnoremap <silent> <Leader>K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive Easyalign for a motion/text object (e.g., gaip)
+nmap ga <Plug>(EasyAlign)
 
 " CONFIGS ------------------------------------------------------
 " Better splits
