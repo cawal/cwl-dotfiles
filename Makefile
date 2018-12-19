@@ -19,6 +19,8 @@ clipboard-tools: diodon
 desktop-configuration:
 	${INSTALL} lxappearance
 
+audacity:
+	${INSTALL} audacity
 
 docker: docker-ce-edge 
 
