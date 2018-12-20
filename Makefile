@@ -33,6 +33,8 @@ docker-ce-edge:
 baobab:
 	${INSTALL} baobab
 
+qutebrowser:
+	${INSTALL} qutebrowser
 
 
 web-browser: firefox
