@@ -115,6 +115,9 @@ zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
 
+shellcheck:
+	${INSTALL} shellcheck
+
 image-manipulation:
 	${INSTALL} inkscape gimp imagemagick gpick
 
