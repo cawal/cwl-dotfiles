@@ -10,44 +10,37 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 all: desktop-environment link-all
 
-
+# DESKTOP EXPERIENCE
 desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration diodon
-
-clipboard-tools: diodon
-	${INSTALL} xclip
 
 desktop-configuration:
 	${INSTALL} lxappearance
 
-audacity:
-	${INSTALL} audacity
+i3: notifications i3-bar rofi wallpaper compositor
+	${INSTALL} i3
 
-docker: docker-ce-edge 
+i3-bar: py3status i3-python
 
-docker-ce-edge:
-	$(if $(shell which docker),$(error "Docker already installed"),)
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com 
-	${AT_TEMP_FOLDER} sh get-docker.sh 
-	usermod -aG docker `whoami`
-	 
-baobab:
-	${INSTALL} baobab
+compositor:
+	${INSTALL} compton
 
-qutebrowser:
-	${INSTALL} qutebrowser
+py3status:
+	${INSTALL} py3status
 
 
-web-browser: firefox
+diodon:
+	${INSTALL} diodon
 
-firefox:
-	${INSTALL} firefox
+notifications:
+	${INSTALL} dunst
 
-bb: bb-dependencies
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} warsaw.deb https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} warsaw.deb
+i3-python:
+	${INSTALL} python3-tz python3-tzlocal
 
-bb-dependencies:
-	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3 python-openssl
+
+wallpaper:
+	${INSTALL} nitrogen
+
 
 icon-themes:
 	${INSTALL} numix-icon-theme
@@ -67,23 +60,6 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
 
-jabref-dependencies: openjdk-8
-	${INSTALL} openjfx
-
-diodon:
-	${INSTALL} diodon
-
-i3: notifications i3-bar rofi wallpaper compositor
-	${INSTALL} i3
-
-i3-bar: py3status i3-python
-
-compositor:
-	${INSTALL} compton
-
-py3status:
-	${INSTALL} py3status
-
 polybar: polybar-dependencies
 	${AT_TEMP_FOLDER} git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
 	${AT_TEMP_FOLDER} mkdir polybar/build; cd polybar/build; cmake ..; make install
@@ -96,62 +72,63 @@ polybar-dependencies:
 rofi:
 	${INSTALL} rofi
 
-telegram:
-	snap install telegram-sergiusens
+conky-notifications:
+	${INSTALL} conky-all
 
-wallpaper:
-	${INSTALL} nitrogen
+terminal:
+	${INSTALL} rxvt-unicode
 
-version-control:
-	${INSTALL} git mercurial mercurial-git subversion
 
-notifications:
-	${INSTALL} dunst
 
-i3-python:
-	${INSTALL} python3-tz python3-tzlocal
-
-zsh:
-	${INSTALL} zsh
-	chsh -s /bin/zsh
-
-shellcheck:
-	${INSTALL} shellcheck
-
-image-manipulation:
-	${INSTALL} inkscape gimp imagemagick gpick
-
-dropbox:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
-	${INSTALL} python-gtk2 libpango1.0-0
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb 
-
+# TERMINAL TOOLS
 vi:
 	${INSTALL} neovim
 
 ranger-install:
 	${INSTALL} ranger
 
-package-files:
-	${INSTALL} file-roller
+clipboard-tools: diodon
+	${INSTALL} xclip
 
+entr:
+	${INSTALL} entr
 
-video-player:
-	${INSTALL} vlc
+zsh:
+	${INSTALL} zsh
+	chsh -s /bin/zsh
 
-keepassxc:
-	${ADD_REPOSITORY} ppa:phoerious/keepassxc
+cli-administration: osquery ppapurge
+
+ppapurge:
+	${INSTALL} ppa-purge
+
+osquery:
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
+	${ADD_REPOSITORY} 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
 	${UPDATE}
-	${INSTALL} keepassxc
+	${INSTALL} osquery
 
-google-chrome:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
 
-mendeley:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-	${INSTALL} libqtwebkit4 gconf2
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} mendeleydesktop.deb
+q:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
+	${AT_TEMP_FOLDER} dpkg -i q.deb
+
+
+# DEVELOPMENT TOOLS
+
+docker: docker-ce-edge 
+
+docker-ce-edge:
+	$(if $(shell which docker),$(error "Docker already installed"),)
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com 
+	${AT_TEMP_FOLDER} sh get-docker.sh 
+	usermod -aG docker `whoami`
+
+version-control:
+	${INSTALL} git mercurial mercurial-git subversion
+
+shellcheck:
+	${INSTALL} shellcheck
 
 web-service-development-tools: insomnia
 	${INSTALL} httpie jq tcpflow
@@ -164,7 +141,6 @@ insomnia:
 	wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
 	${UPDATE}
 	${INSTALL} insomnia
-#	snap install insomnia
 
 
 
@@ -181,26 +157,37 @@ oracle-java-10:
 	${UPDATE}
 	${INSTALL} oracle-java10-installer
 
-
-cli-administration: osquery ppapurge
-
-ppapurge:
-	${INSTALL} ppa-purge
-
-osquery:
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-	${ADD_REPOSITORY} 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-	${UPDATE}
-	${INSTALL} osquery
-
 openjdk-11:
 	${INSTALL} openjdk-11-jdk
 
 openjdk-8:
 	${INSTALL} openjdk-8-jdk icedtea-8-plugin
 
-conky-notifications:
-	${INSTALL} conky-all
+# LANGUAGE SERVERS -----------------------------------------------------
+language-servers: ls-bash ls-typescript
+
+# https://github.com/mads-hartmann/bash-language-server
+ls-bash: 
+	npm i -g bash-language-server
+
+# https://github.com/theia-ide/typescript-language-server
+ls-typescript:
+	npm install -g typescript-language-server
+	npm install -g typescript
+
+
+# Writing tools --------------------------------------------------------
+image-manipulation:
+	${INSTALL} inkscape gimp imagemagick gpick
+
+mendeley:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
+	${INSTALL} libqtwebkit4 gconf2
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} mendeleydesktop.deb
+
+jabref-dependencies: openjdk-8
+	${INSTALL} openjfx
+
 
 writing: latex markdown office-suite gedit graphviz zathura
 
@@ -211,9 +198,6 @@ markdown:
 	${INSTALL} pandoc
 
 
-calibre:
-	${INSTALL} calibre
-
 latex: 
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-humanities texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 
@@ -223,8 +207,6 @@ beamer-theme-metropolis: latex
 
 office-suite:
 	${INSTALL} libreoffice
-gedit:
-	${INSTALL} gedit
 
 ktikz:
 	${INSTALL} ktikz
@@ -232,21 +214,81 @@ ktikz:
 graphviz:
 	${INSTALL} graphviz
 
-terminal:
-	${INSTALL} rxvt-unicode
-
 screenruler:
 	${INSTALL} screenruler
 
-q:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
-	${AT_TEMP_FOLDER} dpkg -i q.deb
+fonts:
+	${INSTALL} ubuntu-restricted-extras
+
+
+# Others -------------------------------------------------
+
+
+audacity:
+	${INSTALL} audacity
+
+baobab:
+	${INSTALL} baobab
+
+web-browser: firefox
+
+firefox:
+	${INSTALL} firefox
+
+qutebrowser:
+	${INSTALL} qutebrowser
+
+
+google-chrome:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
+
+
+bb: bb-dependencies
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} warsaw.deb https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} warsaw.deb
+
+bb-dependencies:
+	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3 python-openssl
+
+
+
+
+
+
+telegram:
+	snap install telegram-sergiusens
+
+
+
+dropbox:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
+	${INSTALL} python-gtk2 libpango1.0-0
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb 
+
+package-files:
+	${INSTALL} file-roller
+
+
+video-player:
+	${INSTALL} vlc
+
+keepassxc:
+	${ADD_REPOSITORY} ppa:phoerious/keepassxc
+	${UPDATE}
+	${INSTALL} keepassxc
+
+
+
+calibre:
+	${INSTALL} calibre
+
+gedit:
+	${INSTALL} gedit
+
 
 #screenshot:
 #	${INSTALL} spectacle
-
-fonts:
-	${INSTALL} ubuntu-restricted-extras
 
 autokey:
 	${ADD_REPOSITORY} ppa:sporkwitch/autokey
@@ -264,26 +306,16 @@ skype:
 	${AT_TEMP_FOLDER} dpkg -i skype.deb
 
 
-language-servers: ls-bash
-
-# https://github.com/mads-hartmann/bash-language-server
-ls-bash: 
-	npm i -g bash-language-server
-
-# https://github.com/theia-ide/typescript-language-server
-ls-typescript:
-	npm install -g typescript-language-server
-	npm install -g typescript
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-login-shell link-ranger link-xresources 
-
-link-conky:
-	stow -R conky --target=${HOME}
+link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-xresources link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
+
+link-conky:
+	stow -R conky --target=${HOME}
 
 link-login-shell:
 	stow -R login-shell --target=${HOME}

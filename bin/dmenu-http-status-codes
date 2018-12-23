@@ -8,6 +8,7 @@ DATA_SOURCE=~/bin/data-sources/http-status-codes.tsv
 show_code(){
 	BASEPATH="https://httpstatuses.com"
 	cwl-sensible-terminal -e w3m "${BASEPATH}/${1}" 
+	#qutebrowser --target window  "${BASEPATH}/${1}" 
 }
 
 STATUS=$(grep -v "#" "${DATA_SOURCE}" | sed "s/\t/ : /" | dmenu -i -l 20 -fn Monospace-15 | awk '{print $1}' | tr -d '\n')
