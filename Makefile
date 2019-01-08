@@ -90,6 +90,10 @@ ranger-install:
 clipboard-tools: diodon
 	${INSTALL} xclip
 
+# count lines of codes
+cloc:
+	${INSTALL} cloc
+
 entr:
 	${INSTALL} entr
 

@@ -36,7 +36,6 @@ pomodoro { # https://py3status.readthedocs.io/en/latest/modules.html#pomodoro
 	color_good = "#DDDDDD"	#"#222222"
 }
 
-<#ifdef navi>
 volume_status {
 	thresholds = [
 		(0, "#830000"),
@@ -48,25 +47,12 @@ volume_status {
 	button_down = 5
 	button_mute = 91
 	format =  "[\?if=is_input 😮|♪]: {percentage}%"
-}
-<#endif>
 <#ifdef neuromancer>
-volume_status {
-	thresholds = [
-		(0, "#830000"),
-		(10, "#DDDDDD"),
-		(101, "#830000")
-	]
-	command = "amixer"
 	device =  "pulse"
 	channel = "Master"
 	card = "1"
-	button_up = 4
-	button_down = 5
-	button_mute = 91
-	format =  "[\?if=is_input 😮|♪]: {percentage}%"
-}
 <#endif>
+}
 
 window_title {
 	format = '[\?max_length=120 {title}]'
@@ -78,5 +64,5 @@ order += pomodoro
 order += battery_level
 order += volume_status
 order += apt_updates
-order += keyboard_locks
+#order += keyboard_locks
 order += clock
