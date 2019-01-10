@@ -255,7 +255,10 @@ bb: bb-dependencies
 bb-dependencies:
 	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3 python-openssl
 
-
+homebank:
+	${ADD_REPOSITORY} ppa:mdoyen/homebank
+	${UPDATE}
+	${INSTALL} homebank
 
 
 
