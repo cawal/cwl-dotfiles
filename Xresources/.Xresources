@@ -2,5 +2,6 @@
 ! Include other files
 #include ".Xresources.d/0-defaults"
 #include ".Xresources.d/terminal-colors/default"
+#include ".Xresources.d/terminal-colors/default-highlights"
 #include ".Xresources.d/rofi"
 #include ".Xresources.d/urxvt"

@@ -16,6 +16,7 @@ Plug 'junegunn/fzf'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
 "Plug 'ying17zi/vim-live-latex-preview'
+Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' }
 
 call plug#end()
 
@@ -51,14 +52,21 @@ nmap ga <Plug>(EasyAlign)
 set splitbelow
 set splitright
 filetype on
+set encoding=utf-8
+" Don't read the modelines (security)
+set modelines=0
+
+" Spell highlight config
+" http://vimdoc.sourceforge.net/htmldoc/syntax.html
+hi clear SpellBad
+hi SpellBad ctermbg=Red ctermfg=White
+" hi SpellBad cterm=reverse
+
 
 " Config for grammarous
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
 
 " VARIABLES AND OPTIONS -----------------------------------------
-set encoding=utf-8
-" Don't read the modelines (security)
-set modelines=0
 
 " KEY MAPPINGS------------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
@@ -68,23 +76,23 @@ function! CWLToggleZenMode()
 	:Goyo
 endfunction
 
-" Toggle file navigator
-map <F12> :NERDTreeToggle <Enter>
-nnoremap <leader>f :NERDTreeToggle <Enter>
+nnoremap K kJ
+nnoremap ; :
+nnoremap <Esc><Esc> :noh<cr>
 
-map <F11> :call CWLToggleZenMode()<cr>
-nmap <leader>z :call CWLToggleZenMode()<cr> 
+nnoremap <leader>c :ColorToggle<cr>
+nnoremap <leader>f :NERDTreeToggle<cr>
+nnoremap <leader>s :set spell<cr>
+nnoremap <leader>z :call CWLToggleZenMode()<cr> 
+
 
 " Grammar checking
-map <F5> :GrammarousCheck <Enter>
-map <F6> :GrammarousReset <Enter>
-
-nnoremap <Esc><Esc> :noh<Enter>
+map <F5> :GrammarousCheck<cr>
+map <F6> :GrammarousReset<cr>
+map <F7> :set spelllang+=pt<cr>
+map <F11> :call CWLToggleZenMode()<cr>
 
 " Join with previous line (symmetric with J)
-nnoremap K kJ
-
-nnoremap ; :
 
 
 " AUTOCOMMANDS -----------------------------------------------------------
