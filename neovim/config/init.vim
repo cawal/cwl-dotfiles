@@ -58,8 +58,9 @@ set modelines=0
 
 " Spell highlight config
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
+" Using ANSI colors to match terminal XResources config
 hi clear SpellBad
-hi SpellBad ctermbg=Red ctermfg=White
+hi SpellBad ctermbg=1 ctermfg=7
 " hi SpellBad cterm=reverse
 
 
