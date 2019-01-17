@@ -117,6 +117,15 @@ q:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
 	${AT_TEMP_FOLDER} dpkg -i q.deb
 
+sc-im: libxlsxwriter
+	apt-get install bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
+	${AT_TEMP_FOLDER} git clone https://github.com/andmarti1424/sc-im.git
+	${AT_TEMP_FOLDER} cd sc-im/src; make && make install
+
+libxlsxwriter:
+	${AT_TEMP_FOLDER} git clone https://github.com/jmcnamara/libxlsxwriter.git
+	${AT_TEMP_FOLDER} cd libxlsxwriter; make && make install
+	ldconfig
 
 # DEVELOPMENT TOOLS
 
@@ -223,7 +232,6 @@ screenruler:
 
 fonts:
 	${INSTALL} ubuntu-restricted-extras
-
 
 # Others -------------------------------------------------
 
