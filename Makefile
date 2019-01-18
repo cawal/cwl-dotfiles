@@ -272,7 +272,8 @@ homebank:
 	${UPDATE}
 	${INSTALL} homebank
 
-
+wifi-analyser:
+	${INSTALL} linssid
 
 
 telegram:
