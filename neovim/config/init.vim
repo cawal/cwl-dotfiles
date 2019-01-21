@@ -83,6 +83,8 @@ nnoremap <Esc><Esc> :noh<cr>
 
 nnoremap <leader>c :ColorToggle<cr>
 nnoremap <leader>f :NERDTreeToggle<cr>
+" run current file
+nnoremap <leader>r :!%:p
 nnoremap <leader>s :set spell<cr>
 nnoremap <leader>z :call CWLToggleZenMode()<cr> 
 
