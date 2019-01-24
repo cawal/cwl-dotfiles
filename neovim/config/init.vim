@@ -79,7 +79,6 @@ endfunction
 
 " Join with previous line (symmetric with J)
 nnoremap K kJ
-nnoremap ; :
 nnoremap <Esc><Esc> :noh<cr>
 
 nnoremap <leader>c :ColorToggle<cr>
