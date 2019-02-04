@@ -19,13 +19,15 @@ volume_status {
 		(101, "#830000")
 	]
 	command = "amixer"
-	device =  "pulse"
-	channel = "Master"
-	card = "1"
 	button_up = 4
 	button_down = 5
 	button_mute = 91
 	format =  "[\?if=is_input 😮|♪]: {percentage}%"
+<#ifdef neuromancer>
+	device =  "pulse"
+	channel = "Master"
+	card = "1"
+<#endif>
 }
 
 window_title {

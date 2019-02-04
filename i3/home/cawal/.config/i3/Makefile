@@ -9,9 +9,13 @@ create_config:
 .bartemplate.bar:
 	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  $*.bar $<
 
-bars: top-left.bar
+bars: top-left.bar top-right.bar
 
 top-left.bar: 
-	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
+#	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
 	cd ${BARS_DIRECTORY} ; gpp -U "<#" ">" "\B" "|" ">" "<" ">" "#" ""  -D${HOSTNAME}=1 -o  top-left.bar top-left.bar.template
+
+top-right.bar: 
+#	cd ${BARS_DIRECTORY} ; gpp -H -D${HOSTNAME}=1 -o  top-right.bar top-right.bar.template
+	cd ${BARS_DIRECTORY} ; gpp -U "<#" ">" "\B" "|" ">" "<" ">" "#" ""  -D${HOSTNAME}=1 -o  top-right.bar top-right.bar.template
 
