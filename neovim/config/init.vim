@@ -47,22 +47,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive Easyalign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
 
-" CONFIGS ------------------------------------------------------
-" Better splits
-set splitbelow
-set splitright
-filetype on
-set encoding=utf-8
-" Don't read the modelines (security)
-set modelines=0
-
-" Spell highlight config
-" http://vimdoc.sourceforge.net/htmldoc/syntax.html
-" Using ANSI colors to match terminal XResources config
-hi clear SpellBad
-hi SpellBad ctermbg=1 ctermfg=7
-" hi SpellBad cterm=reverse
-
 
 " Config for grammarous
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
@@ -102,3 +86,30 @@ map <F11> :call CWLToggleZenMode()<cr>
 augroup CustomTeX : 
 	autocmd FileType tex :Goyo 80
 augroup END
+
+
+
+
+
+" CONFIGS ------------------------------------------------------
+" Better splits
+set splitbelow
+set splitright
+filetype on
+set encoding=utf-8
+" Don't read the modelines (security)
+set modelines=0
+
+" Spell highlight config
+" http://vimdoc.sourceforge.net/htmldoc/syntax.html
+" Using ANSI colors to match terminal XResources config
+hi clear SpellBad
+hi SpellBad ctermfg=7 ctermbg=1 
+" hi SpellBad cterm=reverse
+
+hi clear Search
+hi Search ctermfg=1 ctermbg=7
+
+hi clear IncSearch
+hi IncSearch ctermfg=1 ctermbg=7
+
