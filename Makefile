@@ -337,6 +337,9 @@ link-bin:
 link-conky:
 	stow -R conky --target=${HOME}
 
+link-i3:
+	stow -R i3 --target=${HOME}/.config
+
 link-login-shell:
 	stow -R login-shell --target=${HOME}
 
