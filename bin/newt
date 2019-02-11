@@ -1,11 +1,11 @@
-#/bin/bash
+#!/bin/bash
 #
 # Open a new terminal window in the current directory
 # 
 # TODO: Add the function to an RC files?
 
-function openTerminal(){
-	cwl-sensible-terminal > /dev/null 2>/dev/null
+function openTerminal () { 
+	cwl-sensible-terminal > /dev/null 2>/dev/null 
 }
 
-openTerminal
+openTerminal &
