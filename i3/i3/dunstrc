@@ -148,13 +148,13 @@ dmenu = /usr/bin/dmenu -p dunst:
 browser = /usr/bin/firefox -new-tab
 
 # Align icons left/right/off
-icon_position = off
+icon_position = right
 max_icon_size = 80
 
 # Paths to default icons.
 icon_folders = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
 
-frame_width = 3
+frame_width = 2
 frame_color = "#DDDDDD"
 
 [shortcuts]
@@ -183,18 +183,18 @@ context = mod1+shift+dead_tilde
 # Otherwise the "#" and following would be interpreted as a comment.
 [urgency_low]
 frame_color = "#DDDDDD"
-foreground = "#000000"
-background = "#DDDDDD"
+foreground = "#DDDDDD"
+background = "#222222"
 timeout = 4
 
 [urgency_normal]
 frame_color = "#DDDDDD"
-foreground = "#000000"
-background = "#DDDDDD"
+foreground = "#DDDDDD"
+background = "#222222"
 timeout = 6
 
 [urgency_critical]
-frame_color= "#000000"
+frame_color= "#DDDDDD"
 foreground = "#000000"
 background = "#E57F72"
 timeout = 8

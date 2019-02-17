@@ -279,6 +279,8 @@ wifi-analyser:
 telegram:
 	snap install telegram-sergiusens
 
+slack:
+	snap install slack --classic
 
 
 dropbox:
