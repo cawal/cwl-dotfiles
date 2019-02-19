@@ -362,6 +362,10 @@ link-xresources:
 	stow -R Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
+link-qutebrowser:
+	mkdir -p ${HOME}/.config/qutebrowser/
+	stow -R qutebrowser --target=${HOME}/.config/qutebrowser/
+
 link-zathura:
 	mkdir -p ${HOME}/.config/zathura/
 	stow -R zathura --target=${HOME}/.config/zathura/
