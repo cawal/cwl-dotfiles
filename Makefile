@@ -335,7 +335,7 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-xresources link-zathura
+link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -361,6 +361,10 @@ link-polybar:
 
 link-ranger:
 	stow -R ranger --target=${HOME}/.config/ranger	
+
+link-rofi:
+	mkdir -p ${HOME}/.config/rofi/
+	stow -R rofi --target=${HOME}/.config/rofi/
 
 link-xresources:
 	stow -R Xresources --target=${HOME}

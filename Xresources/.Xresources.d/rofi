@@ -57,14 +57,6 @@ rofi.eh:                             2
 ! Use extended color scheme
 rofi.color-enabled:                  false
 
-! Color scheme for normal row
-!rofi.color-normal:                   #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
-! Color scheme for urgent row
-!rofi.color-urgent:                   #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
-! Color scheme for active row
-!rofi.color-active:                   #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
-! Color scheme window
-!rofi.color-window:                   #fdf6e3,#002b36
 
 ! Border width
 rofi.bw:                             0

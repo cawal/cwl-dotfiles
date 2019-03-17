@@ -1,0 +1,4 @@
+configuration {
+	theme: "cwl-dark";
+}
+/* vim:ft=css
