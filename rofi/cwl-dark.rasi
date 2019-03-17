@@ -34,19 +34,25 @@
     selected-active-background:  @active;
 
     background:                  @bg;
-    bordercolor:                 @bg;
+    bordercolor:                 @fg;
     spacing:                     2;
     separatorcolor:              @active;
     background-color:            @bg;
 }
 
 #window {
-    border:           1;
-    padding:          5;
+    border:            1px 1px 1px 1px;
+    border-color:                 #000000;//@fg;
+    padding:         0px;
+    location: north;
+    //location: center;
+    //anchor: center;
+    //fullscreen: true;
 }
 
+
 #mainbox {
-    border:  0;
+    border:  20;
     padding: 0;
 }
 
@@ -58,7 +64,7 @@
 
 #textbox {
     text-color: @foreground;
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 #listview {
@@ -70,7 +76,7 @@
     padding:      2px 0px 0px ;
 }
 #element {
-    border:  0;
+    border:  1px;
     padding: 1px ;
 }
 #element.normal.normal {
@@ -129,7 +135,7 @@
     padding:    1px ;
 }
 #case-indicator {
-    spacing:    0;
+    spacing:    1;
     text-color: @normal-foreground;
 }
 #entry {
@@ -137,6 +143,7 @@
     text-color: @normal-foreground;
 }
 #prompt {
-    spacing:    0;
+    spacing:    10;
+    padding: 0 10px 0 0;
     text-color: @normal-foreground;
 }
