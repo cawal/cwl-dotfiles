@@ -9,15 +9,15 @@ Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } "Zen mode
 Plug 'junegunn/vim-easy-align' 
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } "Grammar checking
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
-"Plug 'ying17zi/vim-live-latex-preview'
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' }
-
+" Language-related Plugins
+Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 call plug#end()
 
 
