@@ -61,6 +61,13 @@ function! CWLToggleZenMode()
 	:Goyo
 endfunction
 
+" Forces the coloring of the spelling errors
+function! CWLToggleSpell()
+	:set spell!
+	:hi clear SpellBad
+	:hi SpellBad ctermfg=7 ctermbg=1 
+endfunction
+
 " Join with previous line (symmetric with J)
 nnoremap K kJ
 nnoremap <Esc><Esc> :noh<cr>
@@ -69,7 +76,7 @@ nnoremap <leader>c :ColorToggle<cr>
 nnoremap <leader>f :NERDTreeToggle<cr>
 " run current file
 nnoremap <leader>r :!"%:p"
-nnoremap <leader>s :set spell!<cr>
+nnoremap <leader>s :call CWLToggleSpell()<cr>
 nnoremap <leader>z :call CWLToggleZenMode()<cr> 
 
 
