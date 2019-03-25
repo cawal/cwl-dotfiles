@@ -4,20 +4,23 @@ let mapleader = '\'
 " PLUGINS --------------------------------------------------------
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } "File navigator
-Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } "Zen mode
-Plug 'junegunn/vim-easy-align' 
-Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } "Grammar checking
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
+Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
+Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
+Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' }
+Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
+Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) or remove (ds) surrounding characters/html tags
+
 " Language-related Plugins
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+
 call plug#end()
 
 
