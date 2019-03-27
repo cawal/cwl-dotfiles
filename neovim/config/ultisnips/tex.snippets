@@ -3,3 +3,23 @@ snippet beg "begin{} / end{}" bA
 	$0
 \end{$1}
 endsnippet
+
+
+
+# VISUAL MODE -------------------------------------------
+snippet e "Emph" "snip.visual_text" ieA 
+\\emph{${VISUAL}}$0
+endsnippet
+
+snippet b "Bold font" "snip.visual_text" ieA 
+\\textbf{${VISUAL}}$0
+endsnippet
+
+snippet t "TT Font" "snip.visual_text" ieA 
+
+\\texttt{${VISUAL}}$0
+endsnippet
+
+snippet u "URL" "snip.visual_text" ieA 
+\\url{${VISUAL}}$0
+endsnippet
