@@ -4,7 +4,21 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+snippet \e "Emph" i
+\emph{$1}$0
+endsnippet
 
+snippet \b "Bold" i
+\textbf{$1}$0
+endsnippet
+
+snippet \t "TT Font" i
+\texttt{$1}$0
+endsnippet
+
+snippet \u "URL" i
+\url{$1}$0
+endsnippet
 
 # VISUAL MODE -------------------------------------------
 snippet e "Emph" "snip.visual_text" ieA 

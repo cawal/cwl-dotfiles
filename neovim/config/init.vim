@@ -88,6 +88,7 @@ nnoremap <Esc><Esc> :noh<cr>
 
 nnoremap <leader>c :ColorToggle<cr>
 nnoremap <leader>f :NERDTreeToggle<cr>
+nnoremap <leader>n :set number!<cr>
 " run current file
 nnoremap <leader>r :!"%:p"
 nnoremap <leader>s :call CWLToggleSpell()<cr>
