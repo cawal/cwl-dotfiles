@@ -130,8 +130,8 @@ hi SpellBad ctermfg=7 ctermbg=1
 " hi SpellBad cterm=reverse
 
 hi clear Search
-hi Search ctermfg=1 ctermbg=7
+hi Search ctermfg=0 ctermbg=7
 
 hi clear IncSearch
-hi IncSearch ctermfg=1 ctermbg=7
+hi IncSearch ctermfg=0 ctermbg=8
 
