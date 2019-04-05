@@ -107,6 +107,7 @@ map <F11> :call CWLToggleZenMode()<cr>
 " 
 augroup CustomTeX : 
 	autocmd FileType tex :Goyo 80
+	autocmd FileType tex :set spell
 augroup END
 
 
@@ -133,5 +134,5 @@ hi clear Search
 hi Search ctermfg=0 ctermbg=7
 
 hi clear IncSearch
-hi IncSearch ctermfg=0 ctermbg=8
+hi IncSearch ctermfg=0 ctermbg=15
 
