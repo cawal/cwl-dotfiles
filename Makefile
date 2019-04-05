@@ -374,6 +374,9 @@ link-qutebrowser:
 	mkdir -p ${HOME}/.config/qutebrowser/
 	stow -R qutebrowser --target=${HOME}/.config/qutebrowser/
 
+link-zsh:
+	stow -R zsh --target=${HOME}
+
 link-zathura:
 	mkdir -p ${HOME}/.config/zathura/
 	stow -R zathura --target=${HOME}/.config/zathura/
