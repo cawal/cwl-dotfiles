@@ -335,7 +335,7 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zathura
+link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zsh link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
