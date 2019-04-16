@@ -122,7 +122,7 @@ q:
 	${AT_TEMP_FOLDER} dpkg -i q.deb
 
 sc-im: libxlsxwriter
-	apt-get install bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
+	${INSTALL} bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
 	${AT_TEMP_FOLDER} git clone https://github.com/andmarti1424/sc-im.git
 	${AT_TEMP_FOLDER} cd sc-im/src; make && make install
 
@@ -180,6 +180,11 @@ openjdk-11:
 openjdk-8:
 	${INSTALL} openjdk-8-jdk icedtea-8-plugin
 
+# offline docs
+zeal:
+	add-apt-repository ppa:zeal-developers/ppa
+	${UPDATE}
+	${INSTALL} zeal
 # LANGUAGE SERVERS -----------------------------------------------------
 language-servers: ls-bash ls-typescript
 
@@ -335,13 +340,16 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zsh link-zathura
+link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zsh link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
 
 link-conky:
 	stow -R conky --target=${HOME}
+
+link-gtk3:
+	stow -R gtk-3.0 --target=${HOME}/.config/gtk-3.0
 
 link-i3:
 	stow -R i3 --target=${HOME}/.config
