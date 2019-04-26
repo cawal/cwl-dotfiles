@@ -89,4 +89,7 @@ export NVM_DIR="$HOME/.nvm"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Vim-like quit (because sometimes I type it in zsh)
+alias :q='exit'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
