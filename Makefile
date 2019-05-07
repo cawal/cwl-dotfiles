@@ -180,6 +180,8 @@ openjdk-11:
 openjdk-8:
 	${INSTALL} openjdk-8-jdk icedtea-8-plugin
 
+kotlin-compiler:
+	snap install --classic kotlin
 # offline docs
 zeal:
 	add-apt-repository ppa:zeal-developers/ppa
