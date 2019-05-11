@@ -91,8 +91,8 @@ vi: python3-pynvim
 	${UPDATE}
 	${INSTALL} neovim
 
-python3-pynvim: python3-pip
-	pip3 install --user pynvim
+python3-pynvim: python3-pip3
+	pip3 install pynvim
 
 python3-pip3:
 	${INSTALL} python3-pip
