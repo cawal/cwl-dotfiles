@@ -4,17 +4,18 @@ let mapleader = '\'
 " PLUGINS --------------------------------------------------------
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
-Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
+Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
 Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
 
-Plug 'SirVer/ultisnips'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
+
+Plug 'SirVer/ultisnips' " Easily create code snippets
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
-
+"
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) or remove (ds) surrounding characters/html tags
@@ -35,6 +36,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Snippet directory
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
+let g:deoplete#enable_at_startup = 1
 
 " Filetypes and autocommands
 " -------------------------------------------------------

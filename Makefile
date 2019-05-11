@@ -85,8 +85,17 @@ terminal:
 
 
 # TERMINAL TOOLS
-vi:
+
+vi: python3-pynvim
+	${ADD_REPOSITORY} ppa:neovim-ppa/stable
+	${UPDATE}
 	${INSTALL} neovim
+
+python3-pynvim: python3-pip
+	pip3 install --user pynvim
+
+python3-pip3:
+	${INSTALL} python3-pip
 
 ranger-install:
 	${INSTALL} ranger
