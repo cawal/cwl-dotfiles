@@ -5,6 +5,7 @@ let mapleader = '\'
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
+Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
 Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
@@ -31,25 +32,74 @@ call plug#end()
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
 " Snippet directory
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
+
+" Filetypes and autocommands
+" -------------------------------------------------------
 augroup filetype_typescript
     autocmd!
     autocmd BufReadPost *.ts setlocal filetype=typescript
 augroup END
 
+augroup CustomTeX : 
+	autocmd FileType tex :Goyo 80
+	autocmd FileType tex :set spell
+augroup END
+
 
 " Language servers
+" -------------------------------------------------------
 " Bash: https://github.com/mads-hartmann/bash-language-server
 set hidden
 let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ 'typescript': ['typescript-language-server', '--stdio'],
     \ }
+
+
+" Config for grammarous
+let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
+
+" VARIABLES AND OPTIONS -----------------------------------------
+
+" Custom functions -------------------------------------------------
+
+function! CWLToggleZenMode()
+	:NERDTreeClose
+	:Goyo
+endfunction
+
+" Forces the coloring of the spelling errors
+function! CWLToggleSpell()
+	:set spell!
+	:hi clear SpellBad
+	:hi SpellBad ctermfg=7 ctermbg=1 
+endfunction
+
+" KEY MAPPINGS -----------------------------------------------------
+" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
+
+" Join with previous line (symmetric with J)
+nnoremap K kJ
+nnoremap <Esc><Esc> :noh<cr>
+
+nnoremap <leader>c :ColorToggle<cr>
+nnoremap <leader>f :NERDTreeToggle<cr>
+nnoremap <leader>n :set number!<cr>
+" run current file
+nnoremap <leader>r :!"%:p"
+nnoremap <leader>s :call CWLToggleSpell()<cr>
+nnoremap <leader>z :call CWLToggleZenMode()<cr> 
+nnoremap <leader>u :GundoToggle<cr>
+
+" Grammar checking
+map <F5> :GrammarousCheck<cr>
+map <F6> :GrammarousReset<cr>
+map <F7> :set spelllang+=pt<cr>
+map <F11> :call CWLToggleZenMode()<cr>
+
 
 nnoremap <F4> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
@@ -64,62 +114,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" Config for grammarous
-let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
-
-" VARIABLES AND OPTIONS -----------------------------------------
-
-" KEY MAPPINGS------------------------------------------------------
-" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
-
-function! CWLToggleZenMode()
-	:NERDTreeClose
-	:Goyo
-endfunction
-
-" Forces the coloring of the spelling errors
-function! CWLToggleSpell()
-	:set spell!
-	:hi clear SpellBad
-	:hi SpellBad ctermfg=7 ctermbg=1 
-endfunction
-
-" Join with previous line (symmetric with J)
-nnoremap K kJ
-nnoremap <Esc><Esc> :noh<cr>
-
-nnoremap <leader>c :ColorToggle<cr>
-nnoremap <leader>f :NERDTreeToggle<cr>
-nnoremap <leader>n :set number!<cr>
-" run current file
-nnoremap <leader>r :!"%:p"
-nnoremap <leader>s :call CWLToggleSpell()<cr>
-nnoremap <leader>z :call CWLToggleZenMode()<cr> 
-
-
-" Grammar checking
-map <F5> :GrammarousCheck<cr>
-map <F6> :GrammarousReset<cr>
-map <F7> :set spelllang+=pt<cr>
-map <F11> :call CWLToggleZenMode()<cr>
-
-
-
-" AUTOCOMMANDS -----------------------------------------------------------
-" 
-augroup CustomTeX : 
-	autocmd FileType tex :Goyo 80
-	autocmd FileType tex :set spell
-augroup END
-
-
-
-
 
 " CONFIGS ------------------------------------------------------
 " Better splits
-set splitbelow
-set splitright
+set splitbelow " by default, vim open split in the top
+set splitright " by default, vim open split in the left
 filetype on
 set encoding=utf-8
 " Don't read the modelines (security)
