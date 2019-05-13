@@ -86,10 +86,11 @@ terminal:
 
 # TERMINAL TOOLS
 
-vi: python3-pynvim
-	${ADD_REPOSITORY} ppa:neovim-ppa/stable
-	${UPDATE}
+vi: 
 	${INSTALL} neovim
+#	${ADD_REPOSITORY} ppa:neovim-ppa/stable
+#	${UPDATE}
+#	${INSTALL} neovim
 
 python3-pynvim: python3-pip3
 	pip3 install pynvim

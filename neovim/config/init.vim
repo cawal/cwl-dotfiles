@@ -1,4 +1,5 @@
 " Maps the leader key
+
 let mapleader = '\'
 
 " PLUGINS --------------------------------------------------------
@@ -12,7 +13,8 @@ Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
 
 Plug 'SirVer/ultisnips' " Easily create code snippets
-
+"Plug 'sonph/onehalf'
+"Plug 'jeffkreeftmeijer/vim-dim'
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
 "
@@ -36,7 +38,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Snippet directory
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 " Filetypes and autocommands
 " -------------------------------------------------------
@@ -126,7 +128,9 @@ set encoding=utf-8
 " Don't read the modelines (security)
 set modelines=0
 
-" Spell highlight config
+
+
+" Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
 " Using ANSI colors to match terminal XResources config
 hi clear SpellBad
