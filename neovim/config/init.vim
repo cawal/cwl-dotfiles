@@ -18,7 +18,7 @@ Plug 'SirVer/ultisnips' " Easily create code snippets
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
 "
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) or remove (ds) surrounding characters/html tags
 
@@ -38,7 +38,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Snippet directory
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 " Filetypes and autocommands
 " -------------------------------------------------------
@@ -103,7 +103,6 @@ map <F5> :GrammarousCheck<cr>
 map <F6> :GrammarousReset<cr>
 map <F7> :set spelllang+=pt<cr>
 map <F11> :call CWLToggleZenMode()<cr>
-
 
 nnoremap <F4> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
