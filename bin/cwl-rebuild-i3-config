@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/.config/i3/
+
+make bars
+make create_config
