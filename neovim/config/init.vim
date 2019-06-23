@@ -145,10 +145,10 @@ function! CWLHighlights() abort
 	highlight IncSearch ctermfg=0 ctermbg=15
 endfunction
 
-augroup MyColors " auto reload my highlight scheme
+augroup MyColors " auto reload my highlight scheme when colorscheme changes
     autocmd!
     autocmd ColorScheme * call CWLHighlights()
 augroup END
-
 colorscheme default
+
 " call CWLHighlights() " Set my my highlight scheme
