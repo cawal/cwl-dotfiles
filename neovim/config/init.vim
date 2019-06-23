@@ -150,4 +150,5 @@ augroup MyColors " auto reload my highlight scheme
     autocmd ColorScheme * call CWLHighlights()
 augroup END
 
-call CWLHighlights() " Set my my highlight scheme
+colorscheme default
+" call CWLHighlights() " Set my my highlight scheme
