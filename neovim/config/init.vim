@@ -1,5 +1,6 @@
-" Maps the leader key
+" Best practices: https://www.reddit.com/r/vim/wiki/vimrctips
 
+" Maps the leader key
 let mapleader = '\'
 
 " PLUGINS --------------------------------------------------------
@@ -132,13 +133,21 @@ set modelines=0
 " Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
 " Using ANSI colors to match terminal XResources config
-hi clear SpellBad
-hi SpellBad ctermfg=7 ctermbg=1 
-" hi SpellBad cterm=reverse
+function! CWLHighlights() abort
+	highlight clear SpellBad
+	highlight SpellBad ctermfg=7 ctermbg=1 
+	" hi SpellBad cterm=reverse
 
-hi clear Search
-hi Search ctermfg=0 ctermbg=7
+	highlight clear Search
+	highlight Search ctermfg=0 ctermbg=7
 
-hi clear IncSearch
-hi IncSearch ctermfg=0 ctermbg=15
+	highlight clear IncSearch
+	highlight IncSearch ctermfg=0 ctermbg=15
+endfunction
 
+augroup MyColors " auto reload my highlight scheme
+    autocmd!
+    autocmd ColorScheme * call CWLHighlights()
+augroup END
+
+call CWLHighlights() " Set my my highlight scheme
