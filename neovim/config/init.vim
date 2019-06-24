@@ -146,7 +146,8 @@ function! CWLHighlights() abort
 endfunction
 
 augroup MyColors " auto reload my highlight scheme when colorscheme changes
-    autocmd! " Remove all auto-commands of this augroup 
+    " Remove all auto-commands of this augroup 
+    autocmd! 
     autocmd ColorScheme * call CWLHighlights()
 augroup END
 colorscheme default
