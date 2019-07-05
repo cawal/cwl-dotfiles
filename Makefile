@@ -73,7 +73,7 @@ polybar-dependencies:
 	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev 
 
 
-rofi:
+rofi: FORCE
 	${INSTALL} rofi
 
 conky-notifications:
@@ -114,6 +114,9 @@ entr:
 zsh:
 	${INSTALL} zsh
 	chsh -s /bin/zsh
+
+oh-my-zsh:
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 cli-administration: osquery ppapurge
 
@@ -361,6 +364,7 @@ link-conky:
 	stow -R conky --target=${HOME}
 
 link-gtk3:
+	mkdir -p ${HOME}/.config/gtk-3.0
 	stow -R gtk-3.0 --target=${HOME}/.config/gtk-3.0
 
 link-i3:
