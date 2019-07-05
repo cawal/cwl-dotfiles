@@ -129,7 +129,7 @@ rofi.m:                              -1
 ! Pre-set filter
 rofi.filter:                         
 ! Pidfile location
-rofi.pid:                            /run/user/1000/rofi.pid
+rofi.pid:                            /tmp/cawal.rofi.pid
 
 ! KEYBINDINGS ----------------------------------------------------------
 ! Keybinding
