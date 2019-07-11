@@ -125,10 +125,8 @@ set splitbelow " by default, vim open split in the top
 set splitright " by default, vim open split in the left
 filetype on
 set encoding=utf-8
-" Don't read the modelines (security)
-set modelines=0
-
-
+set modelines=0 " Don't read the modelines (security)
+set linebreak " break lines at words
 
 " Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
