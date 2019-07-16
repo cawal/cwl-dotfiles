@@ -8,22 +8,21 @@ call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
 Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
-Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
+Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
 
-Plug 'SirVer/ultisnips' " Easily create code snippets
-"Plug 'sonph/onehalf'
-"Plug 'jeffkreeftmeijer/vim-dim'
+Plug 'SirVer/ultisnips' " Easily create and use code snippets
+
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
-"
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
-Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) or remove (ds) surrounding characters/html tags
 
-" Language-related Plugins
+Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
+Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surrounding characters/html tags
+
+" Programming language-related Plugins
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
@@ -83,6 +82,40 @@ function! CWLToggleSpell()
 	:hi SpellBad ctermfg=7 ctermbg=1 
 endfunction
 
+
+" CONFIGS ------------------------------------------------------
+" Better splits
+set splitbelow " by default, vim open split in the top
+set splitright " by default, vim open split in the left
+filetype on
+set encoding=utf-8 " all my systems uses UTF-8
+set modelines=0 " Don't read the modelines (security)
+set linebreak " break lines at words
+
+" Spell highlight config ---------------------------------------
+" http://vimdoc.sourceforge.net/htmldoc/syntax.html
+" Using ANSI colors to match terminal XResources config
+function! CWLHighlights() abort
+	highlight clear SpellBad
+	highlight SpellBad ctermfg=7 ctermbg=1 
+	" hi SpellBad cterm=reverse
+
+	highlight clear Search
+	highlight Search ctermfg=0 ctermbg=7
+
+	highlight clear IncSearch
+	highlight IncSearch ctermfg=0 ctermbg=15
+endfunction
+
+augroup MyColors " auto reload my highlight scheme when colorscheme changes
+    " Remove all auto-commands of this augroup 
+    autocmd! 
+    autocmd ColorScheme * call CWLHighlights()
+augroup END
+colorscheme default
+
+" call CWLHighlights() " Set my my highlight scheme
+
 " KEY MAPPINGS -----------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 
@@ -118,36 +151,3 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-
-" CONFIGS ------------------------------------------------------
-" Better splits
-set splitbelow " by default, vim open split in the top
-set splitright " by default, vim open split in the left
-filetype on
-set encoding=utf-8
-set modelines=0 " Don't read the modelines (security)
-set linebreak " break lines at words
-
-" Spell highlight config ---------------------------------------
-" http://vimdoc.sourceforge.net/htmldoc/syntax.html
-" Using ANSI colors to match terminal XResources config
-function! CWLHighlights() abort
-	highlight clear SpellBad
-	highlight SpellBad ctermfg=7 ctermbg=1 
-	" hi SpellBad cterm=reverse
-
-	highlight clear Search
-	highlight Search ctermfg=0 ctermbg=7
-
-	highlight clear IncSearch
-	highlight IncSearch ctermfg=0 ctermbg=15
-endfunction
-
-augroup MyColors " auto reload my highlight scheme when colorscheme changes
-    " Remove all auto-commands of this augroup 
-    autocmd! 
-    autocmd ColorScheme * call CWLHighlights()
-augroup END
-colorscheme default
-
-" call CWLHighlights() " Set my my highlight scheme
