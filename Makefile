@@ -177,6 +177,12 @@ insomnia:
 build-tools:
 	${INSTALL} maven gradle gpp ant checkinstall make
 
+intellij-idea:
+	snap install intellij-idea-community
+
+sdkman:
+	curl -s https://get.sdkman.io | bash
+
 oracle-java-8:
 	${ADD_REPOSITORY} ppa:webupd8team/java
 	${UPDATE}

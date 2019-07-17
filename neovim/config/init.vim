@@ -85,12 +85,13 @@ endfunction
 
 " CONFIGS ------------------------------------------------------
 " Better splits
-set splitbelow " by default, vim open split in the top
-set splitright " by default, vim open split in the left
-filetype on
+set autochdir	" Change working directory to open buffer
 set encoding=utf-8 " all my systems uses UTF-8
 set modelines=0 " Don't read the modelines (security)
 set linebreak " break lines at words
+set splitbelow " by default, vim open split in the top
+set splitright " by default, vim open split in the left
+filetype on
 
 " Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
