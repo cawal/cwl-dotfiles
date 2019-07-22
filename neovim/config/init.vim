@@ -27,6 +27,8 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript' }
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 
+Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
+
 call plug#end()
 
 " ULTISNIPS
@@ -39,6 +41,12 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
 let g:deoplete#enable_at_startup = 1
+
+" Vim-wiki
+" ------------------------------------------------------
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 " Filetypes and autocommands
 " -------------------------------------------------------
