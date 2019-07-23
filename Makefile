@@ -1,9 +1,9 @@
 GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
-INSTALL = apt install -y
-INSTALL_LOCAL=dpkg -i
-UPDATE = apt update
-ADD_REPOSITORY=add-apt-repository -y
+INSTALL = sudo apt install -y
+INSTALL_LOCAL= sudo dpkg -i
+UPDATE = sudo apt update
+ADD_REPOSITORY= sudo add-apt-repository -y
 DOWNLOAD_AS=wget -O
 AT_TEMP_FOLDER=cd /tmp/ ; 
 
@@ -87,10 +87,9 @@ terminal:
 # TERMINAL TOOLS
 
 vi: 
+	${ADD_REPOSITORY} ppa:neovim-ppa/stable
+	${UPDATE}
 	${INSTALL} neovim
-#	${ADD_REPOSITORY} ppa:neovim-ppa/stable
-#	${UPDATE}
-#	${INSTALL} neovim
 
 python3-pynvim: python3-pip3
 	pip3 install pynvim
@@ -183,6 +182,12 @@ intellij-idea:
 sdkman:
 	curl -s https://get.sdkman.io | bash
 
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+node-js: nvm
+	nvm install stable
+
 oracle-java-8:
 	${ADD_REPOSITORY} ppa:webupd8team/java
 	${UPDATE}
@@ -201,9 +206,10 @@ openjdk-8:
 
 kotlin-compiler:
 	snap install --classic kotlin
+
 # offline docs
 zeal:
-	add-apt-repository ppa:zeal-developers/ppa
+	${ADD_REPOSITORY} ppa:zeal-developers/ppa
 	${UPDATE}
 	${INSTALL} zeal
 # LANGUAGE SERVERS -----------------------------------------------------

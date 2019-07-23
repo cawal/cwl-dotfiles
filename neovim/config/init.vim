@@ -25,7 +25,9 @@ Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surroundin
 " Programming language-related Plugins
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+
+"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Client
 
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
@@ -69,7 +71,9 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ 'typescript': ['typescript-language-server', '--stdio'],
     \ }
-
+function! CWLInstallLanguageServers()
+	:CocInstall coc-java
+endfunction
 
 " Config for grammarous
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
