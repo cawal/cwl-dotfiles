@@ -46,8 +46,11 @@ let g:deoplete#enable_at_startup = 1
 
 " Vim-wiki
 " ------------------------------------------------------
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [
+	\ {'path':'~/Dropbox/vimwiki/', 'syntax':'markdown', 'ext':'.md'},
+	\ {'path':'~/Dropbox/Academico/literature-reviews',
+		\ 'syntax':'markdown', 'ext':'.md'}
+\ ]
 
 
 " Filetypes and autocommands
