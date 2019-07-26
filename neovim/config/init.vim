@@ -166,4 +166,4 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive Easyalign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
 
-
+colorscheme neovim-0-2-2
