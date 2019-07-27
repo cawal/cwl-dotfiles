@@ -3,35 +3,67 @@
 " Maps the leader key
 let mapleader = '\'
 
+let THEME = 'neovim-0-2-2'
+
 " PLUGINS --------------------------------------------------------
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
+" Widgets
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
 Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
-Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
-Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
-
+Plug 'majutsushi/tagbar', { 'on' : [ 'TagbarToggle' ] } " File/Class overview  (uses exuberant-ctags)
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
 
-Plug 'SirVer/ultisnips' " Easily create and use code snippets
 
-" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' }
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
+" General assistance plugins
+Plug 'rhysd/vim-grammarous', { 'on' : 'GrammarousCheck' } " Grammar checking
+Plug 'SirVer/ultisnips' " Easily create and use code/text snippets
+Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surrounding characters/html tags
+Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
+Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
+
 
 " Programming language-related Plugins
-Plug 'leafgarland/typescript-vim', {'for': 'typescript' } 
-Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
-
-"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
+Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 
+" Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
+"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 call plug#end()
+
+
+" CoC-Vim
+" -----------------------------------------------------
+let g:coc_node_path = $HOME . '/.nvm/versions/node/v12.6.0/bin/node'
+
+" Goyo
+" -----------------------------------------------------
+function! s:goyo_enter()
+endfunction
+
+function! s:goyo_leave()
+	colorscheme neovim-0-2-2
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" Grammarous
+" -----------------------------------------------------
+let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
+
+" Vim-wiki
+" ------------------------------------------------------
+let g:vimwiki_list = [
+	\ {'path':'~/Dropbox/vimwiki/', 'syntax':'markdown', 'ext':'.md'},
+	\ {'path':'~/Dropbox/Academico/literature-reviews',
+		\ 'syntax':'markdown', 'ext':'.md'}
+\ ]
+
 
 " ULTISNIPS
 " -------------------------------------------------------
@@ -44,17 +76,7 @@ let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
 let g:deoplete#enable_at_startup = 1
 
-" Vim-wiki
-" ------------------------------------------------------
-let g:vimwiki_list = [
-	\ {'path':'~/Dropbox/vimwiki/', 'syntax':'markdown', 'ext':'.md'},
-	\ {'path':'~/Dropbox/Academico/literature-reviews',
-		\ 'syntax':'markdown', 'ext':'.md'}
-\ ]
 
-" CoC-Vim
-" -----------------------------------------------------
-let g:coc_node_path = $HOME . '/.nvm/versions/node/v12.6.0/bin/node'
 
 " Filetypes and autocommands
 " -------------------------------------------------------
@@ -72,21 +94,19 @@ augroup END
 " Language servers
 " -------------------------------------------------------
 " Bash: https://github.com/mads-hartmann/bash-language-server
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ }
-function! CWLInstallLanguageServers()
-	:CocInstall coc-java
-endfunction
+"let g:LanguageClient_serverCommands = {
+"    \ 'sh': ['bash-language-server', 'start'],
+"    \ 'typescript': ['typescript-language-server', '--stdio'],
+"    \ }
 
-" Config for grammarous
-let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
 
 " VARIABLES AND OPTIONS -----------------------------------------
 
 " Custom functions -------------------------------------------------
+
+function! CWLInstallLanguageServers()
+	:CocInstall coc-java
+endfunction
 
 function! CWLToggleZenMode()
 	:NERDTreeClose
@@ -103,13 +123,14 @@ endfunction
 
 " CONFIGS ------------------------------------------------------
 " Better splits
-set autochdir	" Change working directory to open buffer
+set hidden " hides the buffer (instead of closing it) when a new file is loaded
+set autochdir	" Change working directory to the one of the open buffer
 set encoding=utf-8 " all my systems uses UTF-8
 set modelines=0 " Don't read the modelines (security)
 set linebreak " break lines at words
-set splitbelow " by default, vim open split in the top
-set splitright " by default, vim open split in the left
-filetype on
+set splitbelow " by default, vim open split (:sp) in the top
+set splitright " by default, vim open split (:vs) in the left
+filetype on " enable filetype detection
 
 " Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
@@ -133,7 +154,6 @@ augroup MyColors " auto reload my highlight scheme when colorscheme changes
 augroup END
 colorscheme default
 
-" call CWLHighlights() " Set my my highlight scheme
 
 " KEY MAPPINGS -----------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
@@ -150,6 +170,7 @@ nnoremap <leader>r :!"%:p"
 nnoremap <leader>s :call CWLToggleSpell()<cr>
 nnoremap <leader>z :call CWLToggleZenMode()<cr> 
 nnoremap <leader>u :GundoToggle<cr>
+nnoremap <leader>o :TagbarToggle<cr>
 
 " Grammar checking
 map <F5> :GrammarousCheck<cr>
