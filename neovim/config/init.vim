@@ -32,20 +32,25 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighti
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
-"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 call plug#end()
 
 
 " CoC-Vim
 " -----------------------------------------------------
+
+" Path for node.js
 let g:coc_node_path = $HOME . '/.nvm/versions/node/v12.6.0/bin/node'
 
 " Goyo
 " -----------------------------------------------------
 function! s:goyo_enter()
+	" commands to execute when entering zen mode
+	" nothing extra here...
 endfunction
 
 function! s:goyo_leave()
+	" After leaving zen mode, 
+	" its necessary to reload the colorscheme
 	colorscheme neovim-0-2-2
 endfunction
 
@@ -91,19 +96,7 @@ augroup CustomTeX :
 augroup END
 
 
-" Language servers
-" -------------------------------------------------------
-" Bash: https://github.com/mads-hartmann/bash-language-server
-"let g:LanguageClient_serverCommands = {
-"    \ 'sh': ['bash-language-server', 'start'],
-"    \ 'typescript': ['typescript-language-server', '--stdio'],
-"    \ }
-
-
-" VARIABLES AND OPTIONS -----------------------------------------
-
 " Custom functions -------------------------------------------------
-
 function! CWLInstallLanguageServers()
 	:CocInstall coc-java
 endfunction
@@ -114,6 +107,7 @@ function! CWLToggleZenMode()
 endfunction
 
 " Forces the coloring of the spelling errors
+" TODO I think I don't need it anymore with my ~own~ colorscheme
 function! CWLToggleSpell()
 	:set spell!
 	:hi clear SpellBad
@@ -135,6 +129,7 @@ filetype on " enable filetype detection
 " Spell highlight config ---------------------------------------
 " http://vimdoc.sourceforge.net/htmldoc/syntax.html
 " Using ANSI colors to match terminal XResources config
+" TODO I think I don't need it anymore with my ~own~ colorscheme
 function! CWLHighlights() abort
 	highlight clear SpellBad
 	highlight SpellBad ctermfg=7 ctermbg=1 
@@ -147,6 +142,7 @@ function! CWLHighlights() abort
 	highlight IncSearch ctermfg=0 ctermbg=15
 endfunction
 
+" TODO I think I don't need it anymore with my ~own~ colorscheme
 augroup MyColors " auto reload my highlight scheme when colorscheme changes
     " Remove all auto-commands of this augroup 
     autocmd! 
@@ -158,36 +154,68 @@ colorscheme default
 " KEY MAPPINGS -----------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 
-" Join with previous line (symmetric with J)
-nnoremap K kJ
-nnoremap <Esc><Esc> :noh<cr>
 
-nnoremap <leader>c :ColorToggle<cr>
-nnoremap <leader>f :NERDTreeToggle<cr>
-nnoremap <leader>n :set number!<cr>
-" run current file
-nnoremap <leader>r :!"%:p"
-nnoremap <leader>s :call CWLToggleSpell()<cr>
-nnoremap <leader>z :call CWLToggleZenMode()<cr> 
-nnoremap <leader>u :GundoToggle<cr>
-nnoremap <leader>o :TagbarToggle<cr>
+" ALL MODE MAPPINGS
+" No arrow keys (Vim Hard mode)
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
 
 " Grammar checking
 map <F5> :GrammarousCheck<cr>
+" Remove grammar checking marks
 map <F6> :GrammarousReset<cr>
+" Add portuguese words to spell
 map <F7> :set spelllang+=pt<cr>
-map <F11> :call CWLToggleZenMode()<cr>
 
-nnoremap <F4> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> <Leader>K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-" Easy Align
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive Easyalign for a motion/text object (e.g., gaip)
+" NORMAL MODE MAPPINGS
+
+" Start interactive EasyAlign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Join with previous line (symmetric with J)
+nnoremap K kJ
+
+" remove search highlights
+nnoremap <Esc><Esc> :noh<cr>
+
+" toggle matching highlight for color codes
+nnoremap <leader>c :ColorToggle<cr>
+
+" Toggles Nerdtree navigation
+nnoremap <leader>f :NERDTreeToggle<cr>
+
+" Toggles line number indication
+nnoremap <leader>n :set number!<cr>
+
+" Toggle file/class overeview panel
+nnoremap <leader>o :TagbarToggle<cr>
+
+" run current file contents
+nnoremap <leader>r :!"%:p"
+
+" Toggle spell checking
+nnoremap <leader>s :call CWLToggleSpell()<cr>
+
+" Toggle zen mode
+nnoremap <leader>z :call CWLToggleZenMode()<cr> 
+
+" Toggle undo history graph panel
+nnoremap <leader>u :GundoToggle<cr>
+
+" Switching Buffers
+nnoremap <leader>[ :bp<cr>
+nnoremap <leader>] :bn<cr>
+
+
+" VISUAL MODE MAPPINGS
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+
+" ------------------------------------------------------------
+" Set my Neovim v0.2.2-derived colorscheme (XResources-based)
 colorscheme neovim-0-2-2
