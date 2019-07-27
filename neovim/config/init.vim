@@ -27,7 +27,7 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript' }
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } 
 
 "Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Client
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
 
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
@@ -52,6 +52,9 @@ let g:vimwiki_list = [
 		\ 'syntax':'markdown', 'ext':'.md'}
 \ ]
 
+" CoC-Vim
+" -----------------------------------------------------
+let g:coc_node_path = $HOME . '/.nvm/versions/node/v12.6.0/bin/node'
 
 " Filetypes and autocommands
 " -------------------------------------------------------

@@ -278,6 +278,7 @@ audacity:
 baobab:
 	${INSTALL} baobab
 
+
 web-browser: firefox
 
 firefox:
@@ -367,7 +368,7 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-xresources link-zsh link-zathura
+link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-tmux link-xresources link-zsh link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -401,6 +402,9 @@ link-ranger:
 link-rofi:
 	mkdir -p ${HOME}/.config/rofi/
 	stow -R rofi --target=${HOME}/.config/rofi/
+
+link-tmux:
+	stow -R tmux --target=${HOME}
 
 link-xresources:
 	stow -R Xresources --target=${HOME}
