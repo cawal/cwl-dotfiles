@@ -32,46 +32,46 @@ conky.config = {
 	color1 = 'A9A9A9',
 	color3 = '616161',
 
-	alignment= 'top_right',
-	gap_x= 56,
-	gap_y= 0,
+	alignment= 'top_left',
+	gap_x= 40,
+	gap_y= 40,
 	no_buffers= true,
 	text_buffer_size = 2048,
 	uppercase= false,
 	cpu_avg_samples= 4,
 	net_avg_samples = 2,
 	override_utf8_locale= true,
-	font= 'Ubuntu:style=medium:size=9'
+	font= 'Hack:pixelsize=12'
 }
 
 conky.text = [[
-${voffset 10}
-${font Hack:pixelsize=12}
+#${voffset 10}
+#${font Hack:pixelsize=12}
 CALENDAR
 ${hr}
 ${execpi 10 gcalcli --nocolor agenda | grep . | head --lines=8 }
 ${voffset 10}
 GIT
 ${hr}
-RESTaurant:    ${execi 60 git --git-dir /home/cawal/git/lssb/RESTaurant/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
-Activity-REST: ${execi 60 git --git-dir /home/cawal/git/lssb/Activity-REST/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
-GEAS-RIM:      ${execi 60 git --git-dir /home/cawal/git/lssb/geas-rim/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
+Activity-REST: ${execi 60 git --git-dir /home/cawal/git/lssb/activity-rest-framework/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
+GEAS-RIM:      ${execi 60 git --git-dir /home/cawal/git/lssb/GEAS/geas-rim/.git log --abbrev-commit     --date=relative --format=format:'[%ar] %s' --all --max-count=1}
 
+NETWORK
 ${hr}
 Wireless: ${alignr}${addrs wlp3s0}
 Ethernet: ${alignr}${addrs enpp4s0}
 External: ${alignr}${exec curl ipinfo.io/ip}
 ${hr}
 
-CPUs:
-${cpugraph cpu1 50,133 ${default_color} ${default_color} -t} ${cpugraph cpu2 50,133 5${default_color} ${default_color} -t}
-${cpugraph cpu3 50,133 ${default_color} ${default_color} -t} ${cpugraph cpu4 50,133 ${default_color} ${default_color} -t}
+#CPUs:
+#${cpugraph cpu1 50,133 ${default_color} ${default_color} -t} ${cpugraph cpu2 50,133 5${default_color} ${default_color} -t}
+#${cpugraph cpu3 50,133 ${default_color} ${default_color} -t} ${cpugraph cpu4 50,133 ${default_color} ${default_color} -t}
 
 #$color3}
-${downspeedgraph wlp3s0 50,269 ${default_color} ${default_color}}
-#${color1}
-download ${alignr}${downspeedf wlp3s0}k/s (${totaldown wlp3s0})
-${hr}
-upload ${alignr}${upspeedf wlp3s0}k/s (${totalup wlp3s0})
-${upspeedgraph wlp3s0 50,269 ${default_color} ${default_color}}
+#${downspeedgraph wlp8s0 50,269 ${default_color} ${default_color}}
+##${color1}
+#download ${alignr}${downspeedf wlp8s0}k/s (${totaldown wlp8s0})
+#${hr}
+#upload ${alignr}${upspeedf wlpi8s0}k/s (${totalup wlpi8s0})
+#${upspeedgraph wlp8s0 50,269 ${default_color} ${default_color}}
 ]]
