@@ -314,7 +314,7 @@ wifi-analyser:
 
 
 telegram:
-	snap install telegram-sergiusens
+	sudo snap install telegram-desktop
 
 slack:
 	snap install slack --classic
