@@ -212,6 +212,14 @@ zeal:
 	${ADD_REPOSITORY} ppa:zeal-developers/ppa
 	${UPDATE}
 	${INSTALL} zeal
+
+mssql-tools:
+	curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+	curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+	${UPDATE}
+	${INSTALL}  mssql-tools unixodbc-dev
+
+
 # LANGUAGE SERVERS -----------------------------------------------------
 language-servers: ls-bash ls-typescript
 
