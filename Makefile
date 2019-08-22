@@ -60,7 +60,7 @@ flashfocus:
 	pip install flashfocus
 
 kde-connect-indicator:
-	add-apt-repository ppa:webupd8team/indicator-kdeconnect
+	${ADD_REPOSITORY} ppa:webupd8team/indicator-kdeconnect
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
 
@@ -159,7 +159,7 @@ version-control:
 shellcheck:
 	${INSTALL} shellcheck
 
-web-service-development-tools: insomnia
+web-service-development-tools:
 	${INSTALL} httpie jq tcpflow
 
 web-development:
@@ -206,6 +206,14 @@ openjdk-8:
 
 kotlin-compiler:
 	snap install --classic kotlin
+
+curl:
+	${INSTALL} curl
+
+dbeaver:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dbeaver.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dbeaver.deb
+	${AT_TEMP_FOLDER} rm dbeaver.deb
 
 # offline docs
 zeal:
@@ -363,10 +371,11 @@ autokey:
 	${INSTALL} autokey-gtk
 
 spotify:
-	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	${UPDATE}
-	${INSTALL} spotify-client
+	sudo snap install spotify
+	#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+	#echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+	#${UPDATE}
+	#${INSTALL} spotify-client
 
 skype:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
