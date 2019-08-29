@@ -385,7 +385,7 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-tmux link-xresources link-zsh link-zathura
+link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -430,6 +430,10 @@ link-xresources:
 link-qutebrowser:
 	mkdir -p ${HOME}/.config/qutebrowser/
 	stow -R qutebrowser --target=${HOME}/.config/qutebrowser/
+
+link-urxvt:
+	mkdir -p ${HOME}/.urxvt/
+	stow -R urxvt --target=${HOME}/.urxvt/
 
 link-zsh:
 	stow -R zsh --target=${HOME}
