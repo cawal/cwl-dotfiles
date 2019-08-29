@@ -41,6 +41,8 @@ urxvt*internalBorder: 		3
 urxvt.font: 			xft:Hack:pixelsize=13
 ! horizontal spacing of letters
 urxvt.letterSpace:		0
-urxvt.perl-ext: resize-font
-urxvt.keysym.C-Up: perl:resize-font:bigger
+
+urxvt.perl-ext: default,keyboard-select,resize-font
+urxvt.keysym.M-Escape: perl:keyboard-select:activate
+urxvt.keyboard-select.clipboard: true
 !urxvt.keysym.F11: perl:fullscreen:switch
