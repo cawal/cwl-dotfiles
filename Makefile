@@ -31,6 +31,8 @@ compositor:
 py3status:
 	${INSTALL} py3status
 
+bluetooth:
+	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
 
 diodon:
 	${INSTALL} diodon
@@ -132,6 +134,9 @@ osquery:
 q:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
 	${AT_TEMP_FOLDER} dpkg -i q.deb
+
+htop:
+	${INSTALL} htop
 
 sc-im: libxlsxwriter
 	${INSTALL} bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
