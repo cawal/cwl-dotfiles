@@ -23,6 +23,7 @@ Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surroundin
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
 
+Plug 'tpope/vim-fugitive' " Git commands plugin
 
 " Programming language-related Plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
