@@ -1,0 +1,7 @@
+! Swap Caps_Lock with Super
+keycode 66 = Super_L
+
+!remove Lock = Caps_Lock
+!keysym Caps_Lock = Super_L
+!keysym Super_L = Caps_Lock
+!add Lock = Caps_Lock

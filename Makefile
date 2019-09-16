@@ -428,6 +428,10 @@ link-rofi:
 link-tmux:
 	stow -R tmux --target=${HOME}
 
+link-xmodmap:
+	stow -R xmodmap --target=${HOME}
+	xmodmap ${HOME}/.Xmodmap
+
 link-xresources:
 	stow -R Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
