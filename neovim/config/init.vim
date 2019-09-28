@@ -64,10 +64,23 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 
 " Vim-wiki
 " ------------------------------------------------------
+let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','python':'python'}
+
+let personal_wiki = {}
+let personal_wiki.path = '~/Dropbox/vimwiki/'
+let personal_wiki.syntax = 'markdown'
+let personal_wiki.ext = '.md'
+let personal_wiki.nested_syntaxes = my_nested_syntaxes
+
+let phd_wiki = {}
+let phd_wiki.path = '~/Dropbox/Academico/literature-reviews'
+let phd_wiki.syntax = 'markdown'
+let phd_wiki.ext = '.md'
+let phd_wiki.nested_syntaxes = my_nested_syntaxes
+
 let g:vimwiki_list = [
-	\ {'path':'~/Dropbox/vimwiki/', 'syntax':'markdown', 'ext':'.md'},
-	\ {'path':'~/Dropbox/Academico/literature-reviews',
-		\ 'syntax':'markdown', 'ext':'.md'}
+	\ personal_wiki,
+	\ phd_wiki 
 \ ]
 
 
