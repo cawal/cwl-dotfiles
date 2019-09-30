@@ -30,6 +30,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } "
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 
+Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
@@ -77,6 +78,7 @@ let phd_wiki.path = '~/Dropbox/Academico/literature-reviews'
 let phd_wiki.syntax = 'markdown'
 let phd_wiki.ext = '.md'
 let phd_wiki.nested_syntaxes = my_nested_syntaxes
+
 
 let g:vimwiki_list = [
 	\ personal_wiki,
