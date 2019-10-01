@@ -1,0 +1,28 @@
+#!/bin/bash
+
+function openBrowser() {
+	firefox -new-instance -P "Carefy" $@ &
+}
+
+function playSomeMusic() {
+	SPOTIFY_PLAYLIST=spotify:user:12149882260:playlist:5iLAAP225VLUyMtXpRhhUT
+
+	spotify &
+	sleep 10
+	sp open "${SPOTIFY_PLAYLIST}" &
+}
+
+function openTheCode() {	
+	cd ~/git/trabalho/carefy/carefy
+	newt 
+}
+
+function startTheServer(){
+	cd ~/git/trabalho/carefy/
+	./start-server.sh &
+}
+
+openBrowser 
+playSomeMusic
+openTheCode
+startTheServer
