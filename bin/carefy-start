@@ -22,7 +22,7 @@ function startTheServer(){
 	./start-server.sh &
 }
 
-openBrowser 
+startTheServer
 playSomeMusic
 openTheCode
-startTheServer
+openBrowser 
