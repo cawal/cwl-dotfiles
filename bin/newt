@@ -5,7 +5,7 @@
 # TODO: Add the function to an RC files?
 
 function openTerminal () { 
-	cwl-sensible-terminal > /dev/null 2>/dev/null 
+	cwl-sensible-terminal $@ > /dev/null 2>/dev/null 
 }
 
-openTerminal &
+openTerminal $@ &

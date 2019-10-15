@@ -4,6 +4,18 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+snippet frame "Create slide frame" bA
+\begin{frame}{$1}\begin{columns}
+\column{.8\textwidth}
+\\\[.2cm]
+$2
+\begin{itemize}
+		\item $0
+\end{itemize}
+\end{columns}\end{frame}
+endsnippet
+
+
 snippet \e "Emph" i
 \emph{$1}$0
 endsnippet

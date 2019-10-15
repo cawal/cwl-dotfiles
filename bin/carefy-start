@@ -8,21 +8,35 @@ function playSomeMusic() {
 	SPOTIFY_PLAYLIST=spotify:user:12149882260:playlist:5iLAAP225VLUyMtXpRhhUT
 
 	spotify &
-	sleep 10
-	sp open "${SPOTIFY_PLAYLIST}" &
+	# sleep 10
+	# sp open "${SPOTIFY_PLAYLIST}" &
 }
 
-function openTheCode() {	
+function openTheEditor() {	
+    code ~/git/trabalho/carefy/carefy
+}
+
+
+function openATerminal() {	
 	cd ~/git/trabalho/carefy/carefy
 	newt 
 }
 
 function startTheServer(){
+	docker container prune -f 
 	cd ~/git/trabalho/carefy/
 	./start-server.sh &
+
+}
+
+function openLogs(){
+    newt -title server-logs -e docker container logs carefy-nginx --follow
+    newt -title server-logs -e docker container exec -it carefy-nginx /usr/bin/tail -f /var/log/php-fpm.log
 }
 
 startTheServer
-playSomeMusic
-openTheCode
+openATerminal
+openTheEditor
 openBrowser 
+playSomeMusic
+sleep 20 && openLogs

@@ -132,14 +132,20 @@ endfunction
 
 
 " CONFIGS ------------------------------------------------------
-" Better splits
 set hidden " hides the buffer (instead of closing it) when a new file is loaded
 set autochdir	" Change working directory to the one of the open buffer
 set encoding=utf-8 " all my systems uses UTF-8
 set modelines=0 " Don't read the modelines (security)
 set linebreak " break lines at words
+" Better splits
 set splitbelow " by default, vim open split (:sp) in the top
 set splitright " by default, vim open split (:vs) in the left
+
+set tabstop=4
+set softtabstop=4
+set expandtab
+set shiftwidth=4 
+
 filetype on " enable filetype detection
 
 " Spell highlight config ---------------------------------------
