@@ -1,0 +1,12 @@
+{
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "editor.multiCursorModifier": "alt",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.lineHeight": 22,
+    "editor.fontFamily": "'Hack', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.sideBar.location": "right",
+    "editor.formatOnSave": true,
+ }

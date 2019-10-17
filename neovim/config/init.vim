@@ -22,6 +22,7 @@ Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surrounding characters/html tags
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
+Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 
 Plug 'tpope/vim-fugitive' " Git commands plugin
 
