@@ -9,4 +9,6 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.sideBar.location": "right",
     "editor.formatOnSave": true,
+    "css.lint.float": "warning",
+    "explorer.confirmDelete": false,
  }

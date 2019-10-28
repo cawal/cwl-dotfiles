@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function enableTrackPad(){
+    synclient TouchpadOff=0
+    synclient PalmDetect=1
+}
+
+function disableTrackPad () {
+    synclient TouchpadOff=1
+}
+
+case $1 in
+    'enable')
+        enableTrackPad
+        ;;
+    'disable')
+        disableTrackPad
+        ;;
+    *)
+        enableTrackPad
+        ;;
+esac
