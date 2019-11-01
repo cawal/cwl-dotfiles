@@ -51,7 +51,7 @@ ZSH_THEME=${ZSH_THEME:-"agnoster"}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow mvn graddle nvm)
+plugins=(git git-extras git-flow mvn gradle nvm)
 
 source $ZSH/oh-my-zsh.sh
 
