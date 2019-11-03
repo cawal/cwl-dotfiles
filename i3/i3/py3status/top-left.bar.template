@@ -17,7 +17,8 @@ battery_level {
 }
 
 clock {
-	format = "{America/Sao_Paulo}"
+    #format = "{America/Sao_Paulo}"
+	format = "{Etc/GMT+3}"
 	format_time = "%Y-%m-%d %H:%M"	
 }
 

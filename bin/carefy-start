@@ -25,7 +25,7 @@ function openATerminal() {
 function startTheServer(){
 	docker container prune -f 
 	cd ~/git/trabalho/carefy/
-	./start-server.sh &
+	./start-nginx.sh &
 
 }
 
