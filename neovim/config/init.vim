@@ -30,6 +30,7 @@ Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
+Plug 'shmup/vim-sql-syntax'
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
