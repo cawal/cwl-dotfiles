@@ -177,6 +177,9 @@ insomnia:
 	${INSTALL} insomnia
 
 
+debugging:
+	# perf:
+	${INSTALL} linux-tools-common linux-tools-generic linux-cloud-tools-generic
 
 build-tools:
 	${INSTALL} maven gradle gpp ant checkinstall make
@@ -308,10 +311,13 @@ firefox:
 qutebrowser:
 	${INSTALL} qutebrowser
 
-steam: 
+steam: graphic-drivers
 	${INSTALL} python-apt
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} steam.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} steam.deb
+
+graphic-drivers:
+	 ${INSTALL} libvulkan1 mesa-vulkan-drivers vulkan-utils 
 
 google-chrome:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
