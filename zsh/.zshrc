@@ -84,6 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+if type "nvim" > /dev/null; then
+    alias vi="nvim"
+fi
+
 # Vim-like quit (because sometimes I type it in zsh)
 alias :q='exit'
 
