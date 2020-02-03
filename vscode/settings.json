@@ -11,4 +11,5 @@
     "editor.formatOnSave": true,
     "css.lint.float": "warning",
     "explorer.confirmDelete": false,
+    "html.format.wrapAttributes": "force-aligned",
  }
