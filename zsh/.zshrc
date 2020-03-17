@@ -84,6 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+if type "nvim" > /dev/null; then
+    alias vi="nvim"
+fi
+
 # Vim-like quit (because sometimes I type it in zsh)
 alias :q='exit'
 
@@ -96,4 +100,13 @@ export NVM_DIR="$HOME/.nvm"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/cawal/.sdkman"
-[[ -s "/home/cawal/.sdkman/bin/sdkman-init.sh" ]] && source "/home/cawal/.sdkman/bin/sdkman-init.sh"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${HOME}/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${HOME}/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/completion.zsh.inc"; fi
+
+# The next line enables shell command completion for kubectl
+if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
