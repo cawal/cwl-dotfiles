@@ -13,7 +13,7 @@ function playSomeMusic() {
 }
 
 function openTheEditor() {	
-    code ~/git/trabalho/carefy/carefy
+    code ~/git/trabalho/carefy/carefy &
 }
 
 
@@ -22,11 +22,10 @@ function openATerminal() {
 	newt 
 }
 
-function startTheServer(){
+function startServers(){
 	docker container prune -f 
-	cd ~/git/trabalho/carefy/
-	./start-nginx.sh &
-
+	cd ~/git/trabalho/carefy/carefy/carefy/scripts
+	./start-mysql && ./start-nginx.sh && ./start-highcharts
 }
 
 function openLogs(){
@@ -34,9 +33,10 @@ function openLogs(){
     newt -title server-logs -e docker container exec -it carefy-nginx /usr/bin/tail -f /var/log/php-fpm.log
 }
 
-startTheServer
+startServers
+slack &
 openATerminal
 openTheEditor
 openBrowser 
-playSomeMusic
-sleep 20 && openLogs
+# playSomeMusic
+#sleep 20 && openLogs

@@ -28,4 +28,9 @@
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "bookmarks.navigateThroughAllFiles": true,
+    "bookmarks.useWorkaroundForFormatters": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
  }

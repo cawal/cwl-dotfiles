@@ -36,6 +36,8 @@ Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 
+
+
 call plug#end()
 
 
@@ -67,12 +69,12 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 
 " Vim-wiki
 " ------------------------------------------------------
-let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','python':'python'}
+let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql'}
 
 let personal_wiki = {}
 let personal_wiki.path = '~/Dropbox/vimwiki/'
-"let personal_wiki.syntax = 'markdown'
-"let personal_wiki.ext = '.md'
+let personal_wiki.syntax = 'markdown'
+let personal_wiki.ext = '.md'
 let personal_wiki.nested_syntaxes = my_nested_syntaxes
 
 let phd_wiki = {}
@@ -243,3 +245,4 @@ xmap ga <Plug>(EasyAlign)
 " ------------------------------------------------------------
 " Set my Neovim v0.2.2-derived colorscheme (XResources-based)
 colorscheme neovim-0-2-2
+

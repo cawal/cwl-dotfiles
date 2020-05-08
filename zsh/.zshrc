@@ -51,7 +51,7 @@ ZSH_THEME=${ZSH_THEME:-"agnoster"}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow mvn gradle nvm)
+plugins=(git git-extras git-flow mvn gradle nvm kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,3 +110,11 @@ if [ -f "${HOME}/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/bin
 
 # The next line enables shell command completion for kubectl
 #if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+#
+PROMPT='$(kube_ps1)'$PROMPT
+
+function get_cluster_short() {
+      echo "$1" | cut -d _ -f2
+}
+
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
