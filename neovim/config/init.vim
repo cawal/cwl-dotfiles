@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surroundin
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
-
+Plug 'airblade/vim-rooter' " Automatically set de current dir to project root 
 Plug 'tpope/vim-fugitive' " Git commands plugin
 
 " Programming language-related Plugins
@@ -35,7 +35,8 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
-
+" Plug 'itchyny/calendar' " Calendar
+Plug 'mattn/calendar-vim'
 
 
 call plug#end()
@@ -69,6 +70,8 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 
 " Vim-wiki
 " ------------------------------------------------------
+" does not consider all md files as wiki
+let g:vimwiki_global_ext = 0 
 let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql'}
 
 let personal_wiki = {}
@@ -89,6 +92,10 @@ let g:vimwiki_list = [
 	\ phd_wiki 
 \ ]
 
+" Vim-Rooter
+" ------------------------------------------------------
+let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_patterns = ['latexmkrc', '.git/', 'pom.xml']
 
 " ULTISNIPS
 " -------------------------------------------------------
@@ -135,12 +142,26 @@ function! CWLToggleSpell()
 endfunction
 
 
+function! VimwikiFindIncompleteTasks()
+  lvimgrep /- \[ \]/ %:p
+  lopen
+endfunction
+
+function! VimwikiFindAllIncompleteTasks()
+  VimwikiSearch /- \[ \]/
+  lopen
+endfunction
+
+
 " CONFIGS ------------------------------------------------------
 set hidden " hides the buffer (instead of closing it) when a new file is loaded
-set autochdir	" Change working directory to the one of the open buffer
+" set autochdir	" Change working directory to the one of the open buffer
 set encoding=utf-8 " all my systems uses UTF-8
 set modelines=0 " Don't read the modelines (security)
 set linebreak " break lines at words
+set breakindent " maintain identation in line wrapping
+set breakindentopt=shift:2,min:40,sbr " ident by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
+
 " Better splits
 set splitbelow " by default, vim open split (:sp) in the top
 set splitright " by default, vim open split (:vs) in the left
@@ -149,6 +170,7 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=4 
+set hlsearch " Show search matches while writing 
 
 filetype on " enable filetype detection
 
@@ -202,7 +224,7 @@ map <F7> :set spelllang+=pt<cr>
 nmap ga <Plug>(EasyAlign)
 
 " Join with previous line (symmetric with J)
-nnoremap K kJ
+"nnoremap K kJ
 
 " remove search highlights
 nnoremap <Esc><Esc> :noh<cr>
@@ -212,6 +234,9 @@ nnoremap <leader>c :ColorToggle<cr>
 
 " Toggles Nerdtree navigation
 nnoremap <leader>f :NERDTreeToggle<cr>
+
+" Search files with FZF + Vim-Rooter
+nnoremap <leader>F :FZF<cr>
 
 " Toggles line number indication
 nnoremap <leader>n :set number!<cr>
@@ -234,6 +259,9 @@ nnoremap <leader>u :GundoToggle<cr>
 " Switching Buffers
 nnoremap <leader>[ :bp<cr>
 nnoremap <leader>] :bn<cr>
+
+nmap <leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+nmap <leader>wx :call VimwikiFindIncompleteTasks()<CR>
 
 
 " VISUAL MODE MAPPINGS
