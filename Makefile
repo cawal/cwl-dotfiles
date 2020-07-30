@@ -25,6 +25,10 @@ i3: notifications i3-bar rofi wallpaper compositor
 
 i3-bar: py3status i3-python
 
+alluvium:
+	${INSTALL} libcairo2-dev libgirepository1.0-dev
+	pip3 install alluvium 
+
 compositor:
 	${INSTALL} compton
 

@@ -4,6 +4,14 @@ function openBrowser() {
 	firefox -new-instance -P "Carefy" $@ &
 }
 
+function openWorkingBrowser() {
+	google-chrome &
+}
+
+function openVimWiki() {
+    newt --title wiki -e vim -c VimwikiIndex
+}
+
 function playSomeMusic() {
 	SPOTIFY_PLAYLIST=spotify:user:12149882260:playlist:5iLAAP225VLUyMtXpRhhUT
 
@@ -13,19 +21,19 @@ function playSomeMusic() {
 }
 
 function openTheEditor() {	
-    code ~/git/trabalho/carefy/carefy &
+    code ~/git/trabalho/carefy/carefy/carefy &
 }
 
 
 function openATerminal() {	
-	cd ~/git/trabalho/carefy/carefy
+	cd ~/git/trabalho/carefy/carefy/carefy
 	newt 
 }
 
 function startServers(){
 	docker container prune -f 
 	cd ~/git/trabalho/carefy/carefy/carefy/scripts
-	./start-mysql && ./start-nginx.sh && ./start-highcharts
+	./start-mysql.sh && ./start-nginx.sh && ./start-highcharts
 }
 
 function openLogs(){
@@ -35,8 +43,11 @@ function openLogs(){
 
 startServers
 slack &
-openATerminal
-openTheEditor
-openBrowser 
+openATerminal &
+openTheEditor &
+openVimWiki &
+openBrowser &
+openWorkingBrowser &
+newt -e vi /home/cawal/git/trabalho/carefy/carefy/carefy/cost_percente_month_list-local.md &
 # playSomeMusic
 #sleep 20 && openLogs
