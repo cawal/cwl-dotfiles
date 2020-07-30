@@ -26,7 +26,7 @@ height="$3"          # Height of the preview pane (number of fitting characters)
 cached="$4"          # Path that should be used to cache image previews
 preview_images="$5"  # "True" if image previews are enabled, "False" otherwise.
 
-maxln=200    # Stop after $maxln lines.  Can be used like ls | head -n $maxln
+maxln=40    # Stop after $maxln lines.  Can be used like ls | head -n $maxln
 
 # Find out something about the file:
 mimetype=$(file --mime-type -Lb "$path")
@@ -64,6 +64,9 @@ if [ "$preview_images" = "True" ]; then
 fi
 
 case "$extension" in
+    sql)
+        try head "$maxln""$path" && {dump | trim; exit 0} 
+    exit 1;;
     # Archive extensions:
     a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
     rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
