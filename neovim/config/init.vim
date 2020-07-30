@@ -25,6 +25,7 @@ Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) 
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root 
 Plug 'tpope/vim-fugitive' " Git commands plugin
+Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
 
 " Programming language-related Plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
@@ -35,8 +36,9 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Plug 'itchyny/calendar' " Calendar
-Plug 'mattn/calendar-vim'
+" Plug 'mattn/calendar-vim'
 
 
 call plug#end()
@@ -72,7 +74,7 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 " ------------------------------------------------------
 " does not consider all md files as wiki
 let g:vimwiki_global_ext = 0 
-let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql'}
+let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript'}
 
 let personal_wiki = {}
 let personal_wiki.path = '~/Dropbox/vimwiki/'
@@ -81,9 +83,9 @@ let personal_wiki.ext = '.md'
 let personal_wiki.nested_syntaxes = my_nested_syntaxes
 
 let phd_wiki = {}
-let phd_wiki.path = '~/Dropbox/Academico/literature-reviews'
+let phd_wiki.path = '~/git/lssb-writing/Projeto-Doc/wiki'
 let phd_wiki.syntax = 'markdown'
-let phd_wiki.ext = '.mk'
+let phd_wiki.ext = '.md'
 let phd_wiki.nested_syntaxes = my_nested_syntaxes
 
 
@@ -91,6 +93,16 @@ let g:vimwiki_list = [
 	\ personal_wiki,
 	\ phd_wiki 
 \ ]
+
+" Markdown-Preview
+" -----------------------------------------------------
+function OpenInSimpleBrowser(url)
+    silent execute "!qutebrowser ". a:url . " &"
+endfunction 
+
+let g:mkdp_browserfunc = 'OpenInSimpleBrowser'
+" let g:mkdp_markdown_css = expand('~/node_modules/markdown-retro/css/retro.css')
+
 
 " Vim-Rooter
 " ------------------------------------------------------
