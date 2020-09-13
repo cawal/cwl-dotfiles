@@ -48,6 +48,5 @@ openTheEditor &
 openVimWiki &
 openBrowser &
 openWorkingBrowser &
-newt -e vi /home/cawal/git/trabalho/carefy/carefy/carefy/cost_percente_month_list-local.md &
 # playSomeMusic
 #sleep 20 && openLogs

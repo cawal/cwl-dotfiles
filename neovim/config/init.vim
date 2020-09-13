@@ -10,6 +10,8 @@ call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 
 " Widgets
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
+Plug 'junegunn/limelight.vim', {'on': ['Limelight', 'Limelight!', 'Limelight!!']} " fades all lines but current
+
 Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
 Plug 'majutsushi/tagbar', { 'on' : [ 'TagbarToggle' ] } " File/Class overview  (uses exuberant-ctags)
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
@@ -66,6 +68,34 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+
+" Limelight
+" ----------------------------------------------------
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 0
+
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+let g:limelight_bop = '^\s'
+let g:limelight_eop = '\ze\n^\s'
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+
+
 " Grammarous
 " -----------------------------------------------------
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
@@ -97,10 +127,13 @@ let g:vimwiki_list = [
 " Markdown-Preview
 " -----------------------------------------------------
 function OpenInSimpleBrowser(url)
-    silent execute "!qutebrowser ". a:url . " &"
+    silent execute "!qutebrowser --target tab " . a:url . " &"
 endfunction 
 
 let g:mkdp_browserfunc = 'OpenInSimpleBrowser'
+let g:mkdp_auto_start = 1 
+let g:mkdp_auto_close = 1
+" let g:mkdp_browser = 'qutebrowser --target tab'
 " let g:mkdp_markdown_css = expand('~/node_modules/markdown-retro/css/retro.css')
 
 
@@ -130,7 +163,7 @@ augroup filetype_typescript
 augroup END
 
 augroup CustomTeX : 
-	autocmd FileType tex :Goyo 80
+	" autocmd FileType tex :Goyo 80
 	autocmd FileType tex :set spell
 augroup END
 
@@ -173,6 +206,8 @@ set modelines=0 " Don't read the modelines (security)
 set linebreak " break lines at words
 set breakindent " maintain identation in line wrapping
 set breakindentopt=shift:2,min:40,sbr " ident by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
+
+set spellsuggest=15 " keeps spell sugestions from taking over the whole screen
 
 " Better splits
 set splitbelow " by default, vim open split (:sp) in the top
@@ -249,6 +284,10 @@ nnoremap <leader>f :NERDTreeToggle<cr>
 
 " Search files with FZF + Vim-Rooter
 nnoremap <leader>F :FZF<cr>
+
+" Toggle limelight
+nnoremap <leader>l :Limelight!!<cr>
+xnoremap <leader>l :Limelight!!<cr>
 
 " Toggles line number indication
 nnoremap <leader>n :set number!<cr>
