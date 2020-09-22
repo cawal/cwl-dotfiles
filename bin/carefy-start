@@ -24,6 +24,11 @@ function openTheEditor() {
     code ~/git/trabalho/carefy/carefy/carefy &
 }
 
+function openEclipse(){
+    cd ~/bin/eclipse/php-latest-released/eclipse
+    ./eclipse &
+}
+
 
 function openATerminal() {	
 	cd ~/git/trabalho/carefy/carefy/carefy
@@ -48,5 +53,6 @@ openTheEditor &
 openVimWiki &
 openBrowser &
 openWorkingBrowser &
+openEclipse &
 # playSomeMusic
 #sleep 20 && openLogs
