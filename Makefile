@@ -109,6 +109,10 @@ ranger-install:
 clipboard-tools: diodon
 	${INSTALL} xclip
 
+# tools for editing CSV files
+csvkit:
+	${INSTALL} csvkit
+
 # count lines of codes
 cloc:
 	${INSTALL} cloc
