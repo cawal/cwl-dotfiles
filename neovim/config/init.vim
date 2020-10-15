@@ -24,6 +24,7 @@ Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surrounding characters/html tags
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf.vim'
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root 
 Plug 'tpope/vim-fugitive' " Git commands plugin
@@ -140,7 +141,7 @@ let g:mkdp_auto_close = 1
 " Vim-Rooter
 " ------------------------------------------------------
 let g:rooter_change_directory_for_non_project_files = 'current'
-let g:rooter_patterns = ['latexmkrc', '.git/', 'pom.xml']
+let g:rooter_patterns = ['latexmkrc', '.git/', 'pom.xml','=vimwiki','=src']
 
 " ULTISNIPS
 " -------------------------------------------------------

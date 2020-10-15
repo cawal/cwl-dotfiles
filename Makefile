@@ -2,6 +2,7 @@ GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
 INSTALL = sudo apt install -y
 INSTALL_LOCAL= sudo dpkg -i
+SNAP_INSTALL = sudo snap install 
 UPDATE = sudo apt update
 ADD_REPOSITORY= sudo add-apt-repository -y
 DOWNLOAD_AS=wget -O
@@ -92,10 +93,16 @@ terminal:
 
 # TERMINAL TOOLS
 
-vi: 
+vi: ripgrep silver-seacher
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
 	${INSTALL} neovim exuberant-ctags
+
+ripgrep:
+	${SNAP_INSTALL} --classic ripgrep
+
+silver-seacher:
+	${INSTALL} silversearcher-ag
 
 python3-pynvim: python3-pip3
 	pip3 install pynvim
