@@ -40,8 +40,6 @@ Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-" Plug 'itchyny/calendar' " Calendar
-" Plug 'mattn/calendar-vim'
 
 
 call plug#end()
