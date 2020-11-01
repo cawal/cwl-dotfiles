@@ -1,0 +1,29 @@
+#!/bin/bash
+# Give dmenu list of all unicode characters to copy.
+# Shows the selected character in dunst if running.
+# From https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicodehttps://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicode
+
+DATA_SOURCE_DIR=~/bin/data-sources
+SINK=0
+
+function select_output()
+{
+    grep -v "#" "${DATA_SOURCE_DIR}/pulse-audio-ports.tsv" \
+        | rofi -dmenu \
+        |  sed 's/[^(]*(\(.*\)).*/\1/'  \
+        | tr -d '\n' \
+        | cat
+}
+
+# OUTPUT=$(grep -v "#" "${DATA_SOURCE_DIR}/pulse-audio-ports.tsv" | dmenu -i -l 20 -fn Monospace-15 |  sed 's/[^(]*(\(.*\)).*/\1/'  | tr -d '\n')
+
+OUTPUT=$(select_output)
+
+notify-send Texto "$OUTPUT"
+
+if [ -z "OUTPUT" ]; then  
+	: # if none selected, do nothing 
+    exit;
+else 
+    pactl set-sink-port "$SINK" "$OUTPUT"
+fi
