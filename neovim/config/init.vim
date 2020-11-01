@@ -2,6 +2,8 @@
 
 " Maps the leader key
 let mapleader = '\'
+nnoremap <space> <Nop>
+let mapleader = ' '
 
 let THEME = 'neovim-0-2-2'
 
@@ -278,11 +280,12 @@ nnoremap <Esc><Esc> :noh<cr>
 " toggle matching highlight for color codes
 nnoremap <leader>c :ColorToggle<cr>
 
-" Toggles Nerdtree navigation
-nnoremap <leader>f :NERDTreeToggle<cr>
-
 " Search files with FZF + Vim-Rooter
-nnoremap <leader>F :FZF<cr>
+nnoremap <leader>f :FZF<cr>
+"
+" Toggles Nerdtree navigation
+nnoremap <leader>F :NERDTreeToggle<cr>
+
 
 " Toggle limelight
 nnoremap <leader>l :Limelight!!<cr>
@@ -312,6 +315,13 @@ nnoremap <leader>] :bn<cr>
 
 nmap <leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
 nmap <leader>wx :call VimwikiFindIncompleteTasks()<CR>
+
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<cr>
+nmap <silent> <c-j> :wincmd j<cr>
+nmap <silent> <c-h> :wincmd h<cr>
+nmap <silent> <c-l> :wincmd l<cr>
 
 
 " VISUAL MODE MAPPINGS
