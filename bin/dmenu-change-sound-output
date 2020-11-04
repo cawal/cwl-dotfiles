@@ -19,7 +19,7 @@ function select_output()
 
 OUTPUT=$(select_output)
 
-notify-send Texto "$OUTPUT"
+notify-send "Saída de  audio selecionada" "$OUTPUT"
 
 if [ -z "OUTPUT" ]; then  
 	: # if none selected, do nothing 

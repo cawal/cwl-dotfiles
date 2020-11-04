@@ -1,0 +1,10 @@
+#!/bin/bash
+
+WORKSPACE=$(i3-list-workspaces.py | rofi -dmenu -p "Move to workspace:")
+
+if [ -z "${WORKSPACE}" ]; then  
+	: # if none selected, do nothing 
+    exit;
+else 
+    i3-msg move container to workspace "${WORKSPACE}" 
+fi
