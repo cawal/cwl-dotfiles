@@ -394,8 +394,8 @@ gedit:
 	${INSTALL} gedit
 
 
-#screenshot:
-#	${INSTALL} spectacle
+screenshot:
+	${INSTALL} flameshot
 
 autokey:
 	${ADD_REPOSITORY} ppa:sporkwitch/autokey
