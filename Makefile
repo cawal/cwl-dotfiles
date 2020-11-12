@@ -425,6 +425,10 @@ link-bin:
 link-conky:
 	stow -R conky --target=${HOME}
 
+link-dunst:
+	mkdir -p "${HOME}/.config/dunst/"
+	stow -R dunst --target=${HOME}/.config/dunst/
+
 link-gtk3:
 	mkdir -p ${HOME}/.config/gtk-3.0
 	stow -R gtk-3.0 --target=${HOME}/.config/gtk-3.0
