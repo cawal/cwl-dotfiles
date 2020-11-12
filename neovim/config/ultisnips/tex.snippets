@@ -6,6 +6,35 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+
+snippet enum "enumerate" bA
+\begin{enumerate}[label=$1\arabic*,ref=$1\theenumi]
+	$0
+\end{enumerate}
+endsnippet
+
+
+
+snippet table "Table skelleton" bA
+\begin{table}
+	\centering
+	\caption{$3}
+	\ref{table-$2}
+	\begin{tabular}{$1}
+		
+		\hline
+
+		$0
+		\\
+		\hline
+
+		\hline
+
+	\end{tabular}
+\end{table}
+endsnippet
+
+
 snippet frame "Create slide frame" bA
 \begin{frame}{$1}\begin{columns}
 \column{.8\textwidth}
