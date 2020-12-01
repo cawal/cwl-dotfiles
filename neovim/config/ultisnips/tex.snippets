@@ -6,6 +6,16 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+snippet fig "Add figure" bA
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{$3}
+    \caption{$2}
+    \label{$1}
+\end{figure}
+$0
+
+endsnippet
 
 snippet enum "enumerate" bA
 \begin{enumerate}[label=$1\arabic*,ref=$1\theenumi]
