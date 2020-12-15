@@ -35,6 +35,10 @@ function openATerminal() {
 	newt 
 }
 
+function openTests() {
+    newt -title UnitTests -e docker exec -it -w /var/www/html/application/tests carefy-nginx bash
+}
+
 function startServers(){
 	docker container prune -f 
 	cd ~/git/trabalho/carefy/carefy/carefy/scripts
@@ -50,9 +54,10 @@ startServers
 slack &
 openATerminal &
 openTheEditor &
-openVimWiki &
+#openVimWiki &
 openBrowser &
 openWorkingBrowser &
 openEclipse &
+openTests &
 # playSomeMusic
 #sleep 20 && openLogs

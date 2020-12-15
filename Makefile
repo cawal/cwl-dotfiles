@@ -467,6 +467,11 @@ link-xresources:
 	stow -R Xresources --target=${HOME}
 	xrdb ${HOME}/.Xresources
 
+
+link-qile:
+	mkdir -p ${HOME}/.config/qtile/
+	stow -R qtile --target=${HOME}/.config/qtile/
+
 link-qutebrowser:
 	mkdir -p ${HOME}/.config/qutebrowser/
 	stow -R qutebrowser --target=${HOME}/.config/qutebrowser/

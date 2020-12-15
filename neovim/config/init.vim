@@ -41,6 +41,8 @@ Plug 'shmup/vim-sql-syntax'
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
+Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup 
+Plug 'michal-h21/vim-zettel' " Zettelkasten support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 
@@ -106,6 +108,7 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 " does not consider all md files as wiki
 let g:vimwiki_global_ext = 0 
 let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript'}
+"let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
 
 let personal_wiki = {}
 let personal_wiki.path = '~/Dropbox/vimwiki/'
@@ -132,8 +135,9 @@ function OpenInSimpleBrowser(url)
 endfunction 
 
 let g:mkdp_browserfunc = 'OpenInSimpleBrowser'
-let g:mkdp_auto_start = 1 
+let g:mkdp_auto_start = 0 
 let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 1
 " let g:mkdp_browser = 'qutebrowser --target tab'
 " let g:mkdp_markdown_css = expand('~/node_modules/markdown-retro/css/retro.css')
 
@@ -142,6 +146,12 @@ let g:mkdp_auto_close = 1
 " ------------------------------------------------------
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_patterns = ['latexmkrc', '.git/', 'pom.xml','=vimwiki','=src']
+
+
+" Vim-Zettel
+" -------------------------------------------------------
+" {} represents first wiki
+let g:zettel_options = [{"front_matter" : [["type","note"],["tags", ""], ]}]
 
 " ULTISNIPS
 " -------------------------------------------------------
@@ -214,10 +224,11 @@ set spellsuggest=15 " keeps spell sugestions from taking over the whole screen
 set splitbelow " by default, vim open split (:sp) in the top
 set splitright " by default, vim open split (:vs) in the left
 
-set tabstop=4
-set softtabstop=4
-set expandtab
-set shiftwidth=4 
+set tabstop=4 " number of spaces that a <tab> counts for, default 8
+set softtabstop=4 " number of spaces that a <tab> counts for while editing
+set expandtab " Create spaces instead of tabs
+set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
+
 set hlsearch " Show search matches while writing 
 
 filetype on " enable filetype detection
@@ -297,6 +308,9 @@ nnoremap <leader>n :set number!<cr>
 " Toggle file/class overeview panel
 nnoremap <leader>o :TagbarToggle<cr>
 
+" Filetype dependand preview 
+nnoremap <leader>p :call Preview()<cr>
+
 " run current file contents
 nnoremap <leader>r :!"%:p"
 
@@ -305,6 +319,9 @@ nnoremap <leader>s :call CWLToggleSpell()<cr>
 
 " Toggle zen mode
 nnoremap <leader>z :call CWLToggleZenMode()<cr> 
+
+" New Zettel
+nnoremap <leader>Z :ZettelNew<space>
 
 " Toggle undo history graph panel
 nnoremap <leader>u :GundoToggle<cr>

@@ -3,3 +3,5 @@
 docker container stop highcharts carefy-nginx carefy-mysql
 docker container prune -f
 
+pkill slack
+

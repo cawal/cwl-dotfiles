@@ -9,7 +9,6 @@
     "workbench.sideBar.location": "right",
     "editor.formatOnSave": true,
     "css.lint.float": "warning",
-    "explorer.confirmDelete": false,
     "html.format.wrapAttributes": "force-aligned",
     "vs-kubernetes": {
         "vs-kubernetes.helm-path": "/home/cawal/.vs-kubernetes/tools/helm/linux-amd64/helm",
@@ -34,7 +33,7 @@
     "vim.hlsearch": true,
     "intelephense.environment.phpVersion": "5.7",
     "yaml.schemas": {
-        "file:///home/cawal/.vscode/extensions/atlassian.atlascode-2.6.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/cawal/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.jqlList": [
         {
@@ -42,7 +41,7 @@
             "id": "85471b1f-5583-4c2b-98c2-3aa77d56aebc",
             "monitor": true,
             "name": "To Do",
-            "query": "sprint in openSprints() AND assignee = \"ricardo.cawal@carefy.com.br\" AND status = \"To Do\"",
+            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"To Do\"",
             "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
         },
         {
@@ -50,7 +49,7 @@
             "id": "959acadc-2cd3-4142-9698-a084b647a25c",
             "monitor": true,
             "name": "In progress",
-            "query": "sprint in openSprints() AND assignee = \"ricardo.cawal@carefy.com.br\" AND status = \"In progress\"",
+            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"In progress\"",
             "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
         },
         {
@@ -58,7 +57,7 @@
             "id": "286313bd-8954-452a-9fa0-6a11eb80da0f",
             "monitor": true,
             "name": "Resolved",
-            "query": "sprint in openSprints() AND assignee = \"ricardo.cawal@carefy.com.br\" AND status = \"Resolved\"",
+            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"Resolved\"",
             "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
         },
         {
@@ -66,7 +65,7 @@
             "id": "9d8256dc-d51d-4fd0-aaf4-76b728b7d7e6",
             "monitor": true,
             "name": "Done",
-            "query": "sprint in openSprints() AND assignee = \"ricardo.cawal@carefy.com.br\" AND status = \"Done\"",
+            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"Done\"",
             "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
         },
         {
@@ -93,11 +92,24 @@
     "jscpd.files": "*.php,*.js",
     "java.semanticHighlighting.enabled": true,
     "java.configuration.checkProjectSettingsExclusions": false,
-    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sO2VyO2JwbW47Zmxvd2NoYXJ0O2Jhc2ljO2Fycm93czJcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltcIjAwMDAwMFwiLFwiRkZGRkZGXCJdLFwiZm9ybWF0V2lkdGhcIjpcIjI0MFwiLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODI3LFwiaGVpZ2h0XCI6MTE2OX0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sO2VyO2JwbW47Zmxvd2NoYXJ0O2Jhc2ljO2Fycm93czJcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltcIkZGRkYzM1wiLFwiRkY5RTBEXCIsXCIwMDAwMDBcIixcIkZGRkZGRlwiXSxcImZvcm1hdFdpZHRoXCI6MjQwLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6MTE2OSxcImhlaWdodFwiOjgyN30sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "color-highlight.markRuler": false,
-    "vscode-neovim.neovimPath": "/usr/libexec/neovim",
     "vim.useSystemClipboard": true,
     "workbench.colorTheme": "Visual Studio Dark",
-    "explorer.autoReveal": "focusNoScroll",
- }
+    "explorer.autoReveal": false,
+    "git.autofetch": true,
+    "atlascode.jira.explorer.refreshInterval": 60,
+    "scm.alwaysShowActions": true,
+    "scm.alwaysShowRepositories": true,
+    "jscpd.minLines": 4,
+    "vscode-neovim.neovimInitVimPaths.linux": "/home/cawal/.config/nvim/init.vim",
+    "xml.codeLens.enabled": true,
+    "search.useIgnoreFiles": false,
+    "path-autocomplete.triggerOutsideStrings": true,
+    "editor.fontSize": 13,
+    "vscode-neovim.neovimExecutablePaths.linux": "/home/cawal/.vscode/nvim.0.5.0.nightly.appimage",
+    "workbench.editor.pinnedTabSizing": "compact",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "phpGettersSetters.templatesDir": "phpGettersSetters/",
+}

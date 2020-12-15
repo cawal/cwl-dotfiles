@@ -9,7 +9,7 @@ SINK=0
 function select_output()
 {
     grep -v "#" "${DATA_SOURCE_DIR}/pulse-audio-ports.tsv" \
-        | rofi -dmenu \
+        | rofi -dmenu  -p "Escolha saída de som:"\
         |  sed 's/[^(]*(\(.*\)).*/\1/'  \
         | tr -d '\n' \
         | cat
@@ -19,11 +19,11 @@ function select_output()
 
 OUTPUT=$(select_output)
 
-notify-send "Saída de  audio selecionada" "$OUTPUT"
 
 if [ -z "OUTPUT" ]; then  
 	: # if none selected, do nothing 
     exit;
 else 
+    notify-send "Saída de  audio selecionada" "$OUTPUT"
     pactl set-sink-port "$SINK" "$OUTPUT"
 fi

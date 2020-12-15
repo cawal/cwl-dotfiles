@@ -43,7 +43,7 @@ highlight TabLineSel     cterm=bold gui=bold
 highlight TabLineFill    cterm=reverse gui=reverse
 highlight CursorColumn   ctermbg=7 guibg=Grey90
 highlight CursorLine     cterm=underline guibg=Grey90
-highlight ColorColumn    ctermbg=224 guibg=LightRed
+highlight ColorColumn    ctermbg=0 ctermfg=9
 highlight Cursor         guifg=bg guibg=fg
 highlight lCursor        guifg=bg guibg=fg
 highlight MatchParen     ctermbg=14 guibg=Cyan

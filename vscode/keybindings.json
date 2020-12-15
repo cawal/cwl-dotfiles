@@ -1,2 +1,7 @@
 // Coloque suas chave ligações neste arquivo para substituir os padrões
-[]
+[
+    {
+        "key": "ctrl+shift+n",
+        "command": "workbench.action.duplicateWorkspaceInNewWindow"
+    },
+]
