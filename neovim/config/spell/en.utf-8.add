@@ -228,3 +228,14 @@ OWL-S
 modelo-para-texto
 cliente-serviço
 ActivityInstance
+Agilent's
+geas-agilent-1-color-microarray-norm.R
+geas-deseq2-analysis.R
+geas-gene-set-enrichment.R
+picocli
+tool.xml
+parameterType
+mimeType
+text/csv
+text/csv
+csv

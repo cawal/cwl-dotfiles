@@ -1,6 +1,12 @@
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
+#from libqtile.command_client import CommandClient
+
+#c = CommandClient()
+
+#def print_info():
+#    print(c.screen.info()["index"])
 
 @hook.subscribe.startup_once
 def autostart():

@@ -29,6 +29,9 @@ i3-bar: py3status i3-python
 i3ipc:
 	pip3 install i31pc
 
+xmonad:
+	${INSTALL} xmonad libghc-xmonad-contrib-dev xmobar
+
 alluvium:
 	${INSTALL} libcairo2-dev libgirepository1.0-dev
 	pip3 install alluvium 
@@ -165,6 +168,9 @@ libxlsxwriter:
 	${AT_TEMP_FOLDER} git clone https://github.com/jmcnamara/libxlsxwriter.git
 	${AT_TEMP_FOLDER} cd libxlsxwriter; make && make install
 	ldconfig
+
+sox:
+	${INSTALL} sox
 
 # DEVELOPMENT TOOLS
 

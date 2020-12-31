@@ -33,18 +33,20 @@ Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
 
 " Programming language-related Plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python' ] } " Language Server Client
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php' ] } " Language Server Client
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
-Plug 'vimwiki/vimwiki' " Markdown wiki for quick 'evernoting'
+Plug 'vimwiki/vimwiki' " Markdown wiki, this version use wikilinks. Change when issue closes https://github.com/vimwiki/vimwiki/issues/892 
 Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup 
 Plug 'michal-h21/vim-zettel' " Zettelkasten support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+
+Plug 'lervag/vimtex', {'for': ['tex'] }
 
 call plug#end()
 
@@ -107,6 +109,7 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 " ------------------------------------------------------
 " does not consider all md files as wiki
 let g:vimwiki_global_ext = 0 
+let g:vimwiki_tag_format = {'pre_mark': '#', 'post_mark': '[:space:]', 'sep': '#'}
 let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript'}
 "let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
 

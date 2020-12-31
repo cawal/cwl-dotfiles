@@ -183,7 +183,7 @@ close_all = mod1+shift+space
 history = mod1+dead_tilde
 
 # Context menu.
-context = mod1+shift+dead_tilde
+context = crtl+mod1+dead_tilde
 
 # NOTIFICATION COLORS
 # IMPORTANT: colors have to be defined in quotation marks.
