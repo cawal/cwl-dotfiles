@@ -42,7 +42,7 @@ function openTests() {
 function startServers(){
 	docker container prune -f 
 	cd ~/git/trabalho/carefy/carefy/carefy/scripts
-	./start-mysql.sh && ./start-nginx.sh && ./start-highcharts
+	./start-mysql.sh && ./start-nginx.sh && ./start-highcharts && ./start-php7.sh
 }
 
 function openLogs(){

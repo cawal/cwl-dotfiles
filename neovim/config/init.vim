@@ -33,7 +33,7 @@ Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
 
 " Programming language-related Plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php' ] } " Language Server Client
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php', 'vim' ] } " Language Server Client
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
@@ -353,4 +353,3 @@ xmap ga <Plug>(EasyAlign)
 " ------------------------------------------------------------
 " Set my Neovim v0.2.2-derived colorscheme (XResources-based)
 colorscheme neovim-0-2-2
-

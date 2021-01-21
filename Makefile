@@ -103,6 +103,8 @@ vi: ripgrep silver-seacher
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
 	${INSTALL} neovim exuberant-ctags
+	pip install neovim
+	pip3 install neovim
 
 ripgrep:
 	${SNAP_INSTALL} --classic ripgrep
