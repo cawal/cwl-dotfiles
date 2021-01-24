@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function select_output()
+{
+    cwl-list-displays \
+        | rofi -dmenu  -p "Escolha a tela:" \
+        | sed 's/[^(]*(\(.*\)).*/\1/' \
+        | tr -d '\n' \
+        | cat
+}
+
+function get_dims()
+{
+    cat << EOF 
+1.0
+0.9
+0.8
+-1
+EOF
+
+}
+
+function select_dim()
+{
+    get_dims \
+        | rofi -dmenu  -p "Escolha a um valor de luminosidade:" \
+        | sed 's/[^(]*(\(.*\)).*/\1/' \
+        | tr -d '\n' \
+        | cat
+
+}
+
+function dim_display(){
+    if [ -n $1 -a -n $2 ]; then
+        xrandr --output $1 --brightness $2
+    fi
+}
+
+OUTPUT=$(select_output)
+DIM=$(select_dim)
+
+dim_display "$OUTPUT" "$DIM"
+
+
+
+

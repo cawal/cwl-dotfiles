@@ -131,6 +131,17 @@ let g:vimwiki_list = [
 	\ phd_wiki 
 \ ]
 
+
+
+function! VimwikiLinkHandler(link)
+    if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
+        call vimwiki#base#open_link(':e ', 'file:'.a:link)
+        return 1
+    endif
+    return 0
+endfunction
+
+
 " Markdown-Preview
 " -----------------------------------------------------
 function OpenInSimpleBrowser(url)
