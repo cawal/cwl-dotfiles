@@ -31,8 +31,8 @@ function select_dim()
 }
 
 function dim_display(){
-    if [ -n $1 -a -n $2 ]; then
-        xrandr --output $1 --brightness $2
+    if [ -n "$1" ] && [ -n "$2" ]; then
+        xrandr --output "$1" --brightness "$2"
     fi
 }
 
