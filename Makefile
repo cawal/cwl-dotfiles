@@ -12,7 +12,9 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
-desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration diodon
+desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager
+
+clipboard-manager: greenclip
 
 desktop-configuration:
 	${INSTALL} lxappearance
@@ -45,8 +47,13 @@ py3status:
 bluetooth:
 	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
 
-diodon:
-	${INSTALL} diodon
+greenclip:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip 
+	${AT_TEMP_FOLDER} chmod +x greenclip.bin
+	${AT_TEMP_FOLDER} mv greenclip.bin /usr/local/bin/greenclip
+
+#diodon:
+#	${INSTALL} diodon
 
 notifications:
 	${INSTALL} dunst
