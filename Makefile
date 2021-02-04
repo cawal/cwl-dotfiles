@@ -20,9 +20,9 @@ desktop-configuration:
 	${INSTALL} lxappearance
 
 i3: notifications i3-bar rofi wallpaper compositor
-	${AT_TEMP_FOLDER} /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} ./keyring.deb
-	${AT_TEMP_FOLDER} echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
+	#${AT_TEMP_FOLDER} /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
+	#${AT_TEMP_FOLDER} ${INSTALL_LOCAL} ./keyring.deb
+	#${AT_TEMP_FOLDER} echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
 	${UPDATE}
 	${INSTALL} i3
 
@@ -110,8 +110,8 @@ vi: ripgrep silver-seacher
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
 	${INSTALL} neovim exuberant-ctags
-	pip install neovim
 	pip3 install neovim
+	#pip install neovim
 
 ripgrep:
 	${SNAP_INSTALL} --classic ripgrep
@@ -142,7 +142,7 @@ cloc:
 entr:
 	${INSTALL} entr
 
-zsh:
+zsh: FORCE
 	${INSTALL} zsh
 	chsh -s /bin/zsh
 
