@@ -31,12 +31,14 @@ volume_status {
 <#endif>
 }
 
+<#ifdef navi>
 window_title {
 	format = '[\?max_length=55 {title}]'
 	max-width = 120 #default 120
 	
 }
-
 order += window_title
+<#endif>
+
 order += volume_status
 order += clock

@@ -1,4 +1,3 @@
-# https://py3status.readthedocs.io/en/latest/modules.html#window-title
 general {
 	color = "#DDDDDD"	#"#222222"
 	color_good = "#DDDDDD"	#"#222222"
@@ -55,12 +54,14 @@ volume_status {
 <#endif>
 }
 
+<#ifdef navi>
 window_title {
 	format = '[\?max_length=120 {title}]'
 	max-width = 120 #default 120
 }
-
 order += window_title
+<#endif>
+
 order += pomodoro
 order += battery_level
 order += volume_status
