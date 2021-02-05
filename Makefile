@@ -14,7 +14,7 @@ all: desktop-environment link-all
 # DESKTOP EXPERIENCE
 desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager
 
-clipboard-manager: greenclip
+clipboard-manager: greenclip rofi
 
 desktop-configuration:
 	${INSTALL} lxappearance
@@ -55,7 +55,9 @@ greenclip:
 #diodon:
 #	${INSTALL} diodon
 
-notifications:
+notifications: dunst
+
+dunst:
 	${INSTALL} dunst
 
 i3-python:
