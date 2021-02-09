@@ -9,6 +9,10 @@ DOWNLOAD_AS=wget -O
 AT_TEMP_FOLDER=cd /tmp/ ; 
 
 
+
+COC_NODE_VERSION=v12.6.0
+
+
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
@@ -53,7 +57,7 @@ bluetooth:
 greenclip:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip 
 	${AT_TEMP_FOLDER} chmod +x greenclip.bin
-	${AT_TEMP_FOLDER} mv greenclip.bin /usr/local/bin/greenclip
+	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
 #diodon:
 #	${INSTALL} diodon
@@ -111,7 +115,7 @@ terminal:
 
 # TERMINAL TOOLS
 
-vi: ripgrep silver-seacher
+vi: ripgrep silver-seacher coc-node
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
 	${INSTALL} neovim exuberant-ctags
@@ -124,6 +128,9 @@ ripgrep:
 silver-seacher:
 	${INSTALL} silversearcher-ag
 
+coc-node:
+	nvm install "${COC_NODE_VERSION}" 
+
 python3-pynvim: python3-pip3
 	pip3 install pynvim
 
@@ -133,7 +140,7 @@ python3-pip3:
 ranger-install:
 	${INSTALL} ranger
 
-clipboard-tools: diodon
+clipboard-tools: greenclip
 	${INSTALL} xclip
 
 # tools for editing CSV files
@@ -232,6 +239,7 @@ kotlinc:
 	sdk install kotlin
 
 nvm:
+	mkdir -p ${HOME}/.nvm
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 node-js: nvm
