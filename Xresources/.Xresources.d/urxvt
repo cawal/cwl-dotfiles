@@ -39,6 +39,8 @@ urxvt*scrollBar_right:       	false
 urxvt*scrollColor:        	#000000
 urxvt*internalBorder: 		3
 urxvt.font: 			xft:Hack:pixelsize=13
+!urxvt.font: 			xft:JetBrainsMonoMedium Nerd Font:pixelsize=13
+!urxvt.font: 			xft:CaskaydiaCove Nerd Font Mono:pixelsize=13
 ! horizontal spacing of letters
 urxvt.letterSpace:		0
 urxvt.iso14755: false

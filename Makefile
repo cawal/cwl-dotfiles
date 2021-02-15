@@ -357,7 +357,7 @@ web-browser: firefox
 firefox:
 	${INSTALL} firefox
 
-qutebrowser:
+qutebrowser: FORCE
 	${INSTALL} qutebrowser
 
 steam: graphic-drivers

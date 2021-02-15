@@ -120,3 +120,4 @@ function get_cluster_short() {
 
 KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
+kubeoff
