@@ -9,17 +9,21 @@ DOWNLOAD_AS=wget -O
 AT_TEMP_FOLDER=cd /tmp/ ; 
 
 
+
+COC_NODE_VERSION=v12.6.0
+
+
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
-desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager
+desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager 
 
 clipboard-manager: greenclip rofi
 
-desktop-configuration:
+desktop-configuration: arandr
 	${INSTALL} lxappearance
 
-i3: notifications i3-bar rofi wallpaper compositor
+i3: notifications i3-bar rofi wallpaper compositor i3ipc
 	#${AT_TEMP_FOLDER} /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
 	#${AT_TEMP_FOLDER} ${INSTALL_LOCAL} ./keyring.deb
 	#${AT_TEMP_FOLDER} echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
@@ -29,7 +33,10 @@ i3: notifications i3-bar rofi wallpaper compositor
 i3-bar: py3status i3-python
 
 i3ipc:
-	pip3 install i31pc
+	pip3 install i3ipc
+
+arandr:
+	${INSTALL} arandr
 
 xmonad:
 	${INSTALL} xmonad libghc-xmonad-contrib-dev xmobar
@@ -50,7 +57,7 @@ bluetooth:
 greenclip:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip 
 	${AT_TEMP_FOLDER} chmod +x greenclip.bin
-	${AT_TEMP_FOLDER} mv greenclip.bin /usr/local/bin/greenclip
+	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
 #diodon:
 #	${INSTALL} diodon
@@ -108,7 +115,7 @@ terminal:
 
 # TERMINAL TOOLS
 
-vi: ripgrep silver-seacher
+vi: ripgrep silver-seacher coc-node
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
 	${INSTALL} neovim exuberant-ctags
@@ -121,6 +128,9 @@ ripgrep:
 silver-seacher:
 	${INSTALL} silversearcher-ag
 
+coc-node:
+	nvm install "${COC_NODE_VERSION}" 
+
 python3-pynvim: python3-pip3
 	pip3 install pynvim
 
@@ -130,7 +140,7 @@ python3-pip3:
 ranger-install:
 	${INSTALL} ranger
 
-clipboard-tools: diodon
+clipboard-tools: greenclip
 	${INSTALL} xclip
 
 # tools for editing CSV files
@@ -229,6 +239,7 @@ kotlinc:
 	sdk install kotlin
 
 nvm:
+	mkdir -p ${HOME}/.nvm
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 node-js: nvm
