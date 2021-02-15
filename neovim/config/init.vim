@@ -114,7 +114,7 @@ let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'s
 "let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
 
 let personal_wiki = {}
-let personal_wiki.path = '~/Dropbox/vimwiki/'
+let personal_wiki.path = '~/Zettelkasten/'
 let personal_wiki.syntax = 'markdown'
 let personal_wiki.ext = '.md'
 let personal_wiki.nested_syntaxes = my_nested_syntaxes
