@@ -195,13 +195,18 @@ sox:
 
 # DEVELOPMENT TOOLS
 
-docker: docker-ce-edge 
+docker: docker-ce-edge docker-compose
 
 docker-ce-edge:
 	$(if $(shell which docker),$(error "Docker already installed"),)
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com 
 	${AT_TEMP_FOLDER} sh get-docker.sh 
 	sudo usermod -aG docker `whoami`
+
+docker-compose:
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+
 
 version-control:
 	${INSTALL} git mercurial mercurial-git subversion
@@ -221,6 +226,9 @@ insomnia:
 	${UPDATE}
 	${INSTALL} insomnia
 
+insomnia-designer:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} insomnia-designer.deb "https://updates.insomnia.rest/downloads/ubuntu/latest?ref=&app=com.insomnia.designer&source=website"
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} insomnia-designer.deb
 
 debugging:
 	# perf:
