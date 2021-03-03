@@ -214,8 +214,16 @@ version-control:
 shellcheck:
 	${INSTALL} shellcheck
 
-web-service-development-tools:
-	${INSTALL} httpie jq tcpflow
+web-service-development-tools: httpie jq tcpflow
+
+httpie:
+	${INSTALL} httpie
+
+jq:
+	${INSTALL} jq 
+
+tcpflow:
+	${INSTALL} tcpflow
 
 web-development:
 	${INSTALL} jekyll
