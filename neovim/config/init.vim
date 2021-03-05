@@ -27,6 +27,7 @@ Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surroundin
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo' " Show registers
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root 
 Plug 'tpope/vim-fugitive' " Git commands plugin
