@@ -160,7 +160,7 @@ let g:mkdp_refresh_slow = 1
 " Vim-Rooter
 " ------------------------------------------------------
 let g:rooter_change_directory_for_non_project_files = 'current'
-let g:rooter_patterns = ['latexmkrc', '.git/', 'pom.xml','=vimwiki','=src']
+let g:rooter_patterns = ['latexmkrc', '=liberapi','.git/', 'pom.xml','=vimwiki','=src']
 
 
 " Vim-Zettel

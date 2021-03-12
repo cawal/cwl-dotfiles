@@ -154,6 +154,9 @@ cloc:
 entr:
 	${INSTALL} entr
 
+tmate:
+	${INSTALL} tmate
+
 zsh: FORCE
 	${INSTALL} zsh
 	chsh -s /bin/zsh
