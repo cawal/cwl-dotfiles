@@ -279,10 +279,15 @@ colorscheme default
 
 " ALL MODE MAPPINGS
 " No arrow keys (Vim Hard mode)
-"noremap <Up> <NOP>
-"noremap <Down> <NOP>
-"noremap <Left> <NOP>
-"noremap <Right> <NOP>
+" REMOVE ARROW COMPULSION
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " Grammar checking
 map <F5> :GrammarousCheck<cr>
@@ -293,6 +298,7 @@ map <F7> :set spelllang+=pt<cr>
 
 
 " NORMAL MODE MAPPINGS
+
 
 " Start interactive EasyAlign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
