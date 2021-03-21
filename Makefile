@@ -304,6 +304,11 @@ mssql-tools:
 	${INSTALL}  mssql-tools unixodbc-dev
 
 
+go:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} go.tar.gz  https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+	${AT_TEMP_FOLDER} tar xf go.tar.tz
+	${AT_TEMP_FOLDER} sudo mv go /usr/local
+
 # LANGUAGE SERVERS -----------------------------------------------------
 language-servers: ls-bash ls-typescript
 
