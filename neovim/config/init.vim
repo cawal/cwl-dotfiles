@@ -272,6 +272,9 @@ augroup MyColors " auto reload my highlight scheme when colorscheme changes
 augroup END
 colorscheme default
 
+" auto-switch line numbering on insert mode toggle
+" autocmd InsertEnter * :set norelativenumber
+" autocmd InsertLeave * :set relativenumber
 
 " KEY MAPPINGS -----------------------------------------------------
 " http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
