@@ -126,9 +126,16 @@ let phd_wiki.syntax = 'markdown'
 let phd_wiki.ext = '.md'
 let phd_wiki.nested_syntaxes = my_nested_syntaxes
 
+let liber_wiki = {}
+let liber_wiki.path = '~/Dropbox/Liber-PKM'
+let liber_wiki.syntax = 'markdown'
+let liber_wiki.ext = '.md'
+let liber_wiki.nested_syntaxes = my_nested_syntaxes
+
 
 let g:vimwiki_list = [
 	\ personal_wiki,
+    \ liber_wiki,
 	\ phd_wiki 
 \ ]
 
