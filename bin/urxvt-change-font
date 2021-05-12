@@ -1,0 +1,6 @@
+#!/bin/bash
+
+FONT=$1
+SIZE=$2
+
+printf '\33]50;%s\007' "xft:${FONT:=mono}:${SIZE:=12}px"
