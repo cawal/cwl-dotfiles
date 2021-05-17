@@ -357,6 +357,9 @@ office-suite:
 ktikz:
 	${INSTALL} ktikz
 
+makefile2dot: graphviz
+	pip3 install --user makefile2dot
+
 graphviz:
 	${INSTALL} graphviz
 

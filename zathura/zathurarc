@@ -1,3 +1,10 @@
 set synctex true
 set synctex-editor-command "vim +%{line} %{input}"
-set synctex-editor-command "echo %{input}:%{line}"
+set synctex-editor-command "notify-send 'vim +%{line} %{input}'"
+
+
+# set recolor true
+set recolor-darkcolor "#DDDDDD"
+set recolor-lightcolor "#222222"
+set font "Hack normal 10"
+set page-padding 3

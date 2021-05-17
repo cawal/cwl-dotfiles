@@ -22,8 +22,8 @@ highlight Title          ctermfg=5 gui=bold guifg=Magenta
 highlight Visual         ctermbg=7 guibg=LightGrey
 highlight WarningMsg     ctermfg=1 guifg=Red
 highlight WildMenu       ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
-highlight Folded         ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=LightGrey
-highlight FoldColumn     ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
+highlight Folded         ctermfg=4 ctermbg=0 guifg=DarkBlue guibg=LightGrey
+highlight FoldColumn     ctermfg=0 ctermbg=7
 highlight DiffAdd        ctermbg=81 guibg=LightBlue
 highlight DiffChange     ctermbg=225 guibg=LightMagenta
 highlight DiffDelete     ctermfg=12 ctermbg=159 gui=bold guifg=Blue guibg=LightCyan

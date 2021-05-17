@@ -250,8 +250,9 @@ set tabstop=4 " number of spaces that a <tab> counts for, default 8
 set softtabstop=4 " number of spaces that a <tab> counts for while editing
 set expandtab " Create spaces instead of tabs
 set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
-
+set inccommand=nosplit " show :s/_/_/ live
 set hlsearch " Show search matches while writing 
+set foldcolumn 2
 
 filetype on " enable filetype detection
 
@@ -381,3 +382,6 @@ xmap ga <Plug>(EasyAlign)
 " ------------------------------------------------------------
 " Set my Neovim v0.2.2-derived colorscheme (XResources-based)
 colorscheme neovim-0-2-2
+
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
