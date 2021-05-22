@@ -29,7 +29,7 @@ Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo' " Show registers
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
-Plug 'airblade/vim-rooter' " Automatically set de current dir to project root 
+Plug 'airblade/vim-rooter' " Automatically set de current dir to project root
 Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
 
@@ -41,8 +41,8 @@ Plug 'shmup/vim-sql-syntax'
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
-Plug 'vimwiki/vimwiki' " Markdown wiki, this version use wikilinks. Change when issue closes https://github.com/vimwiki/vimwiki/issues/892 
-Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup 
+Plug 'vimwiki/vimwiki' " Markdown wiki, this version use wikilinks. Change when issue closes https://github.com/vimwiki/vimwiki/issues/892
+Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup
 Plug 'michal-h21/vim-zettel' " Zettelkasten support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
@@ -66,7 +66,7 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-	" After leaving zen mode, 
+	" After leaving zen mode,
 	" its necessary to reload the colorscheme
 	colorscheme neovim-0-2-2
 endfunction
@@ -109,7 +109,7 @@ let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/language
 " Vim-wiki
 " ------------------------------------------------------
 " does not consider all md files as wiki
-let g:vimwiki_global_ext = 0 
+let g:vimwiki_global_ext = 0
 let g:vimwiki_tag_format = {'pre_mark': '#', 'post_mark': '[:space:]', 'sep': '#'}
 let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript'}
 "let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
@@ -136,7 +136,7 @@ let liber_wiki.nested_syntaxes = my_nested_syntaxes
 let g:vimwiki_list = [
 	\ personal_wiki,
     \ liber_wiki,
-	\ phd_wiki 
+	\ phd_wiki
 \ ]
 
 
@@ -154,10 +154,10 @@ endfunction
 " -----------------------------------------------------
 function OpenInSimpleBrowser(url)
     silent execute "!qutebrowser --target tab " . a:url . " &"
-endfunction 
+endfunction
 
 let g:mkdp_browserfunc = 'OpenInSimpleBrowser'
-let g:mkdp_auto_start = 0 
+let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 1
 " let g:mkdp_browser = 'qutebrowser --target tab'
@@ -195,7 +195,7 @@ augroup filetype_typescript
     autocmd BufReadPost *.ts setlocal filetype=typescript
 augroup END
 
-augroup CustomTeX : 
+augroup CustomTeX :
 	" autocmd FileType tex :Goyo 80
 	autocmd FileType tex :set spell
 augroup END
@@ -216,7 +216,7 @@ endfunction
 function! CWLToggleSpell()
 	:set spell!
 	:hi clear SpellBad
-	:hi SpellBad ctermfg=7 ctermbg=1 
+	:hi SpellBad ctermfg=7 ctermbg=1
 endfunction
 
 
@@ -251,8 +251,8 @@ set softtabstop=4 " number of spaces that a <tab> counts for while editing
 set expandtab " Create spaces instead of tabs
 set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
 set inccommand=nosplit " show :s/_/_/ live
-set hlsearch " Show search matches while writing 
-set foldcolumn=2
+set hlsearch " Show search matches while writing
+set foldcolumn=2 " set 2 columns to show folders
 
 filetype on " enable filetype detection
 
@@ -262,7 +262,7 @@ filetype on " enable filetype detection
 " TODO I think I don't need it anymore with my ~own~ colorscheme
 function! CWLHighlights() abort
 	highlight clear SpellBad
-	highlight SpellBad ctermfg=7 ctermbg=1 
+	highlight SpellBad ctermfg=7 ctermbg=1
 	" hi SpellBad cterm=reverse
 
 	highlight clear Search
@@ -274,8 +274,8 @@ endfunction
 
 " TODO I think I don't need it anymore with my ~own~ colorscheme
 augroup MyColors " auto reload my highlight scheme when colorscheme changes
-    " Remove all auto-commands of this augroup 
-    autocmd! 
+    " Remove all auto-commands of this augroup
+    autocmd!
     autocmd ColorScheme * call CWLHighlights()
 augroup END
 colorscheme default
@@ -340,7 +340,7 @@ nnoremap <leader>n :set number!<cr>
 " Toggle file/class overeview panel
 nnoremap <leader>o :TagbarToggle<cr>
 
-" Filetype dependand preview 
+" Filetype dependand preview
 nnoremap <leader>p :call Preview()<cr>
 
 " run current file contents
@@ -350,7 +350,7 @@ nnoremap <leader>r :!"%:p"
 nnoremap <leader>s :call CWLToggleSpell()<cr>
 
 " Toggle zen mode
-nnoremap <leader>z :call CWLToggleZenMode()<cr> 
+nnoremap <leader>z :call CWLToggleZenMode()<cr>
 
 " New Zettel
 nnoremap <leader>Z :ZettelNew<space>
@@ -385,3 +385,16 @@ colorscheme neovim-0-2-2
 
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = "zathura"
+
+
+
+
+augroup vimrc_trim_trailing
+    autocmd!
+    "                                     mark position
+    "                                        |    Remove trailings
+    "                                        |    \             /  Return to position
+    "                                        |     \           /         |
+    autocmd BufWritePre * :execute "normal! mz" . ':%s/\s\+$//e'. "\<cr>`z"
+augroup END
+
