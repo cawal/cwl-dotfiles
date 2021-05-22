@@ -252,7 +252,7 @@ set expandtab " Create spaces instead of tabs
 set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
 set inccommand=nosplit " show :s/_/_/ live
 set hlsearch " Show search matches while writing 
-set foldcolumn 2
+set foldcolumn=2 " set 2 columns to show folders
 
 filetype on " enable filetype detection
 
@@ -385,3 +385,18 @@ colorscheme neovim-0-2-2
 
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = "zathura"
+
+
+
+rquivo privado
+
+
+augroup vimrc_trim_trailing
+    autocmd!
+    "                                     mark position
+    "                                        |    Remove trailings
+    "                                        |    \             /  Return to position
+    "                                        |     \           /         |
+    autocmd BufWritePre * :execute "normal! mz" . ':%s/\s\+$//e'. "\<cr>`z"
+augroup END
+
