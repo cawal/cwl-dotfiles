@@ -252,7 +252,7 @@ set expandtab " Create spaces instead of tabs
 set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
 set inccommand=nosplit " show :s/_/_/ live
 set hlsearch " Show search matches while writing 
-set foldcolumn 2
+set foldcolumn=2
 
 filetype on " enable filetype detection
 
