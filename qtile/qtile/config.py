@@ -2,6 +2,7 @@ from libqtile.log_utils import logger
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
+from host import host
 #from libqtile.command_client import CommandClient
 
 #c = CommandClient()
@@ -42,9 +43,6 @@ def list_screens():
 
 def go_to_group(group):
     def f(qtile):
-        logger.warning(group)
-        logger.warning(group.name)
-        logger.warning(qtile.groupMap)
         logger.warning(dir(qtile.groupMap[group.name]))
         screens = list_screens()
         logger.warning(screens)
@@ -58,6 +56,19 @@ def go_to_group(group):
             qtile.cmd_to_screen(0)
             qtile.groupMap[group.name].cmd_toscreen()
     return f
+
+def add_group(name):
+    def f(qtile):
+        qtile.cmd_addgroup(name)
+    return f
+
+
+def remove_group(name):
+    def f(qtile):
+        qtile.groupMap.remove(name)
+    return f
+
+
 
 keys = [
         # Switch between windows in current stack pane
@@ -110,10 +121,11 @@ keys = [
 
         Key([mod, "control"], "r", lazy.restart()),
         Key([mod, "control"], "q", lazy.shutdown()),
-Key([mod], "r", lazy.spawncmd()),
+        Key([mod], "r", lazy.spawncmd()),
 ]
 
 groups = [Group(i, persist=False) for i in "1234567890"]
+
 
 for i in groups:
     # mod1 + letter of group = switch to group

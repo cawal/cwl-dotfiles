@@ -2,11 +2,11 @@ GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
 INSTALL = sudo apt install -y
 INSTALL_LOCAL= sudo dpkg -i
-SNAP_INSTALL = sudo snap install 
+SNAP_INSTALL = sudo snap install
 UPDATE = sudo apt update
 ADD_REPOSITORY= sudo add-apt-repository -y
 DOWNLOAD_AS=wget -O
-AT_TEMP_FOLDER=cd /tmp/ ; 
+AT_TEMP_FOLDER=cd /tmp/ ;
 
 
 
@@ -16,7 +16,7 @@ COC_NODE_VERSION=v12.6.0
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
-desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager 
+desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager
 
 clipboard-manager: greenclip rofi
 
@@ -43,7 +43,7 @@ xmonad:
 
 alluvium:
 	${INSTALL} libcairo2-dev libgirepository1.0-dev
-	pip3 install alluvium 
+	pip3 install alluvium
 
 compositor:
 	${INSTALL} compton
@@ -55,7 +55,7 @@ bluetooth:
 	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
 
 greenclip:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip 
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip
 	${AT_TEMP_FOLDER} chmod +x greenclip.bin
 	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
@@ -82,7 +82,7 @@ gtk-themes:
 	${INSTALL} arc-theme
 
 drivers:
-	${INSTALL} bcmwl-kernel-source 
+	${INSTALL} bcmwl-kernel-source
 
 flashfocus:
 	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
@@ -99,7 +99,7 @@ polybar: polybar-dependencies
 
 polybar-dependencies:
 	${INSTALL} cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
-	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev 
+	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev
 
 
 rofi: FORCE
@@ -129,7 +129,7 @@ silver-seacher:
 	${INSTALL} silversearcher-ag
 
 coc-node:
-	nvm install "${COC_NODE_VERSION}" 
+	nvm install "${COC_NODE_VERSION}"
 
 python3-pynvim: python3-pip3
 	pip3 install pynvim
@@ -202,8 +202,8 @@ docker: docker-ce-edge docker-compose
 
 docker-ce-edge:
 	$(if $(shell which docker),$(error "Docker already installed"),)
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com 
-	${AT_TEMP_FOLDER} sh get-docker.sh 
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com
+	${AT_TEMP_FOLDER} sh get-docker.sh
 	sudo usermod -aG docker `whoami`
 
 docker-compose:
@@ -223,7 +223,7 @@ httpie:
 	${INSTALL} httpie
 
 jq:
-	${INSTALL} jq 
+	${INSTALL} jq
 
 tcpflow:
 	${INSTALL} tcpflow
@@ -313,7 +313,7 @@ go:
 language-servers: ls-bash ls-typescript
 
 # https://github.com/mads-hartmann/bash-language-server
-ls-bash: 
+ls-bash:
 	npm i -g bash-language-server
 
 # https://github.com/theia-ide/typescript-language-server
@@ -344,7 +344,7 @@ markdown:
 	${INSTALL} pandoc
 
 
-latex: 
+latex:
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-humanities texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 
 beamer-theme-metropolis: latex
@@ -393,7 +393,7 @@ steam: graphic-drivers
 	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} steam.deb
 
 graphic-drivers:
-	 ${INSTALL} libvulkan1 mesa-vulkan-drivers vulkan-utils 
+	 ${INSTALL} libvulkan1 mesa-vulkan-drivers vulkan-utils
 
 google-chrome:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -426,7 +426,7 @@ slack:
 dropbox:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
 	${INSTALL} python-gtk2 libpango1.0-0
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb 
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb
 
 package-files:
 	${INSTALL} file-roller
@@ -495,7 +495,7 @@ link-login-shell:
 	stow -R login-shell --target=${HOME}
 
 link-neovim:
-	mkdir -p ${HOME}/.local/share/nvim/site/autoload/ 
+	mkdir -p ${HOME}/.local/share/nvim/site/autoload/
 	cd neovim; stow -R autoload --target=${HOME}/.local/share/nvim/site/autoload/
 	mkdir -p ${HOME}/.config/nvim/
 	cd neovim; stow -R config --target=${HOME}/.config/nvim/
@@ -505,7 +505,7 @@ link-polybar:
 	stow -R polybar --target=${HOME}/.config/polybar/
 
 link-ranger:
-	stow -R ranger --target=${HOME}/.config/ranger	
+	stow -R ranger --target=${HOME}/.config/ranger
 
 link-rofi:
 	mkdir -p ${HOME}/.config/rofi/
@@ -523,9 +523,9 @@ link-xresources:
 	xrdb ${HOME}/.Xresources
 
 
-link-qile:
-	mkdir -p ${HOME}/.config/qtile/
-	stow -R qtile --target=${HOME}/.config/qtile/
+link-qtile:
+	mkdir -p ${HOME}/.config/
+	stow -R qtile --target=${HOME}/.config/
 
 link-qutebrowser:
 	mkdir -p ${HOME}/.config/qutebrowser/
