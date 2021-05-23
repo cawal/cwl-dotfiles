@@ -1,8 +1,10 @@
+import os
+import subprocess
 from libqtile.log_utils import logger
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
-from host import host
+from host import hostname,list_screens
 #from libqtile.command_client import CommandClient
 
 #c = CommandClient()
@@ -12,34 +14,12 @@ from host import host
 
 @hook.subscribe.startup_once
 def autostart():
-    #lazy.spawn('firefox')
-    #home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call(['firefox',
-        #"home
-        ])
+    home = os.path.expanduser('~/bin/cwl-startup-processes.sh')
+    subprocess.call([home])
 
 
 mod = "mod4"
 
-
-def list_screens():
-    from Xlib import X, display
-    from Xlib.ext import randr
-
-    d = display.Display()
-    s = d.screen()
-    window = s.root.create_window(0, 0, 1, 1, 1, s.root_depth)
-
-    res = randr.get_screen_resources(window)
-
-    outputs = randr.get_screen_resources(window).outputs
-    screen_names = []
-    for output_id in outputs:
-        output = (randr.get_output_info(window,output_id,0))
-        if output.num_preferred:
-            screen_names.append(output.name)
-
-    return screen_names
 
 def go_to_group(group):
     def f(qtile):
@@ -115,6 +95,13 @@ keys = [
         Key([mod, "shift"], "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
         Key([mod], "d", lazy.spawn("rofi -show-icons -modi combi -show combi -       combi-modi window,run,drun")),
 
+        Key([mod],"bracketleft",lazy.spawn("amixer -q -D pulse sset Master 5%+")),
+        Key([mod],"bracketright",lazy.spawn("amixer -q -D pulse sset Master 5%-")),
+        Key([mod],"BackSpace",lazy.spawn("amixer -q -D pulse sset Master toggle")),
+        Key([mod],"XF86AudioRaiseVolume",lazy.spawn("amixer -q -D pulse sset Master 5%+")),
+        Key([mod],"XF86AudioLowerVolume",lazy.spawn("amixer -q -D pulse sset Master 5%-")),
+        Key([mod],"XF86AudioMute",lazy.spawn("amixer -q -D pulse sset Master toggle")),
+
         # Toggle between different layouts as defined below
         Key([mod], "Tab", lazy.next_layout()),
         Key([mod], "w", lazy.window.kill()),
@@ -139,18 +126,18 @@ for i in groups:
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
             )
 
-    layouts = [
-            layout.Max(),
-            layout.Stack(num_stacks=2),
-            ]
+layouts = [
+        layout.Max(),
+        layout.Stack(num_stacks=2),
+        ]
 
-    widget_defaults = dict(
-            font='Hack',
-            fontsize=11,
-            padding=1,
-            )
+widget_defaults = dict(
+        font='Hack',
+        fontsize=11,
+        padding=1,
+        )
 
-    bar_height : int = 20
+bar_height : int = 20
 
 screens = [
         Screen(
@@ -160,8 +147,9 @@ screens = [
                     widget.Prompt(),
                     widget.WindowName(),
                     # widget.TextBox("default config", name="default"),
-                    widget.Systray(),
+                    widget.Volume(),
                     widget.Clock(format='%Y-%m-%d %a %H:%M %p'),
+                    widget.Systray(),
                     ],
                 bar_height,
                 background='#222222',
