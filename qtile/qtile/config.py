@@ -20,21 +20,24 @@ def autostart():
 
 mod = "mod4"
 
+def group_by_name(qtile,gname):
+    return [ group for group in qtile.groups if group.name == gname][0]
 
 def go_to_group(group):
     def f(qtile):
-        logger.warning(dir(qtile.groupMap[group.name]))
+        logger.warning(qtile.groups)
+        logger.warning(group.name)
         screens = list_screens()
         logger.warning(screens)
         if group.name in "12345":
             qtile.cmd_to_screen(0)
-            qtile.groupMap[group.name].cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen()
         elif group.name in "67890" and len(screens) > 1:
             qtile.cmd_to_screen(1)
-            qtile.groupMap[group.name].cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen()
         else:
             qtile.cmd_to_screen(0)
-            qtile.groupMap[group.name].cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen()
     return f
 
 def add_group(name):
@@ -111,7 +114,7 @@ keys = [
         Key([mod], "r", lazy.spawncmd()),
 ]
 
-groups = [Group(i, persist=False) for i in "1234567890"]
+groups = [Group(i, persist=True) for i in "1234567890"]
 
 
 for i in groups:
