@@ -112,6 +112,7 @@ keys = [
         Key([mod, "control"], "r", lazy.restart()),
         Key([mod, "control"], "q", lazy.shutdown()),
         Key([mod], "r", lazy.spawncmd()),
+        Key([],"Print",lazy.spawn("flameshot gui")),
 ]
 
 groups = [Group(i, persist=True) for i in "1234567890"]
@@ -132,6 +133,7 @@ for i in groups:
 layouts = [
         layout.Max(),
         layout.Stack(num_stacks=2),
+        layout.MonadTall(),
         ]
 
 widget_defaults = dict(
