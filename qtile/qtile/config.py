@@ -1,7 +1,7 @@
 import os
 import subprocess
 from libqtile.log_utils import logger
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, KeyChord
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
 from host import hostname,list_screens
@@ -113,6 +113,14 @@ keys = [
         Key([mod, "control"], "q", lazy.shutdown()),
         Key([mod], "r", lazy.spawncmd()),
         Key([],"Print",lazy.spawn("flameshot gui")),
+        KeyChord([mod,"shift"],"e",
+            [
+                Key([],"h", lazy.spawn("dmenu-http-status-codes")),
+                Key([],"e", lazy.spawn("dmenu-emoticons")),
+                Key([],"s", lazy.spawn("dmenu-change-sound-output")),
+                Key([],"b", lazy.spawn("dmenu-display-control")),
+            ],
+        )
 ]
 
 groups = [Group(i, persist=True) for i in "1234567890"]
@@ -149,18 +157,28 @@ screens = [
             top=bar.Bar(
                 [
                     widget.GroupBox(),
+                    widget.Chord(background="#F7941E"),
                     widget.Prompt(),
+                    widget.WindowCount(fmt="windows: {} -- "),
                     widget.WindowName(),
                     # widget.TextBox("default config", name="default"),
                     widget.Volume(),
-                    widget.Clock(format='%Y-%m-%d %a %H:%M %p'),
+                    widget.Battery(format=" {char}{percent:2.0%} "),
+                    widget.Clock(format='%Y-%m-%d %H:%M %p'),
                     widget.Systray(),
                     ],
                 bar_height,
                 background='#222222',
                 #wallpaper='/home/cawal/Imagens/0-Meus Desenhos/
                 ),
-            ),
+            #bottom=bar.Bar(
+            #        [
+            #            widget.TaskList(border="#888888",max_title_width=150),
+            #        ],
+            #        bar_height,
+            #        background="#222222",
+            #    )
+        ),
         Screen(
             top=bar.Bar(
                 [
