@@ -31,13 +31,13 @@ def go_to_group(group):
         logger.warning(screens)
         if group.name in "12345":
             qtile.cmd_to_screen(0)
-            group_by_name(qtile, group.name).cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
         elif group.name in "67890" and len(screens) > 1:
             qtile.cmd_to_screen(1)
-            group_by_name(qtile, group.name).cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
         else:
             qtile.cmd_to_screen(0)
-            group_by_name(qtile, group.name).cmd_toscreen()
+            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
     return f
 
 def add_group(name):
