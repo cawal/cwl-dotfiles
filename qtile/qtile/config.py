@@ -7,14 +7,17 @@ from libqtile import layout, bar, widget,hook
 from host import hostname,list_screens
 #from libqtile.command_client import CommandClient
 
-#c = CommandClient()
-
-#def print_info():
-#    print(c.screen.info()["index"])
+font = "Hack"
+color_highlight = "#F7941E"
+color_urgent = color_highlight
+color_white = "#DDDDDD"
+color_grey = "#777777"
+color_dark_grey = "#555555"
+color_black = "#222222"
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/bin/cwl-startup-processes.sh')
+    home = os.path.expanduser("~/bin/cwl-startup-processes.sh")
     subprocess.call([home])
 
 
@@ -138,14 +141,35 @@ for i in groups:
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
             )
 
+treetab_config = {
+    "bg_color": color_black,
+    "active_bg": color_white,
+    "active_fg": color_black,
+    "inactive_bg": color_black,
+    "inactive_fg": color_white,
+    "urgent_bg": color_black,
+    "urgent_fg": color_urgent,
+    "font" : font,
+    "border_width": 0,
+    "padding_left": 0,
+    "margin_left": 0,
+    "level_shift": 0,
+    "section_padding": 0,
+    "section_top": 0,
+    "section_fg": color_black,
+    "sections":[""],
+
+}
+
 layouts = [
         layout.Max(),
         layout.Stack(num_stacks=2),
+        layout.TreeTab(**treetab_config),
         layout.MonadTall(),
         ]
 
 widget_defaults = dict(
-        font='Hack',
+        font="Hack",
         fontsize=11,
         padding=1,
         )
@@ -164,19 +188,19 @@ screens = [
                     # widget.TextBox("default config", name="default"),
                     widget.Volume(),
                     widget.Battery(format=" {char}{percent:2.0%} "),
-                    widget.Clock(format='%Y-%m-%d %H:%M %p'),
+                    widget.Clock(format="%Y-%m-%d %H:%M %p"),
                     widget.Systray(),
                     ],
                 bar_height,
-                background='#222222',
-                #wallpaper='/home/cawal/Imagens/0-Meus Desenhos/
+                background=color_black,
+                #wallpaper="/home/cawal/Imagens/0-Meus Desenhos/
                 ),
             #bottom=bar.Bar(
             #        [
             #            widget.TaskList(border="#888888",max_title_width=150),
             #        ],
             #        bar_height,
-            #        background="#222222",
+            #        background=color_black,
             #    )
         ),
         Screen(
@@ -186,10 +210,10 @@ screens = [
                     widget.Prompt(),
                     widget.WindowName(),
                     # widget.TextBox("default config", name="default"),
-                    widget.Clock(format='%H:%M %p'),
+                    widget.Clock(format="%H:%M %p"),
                     ],
                 bar_height,
-                background='#222222',
+                background=color_black,
                 ),
             ),
         ]
