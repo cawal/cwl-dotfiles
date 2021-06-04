@@ -1,17 +1,15 @@
 import socket
+from Xlib import X, display
+from Xlib.ext import randr
 
 hostname = socket.gethostname()
 
 
 def list_screens():
-    from Xlib import X, display
-    from Xlib.ext import randr
 
     d = display.Display()
     s = d.screen()
     window = s.root.create_window(0, 0, 1, 1, 1, s.root_depth)
-
-    res = randr.get_screen_resources(window)
 
     outputs = randr.get_screen_resources(window).outputs
     screen_names = []

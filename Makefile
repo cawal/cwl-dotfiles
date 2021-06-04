@@ -95,7 +95,7 @@ kde-connect-indicator:
 
 polybar: polybar-dependencies
 	${AT_TEMP_FOLDER} git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
-	${AT_TEMP_FOLDER} mkdir polybar/build; cd polybar/build; cmake ..; make install
+	${AT_TEMP_FOLDER} mkdir polybar/build; cd polybar/build; cmake ..; sudo make install
 
 polybar-dependencies:
 	${INSTALL} cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
@@ -186,12 +186,12 @@ htop:
 sc-im: libxlsxwriter
 	${INSTALL} bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
 	${AT_TEMP_FOLDER} git clone https://github.com/andmarti1424/sc-im.git
-	${AT_TEMP_FOLDER} cd sc-im/src; make && make install
+	${AT_TEMP_FOLDER} cd sc-im/src; make && sudo make install
 
 libxlsxwriter:
 	${AT_TEMP_FOLDER} git clone https://github.com/jmcnamara/libxlsxwriter.git
-	${AT_TEMP_FOLDER} cd libxlsxwriter; make && make install
-	ldconfig
+	${AT_TEMP_FOLDER} cd libxlsxwriter; make && sudo make install
+	sudo ldconfig
 
 sox:
 	${INSTALL} sox
