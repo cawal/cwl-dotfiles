@@ -137,9 +137,18 @@ for i in groups:
             )
 
     # mod1 + shift + letter of group = switch to & move focused window to group
-    keys.append(
-            Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
-            )
+    keys.append( Key([mod, "shift"],
+        i.name,
+        lazy.window.togroup(i.name),
+        )
+    )
+    # mod1 + ctrl + letter of group = switch to & move focused window to group
+    keys.append( Key([mod, "control"],
+        i.name,
+        lazy.window.togroup(i.name),
+        lazy.function(go_to_group(i))
+        )
+    )
 
 treetab_config = {
     "bg_color": color_black,
