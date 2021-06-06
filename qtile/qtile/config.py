@@ -59,21 +59,21 @@ def remove_group(name):
 keys = [
         # Switch between windows in current stack pane
         Key(
-            [mod], "k",
+            [mod], "j",
             lazy.layout.down()
             ),
         Key(
-            [mod], "j",
+            [mod], "k",
             lazy.layout.up()
             ),
 
         # Move windows up or down in current stack
         Key(
-            [mod, "control"], "k",
+            [mod, "control"], "j",
             lazy.layout.shuffle_down()
             ),
         Key(
-            [mod, "control"], "j",
+            [mod, "control"], "k",
             lazy.layout.shuffle_up()
             ),
 
