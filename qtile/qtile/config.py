@@ -94,7 +94,7 @@ keys = [
         # Unsplit = 1 window displayed, like Max layout, but still with
         # multiple stack panes
         Key(
-            [mod, "shift"], "Return",
+            [mod, "control"], "Return",
             lazy.layout.toggle_split()
             ),
         Key([mod], "Return", lazy.spawn("cwl-sensible-terminal")),
@@ -110,13 +110,15 @@ keys = [
 
         # Toggle between different layouts as defined below
         Key([mod], "Tab", lazy.next_layout()),
+        Key([mod,"shift"], "Tab", lazy.prev_layout()),
         Key([mod], "w", lazy.window.kill()),
 
         Key([mod, "control"], "r", lazy.restart()),
         Key([mod, "control"], "q", lazy.shutdown()),
         Key([mod], "r", lazy.spawncmd()),
         Key([],"Print",lazy.spawn("flameshot gui")),
-        KeyChord([mod,"shift"],"e",
+        KeyChord([mod],"e",
+                # "personal databases"
             [
                 Key([],"h", lazy.spawn("dmenu-http-status-codes")),
                 Key([],"e", lazy.spawn("dmenu-emoticons")),
