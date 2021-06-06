@@ -32,6 +32,7 @@ Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root
 Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
+Plug 'vim-scripts/restore_view.vim' " saves and restores folds in text
 
 " Programming language-related Plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php', 'vim' ] } " Language Server Client
