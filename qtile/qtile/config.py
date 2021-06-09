@@ -177,10 +177,10 @@ treetab_config = {
 
 layouts = [
         layout.Max(),
-        layout.Stack(num_stacks=2),
         layout.TreeTab(**treetab_config),
         layout.MonadTall(),
-        ]
+        layout.Columns(num_columns=10,insert_position=1),
+]
 
 widget_defaults = dict(
         font="Hack",
