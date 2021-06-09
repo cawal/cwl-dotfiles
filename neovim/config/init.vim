@@ -254,6 +254,10 @@ set shiftwidth=4 " number of spaces in (auto) indent, if 0 uses tabstop
 set inccommand=nosplit " show :s/_/_/ live
 set hlsearch " Show search matches while writing
 set foldcolumn=2 " set 2 columns to show folders
+set nobackup " do not create a backup file on save
+set undodir=~/.vim/undodir " Directory for undo files
+set undofile "
+
 
 filetype on " enable filetype detection
 
