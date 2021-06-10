@@ -124,6 +124,8 @@ keys = [
                 Key([],"e", lazy.spawn("dmenu-emoticons")),
                 Key([],"s", lazy.spawn("dmenu-change-sound-output")),
                 Key([],"b", lazy.spawn("dmenu-display-control")),
+                Key([],"c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")),
+
             ],
         )
 ]
