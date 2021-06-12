@@ -1,0 +1,34 @@
+#!/bin/sh
+lock() {
+    #i3lock  -ti /home/cawal/Dropbox/Imagens/Wallpapers/Typographic/ouroboros-rgb-big.png
+    i3lock  -c 000000
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3 exit
+        ;;
+    suspend)
+        lock && systemctl suspend
+        ;;
+    hibernate)
+        lock && systemctl hibernate  # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate
+        /sbin/reboot
+        ;;
+    reboot)
+        systemctl reboot # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+        ;;
+    shutdown)
+        #dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+        #/sbin/poweroff
+        systemctl halt
+	;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0

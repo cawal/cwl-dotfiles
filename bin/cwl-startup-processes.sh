@@ -1,5 +1,5 @@
 #!/bin/bash
-
+xrdb ~/.Xresources
 compton --backend glx --vsync drm --glx-no-stencil --config ~/.config/i3/compton.conf  &
 
 # numlock starts activated

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# based on https://stackoverflow.com/questions/8705814/get-display-count-and-resolution-for-each-display-in-python-without-xrandr
 from Xlib import X, display
 from Xlib.ext import randr
 
@@ -15,6 +15,8 @@ res = randr.get_screen_resources(window)
 #    print("Width: {}, height: {}".format(w, h))
 
 outputs = randr.get_screen_resources(window).outputs
+print(outputs)
 
 for output_id in outputs:
+    print(randr.get_output_info(window,output_id,0))
     print(randr.get_output_info(window,output_id,0).name)

@@ -127,7 +127,15 @@ keys = [
                 Key([],"c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")),
 
             ],
-        )
+        ),
+        KeyChord([mod,'shift'],'BackSpace',
+            [
+                Key([],'l',lazy.spawn("i3exit lock")),
+                Key([],'s',lazy.spawn("i3exit suspend")),
+                Key([],'h',lazy.spawn("i3exit hibernate")),
+            ],
+            mode="Exit mode: l => lock, s=> suspend, h => hibernate",
+        ),
 ]
 
 groups = [Group(i, persist=True) for i in "1234567890"]
