@@ -118,7 +118,7 @@ terminal:
 vi: ripgrep silver-seacher coc-node
 	${ADD_REPOSITORY} ppa:neovim-ppa/stable
 	${UPDATE}
-	${INSTALL} neovim exuberant-ctags
+	${INSTALL} neovim universal-ctags
 	pip3 install neovim
 	#pip install neovim
 
