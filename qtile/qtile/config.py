@@ -134,7 +134,7 @@ keys = [
                 Key([],'s',lazy.spawn("i3exit suspend")),
                 Key([],'h',lazy.spawn("i3exit hibernate")),
             ],
-            mode="Exit mode: l => lock, s=> suspend, h => hibernate",
+            mode="Desktop: l => lock, s=> suspend, h => hibernate",
         ),
 ]
 

@@ -13,9 +13,8 @@ call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 " Widgets
 Plug 'junegunn/goyo.vim', { 'on' : 'Goyo' } " Zen mode
 Plug 'junegunn/limelight.vim', {'on': ['Limelight', 'Limelight!', 'Limelight!!']} " fades all lines but current
-
 Plug 'sjl/gundo.vim', { 'on': ['GundoToggle','GundoShow'] } " Undo tree navigator
-Plug 'majutsushi/tagbar', { 'on' : [ 'TagbarToggle' ] } " File/Class overview  (uses exuberant-ctags)
+Plug 'preservim/tagbar', { 'on' : [ 'TagbarToggle' ] } " File/Class overview  (uses universal-ctags)
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle','NERDTreeClose'] } " File navigator
 
 
@@ -26,7 +25,7 @@ Plug 'junegunn/vim-easy-align' " Easy align for (Markdown) tables
 Plug 'tpope/vim-surround' " Easy add (ys) / change (cs) / remove (ds) surrounding characters/html tags
 Plug 'chrisbra/Colorizer', { 'on' : 'ColorToggle' } " Highlight string colors
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do': './install --all' } " (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " Vim bindings to FZF #awesome
 Plug 'junegunn/vim-peekaboo' " Show registers
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root
@@ -107,12 +106,43 @@ let g:limelight_priority = -1
 " -----------------------------------------------------
 let g:grammarous#languagetool_cmd='java -jar $HOME/bin/LanguageTool-4.3/languagetool-commandline.jar'
 
+
+" TagBar
+"
+" Uses markdown ctags type to overview vimwiki files
+let g:tagbar_type_vimwiki = {
+  \ 'ctagstype'	: 'markdown',
+  \ 'kinds'		: [
+    \ 'c:chapter:0:1',
+    \ 's:section:0:1',
+    \ 'S:subsection:0:1',
+    \ 't:subsubsection:0:1',
+    \ 'T:l4subsection:0:1',
+    \ 'u:l5subsection:0:1',
+  \ ],
+  \ 'sro'			: '""',
+  \ 'kind2scope'	: {
+    \ 'c' : 'chapter',
+    \ 's' : 'section',
+    \ 'S' : 'subsection',
+    \ 't' : 'subsubsection',
+    \ 'T' : 'l4subsection',
+  \ },
+  \ 'scope2kind'	: {
+    \ 'chapter' : 'c',
+    \ 'section' : 's',
+    \ 'subsection' : 'S',
+    \ 'subsubsection' : 't',
+    \ 'l4subsection' : 'T',
+  \ },
+\ }
+
 " Vim-wiki
 " ------------------------------------------------------
 " does not consider all md files as wiki
 let g:vimwiki_global_ext = 0
 let g:vimwiki_tag_format = {'pre_mark': '#', 'post_mark': '[:space:]', 'sep': '#'}
-let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript'}
+let my_nested_syntaxes = {'java':'java', 'kotlin':'kotlin','php':'php', 'sql':'sql','javascript' : 'javascript', "python" : "python"}
 "let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
 
 let personal_wiki = {}
@@ -170,6 +200,10 @@ let g:mkdp_refresh_slow = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_patterns = ['latexmkrc', '=liberapi','.git/', 'pom.xml','=Zettelkasten','=src']
 
+" Vimtex
+" ------------------------------------------------------
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
 
 " Vim-Zettel
 " -------------------------------------------------------
@@ -388,8 +422,6 @@ xmap ga <Plug>(EasyAlign)
 " Set my Neovim v0.2.2-derived colorscheme (XResources-based)
 colorscheme neovim-0-2-2
 
-let g:latex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = "zathura"
 
 
 
@@ -402,4 +434,3 @@ augroup vimrc_trim_trailing
     "                                        |     \           /         |
     autocmd BufWritePre * :execute "normal! mz" . ':%s/\s\+$//e'. "\<cr>`z"
 augroup END
-
