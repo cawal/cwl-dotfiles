@@ -93,15 +93,6 @@ kde-connect-indicator:
 	${UPDATE}
 	${INSTALL} kdeconnect indicator-kdeconnect
 
-polybar: polybar-dependencies
-	${AT_TEMP_FOLDER} git clone --branch 3.2 --recursive https://github.com/jaagr/polybar
-	${AT_TEMP_FOLDER} mkdir polybar/build; cd polybar/build; cmake ..; sudo make install
-
-polybar-dependencies:
-	${INSTALL} cmake cmake-data pkg-config libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev python-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
-	${INSTALL} libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libiw-dev libnl-3-dev
-
-
 rofi: FORCE
 	${INSTALL} rofi
 
@@ -472,7 +463,7 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-polybar link-ranger link-rofi link-tmux link-xresources link-urxvt link-vscode link-zsh link-zathura
+link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-vscode link-zsh link-zathura
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -499,10 +490,6 @@ link-neovim:
 	cd neovim; stow -R autoload --target=${HOME}/.local/share/nvim/site/autoload/
 	mkdir -p ${HOME}/.config/nvim/
 	cd neovim; stow -R config --target=${HOME}/.config/nvim/
-
-link-polybar:
-	mkdir -p ${HOME}/.config/polybar/
-	stow -R polybar --target=${HOME}/.config/polybar/
 
 link-ranger:
 	stow -R ranger --target=${HOME}/.config/ranger
