@@ -186,10 +186,9 @@ treetab_config = {
 }
 
 layouts = [
-        layout.Max(),
-        layout.TreeTab(**treetab_config),
-        layout.MonadTall(),
         layout.Columns(num_columns=10,insert_position=1),
+        layout.TreeTab(**treetab_config),
+#        layout.Max(),
 ]
 
 widget_defaults = dict(
