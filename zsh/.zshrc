@@ -52,7 +52,7 @@ ZSH_THEME=${ZSH_THEME:-"agnoster"}
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow mvn gradle nvm kube-ps1)
+plugins=(timer git git-extras git-flow mvn gradle nvm kube-ps1 kubectl gcloud helm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,10 +92,15 @@ fi
 # Vim-like quit (because sometimes I type it in zsh)
 alias :q='exit'
 
+# Timer oh-my-zsh
+TIMER_THRESHOLD=3 # seconds
+TIMER_FORMAT='\n[elapsed time: %d]';
+TIMER_PRECISION=2
+
 # FuZzy File Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #
-# NVM 
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
