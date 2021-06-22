@@ -32,8 +32,8 @@
 !------------------------------------------------------------------------------
 ! u r x v t
 
-urxvt*geometry:         	112x22  
-urxvt*urlLauncher:         	firefox  
+urxvt*geometry:         	112x22
+urxvt*urlLauncher:         	firefox
 urxvt*scrollBar:        	false
 urxvt*scrollBar_right:       	false
 urxvt*scrollColor:        	#000000
@@ -48,6 +48,7 @@ urxvt.font: 			xft:Hack:pixelsize=13
 urxvt.cursorBlink: true
 urxvt.cursorUnderline: false
 urxvt.letterSpace:		0
+urxvt.lineSpace:		5
 urxvt.iso14755: false
 urxvt.iso14755_52: false
 urxvt.internalBorder: 10
