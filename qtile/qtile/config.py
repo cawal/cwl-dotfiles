@@ -130,11 +130,11 @@ keys = [
         ),
         KeyChord([mod,'shift'],'BackSpace',
             [
-                Key([],'l',lazy.spawn("i3exit lock")),
-                Key([],'s',lazy.spawn("i3exit suspend")),
-                Key([],'h',lazy.spawn("i3exit hibernate")),
+                Key([],'l',lazy.spawn("i3exit lock"),lazy.ungrab_all_chords()),
+                Key([],'s',lazy.spawn("i3exit suspend"),lazy.ungrab_all_chords()),
+                Key(['shift'],'h',lazy.spawn("i3exit hibernate"),lazy.ungrab_all_chords()),
             ],
-            mode="Desktop: l => lock, s=> suspend, h => hibernate",
+            mode="Desktop: l => lock, s=> suspend, H => hibernate",
         ),
 ]
 
