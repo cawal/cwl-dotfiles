@@ -5,6 +5,7 @@ from libqtile.config import Key, Screen, Group, Drag, Click, KeyChord
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
 from host import hostname,list_screens
+from cwllayouts import CWLTreeTab
 #from libqtile.command_client import CommandClient
 
 font = "Hack"
@@ -187,7 +188,8 @@ treetab_config = {
 
 layouts = [
         layout.Columns(num_columns=10,insert_position=1),
-        layout.TreeTab(**treetab_config),
+        #layout.TreeTab(**treetab_config),
+        CWLTreeTab(**treetab_config),
 #        layout.Max(),
 ]
 
