@@ -1,7 +1,7 @@
-highlight clear Normal      
-highlight clear Normal      
-highlight clear NormalNC    
-highlight clear VisualNC    
+highlight clear Normal
+highlight clear Normal
+highlight clear NormalNC
+highlight clear VisualNC
 highlight clear TermCursorNC
 highlight SpecialKey     ctermfg=4 guifg=Blue
 highlight TermCursor     cterm=reverse gui=reverse
@@ -28,7 +28,7 @@ highlight DiffAdd        ctermbg=81 guibg=LightBlue
 highlight DiffChange     ctermbg=225 guibg=LightMagenta
 highlight DiffDelete     ctermfg=12 ctermbg=159 gui=bold guifg=Blue guibg=LightCyan
 highlight DiffText       cterm=bold ctermbg=9 gui=bold guibg=Red
-highlight SignColumn     ctermfg=4 ctermbg=248 guifg=DarkBlue guibg=Grey
+highlight SignColumn     ctermfg=4 ctermbg=0 guifg=DarkBlue guibg=Grey
 highlight Conceal        ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
 highlight SpellBad       ctermfg=7 ctermbg=1
 highlight SpellCap       ctermbg=81 gui=undercurl guisp=Blue
