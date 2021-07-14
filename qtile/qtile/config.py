@@ -90,6 +90,12 @@ keys = [
             lazy.layout.rotate()
             ),
 
+        Key(
+            [mod, "control"], "space",
+            lazy.window.toggle_floating(),
+            desc="Toggles floating state of window"
+            ),
+
         # Toggle between split and unsplit sides of stack.
         # Split = all windows displayed
         # Unsplit = 1 window displayed, like Max layout, but still with
