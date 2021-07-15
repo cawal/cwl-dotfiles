@@ -192,8 +192,25 @@ treetab_config = {
 
 }
 
+columns_config = {
+    "border_focus": color_grey,
+    "border_normal": color_black,
+    "num_columns": 10,
+    "insert_position": 1,
+    "border_on_single": False,
+    "border_width": 1,
+    "margin": 0,
+}
+
+floating_config = {
+    "border_focus": color_urgent,
+    "border_normal": color_black,
+    "border_width": 2,
+    "margin": 0,
+}
+
 layouts = [
-        layout.Columns(num_columns=10,insert_position=1),
+        layout.Columns(**columns_config),
         CWLTreeTab(**treetab_config),
 #        layout.Max(),
 ]
@@ -263,7 +280,7 @@ main = None
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating()
+floating_layout = layout.Floating(**floating_config)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 extentions = []
