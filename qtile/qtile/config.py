@@ -188,7 +188,6 @@ treetab_config = {
 
 layouts = [
         layout.Columns(num_columns=10,insert_position=1),
-        #layout.TreeTab(**treetab_config),
         CWLTreeTab(**treetab_config),
 #        layout.Max(),
 ]
