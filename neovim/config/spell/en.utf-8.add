@@ -317,3 +317,6 @@ BioWMS
 BioTools
 initio
 JSON
+PathItem
+infault
+outfault
