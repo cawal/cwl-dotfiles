@@ -6,5 +6,6 @@ set synctex-editor-command "notify-send 'vim +%{line} %{input}'"
 # set recolor true
 set recolor-darkcolor "#DDDDDD"
 set recolor-lightcolor "#222222"
+set recolor-keephue
 set font "Hack normal 10"
 set page-padding 3
