@@ -34,7 +34,7 @@ Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Renam
 Plug 'vim-scripts/restore_view.vim' " saves and restores folds in text
 
 " Programming language-related Plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php', 'vim' ] } " Language Server Client
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php', 'vim', 'ruby' ] } " Language Server Client
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
@@ -56,7 +56,7 @@ call plug#end()
 " -----------------------------------------------------
 
 " Path for node.js
-let g:coc_node_path = $HOME . '/.nvm/versions/node/v12.6.0/bin/node'
+let g:coc_node_path = $HOME . '/.nvm/versions/node/v14.16.1/bin/node'
 
 " Goyo
 " -----------------------------------------------------
