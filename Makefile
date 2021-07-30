@@ -16,7 +16,7 @@ COC_NODE_VERSION=v12.6.0
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
-desktop-environment: i3 kde-connect-indicator flashfocus desktop-configuration clipboard-manager
+desktop-environment: i3 flashfocus desktop-configuration clipboard-manager
 
 clipboard-manager: greenclip rofi
 
@@ -87,11 +87,6 @@ drivers:
 flashfocus:
 	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
 	pip install flashfocus
-
-kde-connect-indicator:
-	${ADD_REPOSITORY} ppa:webupd8team/indicator-kdeconnect
-	${UPDATE}
-	${INSTALL} kdeconnect indicator-kdeconnect
 
 rofi: FORCE
 	${INSTALL} rofi
