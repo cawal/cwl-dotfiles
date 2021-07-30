@@ -118,7 +118,7 @@ keys = [
         # Toggle between different layouts as defined below
         Key([mod], "Tab", lazy.next_layout()),
         Key([mod,"shift"], "Tab", lazy.prev_layout()),
-        Key([mod], "w", lazy.window.kill()),
+        Key([mod, "shift"], "q", lazy.window.kill()),
 
         Key([mod, "control"], "r", lazy.restart()),
         Key([mod, "control"], "q", lazy.shutdown()),
