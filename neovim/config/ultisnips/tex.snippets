@@ -12,7 +12,7 @@ snippet fig "Add figure" bA
 	\caption{$2}
 	\label{$1}
 	\includegraphics[width=1.0\textwidth]{$3}
-	\legend{}
+	\legend{\autoriaPropria{}}
 \end{figure}
 $0
 
@@ -32,7 +32,7 @@ snippet table "Table skelleton" bA
 	\caption{$3}
 	\ref{table-$2}
 	\begin{tabular}{$1}
-		
+
 		\hline
 
 		$0
@@ -75,19 +75,19 @@ snippet \u "URL" i
 endsnippet
 
 # VISUAL MODE -------------------------------------------
-snippet e "Emph" "snip.visual_text" ieA 
+snippet e "Emph" "snip.visual_text" ieA
 \\emph{${VISUAL}}$0
 endsnippet
 
-snippet b "Bold font" "snip.visual_text" ieA 
+snippet b "Bold font" "snip.visual_text" ieA
 \\textbf{${VISUAL}}$0
 endsnippet
 
-snippet t "TT Font" "snip.visual_text" ieA 
+snippet t "TT Font" "snip.visual_text" ieA
 
 \\texttt{${VISUAL}}$0
 endsnippet
 
-snippet u "URL" "snip.visual_text" ieA 
+snippet u "URL" "snip.visual_text" ieA
 \\url{${VISUAL}}$0
 endsnippet
