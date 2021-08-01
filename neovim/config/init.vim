@@ -183,7 +183,7 @@ endfunction
 
 " Markdown-Preview
 " -----------------------------------------------------
-function OpenInSimpleBrowser(url)
+function! OpenInSimpleBrowser(url)
     silent execute "!qutebrowser --target tab " . a:url . " &"
 endfunction
 
@@ -349,12 +349,22 @@ map <F7> :set spelllang+=pt<cr>
 
 " NORMAL MODE MAPPINGS
 
-
 " Start interactive EasyAlign for a motion/text object (e.g., gaip)
 nmap ga <Plug>(EasyAlign)
 
+" reselects pasted text
+nnoremap gp `[v`]
+
 " Join with previous line (symmetric with J)
 "nnoremap K kJ
+
+" Keeps `search next occurrence` centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Makes Y behave like D and C, only yanking to the end of line
+nnoremap Y y$
+
 
 " remove search highlights
 nnoremap <Esc><Esc> :noh<cr>
@@ -367,7 +377,6 @@ nnoremap <leader>f :FZF<cr>
 "
 " Toggles Nerdtree navigation
 nnoremap <leader>F :NERDTreeToggle<cr>
-
 
 " Toggle limelight
 nnoremap <leader>l :Limelight!!<cr>
@@ -382,8 +391,11 @@ nnoremap <leader>o :TagbarToggle<cr>
 " Filetype dependand preview
 nnoremap <leader>p :call Preview()<cr>
 
+" reload vi config
+nnoremap <leader>r :source $MYVIMRC<cr>
+
 " run current file contents
-nnoremap <leader>r :!"%:p"
+nnoremap <leader>R :!"%:p"
 
 " Toggle spell checking
 nnoremap <leader>s :call CWLToggleSpell()<cr>
@@ -416,6 +428,24 @@ nmap <silent> <c-l> :wincmd l<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
+
+" move selected lines down
+vnoremap J :m '>+1<CR>gv=gv
+" move selected lines up
+vnoremap K :m '<-2<CR>gv=gv
+
+" INSERT MODE MAPPINGS
+
+" Insert undo break points at punctuations
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap : :<c-g>u
+inoremap / /<c-g>u
+"inoremap ( (<c-g>u
+"inoremap ) )<c-g>u
+"inoremap { {<c-g>u
+"inoremap } }<c-g>u
 
 
 " ------------------------------------------------------------
