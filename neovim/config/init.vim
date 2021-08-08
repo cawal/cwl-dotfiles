@@ -92,10 +92,8 @@ let g:limelight_default_coefficient = 0.7
 let g:limelight_paragraph_span = 0
 
 " Beginning/end of paragraph
-"   When there's no empty line between the paragraphs
-"   and each paragraph starts with indentation
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
+let g:limelight_bop = '^\s*$'
+let g:limelight_eop = '^\s*$'
 
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
@@ -362,6 +360,10 @@ nnoremap gp `[v`]
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Center the new line
+nnoremap o o<esc>zzi
+nnoremap O O<esc>zzi
+
 " Makes Y behave like D and C, only yanking to the end of line
 nnoremap Y y$
 
@@ -437,6 +439,7 @@ vnoremap K :m '<-2<CR>gv=gv
 " INSERT MODE MAPPINGS
 
 " Insert undo break points at punctuations
+inoremap <cr> <cr><c-g>u
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
