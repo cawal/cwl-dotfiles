@@ -58,14 +58,40 @@ def remove_group(name):
 
 
 keys = [
-        # Switch between windows in current stack pane
         Key(
             [mod], "j",
-            lazy.layout.down()
+            lazy.layout.down(),
+            lazy.layout.left().when(layout="columns"),
             ),
         Key(
             [mod], "k",
-            lazy.layout.up()
+            lazy.layout.up(),
+            lazy.layout.right().when(layout="columns"),
+            ),
+        Key(
+            [mod], "h",
+            lazy.layout.left().when(layout="columns"),
+            ),
+        Key(
+            [mod], "l",
+            lazy.layout.right().when(layout="columns"),
+            ),
+
+        Key(
+            [mod,"shift"], "j",
+            lazy.layout.swap_column_left().when(layout="columns"),
+            ),
+        Key(
+            [mod,"shift"], "k",
+            lazy.layout.swap_column_right().when(layout="columns"),
+            ),
+        Key(
+            [mod,"shift"], "h",
+            lazy.layout.grow_left().when(layout="columns"),
+            ),
+        Key(
+            [mod,"shift"], "l",
+            lazy.layout.grow_right().when(layout="columns"),
             ),
 
         # Move windows up or down in current stack
