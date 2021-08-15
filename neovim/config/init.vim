@@ -29,6 +29,7 @@ Plug 'junegunn/fzf.vim' " Vim bindings to FZF #awesome
 Plug 'junegunn/vim-peekaboo' " Show registers
 Plug 'AndrewRadev/linediff.vim' " Diffs lines in same file
 Plug 'airblade/vim-rooter' " Automatically set de current dir to project root
+Plug 'airblade/vim-gitgutter' " Show diffs in the sign column
 Plug 'tpope/vim-fugitive' " Git commands plugin
 Plug 'tpope/vim-eunuch' " Commands for easy unix file handling, Delete and Rename are my preferred
 Plug 'vim-scripts/restore_view.vim' " saves and restores folds in text
