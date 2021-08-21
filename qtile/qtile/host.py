@@ -35,16 +35,16 @@ class GroupToDisplayMapper:
 
     def calculate_initial_config(self, groups: Sequence[Group]):
         screens = list_screens()
+        n_screens = len(screens)
+        n_groups = len(groups)
+        groups_per_screen = int(n_groups / n_screens)
         logger.warning(screens)
-        for group in groups:
-            logger.warning(group)
-            if group.name in "12345":
-                self.map[group.name] = 0
-            elif group.name in "67890" and len(screens) > 1:
-                self.map[group.name] = 1
-            else:
-                self.map[group.name] = 0
-            logger.warning(self.map[group.name])
+        for index,group in  enumerate(groups):
+            logger.warning(index)
+            screen_index = int(index/groups_per_screen)
+            logger.warning(screen_index)
+            logger.warning(f"Assigning group {group.name} to screen {screens[screen_index]}")
+            self.map[group.name] = screen_index
 
 
     def go_to_group(self,group: Group):
