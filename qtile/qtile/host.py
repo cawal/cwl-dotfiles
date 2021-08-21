@@ -1,6 +1,9 @@
 import socket
 from Xlib import X, display
 from Xlib.ext import randr
+from typing import Sequence
+from libqtile.config import Screen, Group
+from libqtile.log_utils import logger
 
 hostname = socket.gethostname()
 
@@ -19,3 +22,43 @@ def list_screens():
             screen_names.append(output.name)
 
     return screen_names
+
+def group_by_name(qtile,gname):
+    return [ group for group in qtile.groups if group.name == gname][0]
+
+
+class GroupToDisplayMapper:
+    def __init__(self, groups: Sequence[Group]):
+        self.map = {}
+        self.calculate_initial_config(groups)
+        logger.warning('loading mapper')
+
+    def calculate_initial_config(self, groups: Sequence[Group]):
+        screens = list_screens()
+        logger.warning(screens)
+        for group in groups:
+            logger.warning(group)
+            if group.name in "12345":
+                self.map[group.name] = 0
+            elif group.name in "67890" and len(screens) > 1:
+                self.map[group.name] = 1
+            else:
+                self.map[group.name] = 0
+            logger.warning(self.map[group.name])
+
+
+    def go_to_group(self,group: Group):
+        def f(qtile):
+            index = self.map.get(group.name,0)
+            qtile.cmd_to_screen(index)
+            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
+        return f
+
+    def shift_group_display(self):
+        def f(qtile):
+            screens = list_screens()
+            g = qtile.current_group
+            index = self.map.get(g.name,0)
+            self.map[g.name] = (index+1) % len(screens)
+            self.go_to_group(g)
+        return f

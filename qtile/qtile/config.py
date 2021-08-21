@@ -4,7 +4,7 @@ from libqtile.log_utils import logger
 from libqtile.config import Key, Screen, Group, Drag, Click, KeyChord
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
-from host import hostname,list_screens
+from host import hostname,list_screens,GroupToDisplayMapper
 from cwllayouts import CWLTreeTab
 #from libqtile.command_client import CommandClient
 
@@ -45,25 +45,6 @@ def autostart():
 
 mod = "mod4"
 
-def group_by_name(qtile,gname):
-    return [ group for group in qtile.groups if group.name == gname][0]
-
-def go_to_group(group):
-    def f(qtile):
-        logger.warning(qtile.groups)
-        logger.warning(group.name)
-        screens = list_screens()
-        logger.warning(screens)
-        if group.name in "12345":
-            qtile.cmd_to_screen(0)
-            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
-        elif group.name in "67890" and len(screens) > 1:
-            qtile.cmd_to_screen(1)
-            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
-        else:
-            qtile.cmd_to_screen(0)
-            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
-    return f
 
 def add_group(name):
     def f(qtile):
@@ -76,6 +57,8 @@ def remove_group(name):
         qtile.groupMap.remove(name)
     return f
 
+groups = [Group(i, persist=True) for i in "1234567890"]
+mapper = GroupToDisplayMapper(groups)
 
 
 keys = [
@@ -190,16 +173,18 @@ keys = [
             ],
             mode="Desktop: l => lock, s=> suspend, H => hibernate",
         ),
+        Key([mod],
+            "a" ,
+            lazy.function(mapper.shift_group_display()),
+        ),
 ]
-
-groups = [Group(i, persist=True) for i in "1234567890"]
 
 
 for i in groups:
     # mod1 + letter of group = switch to group
     keys.append(
             #Key([mod], i.name, lazy.group[i.name].toscreen())
-            Key([mod], i.name, lazy.function(go_to_group(i)))
+            Key([mod], i.name, lazy.function(mapper.go_to_group(i)))
             )
 
     # mod1 + shift + letter of group = switch to & move focused window to group
@@ -212,9 +197,10 @@ for i in groups:
     keys.append( Key([mod, "control"],
         i.name,
         lazy.window.togroup(i.name),
-        lazy.function(go_to_group(i))
+        lazy.function(mapper.go_to_group(i))
         )
     )
+
 
 treetab_config = {
     "bg_color": color_black,
