@@ -29,21 +29,21 @@ def group_by_name(qtile,gname):
 
 class GroupToDisplayMapper:
     def __init__(self, groups: Sequence[Group]):
+        logger.warning('loading mapper')
         self.map = {}
         self.calculate_initial_config(groups)
-        logger.warning('loading mapper')
 
     def calculate_initial_config(self, groups: Sequence[Group]):
         screens = list_screens()
         n_screens = len(screens)
         n_groups = len(groups)
         groups_per_screen = int(n_groups / n_screens)
-        logger.warning(screens)
         for index,group in  enumerate(groups):
-            logger.warning(index)
             screen_index = int(index/groups_per_screen)
-            logger.warning(screen_index)
-            logger.warning(f"Assigning group {group.name} to screen {screens[screen_index]}")
+            logger.warning(
+                f"Assigning group {group.name}"
+                f"to screen {screens[screen_index]}"
+            )
             self.map[group.name] = screen_index
 
 
