@@ -39,6 +39,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
+Plug 'aloussase/gradle.vim' " Gradle
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
@@ -212,9 +213,9 @@ let g:zettel_options = [{"front_matter" : [["type","note"],["tags", ""], ]}]
 " ULTISNIPS
 " -------------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-space>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-space>"
 " Snippet directory
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 

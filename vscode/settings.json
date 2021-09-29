@@ -15,13 +15,13 @@
         "vs-kubernetes.draft-path": "/home/cawal/.vs-kubernetes/tools/draft/linux-amd64/draft",
         "vs-kubernetes.minikube-path": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
         "vs-kubernetes.kubectl-path": "/home/cawal/.vs-kubernetes/tools/kubectl/kubectl",
-        "vs-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+        "vs-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+        "vscode-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
     },
     "workbench.iconTheme": "material-icon-theme",
     "todo-tree.tree.showScanModeButton": false,
     "extensions.ignoreRecommendations": false,
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 2,
     "[php]": {
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
@@ -33,7 +33,7 @@
     "vim.hlsearch": true,
     "intelephense.environment.phpVersion": "7.4",
     "yaml.schemas": {
-        "file:///home/cawal/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/cawal/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.jqlList": [
         {
@@ -92,7 +92,7 @@
     "jscpd.files": "*.php,*.js",
     "java.semanticHighlighting.enabled": true,
     "java.configuration.checkProjectSettingsExclusions": false,
-    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sO2VyO2JwbW47Zmxvd2NoYXJ0O2Jhc2ljO2Fycm93czJcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltcIjAwMDAwMFwiLFwiOGU4ZThlZmZcIixcImZmYjM4MGZmXCIsXCJGRkZGMzNcIixcIkZGOUUwRFwiLFwiRkZGRkZGXCJdLFwiZm9ybWF0V2lkdGhcIjoyNDAsXCJjcmVhdGVUYXJnZXRcIjpmYWxzZSxcInBhZ2VGb3JtYXRcIjp7XCJ4XCI6MCxcInlcIjowLFwid2lkdGhcIjoxMTY5LFwiaGVpZ2h0XCI6ODI3fSxcInNlYXJjaFwiOnRydWUsXCJzaG93U3RhcnRTY3JlZW5cIjp0cnVlLFwiZ3JpZENvbG9yXCI6XCIjZDBkMGQwXCIsXCJkYXJrR3JpZENvbG9yXCI6XCIjNmU2ZTZlXCIsXCJhdXRvc2F2ZVwiOnRydWUsXCJyZXNpemVJbWFnZXNcIjpudWxsLFwib3BlbkNvdW50ZXJcIjowLFwidmVyc2lvblwiOjE4LFwidW5pdFwiOjEsXCJpc1J1bGVyT25cIjpmYWxzZSxcInVpXCI6XCJcIn0ifQ==",
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W3tcIm5hbWVcIjpcIkFyaWFsXCJ9XSxcImxpYnJhcmllc1wiOlwiZ2VuZXJhbDtiYXNpYzthcnJvd3MyO2Zsb3djaGFydDtjNDtlcjt1bWwyNTt1bWw7a3ViZXJuZXRlczticG1uMlwiLFwiY3VzdG9tTGlicmFyaWVzXCI6W1wiTC5zY3JhdGNocGFkXCJdLFwicGx1Z2luc1wiOltdLFwicmVjZW50Q29sb3JzXCI6W1wiOTlDQ0ZGXCIsXCJGRkMzNzRcIixcIm5vbmVcIixcIkZGOEY4MFwiLFwiQ0NDQ0NDXCIsXCI4MDgwODBcIixcIkEzRDk3N1wiLFwiNDI4NUY0XCIsXCIwMDAwMDBcIixcIkZGRkZGRlwiXSxcImZvcm1hdFdpZHRoXCI6MjQwLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6MTE2OSxcImhlaWdodFwiOjgyN30sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzgwODA4MFwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
     "plantuml.server": "https://www.plantuml.com/plantuml",
     "color-highlight.markRuler": false,
     "vim.useSystemClipboard": true,
@@ -112,4 +112,6 @@
     "workbench.editor.pinnedTabSizing": "compact",
     "diffEditor.ignoreTrimWhitespace": false,
     "phpGettersSetters.templatesDir": "phpGettersSetters/",
+    "redhat.telemetry.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
 }
