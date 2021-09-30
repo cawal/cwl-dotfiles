@@ -3,6 +3,8 @@ highlight clear Normal
 highlight clear NormalNC
 highlight clear VisualNC
 highlight clear TermCursorNC
+highlight clear MatchParen
+
 highlight SpecialKey     ctermfg=4 guifg=Blue
 highlight TermCursor     cterm=reverse gui=reverse
 highlight NonText        ctermfg=12 gui=bold guifg=Blue
@@ -46,7 +48,7 @@ highlight CursorLine     cterm=underline guibg=Grey90
 highlight ColorColumn    ctermbg=0 ctermfg=9
 highlight Cursor         guifg=bg guibg=fg
 highlight lCursor        guifg=bg guibg=fg
-highlight MatchParen     ctermbg=14 guibg=Cyan
+highlight MatchParen     cterm=underline
 highlight Comment        ctermfg=4 guifg=Blue
 highlight Constant       ctermfg=1 guifg=Magenta
 highlight Special        ctermfg=5 guifg=SlateBlue

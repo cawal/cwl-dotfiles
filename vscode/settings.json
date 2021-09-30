@@ -16,7 +16,9 @@
         "vs-kubernetes.minikube-path": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
         "vs-kubernetes.kubectl-path": "/home/cawal/.vs-kubernetes/tools/kubectl/kubectl",
         "vs-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
-        "vscode-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+        "vscode-kubernetes.minikube-path.linux": "/home/cawal/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+        "vscode-kubernetes.helm-path.linux": "/home/cawal/.vs-kubernetes/tools/helm/linux-amd64/helm",
+        "vscode-kubernetes.kubectl-path.linux": "/home/cawal/.vs-kubernetes/tools/kubectl/kubectl"
     },
     "workbench.iconTheme": "material-icon-theme",
     "todo-tree.tree.showScanModeButton": false,
@@ -41,32 +43,32 @@
             "id": "85471b1f-5583-4c2b-98c2-3aa77d56aebc",
             "monitor": true,
             "name": "To Do",
-            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"To Do\"",
-            "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
+            "query": "status = \"Ready 4 Dev\" and project=\"Persas - Integração\"",
+            "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb"
         },
         {
             "enabled": true,
             "id": "959acadc-2cd3-4142-9698-a084b647a25c",
             "monitor": true,
-            "name": "In progress",
-            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"In progress\"",
-            "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
+            "name": "Fazendo",
+            "query": "assignee = currentUser() AND status = \"Em andamento\"",
+            "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb"
         },
         {
             "enabled": true,
             "id": "286313bd-8954-452a-9fa0-6a11eb80da0f",
             "monitor": true,
-            "name": "Resolved",
-            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"Resolved\"",
-            "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
+            "name": "Revisão",
+            "query": "assignee = currentUser() AND status = \"Review\"",
+            "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb"
         },
         {
             "enabled": true,
             "id": "9d8256dc-d51d-4fd0-aaf4-76b728b7d7e6",
             "monitor": true,
             "name": "Done",
-            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"Done\"",
-            "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
+            "query": "assignee = currentUser() AND (status = \"Done\" OR status=Deployed OR status = \"Deployed to Production\")",
+            "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb"
         },
         {
             "enabled": true,
@@ -77,16 +79,16 @@
             "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
         },
         {
+            "id": "d31a7492-b571-4a3c-9b24-5304cd1eac85",
+            "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb",
+            "name": "Em Andamento",
+            "query": "sprint in openSprints() AND assignee = currentUser() AND status = \"Em andamento\"",
             "enabled": true,
-            "id": "b8cfdc25-8c56-4625-948d-5635146d2b9d",
-            "monitor": true,
-            "name": "My carefy Issues",
-            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
-            "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb"
+            "monitor": true
         }
     ],
     "atlascode.jira.lastCreateSiteAndProject": {
-        "siteId": "cbda03dd-5922-428d-a021-2ad7592d16cb",
+        "siteId": "d33df5ed-de1b-4f92-b148-b2d9d493abeb",
         "projectKey": "CAR"
     },
     "jscpd.files": "*.php,*.js",
@@ -110,8 +112,43 @@
     "editor.fontSize": 13,
     "vscode-neovim.neovimExecutablePaths.linux": "/home/cawal/.vscode/nvim.0.5.0.nightly.appimage",
     "workbench.editor.pinnedTabSizing": "compact",
-    "diffEditor.ignoreTrimWhitespace": false,
     "phpGettersSetters.templatesDir": "phpGettersSetters/",
     "redhat.telemetry.enabled": false,
     "security.workspace.trust.untrustedFiles": "open",
+    "foam.openDailyNote.directory": "diary/",
+    "foam.files.ignore": [
+        "diary/*"
+    ],
+    "plantuml.java": "/home/cawal/.sdkman/candidates/java/15.0.2.j9-adpt/bin/java",
+    "gitlens.defaultDateFormat": "YYYY-MM-DD",
+    "gitlens.defaultDateShortFormat": "YYYY-MM-DD",
+    "gitlens.defaultTimeFormat": "HH:mm",
+    "plantuml.diagramsRoot": "docs/img",
+    "plantuml.exportOutDir": "docs/img",
+    "plantuml.exportSubFolder": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "coverage-gutters.coverageBaseDir": ".",
+    "coverage-gutters.coverageReportFileName": "**/coverage.xml",
+    "python.analysis.extraPaths": [
+        "liberapi"
+    ],
+    "atlascode.bitbucket.enabled": false,
+    "python.languageServer": "Pylance",
+    "terminal.integrated.scrollback": 10000,
+    "window.zoomLevel": 3,
+    "ruby.codeCompletion": "rcodetools",
+    "ruby.intellisense": "rubyLocate",
+    "redhat.telemetry.enabled": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.formatting.provider": "black",
+    "python.linting.banditEnabled": true,
+    "ruby.useBundler": true,
+    "ruby.useLanguageServer": true,
+    "diffEditor.renderSideBySide": false,
+    "workbench.editor.untitled.hint": "hidden",
 }
