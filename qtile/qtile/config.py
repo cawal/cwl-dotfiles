@@ -263,7 +263,7 @@ screens = [
                     widget.GroupBox(),
                     widget.Chord(background="#F7941E"),
                     widget.Prompt(),
-                    widget.WindowCount(fmt="windows: {} -- "),
+                    # widget.WindowCount(fmt="windows: {} -- "),
                     widget.WindowName(),
                     # widget.TextBox("default config", name="default"),
                     widget.Volume(),
