@@ -10,8 +10,8 @@ highlight TermCursor     cterm=reverse gui=reverse
 highlight NonText        ctermfg=12 gui=bold guifg=Blue
 highlight Directory      ctermfg=4 guifg=Blue
 highlight ErrorMsg       ctermfg=15 ctermbg=1 guifg=White guibg=Red
-highlight IncSearch      ctermfg=0 ctermbg=15
-highlight Search         ctermfg=0 ctermbg=7
+highlight IncSearch      ctermfg=0 ctermbg=2
+highlight Search         ctermfg=0 ctermbg=2
 highlight MoreMsg        ctermfg=2 gui=bold guifg=SeaGreen
 highlight ModeMsg        cterm=bold gui=bold
 highlight LineNr         ctermfg=130 guifg=Brown
