@@ -295,6 +295,9 @@ set undofile "
 " fold text maintain first line identation
 set foldtext=substitute(getline(v:foldstart),'\\s',repeat('\ ',1),'g').'...'.trim(getline(v:foldend))
 
+" auto-reload file when changed extenaly
+au CursorHold,CursorHoldI * :checktime
+au FocusGained,BufEnter * :checktime
 
 
 filetype on " enable filetype detection
