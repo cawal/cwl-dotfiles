@@ -292,6 +292,10 @@ set nobackup " do not create a backup file on save
 set undodir=~/.vim/undodir " Directory for undo files
 set undofile "
 
+" fold text maintain first line identation
+set foldtext=substitute(getline(v:foldstart),'\\s',repeat('\ ',1),'g').'...'.trim(getline(v:foldend))
+
+
 
 filetype on " enable filetype detection
 
@@ -300,15 +304,15 @@ filetype on " enable filetype detection
 " Using ANSI colors to match terminal XResources config
 " TODO I think I don't need it anymore with my ~own~ colorscheme
 function! CWLHighlights() abort
-	highlight clear SpellBad
-	highlight SpellBad ctermfg=7 ctermbg=1
-	" hi SpellBad cterm=reverse
-
-	highlight clear Search
-	highlight Search ctermfg=0 ctermbg=7
-
-	highlight clear IncSearch
-	highlight IncSearch ctermfg=0 ctermbg=15
+"	highlight clear SpellBad
+"	highlight SpellBad ctermfg=7 ctermbg=1
+"	" hi SpellBad cterm=reverse
+"
+"	highlight clear Search
+"	highlight Search ctermfg=0 ctermbg=7
+"
+"	highlight clear IncSearch
+"	highlight IncSearch ctermfg=0 ctermbg=15
 endfunction
 
 " TODO I think I don't need it anymore with my ~own~ colorscheme
