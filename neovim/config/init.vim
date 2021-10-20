@@ -380,6 +380,9 @@ nnoremap Y y$
 " remove search highlights
 nnoremap <Esc><Esc> :noh<cr>
 
+" Search buffers with FZF
+nnoremap <leader>b :Buffers<cr>
+
 " toggle matching highlight for color codes
 nnoremap <leader>c :ColorToggle<cr>
 
