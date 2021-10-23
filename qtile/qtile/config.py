@@ -256,42 +256,47 @@ widget_defaults = dict(
 
 bar_height : int = 20
 
+separator_widget = widget.Sep(
+        foreground=color_black,
+        linewidth=8,
+        **widget_defaults
+)
+
 screens = [
         Screen(
             top=bar.Bar(
                 [
                     widget.GroupBox(),
+                    separator_widget,
                     widget.Chord(background="#F7941E"),
                     widget.Prompt(),
-                    # widget.WindowCount(fmt="windows: {} -- "),
+                    separator_widget,
                     widget.WindowName(),
-                    # widget.TextBox("default config", name="default"),
+                    separator_widget,
                     widget.Volume(),
+                    separator_widget,
                     widget.Battery(format=" {char}{percent:2.0%} "),
+                    separator_widget,
                     widget.Clock(format="%Y-%m-%d %H:%M %p"),
+                    separator_widget,
                     widget.Systray(),
                     ],
                 bar_height,
                 background=color_black,
                 #wallpaper="/home/cawal/Imagens/0-Meus Desenhos/
                 ),
-            #bottom=bar.Bar(
-            #        [
-            #            widget.TaskList(border="#888888",max_title_width=150),
-            #        ],
-            #        bar_height,
-            #        background=color_black,
-            #    )
         ),
         Screen(
             top=bar.Bar(
                 [
                     widget.GroupBox(),
+                    separator_widget,
                     widget.Prompt(),
+                    separator_widget,
                     widget.WindowName(),
-                    # widget.TextBox("default config", name="default"),
+                    separator_widget,
                     widget.Clock(format="%H:%M %p"),
-                    ],
+                ],
                 bar_height,
                 background=color_black,
                 ),
