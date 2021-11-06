@@ -163,12 +163,21 @@ let liber_wiki.syntax = 'markdown'
 let liber_wiki.ext = '.md'
 let liber_wiki.nested_syntaxes = my_nested_syntaxes
 
+" work-related wiki in work-related computer
+if hostname() == 'tachikoma'
+    let g:vimwiki_list = [
+        \ liber_wiki,
+        \ personal_wiki,
+        \ phd_wiki
+    \ ]
+else
+    let g:vimwiki_list = [
+        \ personal_wiki,
+        \ liber_wiki,
+        \ phd_wiki
+    \ ]
 
-let g:vimwiki_list = [
-	\ personal_wiki,
-    \ liber_wiki,
-	\ phd_wiki
-\ ]
+endif
 
 
 
