@@ -137,7 +137,7 @@
     "atlascode.bitbucket.enabled": false,
     "python.languageServer": "Pylance",
     "terminal.integrated.scrollback": 10000,
-    "window.zoomLevel": 3,
+    "window.zoomLevel": 2,
     "ruby.codeCompletion": "rcodetools",
     "ruby.intellisense": "rubyLocate",
     "redhat.telemetry.enabled": false,

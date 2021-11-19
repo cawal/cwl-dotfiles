@@ -232,7 +232,7 @@ columns_config = {
     "insert_position": 1,
     "border_on_single": False,
     "border_width": 1,
-    "margin": 0,
+    "margin": 2,
 }
 
 floating_config = {
