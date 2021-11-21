@@ -21,7 +21,7 @@ highlight StatusLine     cterm=bold,reverse gui=bold,reverse
 highlight StatusLineNC   cterm=reverse gui=reverse
 highlight VertSplit      cterm=reverse gui=reverse
 highlight Title          ctermfg=5 gui=bold guifg=Magenta
-highlight Visual         ctermbg=7 guibg=LightGrey
+highlight Visual         cterm=reverse
 highlight WarningMsg     ctermfg=1 guifg=Red
 highlight WildMenu       ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
 highlight Folded         ctermfg=4 ctermbg=0 guifg=DarkBlue guibg=LightGrey
