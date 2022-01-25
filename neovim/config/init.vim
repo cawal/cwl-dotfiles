@@ -179,7 +179,10 @@ else
 
 endif
 
-
+" FZF
+" ---------------------------------------------------
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 function! VimwikiLinkHandler(link)
     if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
@@ -425,6 +428,10 @@ nnoremap <leader>s :call CWLToggleSpell()<cr>
 
 " Toggle zen mode
 nnoremap <leader>z :call CWLToggleZenMode()<cr>
+
+" Tab control
+noremap <leader>tt :tabnew<cr>
+noremap <leader>tc :tabclose<cr>
 
 " New Zettel
 nnoremap <leader>Z :ZettelNew<space>
