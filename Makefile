@@ -89,7 +89,7 @@ flashfocus:
 	pip install flashfocus
 
 rofi: FORCE
-	${INSTALL} rofi
+	${INSTALL} rofi unifont
 
 conky-notifications:
 	${INSTALL} conky-all

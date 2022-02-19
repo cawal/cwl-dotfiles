@@ -65,7 +65,7 @@ fi
 
 case "$extension" in
     sql)
-        try head "$maxln""$path" && {dump | trim; exit 0} 
+        try head "$maxln""$path" && {dump | trim; exit 0}
     exit 1;;
     # Archive extensions:
     a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
