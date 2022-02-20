@@ -262,6 +262,16 @@ separator_widget = widget.Sep(
         **widget_defaults
 )
 
+pomodoro_widget = widget.Pomodoro(
+    length_pomodori=25,
+    length_short_break=5,
+    num_pomodori=3,
+    color_inactive=color_white,
+    color_active=color_highlight,
+    color_break=color_urgent,
+    **widget_defaults
+)
+
 screens = [
         Screen(
             top=bar.Bar(
@@ -274,6 +284,8 @@ screens = [
                     widget.WindowName(),
                     separator_widget,
                     widget.Volume(),
+                    separator_widget,
+                    pomodoro_widget,
                     separator_widget,
                     widget.Battery(format=" {char}{percent:2.0%} "),
                     separator_widget,
