@@ -215,7 +215,7 @@ dropdown_config = {
     "y": 0.0,
     "width": 0.6,
     "height": 0.4,
-    "opacity": 0.7,
+    "opacity": 1,
     "on_focus_lost_hide": True,
 }
 
