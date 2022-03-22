@@ -1,7 +1,16 @@
 import os
 import subprocess
 from libqtile.log_utils import logger
-from libqtile.config import Key, Screen, Group, Drag, Click, KeyChord
+from libqtile.config import (
+        Key,
+        Screen,
+        Group,
+        Drag,
+        Click,
+        KeyChord,
+        ScratchPad,
+        DropDown,
+)
 from libqtile.command import lazy
 from libqtile import layout, bar, widget,hook
 from host import hostname,list_screens,GroupToDisplayMapper
@@ -59,7 +68,6 @@ def remove_group(name):
 
 groups = [Group(i, persist=True) for i in "1234567890"]
 mapper = GroupToDisplayMapper(groups)
-
 
 keys = [
         Key(
@@ -162,7 +170,8 @@ keys = [
                 Key([],"s", lazy.spawn("dmenu-change-sound-output")),
                 Key([],"b", lazy.spawn("dmenu-display-control")),
                 Key([],"c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")),
-
+                Key([], 'l', lazy.group['scratchpad'].dropdown_toggle('qtile log')),
+                Key([], 's', lazy.group['scratchpad'].dropdown_toggle('qtile shell')),
             ],
         ),
         KeyChord([mod,'shift'],'BackSpace',
@@ -180,10 +189,10 @@ keys = [
 ]
 
 
+
 for i in groups:
     # mod1 + letter of group = switch to group
     keys.append(
-            #Key([mod], i.name, lazy.group[i.name].toscreen())
             Key([mod], i.name, lazy.function(mapper.go_to_group(i)))
             )
 
@@ -201,6 +210,31 @@ for i in groups:
         )
     )
 
+dropdown_config = {
+    "x": 0.2,
+    "y": 0.0,
+    "width": 0.6,
+    "height": 0.4,
+    "opacity": 0.7,
+    "on_focus_lost_hide": True,
+}
+
+groups.append(
+    ScratchPad("scratchpad",
+      [
+        DropDown(
+            "qtile shell",
+            "cwl-sensible-terminal -hold -e qtile shell",
+            **dropdown_config,
+        ),
+        DropDown(
+           "qtile log",
+           f"cwl-sensible-terminal -hold -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
+           **dropdown_config,
+        ),
+      ]
+    )
+)
 
 treetab_config = {
     "bg_color": color_black,
