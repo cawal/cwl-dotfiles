@@ -116,6 +116,8 @@ keys = [
             lazy.layout.shuffle_up()
             ),
 
+        Key([mod], "w", lazy.group["scratchpad"].dropdown_toggle("VimWiki")),
+
         # Switch window focus to other pane(s) of stack
         Key(
             [mod], "space",
@@ -222,6 +224,17 @@ dropdown_config = {
 groups.append(
     ScratchPad("scratchpad",
       [
+        DropDown(
+           "VimWiki",
+           f"cwl-sensible-terminal -hold -e vi +VimwikiIndex",
+           **{
+               **dropdown_config,
+               "x": 0.1,
+               "height": 1,
+               "width": 0.8,
+               "on_focus_lost_hide": False,
+           },
+        ),
         DropDown(
             "qtile shell",
             "cwl-sensible-terminal -hold -e qtile shell",
