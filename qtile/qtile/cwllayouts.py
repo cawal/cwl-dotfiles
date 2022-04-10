@@ -1,7 +1,7 @@
 from libqtile.layout import TreeTab
 
-class CWLTreeTab(TreeTab):
 
+class CWLTreeTab(TreeTab):
     def draw_panel(self, *args):
         if not self._panel:
             return
