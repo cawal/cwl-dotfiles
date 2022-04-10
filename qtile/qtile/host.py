@@ -46,11 +46,14 @@ class GroupToDisplayMapper:
             )
             self.map[group.name] = screen_index
 
-    def go_to_group(self, group: Group):
+    def go_to_group(self, qtile, group: Group):
+        index = self.map.get(group.name, 0)
+        qtile.cmd_to_screen(index)
+        group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
+
+    def go_to_group_func(self, group: Group):
         def f(qtile):
-            index = self.map.get(group.name, 0)
-            qtile.cmd_to_screen(index)
-            group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
+            self.go_to_group(qtile, group)
 
         return f
 

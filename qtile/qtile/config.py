@@ -15,6 +15,7 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from host import hostname, list_screens, GroupToDisplayMapper
 from cwllayouts import CWLTreeTab
+from qtile_vim_marks.manager import VimMarksManager
 
 # from libqtile.command_client import CommandClient
 
@@ -31,6 +32,19 @@ color_black = "#222222"
 def autostart():
     home = os.path.expanduser("~/bin/cwl-startup-processes.sh")
     subprocess.call([home])
+
+
+# @hook.subscribe.client_new
+# def test1(window):
+#    logger.warning("test1 :")
+#    logger.warning(dir(window))
+
+
+#
+#
+# @hook.subscribe.client_new
+# def test2(window):
+#    logger.warning("test2 :")
 
 
 # import psutil
@@ -74,6 +88,7 @@ def remove_group(name):
 
 groups = [Group(i, persist=True) for i in "1234567890"]
 mapper = GroupToDisplayMapper(groups)
+marksManager = VimMarksManager(mapper.go_to_group)
 
 keys = [
     Key(
@@ -201,12 +216,14 @@ keys = [
         "a",
         lazy.function(mapper.shift_group_display()),
     ),
+    KeyChord([mod], "m", marksManager.get_mark_window_keys()),
+    KeyChord([mod], "g", marksManager.get_goto_window_keys()),
 ]
 
 
 for i in groups:
     # mod1 + letter of group = switch to group
-    keys.append(Key([mod], i.name, lazy.function(mapper.go_to_group(i))))
+    keys.append(Key([mod], i.name, lazy.function(mapper.go_to_group_func(i))))
 
     # mod1 + shift + letter of group = switch to & move focused window to group
     keys.append(
@@ -222,7 +239,7 @@ for i in groups:
             [mod, "control"],
             i.name,
             lazy.window.togroup(i.name),
-            lazy.function(mapper.go_to_group(i)),
+            lazy.function(mapper.go_to_group_func(i)),
         )
     )
 
