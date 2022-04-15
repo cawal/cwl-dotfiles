@@ -6,7 +6,7 @@ from typing import Sequence, List, Callable
 
 
 class VimMarksManager:
-    def __init__(self, go_to_group_func: Callable[[Qtile, Group], None]):
+    def __init__(self, go_to_group_func: Callable[[Qtile, Group], None] = None):
         self.marks = dict()
         self.go_to_group_func = go_to_group_func
         for letter in (chr(n) for n in range(ord("a"), ord("z") + 1)):
@@ -17,7 +17,7 @@ class VimMarksManager:
         if self.go_to_group_func:
             self.go_to_group_func(qtile, group)
         else:
-            ...
+            group.cmd_toscreen()
 
     def get_mark_window_keys(self) -> Sequence[Key]:
         bindings: List[Key] = []
