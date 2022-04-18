@@ -1,1213 +1,1213 @@
-©️ COPYRIGHT SIGN
-®️ REGISTERED SIGN
-‼️ DOUBLE EXCLAMATION MARK
-⁉️ EXCLAMATION QUESTION MARK
-™️ TRADE MARK SIGN
-ℹ️ INFORMATION SOURCE
-↔️ LEFT RIGHT ARROW
-↕️ UP DOWN ARROW
-↖️ NORTH WEST ARROW
-↗️ NORTH EAST ARROW
-↘️ SOUTH EAST ARROW
-↙️ SOUTH WEST ARROW
-↩️ LEFTWARDS ARROW WITH HOOK
-↪️ RIGHTWARDS ARROW WITH HOOK
-⌚️ WATCH
-⌛️ HOURGLASS
-⌨️ KEYBOARD
-⏏️ EJECT SYMBOL
-⏩️ BLACK RIGHT-POINTING DOUBLE TRIANGLE
-⏪️ BLACK LEFT-POINTING DOUBLE TRIANGLE
-⏫️ BLACK UP-POINTING DOUBLE TRIANGLE
-⏬️ BLACK DOWN-POINTING DOUBLE TRIANGLE
-⏭️ BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
-⏮️ BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
-⏯️ BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR
-⏰️ ALARM CLOCK
-⏱️ STOPWATCH
-⏲️ TIMER CLOCK
-⏳️ HOURGLASS WITH FLOWING SAND
-⏸️ DOUBLE VERTICAL BAR
-⏹️ BLACK SQUARE FOR STOP
-⏺️ BLACK CIRCLE FOR RECORD
-Ⓜ️ CIRCLED LATIN CAPITAL LETTER M
-▪️ BLACK SMALL SQUARE
-▫️ WHITE SMALL SQUARE
-▶️ BLACK RIGHT-POINTING TRIANGLE
-◀️ BLACK LEFT-POINTING TRIANGLE
-◻️ WHITE MEDIUM SQUARE
-◼️ BLACK MEDIUM SQUARE
-◽️ WHITE MEDIUM SMALL SQUARE
-◾️ BLACK MEDIUM SMALL SQUARE
-☀️ BLACK SUN WITH RAYS
-☁️ CLOUD
-☂️ UMBRELLA
-☃️ SNOWMAN
-☄️ COMET
-☎️ BLACK TELEPHONE
-☑️ BALLOT BOX WITH CHECK
-☔️ UMBRELLA WITH RAIN DROPS
-☕️ HOT BEVERAGE
-☘️ SHAMROCK
-☝️ WHITE UP POINTING INDEX
-☠️ SKULL AND CROSSBONES
-☢️ RADIOACTIVE SIGN
-☣️ BIOHAZARD SIGN
-☦️ ORTHODOX CROSS
-☪️ STAR AND CRESCENT
-☮️ PEACE SYMBOL
-☯️ YIN YANG
-☸️ WHEEL OF DHARMA
-☹️ WHITE FROWNING FACE
-☺️ WHITE SMILING FACE
-♀️ FEMALE SIGN
-♂️ MALE SIGN
-♈️ ARIES
-♉️ TAURUS
-♊️ GEMINI
-♋️ CANCER
-♌️ LEO
-♍️ VIRGO
-♎️ LIBRA
-♏️ SCORPIUS
-♐️ SAGITTARIUS
-♑️ CAPRICORN
-♒️ AQUARIUS
-♓️ PISCES
-♟️ BLACK CHESS PAWN
-♠️ BLACK SPADE SUIT
-♣️ BLACK CLUB SUIT
-♥️ BLACK HEART SUIT
-♦️ BLACK DIAMOND SUIT
-♨️ HOT SPRINGS
-♻️ BLACK UNIVERSAL RECYCLING SYMBOL
-♾️ PERMANENT PAPER SIGN
-♿️ WHEELCHAIR SYMBOL
-⚒️ HAMMER AND PICK
-⚓️ ANCHOR
-⚔️ CROSSED SWORDS
-⚕️ STAFF OF AESCULAPIUS
-⚖️ SCALES
-⚗️ ALEMBIC
-⚙️ GEAR
-⚛️ ATOM SYMBOL
-⚜️ FLEUR-DE-LIS
-⚠️ WARNING SIGN
-⚡️ HIGH VOLTAGE SIGN
-⚪️ MEDIUM WHITE CIRCLE
-⚫️ MEDIUM BLACK CIRCLE
-⚰️ COFFIN
-⚱️ FUNERAL URN
-⚽️ SOCCER BALL
-⚾️ BASEBALL
-⛄️ SNOWMAN WITHOUT SNOW
-⛅️ SUN BEHIND CLOUD
-⛈️ THUNDER CLOUD AND RAIN
-⛎️ OPHIUCHUS
-⛏️ PICK
-⛑️ HELMET WITH WHITE CROSS
-⛓️ CHAINS
-⛔️ NO ENTRY
-⛩️ SHINTO SHRINE
-⛪️ CHURCH
-⛰️ MOUNTAIN
-⛱️ UMBRELLA ON GROUND
-⛲️ FOUNTAIN
-⛳️ FLAG IN HOLE
-⛴️ FERRY
-⛵️ SAILBOAT
-⛷️ SKIER
-⛸️ ICE SKATE
-⛹️ PERSON WITH BALL
-⛺️ TENT
-⛽️ FUEL PUMP
-✂️ BLACK SCISSORS
-✅️ WHITE HEAVY CHECK MARK
-✈️ AIRPLANE
-✉️ ENVELOPE
-✊️ RAISED FIST
-✋️ RAISED HAND
-✌️ VICTORY HAND
-✍️ WRITING HAND
-✏️ PENCIL
-✒️ BLACK NIB
-✔️ HEAVY CHECK MARK
-✖️ HEAVY MULTIPLICATION X
-✝️ LATIN CROSS
-✡️ STAR OF DAVID
-✨️ SPARKLES
-✳️ EIGHT SPOKED ASTERISK
-✴️ EIGHT POINTED BLACK STAR
-❄️ SNOWFLAKE
-❇️ SPARKLE
-❌️ CROSS MARK
-❎️ NEGATIVE SQUARED CROSS MARK
-❓️ BLACK QUESTION MARK ORNAMENT
-❔️ WHITE QUESTION MARK ORNAMENT
-❕️ WHITE EXCLAMATION MARK ORNAMENT
-❗️ HEAVY EXCLAMATION MARK SYMBOL
-❣️ HEAVY HEART EXCLAMATION MARK ORNAMENT
-❤️ HEAVY BLACK HEART
-➕️ HEAVY PLUS SIGN
-➖️ HEAVY MINUS SIGN
-➗️ HEAVY DIVISION SIGN
-➡️ BLACK RIGHTWARDS ARROW
-➰️ CURLY LOOP
-➿️ DOUBLE CURLY LOOP
-⤴️ ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS
-⤵️ ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
-⬅️ LEFTWARDS BLACK ARROW
-⬆️ UPWARDS BLACK ARROW
-⬇️ DOWNWARDS BLACK ARROW
-⬛️ BLACK LARGE SQUARE
-⬜️ WHITE LARGE SQUARE
-⭐️ WHITE MEDIUM STAR
-⭕️ HEAVY LARGE CIRCLE
-〰️ WAVY DASH
-〽️ PART ALTERNATION MARK
-㊗️ CIRCLED IDEOGRAPH CONGRATULATION
-㊙️ CIRCLED IDEOGRAPH SECRET
-🀄 MAHJONG TILE RED DRAGON
-🃏 PLAYING CARD BLACK JOKER
-🅰️ NEGATIVE SQUARED LATIN CAPITAL LETTER A
-🅱️ NEGATIVE SQUARED LATIN CAPITAL LETTER B
-🅾️ NEGATIVE SQUARED LATIN CAPITAL LETTER O
-🅿️ NEGATIVE SQUARED LATIN CAPITAL LETTER P
-🆎 NEGATIVE SQUARED AB
-🆑 SQUARED CL
-🆒 SQUARED COOL
-🆓 SQUARED FREE
-🆔 SQUARED ID
-🆕 SQUARED NEW
-🆖 SQUARED NG
-🆗 SQUARED OK
-🆘 SQUARED SOS
-🆙 SQUARED UP WITH EXCLAMATION MARK
-🆚 SQUARED VS
-🈁 SQUARED KATAKANA KOKO
-🈂️ SQUARED KATAKANA SA
-🈚 SQUARED CJK UNIFIED IDEOGRAPH-7121
-🈯 SQUARED CJK UNIFIED IDEOGRAPH-6307
-🈲 SQUARED CJK UNIFIED IDEOGRAPH-7981
-🈳 SQUARED CJK UNIFIED IDEOGRAPH-7A7A
-🈴 SQUARED CJK UNIFIED IDEOGRAPH-5408
-🈵 SQUARED CJK UNIFIED IDEOGRAPH-6E80
-🈶 SQUARED CJK UNIFIED IDEOGRAPH-6709
-🈷️ SQUARED CJK UNIFIED IDEOGRAPH-6708
-🈸 SQUARED CJK UNIFIED IDEOGRAPH-7533
-🈹 SQUARED CJK UNIFIED IDEOGRAPH-5272
-🈺 SQUARED CJK UNIFIED IDEOGRAPH-55B6
-🉐 CIRCLED IDEOGRAPH ADVANTAGE
-🉑 CIRCLED IDEOGRAPH ACCEPT
-🌀 CYCLONE
-🌁 FOGGY
-🌂 CLOSED UMBRELLA
-🌃 NIGHT WITH STARS
-🌄 SUNRISE OVER MOUNTAINS
-🌅 SUNRISE
-🌆 CITYSCAPE AT DUSK
-🌇 SUNSET OVER BUILDINGS
-🌈 RAINBOW
-🌉 BRIDGE AT NIGHT
-🌊 WATER WAVE
-🌋 VOLCANO
-🌌 MILKY WAY
-🌍 EARTH GLOBE EUROPE-AFRICA
-🌎 EARTH GLOBE AMERICAS
-🌏 EARTH GLOBE ASIA-AUSTRALIA
-🌐 GLOBE WITH MERIDIANS
-🌑 NEW MOON SYMBOL
-🌒 WAXING CRESCENT MOON SYMBOL
-🌓 FIRST QUARTER MOON SYMBOL
-🌔 WAXING GIBBOUS MOON SYMBOL
-🌕 FULL MOON SYMBOL
-🌖 WANING GIBBOUS MOON SYMBOL
-🌗 LAST QUARTER MOON SYMBOL
-🌘 WANING CRESCENT MOON SYMBOL
-🌙 CRESCENT MOON
-🌚 NEW MOON WITH FACE
-🌛 FIRST QUARTER MOON WITH FACE
-🌜 LAST QUARTER MOON WITH FACE
-🌝 FULL MOON WITH FACE
-🌞 SUN WITH FACE
-🌟 GLOWING STAR
-🌠 SHOOTING STAR
-🌡️ THERMOMETER
-🌤️ WHITE SUN WITH SMALL CLOUD
-🌥️ WHITE SUN BEHIND CLOUD
-🌦️ WHITE SUN BEHIND CLOUD WITH RAIN
-🌧️ CLOUD WITH RAIN
-🌨️ CLOUD WITH SNOW
-🌩️ CLOUD WITH LIGHTNING
-🌪️ CLOUD WITH TORNADO
-🌫️ FOG
-🌬️ WIND BLOWING FACE
-🌭 HOT DOG
-🌮 TACO
-🌯 BURRITO
-🌰 CHESTNUT
-🌱 SEEDLING
-🌲 EVERGREEN TREE
-🌳 DECIDUOUS TREE
-🌴 PALM TREE
-🌵 CACTUS
-🌶️ HOT PEPPER
-🌷 TULIP
-🌸 CHERRY BLOSSOM
-🌹 ROSE
-🌺 HIBISCUS
-🌻 SUNFLOWER
-🌼 BLOSSOM
-🌽 EAR OF MAIZE
-🌾 EAR OF RICE
-🌿 HERB
-🍀 FOUR LEAF CLOVER
-🍁 MAPLE LEAF
-🍂 FALLEN LEAF
-🍃 LEAF FLUTTERING IN WIND
-🍄 MUSHROOM
-🍅 TOMATO
-🍆 AUBERGINE
-🍇 GRAPES
-🍈 MELON
-🍉 WATERMELON
-🍊 TANGERINE
-🍋 LEMON
-🍌 BANANA
-🍍 PINEAPPLE
-🍎 RED APPLE
-🍏 GREEN APPLE
-🍐 PEAR
-🍑 PEACH
-🍒 CHERRIES
-🍓 STRAWBERRY
-🍔 HAMBURGER
-🍕 SLICE OF PIZZA
-🍖 MEAT ON BONE
-🍗 POULTRY LEG
-🍘 RICE CRACKER
-🍙 RICE BALL
-🍚 COOKED RICE
-🍛 CURRY AND RICE
-🍜 STEAMING BOWL
-🍝 SPAGHETTI
-🍞 BREAD
-🍟 FRENCH FRIES
-🍠 ROASTED SWEET POTATO
-🍡 DANGO
-🍢 ODEN
-🍣 SUSHI
-🍤 FRIED SHRIMP
-🍥 FISH CAKE WITH SWIRL DESIGN
-🍦 SOFT ICE CREAM
-🍧 SHAVED ICE
-🍨 ICE CREAM
-🍩 DOUGHNUT
-🍪 COOKIE
-🍫 CHOCOLATE BAR
-🍬 CANDY
-🍭 LOLLIPOP
-🍮 CUSTARD
-🍯 HONEY POT
-🍰 SHORTCAKE
-🍱 BENTO BOX
-🍲 POT OF FOOD
-🍳 COOKING
-🍴 FORK AND KNIFE
-🍵 TEACUP WITHOUT HANDLE
-🍶 SAKE BOTTLE AND CUP
-🍷 WINE GLASS
-🍸 COCKTAIL GLASS
-🍹 TROPICAL DRINK
-🍺 BEER MUG
-🍻 CLINKING BEER MUGS
-🍼 BABY BOTTLE
-🍽️ FORK AND KNIFE WITH PLATE
-🍾 BOTTLE WITH POPPING CORK
-🍿 POPCORN
-🎀 RIBBON
-🎁 WRAPPED PRESENT
-🎂 BIRTHDAY CAKE
-🎃 JACK-O-LANTERN
-🎄 CHRISTMAS TREE
-🎅 FATHER CHRISTMAS
-🎆 FIREWORKS
-🎇 FIREWORK SPARKLER
-🎈 BALLOON
-🎉 PARTY POPPER
-🎊 CONFETTI BALL
-🎋 TANABATA TREE
-🎌 CROSSED FLAGS
-🎍 PINE DECORATION
-🎎 JAPANESE DOLLS
-🎏 CARP STREAMER
-🎐 WIND CHIME
-🎑 MOON VIEWING CEREMONY
-🎒 SCHOOL SATCHEL
-🎓 GRADUATION CAP
-🎖️ MILITARY MEDAL
-🎗️ REMINDER RIBBON
-🎙️ STUDIO MICROPHONE
-🎚️ LEVEL SLIDER
-🎛️ CONTROL KNOBS
-🎞️ FILM FRAMES
-🎟️ ADMISSION TICKETS
-🎠 CAROUSEL HORSE
-🎡 FERRIS WHEEL
-🎢 ROLLER COASTER
-🎣 FISHING POLE AND FISH
-🎤 MICROPHONE
-🎥 MOVIE CAMERA
-🎦 CINEMA
-🎧 HEADPHONE
-🎨 ARTIST PALETTE
-🎩 TOP HAT
-🎪 CIRCUS TENT
-🎫 TICKET
-🎬 CLAPPER BOARD
-🎭 PERFORMING ARTS
-🎮 VIDEO GAME
-🎯 DIRECT HIT
-🎰 SLOT MACHINE
-🎱 BILLIARDS
-🎲 GAME DIE
-🎳 BOWLING
-🎴 FLOWER PLAYING CARDS
-🎵 MUSICAL NOTE
-🎶 MULTIPLE MUSICAL NOTES
-🎷 SAXOPHONE
-🎸 GUITAR
-🎹 MUSICAL KEYBOARD
-🎺 TRUMPET
-🎻 VIOLIN
-🎼 MUSICAL SCORE
-🎽 RUNNING SHIRT WITH SASH
-🎾 TENNIS RACQUET AND BALL
-🎿 SKI AND SKI BOOT
-🏀 BASKETBALL AND HOOP
-🏁 CHEQUERED FLAG
-🏂 SNOWBOARDER
-🏃 RUNNER
-🏄 SURFER
-🏅 SPORTS MEDAL
-🏆 TROPHY
-🏇 HORSE RACING
-🏈 AMERICAN FOOTBALL
-🏉 RUGBY FOOTBALL
-🏊 SWIMMER
-🏋️ WEIGHT LIFTER
-🏌️ GOLFER
-🏍️ RACING MOTORCYCLE
-🏎️ RACING CAR
-🏏 CRICKET BAT AND BALL
-🏐 VOLLEYBALL
-🏑 FIELD HOCKEY STICK AND BALL
-🏒 ICE HOCKEY STICK AND PUCK
-🏓 TABLE TENNIS PADDLE AND BALL
-🏔️ SNOW CAPPED MOUNTAIN
-🏕️ CAMPING
-🏖️ BEACH WITH UMBRELLA
-🏗️ BUILDING CONSTRUCTION
-🏘️ HOUSE BUILDINGS
-🏙️ CITYSCAPE
-🏚️ DERELICT HOUSE BUILDING
-🏛️ CLASSICAL BUILDING
-🏜️ DESERT
-🏝️ DESERT ISLAND
-🏞️ NATIONAL PARK
-🏟️ STADIUM
-🏠 HOUSE BUILDING
-🏡 HOUSE WITH GARDEN
-🏢 OFFICE BUILDING
-🏣 JAPANESE POST OFFICE
-🏤 EUROPEAN POST OFFICE
-🏥 HOSPITAL
-🏦 BANK
-🏧 AUTOMATED TELLER MACHINE
-🏨 HOTEL
-🏩 LOVE HOTEL
-🏪 CONVENIENCE STORE
-🏫 SCHOOL
-🏬 DEPARTMENT STORE
-🏭 FACTORY
-🏮 IZAKAYA LANTERN
-🏯 JAPANESE CASTLE
-🏰 EUROPEAN CASTLE
-🏳️ WAVING WHITE FLAG
-🏴 WAVING BLACK FLAG
-🏵️ ROSETTE
-🏷️ LABEL
-🏸 BADMINTON RACQUET AND SHUTTLECOCK
-🏹 BOW AND ARROW
-🏺 AMPHORA
-🏻 EMOJI MODIFIER FITZPATRICK TYPE-1-2
-🏼 EMOJI MODIFIER FITZPATRICK TYPE-3
-🏽 EMOJI MODIFIER FITZPATRICK TYPE-4
-🏾 EMOJI MODIFIER FITZPATRICK TYPE-5
-🏿 EMOJI MODIFIER FITZPATRICK TYPE-6
-🐀 RAT
-🐁 MOUSE
-🐂 OX
-🐃 WATER BUFFALO
-🐄 COW
-🐅 TIGER
-🐆 LEOPARD
-🐇 RABBIT
-🐈 CAT
-🐉 DRAGON
-🐊 CROCODILE
-🐋 WHALE
-🐌 SNAIL
-🐍 SNAKE
-🐎 HORSE
-🐏 RAM
-🐐 GOAT
-🐑 SHEEP
-🐒 MONKEY
-🐓 ROOSTER
-🐔 CHICKEN
-🐕 DOG
-🐖 PIG
-🐗 BOAR
-🐘 ELEPHANT
-🐙 OCTOPUS
-🐚 SPIRAL SHELL
-🐛 BUG
-🐜 ANT
-🐝 HONEYBEE
-🐞 LADY BEETLE
-🐟 FISH
-🐠 TROPICAL FISH
-🐡 BLOWFISH
-🐢 TURTLE
-🐣 HATCHING CHICK
-🐤 BABY CHICK
-🐥 FRONT-FACING BABY CHICK
-🐦 BIRD
-🐧 PENGUIN
-🐨 KOALA
-🐩 POODLE
-🐪 DROMEDARY CAMEL
-🐫 BACTRIAN CAMEL
-🐬 DOLPHIN
-🐭 MOUSE FACE
-🐮 COW FACE
-🐯 TIGER FACE
-🐰 RABBIT FACE
-🐱 CAT FACE
-🐲 DRAGON FACE
-🐳 SPOUTING WHALE
-🐴 HORSE FACE
-🐵 MONKEY FACE
-🐶 DOG FACE
-🐷 PIG FACE
-🐸 FROG FACE
-🐹 HAMSTER FACE
-🐺 WOLF FACE
-🐻 BEAR FACE
-🐼 PANDA FACE
-🐽 PIG NOSE
-🐾 PAW PRINTS
-🐿️ CHIPMUNK
-👀 EYES
-👁️ EYE
-👂 EAR
-👃 NOSE
-👄 MOUTH
-👅 TONGUE
-👆 WHITE UP POINTING BACKHAND INDEX
-👇 WHITE DOWN POINTING BACKHAND INDEX
-👈 WHITE LEFT POINTING BACKHAND INDEX
-👉 WHITE RIGHT POINTING BACKHAND INDEX
-👊 FISTED HAND SIGN
-👋 WAVING HAND SIGN
-👌 OK HAND SIGN
-👍 THUMBS UP SIGN
-👎 THUMBS DOWN SIGN
-👏 CLAPPING HANDS SIGN
-👐 OPEN HANDS SIGN
-👑 CROWN
-👒 WOMANS HAT
-👓 EYEGLASSES
-👔 NECKTIE
-👕 T-SHIRT
-👖 JEANS
-👗 DRESS
-👘 KIMONO
-👙 BIKINI
-👚 WOMANS CLOTHES
-👛 PURSE
-👜 HANDBAG
-👝 POUCH
-👞 MANS SHOE
-👟 ATHLETIC SHOE
-👠 HIGH-HEELED SHOE
-👡 WOMANS SANDAL
-👢 WOMANS BOOTS
-👣 FOOTPRINTS
-👤 BUST IN SILHOUETTE
-👥 BUSTS IN SILHOUETTE
-👦 BOY
-👧 GIRL
-👨 MAN
-👩 WOMAN
-👪 FAMILY
-👫 MAN AND WOMAN HOLDING HANDS
-👬 TWO MEN HOLDING HANDS
-👭 TWO WOMEN HOLDING HANDS
-👮 POLICE OFFICER
-👯 WOMAN WITH BUNNY EARS
-👰 BRIDE WITH VEIL
-👱 PERSON WITH BLOND HAIR
-👲 MAN WITH GUA PI MAO
-👳 MAN WITH TURBAN
-👴 OLDER MAN
-👵 OLDER WOMAN
-👶 BABY
-👷 CONSTRUCTION WORKER
-👸 PRINCESS
-👹 JAPANESE OGRE
-👺 JAPANESE GOBLIN
-👻 GHOST
-👼 BABY ANGEL
-👽 EXTRATERRESTRIAL ALIEN
-👾 ALIEN MONSTER
-👿 IMP
-💀 SKULL
-💁 INFORMATION DESK PERSON
-💂 GUARDSMAN
-💃 DANCER
-💄 LIPSTICK
-💅 NAIL POLISH
-💆 FACE MASSAGE
-💇 HAIRCUT
-💈 BARBER POLE
-💉 SYRINGE
-💊 PILL
-💋 KISS MARK
-💌 LOVE LETTER
-💍 RING
-💎 GEM STONE
-💏 KISS
-💐 BOUQUET
-💑 COUPLE WITH HEART
-💒 WEDDING
-💓 BEATING HEART
-💔 BROKEN HEART
-💕 TWO HEARTS
-💖 SPARKLING HEART
-💗 GROWING HEART
-💘 HEART WITH ARROW
-💙 BLUE HEART
-💚 GREEN HEART
-💛 YELLOW HEART
-💜 PURPLE HEART
-💝 HEART WITH RIBBON
-💞 REVOLVING HEARTS
-💟 HEART DECORATION
-💠 DIAMOND SHAPE WITH A DOT INSIDE
-💡 ELECTRIC LIGHT BULB
-💢 ANGER SYMBOL
-💣 BOMB
-💤 SLEEPING SYMBOL
-💥 COLLISION SYMBOL
-💦 SPLASHING SWEAT SYMBOL
-💧 DROPLET
-💨 DASH SYMBOL
-💩 PILE OF POO
-💪 FLEXED BICEPS
-💫 DIZZY SYMBOL
-💬 SPEECH BALLOON
-💭 THOUGHT BALLOON
-💮 WHITE FLOWER
-💯 HUNDRED POINTS SYMBOL
-💰 MONEY BAG
-💱 CURRENCY EXCHANGE
-💲 HEAVY DOLLAR SIGN
-💳 CREDIT CARD
-💴 BANKNOTE WITH YEN SIGN
-💵 BANKNOTE WITH DOLLAR SIGN
-💶 BANKNOTE WITH EURO SIGN
-💷 BANKNOTE WITH POUND SIGN
-💸 MONEY WITH WINGS
-💹 CHART WITH UPWARDS TREND AND YEN SIGN
-💺 SEAT
-💻 PERSONAL COMPUTER
-💼 BRIEFCASE
-💽 MINIDISC
-💾 FLOPPY DISK
-💿 OPTICAL DISC
-📀 DVD
-📁 FILE FOLDER
-📂 OPEN FILE FOLDER
-📃 PAGE WITH CURL
-📄 PAGE FACING UP
-📅 CALENDAR
-📆 TEAR-OFF CALENDAR
-📇 CARD INDEX
-📈 CHART WITH UPWARDS TREND
-📉 CHART WITH DOWNWARDS TREND
-📊 BAR CHART
-📋 CLIPBOARD
-📌 PUSHPIN
-📍 ROUND PUSHPIN
-📎 PAPERCLIP
-📏 STRAIGHT RULER
-📐 TRIANGULAR RULER
-📑 BOOKMARK TABS
-📒 LEDGER
-📓 NOTEBOOK
-📔 NOTEBOOK WITH DECORATIVE COVER
-📕 CLOSED BOOK
-📖 OPEN BOOK
-📗 GREEN BOOK
-📘 BLUE BOOK
-📙 ORANGE BOOK
-📚 BOOKS
-📛 NAME BADGE
-📜 SCROLL
-📝 MEMO
-📞 TELEPHONE RECEIVER
-📟 PAGER
-📠 FAX MACHINE
-📡 SATELLITE ANTENNA
-📢 PUBLIC ADDRESS LOUDSPEAKER
-📣 CHEERING MEGAPHONE
-📤 OUTBOX TRAY
-📥 INBOX TRAY
-📦 PACKAGE
-📧 E-MAIL SYMBOL
-📨 INCOMING ENVELOPE
-📩 ENVELOPE WITH DOWNWARDS ARROW ABOVE
-📪 CLOSED MAILBOX WITH LOWERED FLAG
-📫 CLOSED MAILBOX WITH RAISED FLAG
-📬 OPEN MAILBOX WITH RAISED FLAG
-📭 OPEN MAILBOX WITH LOWERED FLAG
-📮 POSTBOX
-📯 POSTAL HORN
-📰 NEWSPAPER
-📱 MOBILE PHONE
-📲 MOBILE PHONE WITH RIGHTWARDS ARROW AT LEFT
-📳 VIBRATION MODE
-📴 MOBILE PHONE OFF
-📵 NO MOBILE PHONES
-📶 ANTENNA WITH BARS
-📷 CAMERA
-📸 CAMERA WITH FLASH
-📹 VIDEO CAMERA
-📺 TELEVISION
-📻 RADIO
-📼 VIDEOCASSETTE
-📽️ FILM PROJECTOR
-📿 PRAYER BEADS
-🔀 TWISTED RIGHTWARDS ARROWS
-🔁 CLOCKWISE RIGHTWARDS AND LEFTWARDS OPEN CIRCLE ARROWS
-🔂 CLOCKWISE RIGHTWARDS AND LEFTWARDS OPEN CIRCLE ARROWS WITH CIRCLED ONE OVERLAY
-🔃 CLOCKWISE DOWNWARDS AND UPWARDS OPEN CIRCLE ARROWS
-🔄 ANTICLOCKWISE DOWNWARDS AND UPWARDS OPEN CIRCLE ARROWS
-🔅 LOW BRIGHTNESS SYMBOL
-🔆 HIGH BRIGHTNESS SYMBOL
-🔇 SPEAKER WITH CANCELLATION STROKE
-🔈 SPEAKER
-🔉 SPEAKER WITH ONE SOUND WAVE
-🔊 SPEAKER WITH THREE SOUND WAVES
-🔋 BATTERY
-🔌 ELECTRIC PLUG
-🔍 LEFT-POINTING MAGNIFYING GLASS
-🔎 RIGHT-POINTING MAGNIFYING GLASS
-🔏 LOCK WITH INK PEN
-🔐 CLOSED LOCK WITH KEY
-🔑 KEY
-🔒 LOCK
-🔓 OPEN LOCK
-🔔 BELL
-🔕 BELL WITH CANCELLATION STROKE
-🔖 BOOKMARK
-🔗 LINK SYMBOL
-🔘 RADIO BUTTON
-🔙 BACK WITH LEFTWARDS ARROW ABOVE
-🔚 END WITH LEFTWARDS ARROW ABOVE
-🔛 ON WITH EXCLAMATION MARK WITH LEFT RIGHT ARROW ABOVE
-🔜 SOON WITH RIGHTWARDS ARROW ABOVE
-🔝 TOP WITH UPWARDS ARROW ABOVE
-🔞 NO ONE UNDER EIGHTEEN SYMBOL
-🔟 KEYCAP TEN
-🔠 INPUT SYMBOL FOR LATIN CAPITAL LETTERS
-🔡 INPUT SYMBOL FOR LATIN SMALL LETTERS
-🔢 INPUT SYMBOL FOR NUMBERS
-🔣 INPUT SYMBOL FOR SYMBOLS
-🔤 INPUT SYMBOL FOR LATIN LETTERS
-🔥 FIRE
-🔦 ELECTRIC TORCH
-🔧 WRENCH
-🔨 HAMMER
-🔩 NUT AND BOLT
-🔪 HOCHO
-🔫 PISTOL
-🔬 MICROSCOPE
-🔭 TELESCOPE
-🔮 CRYSTAL BALL
-🔯 SIX POINTED STAR WITH MIDDLE DOT
-🔰 JAPANESE SYMBOL FOR BEGINNER
-🔱 TRIDENT EMBLEM
-🔲 BLACK SQUARE BUTTON
-🔳 WHITE SQUARE BUTTON
-🔴 LARGE RED CIRCLE
-🔵 LARGE BLUE CIRCLE
-🔶 LARGE ORANGE DIAMOND
-🔷 LARGE BLUE DIAMOND
-🔸 SMALL ORANGE DIAMOND
-🔹 SMALL BLUE DIAMOND
-🔺 UP-POINTING RED TRIANGLE
-🔻 DOWN-POINTING RED TRIANGLE
-🔼 UP-POINTING SMALL RED TRIANGLE
-🔽 DOWN-POINTING SMALL RED TRIANGLE
-🕉️ OM SYMBOL
-🕊️ DOVE OF PEACE
-🕋 KAABA
-🕌 MOSQUE
-🕍 SYNAGOGUE
-🕎 MENORAH WITH NINE BRANCHES
-🕐 CLOCK FACE ONE OCLOCK
-🕑 CLOCK FACE TWO OCLOCK
-🕒 CLOCK FACE THREE OCLOCK
-🕓 CLOCK FACE FOUR OCLOCK
-🕔 CLOCK FACE FIVE OCLOCK
-🕕 CLOCK FACE SIX OCLOCK
-🕖 CLOCK FACE SEVEN OCLOCK
-🕗 CLOCK FACE EIGHT OCLOCK
-🕘 CLOCK FACE NINE OCLOCK
-🕙 CLOCK FACE TEN OCLOCK
-🕚 CLOCK FACE ELEVEN OCLOCK
-🕛 CLOCK FACE TWELVE OCLOCK
-🕜 CLOCK FACE ONE-THIRTY
-🕝 CLOCK FACE TWO-THIRTY
-🕞 CLOCK FACE THREE-THIRTY
-🕟 CLOCK FACE FOUR-THIRTY
-🕠 CLOCK FACE FIVE-THIRTY
-🕡 CLOCK FACE SIX-THIRTY
-🕢 CLOCK FACE SEVEN-THIRTY
-🕣 CLOCK FACE EIGHT-THIRTY
-🕤 CLOCK FACE NINE-THIRTY
-🕥 CLOCK FACE TEN-THIRTY
-🕦 CLOCK FACE ELEVEN-THIRTY
-🕧 CLOCK FACE TWELVE-THIRTY
-🕯️ CANDLE
-🕰️ MANTELPIECE CLOCK
-🕳️ HOLE
-🕴️ MAN IN BUSINESS SUIT LEVITATING
-🕵️ SLEUTH OR SPY
-🕶️ DARK SUNGLASSES
-🕷️ SPIDER
-🕸️ SPIDER WEB
-🕹️ JOYSTICK
-🕺 MAN DANCING
-🖇️ LINKED PAPERCLIPS
-🖊️ LOWER LEFT BALLPOINT PEN
-🖋️ LOWER LEFT FOUNTAIN PEN
-🖌️ LOWER LEFT PAINTBRUSH
-🖍️ LOWER LEFT CRAYON
-🖐️ RAISED HAND WITH FINGERS SPLAYED
-🖕 REVERSED HAND WITH MIDDLE FINGER EXTENDED
-🖖 RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
-🖤 BLACK HEART
-🖥️ DESKTOP COMPUTER
-🖨️ PRINTER
-🖱️ THREE BUTTON MOUSE
-🖲️ TRACKBALL
-🖼️ FRAME WITH PICTURE
-🗂️ CARD INDEX DIVIDERS
-🗃️ CARD FILE BOX
-🗄️ FILE CABINET
-🗑️ WASTEBASKET
-🗒️ SPIRAL NOTE PAD
-🗓️ SPIRAL CALENDAR PAD
-🗜️ COMPRESSION
-🗝️ OLD KEY
-🗞️ ROLLED-UP NEWSPAPER
-🗡️ DAGGER KNIFE
-🗣️ SPEAKING HEAD IN SILHOUETTE
-🗨️ LEFT SPEECH BUBBLE
-🗯️ RIGHT ANGER BUBBLE
-🗳️ BALLOT BOX WITH BALLOT
-🗺️ WORLD MAP
-🗻 MOUNT FUJI
-🗼 TOKYO TOWER
-🗽 STATUE OF LIBERTY
-🗾 SILHOUETTE OF JAPAN
-🗿 MOYAI
-😀 GRINNING FACE
-😁 GRINNING FACE WITH SMILING EYES
-😂 FACE WITH TEARS OF JOY
-😃 SMILING FACE WITH OPEN MOUTH
-😄 SMILING FACE WITH OPEN MOUTH AND SMILING EYES
-😅 SMILING FACE WITH OPEN MOUTH AND COLD SWEAT
-😆 SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
-😇 SMILING FACE WITH HALO
-😈 SMILING FACE WITH HORNS
-😉 WINKING FACE
-😊 SMILING FACE WITH SMILING EYES
-😋 FACE SAVOURING DELICIOUS FOOD
-😌 RELIEVED FACE
-😍 SMILING FACE WITH HEART-SHAPED EYES
-😎 SMILING FACE WITH SUNGLASSES
-😏 SMIRKING FACE
-😐 NEUTRAL FACE
-😑 EXPRESSIONLESS FACE
-😒 UNAMUSED FACE
-😓 FACE WITH COLD SWEAT
-😔 PENSIVE FACE
-😕 CONFUSED FACE
-😖 CONFOUNDED FACE
-😗 KISSING FACE
-😘 FACE THROWING A KISS
-😙 KISSING FACE WITH SMILING EYES
-😚 KISSING FACE WITH CLOSED EYES
-😛 FACE WITH STUCK-OUT TONGUE
-😜 FACE WITH STUCK-OUT TONGUE AND WINKING EYE
-😝 FACE WITH STUCK-OUT TONGUE AND TIGHTLY-CLOSED EYES
-😞 DISAPPOINTED FACE
-😟 WORRIED FACE
+©️ copyright sign
+®️ registered sign
+‼️ double exclamation mark
+⁉️ exclamation question mark
+™️ trade mark sign
+ℹ️ information source
+↔️ left right arrow
+↕️ up down arrow
+↖️ north west arrow
+↗️ north east arrow
+↘️ south east arrow
+↙️ south west arrow
+↩️ leftwards arrow with hook
+↪️ rightwards arrow with hook
+⌚️ watch
+⌛️ hourglass
+⌨️ keyboard
+⏏️ eject symbol
+⏩️ black right-pointing double triangle
+⏪️ black left-pointing double triangle
+⏫️ black up-pointing double triangle
+⏬️ black down-pointing double triangle
+⏭️ black right-pointing double triangle with vertical bar
+⏮️ black left-pointing double triangle with vertical bar
+⏯️ black right-pointing triangle with double vertical bar
+⏰️ alarm clock
+⏱️ stopwatch
+⏲️ timer clock
+⏳️ hourglass with flowing sand
+⏸️ double vertical bar
+⏹️ black square for stop
+⏺️ black circle for record
+Ⓜ️ circled latin capital letter m
+▪️ black small square
+▫️ white small square
+▶️ black right-pointing triangle
+◀️ black left-pointing triangle
+◻️ white medium square
+◼️ black medium square
+◽️ white medium small square
+◾️ black medium small square
+☀️ black sun with rays
+☁️ cloud
+☂️ umbrella
+☃️ snowman
+☄️ comet
+☎️ black telephone
+☑️ ballot box with check
+☔️ umbrella with rain drops
+☕️ hot beverage
+☘️ shamrock
+☝️ white up pointing index
+☠️ skull and crossbones
+☢️ radioactive sign
+☣️ biohazard sign
+☦️ orthodox cross
+☪️ star and crescent
+☮️ peace symbol
+☯️ yin yang
+☸️ wheel of dharma
+☹️ white frowning face
+☺️ white smiling face
+♀️ female sign
+♂️ male sign
+♈️ aries
+♉️ taurus
+♊️ gemini
+♋️ cancer
+♌️ leo
+♍️ virgo
+♎️ libra
+♏️ scorpius
+♐️ sagittarius
+♑️ capricorn
+♒️ aquarius
+♓️ pisces
+♟️ black chess pawn
+♠️ black spade suit
+♣️ black club suit
+♥️ black heart suit
+♦️ black diamond suit
+♨️ hot springs
+♻️ black universal recycling symbol
+♾️ permanent paper sign
+♿️ wheelchair symbol
+⚒️ hammer and pick
+⚓️ anchor
+⚔️ crossed swords
+⚕️ staff of aesculapius
+⚖️ scales
+⚗️ alembic
+⚙️ gear
+⚛️ atom symbol
+⚜️ fleur-de-lis
+⚠️ warning sign
+⚡️ high voltage sign
+⚪️ medium white circle
+⚫️ medium black circle
+⚰️ coffin
+⚱️ funeral urn
+⚽️ soccer ball
+⚾️ baseball
+⛄️ snowman without snow
+⛅️ sun behind cloud
+⛈️ thunder cloud and rain
+⛎️ ophiuchus
+⛏️ pick
+⛑️ helmet with white cross
+⛓️ chains
+⛔️ no entry
+⛩️ shinto shrine
+⛪️ church
+⛰️ mountain
+⛱️ umbrella on ground
+⛲️ fountain
+⛳️ flag in hole
+⛴️ ferry
+⛵️ sailboat
+⛷️ skier
+⛸️ ice skate
+⛹️ person with ball
+⛺️ tent
+⛽️ fuel pump
+✂️ black scissors
+✅️ white heavy check mark
+✈️ airplane
+✉️ envelope
+✊️ raised fist
+✋️ raised hand
+✌️ victory hand
+✍️ writing hand
+✏️ pencil
+✒️ black nib
+✔️ heavy check mark
+✖️ heavy multiplication x
+✝️ latin cross
+✡️ star of david
+✨️ sparkles
+✳️ eight spoked asterisk
+✴️ eight pointed black star
+❄️ snowflake
+❇️ sparkle
+❌️ cross mark
+❎️ negative squared cross mark
+❓️ black question mark ornament
+❔️ white question mark ornament
+❕️ white exclamation mark ornament
+❗️ heavy exclamation mark symbol
+❣️ heavy heart exclamation mark ornament
+❤️ heavy black heart
+➕️ heavy plus sign
+➖️ heavy minus sign
+➗️ heavy division sign
+➡️ black rightwards arrow
+➰️ curly loop
+➿️ double curly loop
+⤴️ arrow pointing rightwards then curving upwards
+⤵️ arrow pointing rightwards then curving downwards
+⬅️ leftwards black arrow
+⬆️ upwards black arrow
+⬇️ downwards black arrow
+⬛️ black large square
+⬜️ white large square
+⭐️ white medium star
+⭕️ heavy large circle
+〰️ wavy dash
+〽️ part alternation mark
+㊗️ circled ideograph congratulation
+㊙️ circled ideograph secret
+🀄 mahjong tile red dragon
+🃏 playing card black joker
+🅰️ negative squared latin capital letter a
+🅱️ negative squared latin capital letter b
+🅾️ negative squared latin capital letter o
+🅿️ negative squared latin capital letter p
+🆎 negative squared ab
+🆑 squared cl
+🆒 squared cool
+🆓 squared free
+🆔 squared id
+🆕 squared new
+🆖 squared ng
+🆗 squared ok
+🆘 squared sos
+🆙 squared up with exclamation mark
+🆚 squared vs
+🈁 squared katakana koko
+🈂️ squared katakana sa
+🈚 squared cjk unified ideograph-7121
+🈯 squared cjk unified ideograph-6307
+🈲 squared cjk unified ideograph-7981
+🈳 squared cjk unified ideograph-7a7a
+🈴 squared cjk unified ideograph-5408
+🈵 squared cjk unified ideograph-6e80
+🈶 squared cjk unified ideograph-6709
+🈷️ squared cjk unified ideograph-6708
+🈸 squared cjk unified ideograph-7533
+🈹 squared cjk unified ideograph-5272
+🈺 squared cjk unified ideograph-55b6
+🉐 circled ideograph advantage
+🉑 circled ideograph accept
+🌀 cyclone
+🌁 foggy
+🌂 closed umbrella
+🌃 night with stars
+🌄 sunrise over mountains
+🌅 sunrise
+🌆 cityscape at dusk
+🌇 sunset over buildings
+🌈 rainbow
+🌉 bridge at night
+🌊 water wave
+🌋 volcano
+🌌 milky way
+🌍 earth globe europe-africa
+🌎 earth globe americas
+🌏 earth globe asia-australia
+🌐 globe with meridians
+🌑 new moon symbol
+🌒 waxing crescent moon symbol
+🌓 first quarter moon symbol
+🌔 waxing gibbous moon symbol
+🌕 full moon symbol
+🌖 waning gibbous moon symbol
+🌗 last quarter moon symbol
+🌘 waning crescent moon symbol
+🌙 crescent moon
+🌚 new moon with face
+🌛 first quarter moon with face
+🌜 last quarter moon with face
+🌝 full moon with face
+🌞 sun with face
+🌟 glowing star
+🌠 shooting star
+🌡️ thermometer
+🌤️ white sun with small cloud
+🌥️ white sun behind cloud
+🌦️ white sun behind cloud with rain
+🌧️ cloud with rain
+🌨️ cloud with snow
+🌩️ cloud with lightning
+🌪️ cloud with tornado
+🌫️ fog
+🌬️ wind blowing face
+🌭 hot dog
+🌮 taco
+🌯 burrito
+🌰 chestnut
+🌱 seedling
+🌲 evergreen tree
+🌳 deciduous tree
+🌴 palm tree
+🌵 cactus
+🌶️ hot pepper
+🌷 tulip
+🌸 cherry blossom
+🌹 rose
+🌺 hibiscus
+🌻 sunflower
+🌼 blossom
+🌽 ear of maize
+🌾 ear of rice
+🌿 herb
+🍀 four leaf clover
+🍁 maple leaf
+🍂 fallen leaf
+🍃 leaf fluttering in wind
+🍄 mushroom
+🍅 tomato
+🍆 aubergine
+🍇 grapes
+🍈 melon
+🍉 watermelon
+🍊 tangerine
+🍋 lemon
+🍌 banana
+🍍 pineapple
+🍎 red apple
+🍏 green apple
+🍐 pear
+🍑 peach
+🍒 cherries
+🍓 strawberry
+🍔 hamburger
+🍕 slice of pizza
+🍖 meat on bone
+🍗 poultry leg
+🍘 rice cracker
+🍙 rice ball
+🍚 cooked rice
+🍛 curry and rice
+🍜 steaming bowl
+🍝 spaghetti
+🍞 bread
+🍟 french fries
+🍠 roasted sweet potato
+🍡 dango
+🍢 oden
+🍣 sushi
+🍤 fried shrimp
+🍥 fish cake with swirl design
+🍦 soft ice cream
+🍧 shaved ice
+🍨 ice cream
+🍩 doughnut
+🍪 cookie
+🍫 chocolate bar
+🍬 candy
+🍭 lollipop
+🍮 custard
+🍯 honey pot
+🍰 shortcake
+🍱 bento box
+🍲 pot of food
+🍳 cooking
+🍴 fork and knife
+🍵 teacup without handle
+🍶 sake bottle and cup
+🍷 wine glass
+🍸 cocktail glass
+🍹 tropical drink
+🍺 beer mug
+🍻 clinking beer mugs
+🍼 baby bottle
+🍽️ fork and knife with plate
+🍾 bottle with popping cork
+🍿 popcorn
+🎀 ribbon
+🎁 wrapped present
+🎂 birthday cake
+🎃 jack-o-lantern
+🎄 christmas tree
+🎅 father christmas
+🎆 fireworks
+🎇 firework sparkler
+🎈 balloon
+🎉 party popper
+🎊 confetti ball
+🎋 tanabata tree
+🎌 crossed flags
+🎍 pine decoration
+🎎 japanese dolls
+🎏 carp streamer
+🎐 wind chime
+🎑 moon viewing ceremony
+🎒 school satchel
+🎓 graduation cap
+🎖️ military medal
+🎗️ reminder ribbon
+🎙️ studio microphone
+🎚️ level slider
+🎛️ control knobs
+🎞️ film frames
+🎟️ admission tickets
+🎠 carousel horse
+🎡 ferris wheel
+🎢 roller coaster
+🎣 fishing pole and fish
+🎤 microphone
+🎥 movie camera
+🎦 cinema
+🎧 headphone
+🎨 artist palette
+🎩 top hat
+🎪 circus tent
+🎫 ticket
+🎬 clapper board
+🎭 performing arts
+🎮 video game
+🎯 direct hit
+🎰 slot machine
+🎱 billiards
+🎲 game die
+🎳 bowling
+🎴 flower playing cards
+🎵 musical note
+🎶 multiple musical notes
+🎷 saxophone
+🎸 guitar
+🎹 musical keyboard
+🎺 trumpet
+🎻 violin
+🎼 musical score
+🎽 running shirt with sash
+🎾 tennis racquet and ball
+🎿 ski and ski boot
+🏀 basketball and hoop
+🏁 chequered flag
+🏂 snowboarder
+🏃 runner
+🏄 surfer
+🏅 sports medal
+🏆 trophy
+🏇 horse racing
+🏈 american football
+🏉 rugby football
+🏊 swimmer
+🏋️ weight lifter
+🏌️ golfer
+🏍️ racing motorcycle
+🏎️ racing car
+🏏 cricket bat and ball
+🏐 volleyball
+🏑 field hockey stick and ball
+🏒 ice hockey stick and puck
+🏓 table tennis paddle and ball
+🏔️ snow capped mountain
+🏕️ camping
+🏖️ beach with umbrella
+🏗️ building construction
+🏘️ house buildings
+🏙️ cityscape
+🏚️ derelict house building
+🏛️ classical building
+🏜️ desert
+🏝️ desert island
+🏞️ national park
+🏟️ stadium
+🏠 house building
+🏡 house with garden
+🏢 office building
+🏣 japanese post office
+🏤 european post office
+🏥 hospital
+🏦 bank
+🏧 automated teller machine
+🏨 hotel
+🏩 love hotel
+🏪 convenience store
+🏫 school
+🏬 department store
+🏭 factory
+🏮 izakaya lantern
+🏯 japanese castle
+🏰 european castle
+🏳️ waving white flag
+🏴 waving black flag
+🏵️ rosette
+🏷️ label
+🏸 badminton racquet and shuttlecock
+🏹 bow and arrow
+🏺 amphora
+🏻 emoji modifier fitzpatrick type-1-2
+🏼 emoji modifier fitzpatrick type-3
+🏽 emoji modifier fitzpatrick type-4
+🏾 emoji modifier fitzpatrick type-5
+🏿 emoji modifier fitzpatrick type-6
+🐀 rat
+🐁 mouse
+🐂 ox
+🐃 water buffalo
+🐄 cow
+🐅 tiger
+🐆 leopard
+🐇 rabbit
+🐈 cat
+🐉 dragon
+🐊 crocodile
+🐋 whale
+🐌 snail
+🐍 snake
+🐎 horse
+🐏 ram
+🐐 goat
+🐑 sheep
+🐒 monkey
+🐓 rooster
+🐔 chicken
+🐕 dog
+🐖 pig
+🐗 boar
+🐘 elephant
+🐙 octopus
+🐚 spiral shell
+🐛 bug
+🐜 ant
+🐝 honeybee
+🐞 lady beetle
+🐟 fish
+🐠 tropical fish
+🐡 blowfish
+🐢 turtle
+🐣 hatching chick
+🐤 baby chick
+🐥 front-facing baby chick
+🐦 bird
+🐧 penguin
+🐨 koala
+🐩 poodle
+🐪 dromedary camel
+🐫 bactrian camel
+🐬 dolphin
+🐭 mouse face
+🐮 cow face
+🐯 tiger face
+🐰 rabbit face
+🐱 cat face
+🐲 dragon face
+🐳 spouting whale
+🐴 horse face
+🐵 monkey face
+🐶 dog face
+🐷 pig face
+🐸 frog face
+🐹 hamster face
+🐺 wolf face
+🐻 bear face
+🐼 panda face
+🐽 pig nose
+🐾 paw prints
+🐿️ chipmunk
+👀 eyes
+👁️ eye
+👂 ear
+👃 nose
+👄 mouth
+👅 tongue
+👆 white up pointing backhand index
+👇 white down pointing backhand index
+👈 white left pointing backhand index
+👉 white right pointing backhand index
+👊 fisted hand sign
+👋 waving hand sign
+👌 ok hand sign
+👍 thumbs up sign
+👎 thumbs down sign
+👏 clapping hands sign
+👐 open hands sign
+👑 crown
+👒 womans hat
+👓 eyeglasses
+👔 necktie
+👕 t-shirt
+👖 jeans
+👗 dress
+👘 kimono
+👙 bikini
+👚 womans clothes
+👛 purse
+👜 handbag
+👝 pouch
+👞 mans shoe
+👟 athletic shoe
+👠 high-heeled shoe
+👡 womans sandal
+👢 womans boots
+👣 footprints
+👤 bust in silhouette
+👥 busts in silhouette
+👦 boy
+👧 girl
+👨 man
+👩 woman
+👪 family
+👫 man and woman holding hands
+👬 two men holding hands
+👭 two women holding hands
+👮 police officer
+👯 woman with bunny ears
+👰 bride with veil
+👱 person with blond hair
+👲 man with gua pi mao
+👳 man with turban
+👴 older man
+👵 older woman
+👶 baby
+👷 construction worker
+👸 princess
+👹 japanese ogre
+👺 japanese goblin
+👻 ghost
+👼 baby angel
+👽 extraterrestrial alien
+👾 alien monster
+👿 imp
+💀 skull
+💁 information desk person
+💂 guardsman
+💃 dancer
+💄 lipstick
+💅 nail polish
+💆 face massage
+💇 haircut
+💈 barber pole
+💉 syringe
+💊 pill
+💋 kiss mark
+💌 love letter
+💍 ring
+💎 gem stone
+💏 kiss
+💐 bouquet
+💑 couple with heart
+💒 wedding
+💓 beating heart
+💔 broken heart
+💕 two hearts
+💖 sparkling heart
+💗 growing heart
+💘 heart with arrow
+💙 blue heart
+💚 green heart
+💛 yellow heart
+💜 purple heart
+💝 heart with ribbon
+💞 revolving hearts
+💟 heart decoration
+💠 diamond shape with a dot inside
+💡 electric light bulb
+💢 anger symbol
+💣 bomb
+💤 sleeping symbol
+💥 collision symbol
+💦 splashing sweat symbol
+💧 droplet
+💨 dash symbol
+💩 pile of poo
+💪 flexed biceps
+💫 dizzy symbol
+💬 speech balloon
+💭 thought balloon
+💮 white flower
+💯 hundred points symbol
+💰 money bag
+💱 currency exchange
+💲 heavy dollar sign
+💳 credit card
+💴 banknote with yen sign
+💵 banknote with dollar sign
+💶 banknote with euro sign
+💷 banknote with pound sign
+💸 money with wings
+💹 chart with upwards trend and yen sign
+💺 seat
+💻 personal computer
+💼 briefcase
+💽 minidisc
+💾 floppy disk
+💿 optical disc
+📀 dvd
+📁 file folder
+📂 open file folder
+📃 page with curl
+📄 page facing up
+📅 calendar
+📆 tear-off calendar
+📇 card index
+📈 chart with upwards trend
+📉 chart with downwards trend
+📊 bar chart
+📋 clipboard
+📌 pushpin
+📍 round pushpin
+📎 paperclip
+📏 straight ruler
+📐 triangular ruler
+📑 bookmark tabs
+📒 ledger
+📓 notebook
+📔 notebook with decorative cover
+📕 closed book
+📖 open book
+📗 green book
+📘 blue book
+📙 orange book
+📚 books
+📛 name badge
+📜 scroll
+📝 memo
+📞 telephone receiver
+📟 pager
+📠 fax machine
+📡 satellite antenna
+📢 public address loudspeaker
+📣 cheering megaphone
+📤 outbox tray
+📥 inbox tray
+📦 package
+📧 e-mail symbol
+📨 incoming envelope
+📩 envelope with downwards arrow above
+📪 closed mailbox with lowered flag
+📫 closed mailbox with raised flag
+📬 open mailbox with raised flag
+📭 open mailbox with lowered flag
+📮 postbox
+📯 postal horn
+📰 newspaper
+📱 mobile phone
+📲 mobile phone with rightwards arrow at left
+📳 vibration mode
+📴 mobile phone off
+📵 no mobile phones
+📶 antenna with bars
+📷 camera
+📸 camera with flash
+📹 video camera
+📺 television
+📻 radio
+📼 videocassette
+📽️ film projector
+📿 prayer beads
+🔀 twisted rightwards arrows
+🔁 clockwise rightwards and leftwards open circle arrows
+🔂 clockwise rightwards and leftwards open circle arrows with circled one overlay
+🔃 clockwise downwards and upwards open circle arrows
+🔄 anticlockwise downwards and upwards open circle arrows
+🔅 low brightness symbol
+🔆 high brightness symbol
+🔇 speaker with cancellation stroke
+🔈 speaker
+🔉 speaker with one sound wave
+🔊 speaker with three sound waves
+🔋 battery
+🔌 electric plug
+🔍 left-pointing magnifying glass
+🔎 right-pointing magnifying glass
+🔏 lock with ink pen
+🔐 closed lock with key
+🔑 key
+🔒 lock
+🔓 open lock
+🔔 bell
+🔕 bell with cancellation stroke
+🔖 bookmark
+🔗 link symbol
+🔘 radio button
+🔙 back with leftwards arrow above
+🔚 end with leftwards arrow above
+🔛 on with exclamation mark with left right arrow above
+🔜 soon with rightwards arrow above
+🔝 top with upwards arrow above
+🔞 no one under eighteen symbol
+🔟 keycap ten
+🔠 input symbol for latin capital letters
+🔡 input symbol for latin small letters
+🔢 input symbol for numbers
+🔣 input symbol for symbols
+🔤 input symbol for latin letters
+🔥 fire
+🔦 electric torch
+🔧 wrench
+🔨 hammer
+🔩 nut and bolt
+🔪 hocho
+🔫 pistol
+🔬 microscope
+🔭 telescope
+🔮 crystal ball
+🔯 six pointed star with middle dot
+🔰 japanese symbol for beginner
+🔱 trident emblem
+🔲 black square button
+🔳 white square button
+🔴 large red circle
+🔵 large blue circle
+🔶 large orange diamond
+🔷 large blue diamond
+🔸 small orange diamond
+🔹 small blue diamond
+🔺 up-pointing red triangle
+🔻 down-pointing red triangle
+🔼 up-pointing small red triangle
+🔽 down-pointing small red triangle
+🕉️ om symbol
+🕊️ dove of peace
+🕋 kaaba
+🕌 mosque
+🕍 synagogue
+🕎 menorah with nine branches
+🕐 clock face one oclock
+🕑 clock face two oclock
+🕒 clock face three oclock
+🕓 clock face four oclock
+🕔 clock face five oclock
+🕕 clock face six oclock
+🕖 clock face seven oclock
+🕗 clock face eight oclock
+🕘 clock face nine oclock
+🕙 clock face ten oclock
+🕚 clock face eleven oclock
+🕛 clock face twelve oclock
+🕜 clock face one-thirty
+🕝 clock face two-thirty
+🕞 clock face three-thirty
+🕟 clock face four-thirty
+🕠 clock face five-thirty
+🕡 clock face six-thirty
+🕢 clock face seven-thirty
+🕣 clock face eight-thirty
+🕤 clock face nine-thirty
+🕥 clock face ten-thirty
+🕦 clock face eleven-thirty
+🕧 clock face twelve-thirty
+🕯️ candle
+🕰️ mantelpiece clock
+🕳️ hole
+🕴️ man in business suit levitating
+🕵️ sleuth or spy
+🕶️ dark sunglasses
+🕷️ spider
+🕸️ spider web
+🕹️ joystick
+🕺 man dancing
+🖇️ linked paperclips
+🖊️ lower left ballpoint pen
+🖋️ lower left fountain pen
+🖌️ lower left paintbrush
+🖍️ lower left crayon
+🖐️ raised hand with fingers splayed
+🖕 reversed hand with middle finger extended
+🖖 raised hand with part between middle and ring fingers
+🖤 black heart
+🖥️ desktop computer
+🖨️ printer
+🖱️ three button mouse
+🖲️ trackball
+🖼️ frame with picture
+🗂️ card index dividers
+🗃️ card file box
+🗄️ file cabinet
+🗑️ wastebasket
+🗒️ spiral note pad
+🗓️ spiral calendar pad
+🗜️ compression
+🗝️ old key
+🗞️ rolled-up newspaper
+🗡️ dagger knife
+🗣️ speaking head in silhouette
+🗨️ left speech bubble
+🗯️ right anger bubble
+🗳️ ballot box with ballot
+🗺️ world map
+🗻 mount fuji
+🗼 tokyo tower
+🗽 statue of liberty
+🗾 silhouette of japan
+🗿 moyai
+😀 grinning face
+😁 grinning face with smiling eyes
+😂 face with tears of joy
+😃 smiling face with open mouth
+😄 smiling face with open mouth and smiling eyes
+😅 smiling face with open mouth and cold sweat
+😆 smiling face with open mouth and tightly-closed eyes
+😇 smiling face with halo
+😈 smiling face with horns
+😉 winking face
+😊 smiling face with smiling eyes
+😋 face savouring delicious food
+😌 relieved face
+😍 smiling face with heart-shaped eyes
+😎 smiling face with sunglasses
+😏 smirking face
+😐 neutral face
+😑 expressionless face
+😒 unamused face
+😓 face with cold sweat
+😔 pensive face
+😕 confused face
+😖 confounded face
+😗 kissing face
+😘 face throwing a kiss
+😙 kissing face with smiling eyes
+😚 kissing face with closed eyes
+😛 face with stuck-out tongue
+😜 face with stuck-out tongue and winking eye
+😝 face with stuck-out tongue and tightly-closed eyes
+😞 disappointed face
+😟 worried face
 
-😠 ANGRY FACE
-😡 POUTING FACE
-😢 CRYING FACE
-😣 PERSEVERING FACE
-😤 FACE WITH LOOK OF TRIUMPH
-😥 DISAPPOINTED BUT RELIEVED FACE
-😦 FROWNING FACE WITH OPEN MOUTH
-😧 ANGUISHED FACE
-😨 FEARFUL FACE
-😩 WEARY FACE
-😪 SLEEPY FACE
-😫 TIRED FACE
-😬 GRIMACING FACE
-😭 LOUDLY CRYING FACE
-😮 FACE WITH OPEN MOUTH
-😯 HUSHED FACE
-😰 FACE WITH OPEN MOUTH AND COLD SWEAT
-😱 FACE SCREAMING IN FEAR
-😲 ASTONISHED FACE
-😳 FLUSHED FACE
-😴 SLEEPING FACE
-😵 DIZZY FACE
-😶 FACE WITHOUT MOUTH
-😷 FACE WITH MEDICAL MASK
-😸 GRINNING CAT FACE WITH SMILING EYES
-😹 CAT FACE WITH TEARS OF JOY
-😺 SMILING CAT FACE WITH OPEN MOUTH
-😻 SMILING CAT FACE WITH HEART-SHAPED EYES
-😼 CAT FACE WITH WRY SMILE
-😽 KISSING CAT FACE WITH CLOSED EYES
-😾 POUTING CAT FACE
-😿 CRYING CAT FACE
-🙀 WEARY CAT FACE
-🙁 SLIGHTLY FROWNING FACE
-🙂 SLIGHTLY SMILING FACE
-🙃 UPSIDE-DOWN FACE
-🙄 FACE WITH ROLLING EYES
-🙅 FACE WITH NO GOOD GESTURE
-🙆 FACE WITH OK GESTURE
-🙇 PERSON BOWING DEEPLY
-🙈 SEE-NO-EVIL MONKEY
-🙉 HEAR-NO-EVIL MONKEY
-🙊 SPEAK-NO-EVIL MONKEY
-🙋 HAPPY PERSON RAISING ONE HAND
-🙌 PERSON RAISING BOTH HANDS IN CELEBRATION
-🙍 PERSON FROWNING
-🙎 PERSON WITH POUTING FACE
-🙏 PERSON WITH FOLDED HANDS
-🚀 ROCKET
-🚁 HELICOPTER
-🚂 STEAM LOCOMOTIVE
-🚃 RAILWAY CAR
-🚄 HIGH-SPEED TRAIN
-🚅 HIGH-SPEED TRAIN WITH BULLET NOSE
-🚆 TRAIN
-🚇 METRO
-🚈 LIGHT RAIL
-🚉 STATION
-🚊 TRAM
-🚋 TRAM CAR
-🚌 BUS
-🚍 ONCOMING BUS
-🚎 TROLLEYBUS
-🚏 BUS STOP
-🚐 MINIBUS
-🚑 AMBULANCE
-🚒 FIRE ENGINE
-🚓 POLICE CAR
-🚔 ONCOMING POLICE CAR
-🚕 TAXI
-🚖 ONCOMING TAXI
-🚗 AUTOMOBILE
-🚘 ONCOMING AUTOMOBILE
-🚙 RECREATIONAL VEHICLE
-🚚 DELIVERY TRUCK
-🚛 ARTICULATED LORRY
-🚜 TRACTOR
-🚝 MONORAIL
-🚞 MOUNTAIN RAILWAY
-🚟 SUSPENSION RAILWAY
-🚠 MOUNTAIN CABLEWAY
-🚡 AERIAL TRAMWAY
-🚢 SHIP
-🚣 ROWBOAT
-🚤 SPEEDBOAT
-🚥 HORIZONTAL TRAFFIC LIGHT
-🚦 VERTICAL TRAFFIC LIGHT
-🚧 CONSTRUCTION SIGN
-🚨 POLICE CARS REVOLVING LIGHT
-🚩 TRIANGULAR FLAG ON POST
-🚪 DOOR
-🚫 NO ENTRY SIGN
-🚬 SMOKING SYMBOL
-🚭 NO SMOKING SYMBOL
-🚮 PUT LITTER IN ITS PLACE SYMBOL
-🚯 DO NOT LITTER SYMBOL
-🚰 POTABLE WATER SYMBOL
-🚱 NON-POTABLE WATER SYMBOL
-🚲 BICYCLE
-🚳 NO BICYCLES
-🚴 BICYCLIST
-🚵 MOUNTAIN BICYCLIST
-🚶 PEDESTRIAN
-🚷 NO PEDESTRIANS
-🚸 CHILDREN CROSSING
-🚹 MENS SYMBOL
-🚺 WOMENS SYMBOL
-🚻 RESTROOM
-🚼 BABY SYMBOL
-🚽 TOILET
-🚾 WATER CLOSET
-🚿 SHOWER
-🛀 BATH
-🛁 BATHTUB
-🛂 PASSPORT CONTROL
-🛃 CUSTOMS
-🛄 BAGGAGE CLAIM
-🛅 LEFT LUGGAGE
-🛋️ COUCH AND LAMP
-🛌 SLEEPING ACCOMMODATION
-🛍️ SHOPPING BAGS
-🛎️ BELLHOP BELL
-🛏️ BED
-🛐 PLACE OF WORSHIP
-🛑 OCTAGONAL SIGN
-🛒 SHOPPING TROLLEY
-🛠️ HAMMER AND WRENCH
-🛡️ SHIELD
-🛢️ OIL DRUM
-🛣️ MOTORWAY
-🛤️ RAILWAY TRACK
-🛥️ MOTOR BOAT
-🛩️ SMALL AIRPLANE
-🛫 AIRPLANE DEPARTURE
-🛬 AIRPLANE ARRIVING
-🛰️ SATELLITE
-🛳️ PASSENGER SHIP
-🛴 SCOOTER
-🛵 MOTOR SCOOTER
-🛶 CANOE
-🛷 SLED
-🛸 FLYING SAUCER
-🛹 SKATEBOARD #
-🤐 ZIPPER-MOUTH FACE
-🤑 MONEY-MOUTH FACE
-🤒 FACE WITH THERMOMETER
-🤓 NERD FACE
-🤔 THINKING FACE
-🤕 FACE WITH HEAD-BANDAGE
-🤖 ROBOT FACE
-🤗 HUGGING FACE
-🤘 SIGN OF THE HORNS
-🤙 CALL ME HAND
-🤚 RAISED BACK OF HAND
-🤛 LEFT-FACING FIST
-🤜 RIGHT-FACING FIST
-🤝 HANDSHAKE
-🤞 HAND WITH INDEX AND MIDDLE FINGERS CROSSED
-🤟 I LOVE YOU HAND SIGN
-🤠 FACE WITH COWBOY HAT
-🤡 CLOWN FACE
-🤢 NAUSEATED FACE
-🤣 ROLLING ON THE FLOOR LAUGHING
-🤤 DROOLING FACE
-🤥 LYING FACE
-🤦 FACE PALM
-🤧 SNEEZING FACE
-🤨 FACE WITH ONE EYEBROW RAISED
-🤩 GRINNING FACE WITH STAR EYES
-🤪 GRINNING FACE WITH ONE LARGE AND ONE SMALL EYE
-🤫 FACE WITH FINGER COVERING CLOSED LIPS
-🤬 SERIOUS FACE WITH SYMBOLS COVERING MOUTH
-🤭 SMILING FACE WITH SMILING EYES AND HAND COVERING MOUTH
-🤮 FACE WITH OPEN MOUTH VOMITING
-🤯 SHOCKED FACE WITH EXPLODING HEAD
-🤰 PREGNANT WOMAN
-🤱 BREAST-FEEDING
-🤲 PALMS UP TOGETHER
-🤳 SELFIE
-🤴 PRINCE
-🤵 MAN IN TUXEDO
-🤶 MOTHER CHRISTMAS
-🤷 SHRUG
-🤸 PERSON DOING CARTWHEEL
-🤹 JUGGLING
-🤺 FENCER
-🤼 WRESTLERS
-🤽 WATER POLO
-🤾 HANDBALL
-🥀 WILTED FLOWER
-🥁 DRUM WITH DRUMSTICKS
-🥂 CLINKING GLASSES
-🥃 TUMBLER GLASS
-🥄 SPOON
-🥅 GOAL NET
-🥇 FIRST PLACE MEDAL
-🥈 SECOND PLACE MEDAL
-🥉 THIRD PLACE MEDAL
-🥊 BOXING GLOVE
-🥋 MARTIAL ARTS UNIFORM
-🥌 CURLING STONE
-🥍 LACROSSE STICK AND BALL #
-🥎 SOFTBALL #
-🥏 FLYING DISC #
-🥐 CROISSANT
-🥑 AVOCADO
-🥒 CUCUMBER
-🥓 BACON
-🥔 POTATO
-🥕 CARROT
-🥖 BAGUETTE BREAD
-🥗 GREEN SALAD
-🥘 SHALLOW PAN OF FOOD
-🥙 STUFFED FLATBREAD
-🥚 EGG
-🥛 GLASS OF MILK
-🥜 PEANUTS
-🥝 KIWIFRUIT
-🥞 PANCAKES
-🥟 DUMPLING
-🥠 FORTUNE COOKIE
-🥡 TAKEOUT BOX
-🥢 CHOPSTICKS
-🥣 BOWL WITH SPOON
-🥤 CUP WITH STRAW
-🥥 COCONUT
-🥦 BROCCOLI
-🥧 PIE
-🥨 PRETZEL
-🥩 CUT OF MEAT
-🥪 SANDWICH
-🥫 CANNED FOOD
-🥬 LEAFY GREEN #
-🥭 MANGO #
-🥮 MOON CAKE #
-🥯 BAGEL #
-🥰 SMILING FACE WITH SMILING EYES AND THREE HEARTS #
-🥳 FACE WITH PARTY HORN AND PARTY HAT #
-🥴 FACE WITH UNEVEN EYES AND WAVY MOUTH #
-🥵 OVERHEATED FACE #
-🥶 FREEZING FACE #
-🥺 FACE WITH PLEADING EYES #
-🥼 LAB COAT #
-🥽 GOGGLES #
-🥾 HIKING BOOT #
-🥿 FLAT SHOE #
-🦀 CRAB
-🦁 LION FACE
-🦂 SCORPION
-🦃 TURKEY
-🦄 UNICORN FACE
-🦅 EAGLE
-🦆 DUCK
-🦇 BAT
-🦈 SHARK
-🦉 OWL
-🦊 FOX FACE
-🦋 BUTTERFLY
-🦌 DEER
-🦍 GORILLA
-🦎 LIZARD
-🦏 RHINOCEROS
-🦐 SHRIMP
-🦑 SQUID
-🦒 GIRAFFE FACE
-🦓 ZEBRA FACE
-🦔 HEDGEHOG
-🦕 SAUROPOD
-🦖 T-REX
-🦗 CRICKET
-🦘 KANGAROO #
-🦙 LLAMA #
-🦚 PEACOCK #
-🦛 HIPPOPOTAMUS #
-🦜 PARROT #
-🦝 RACCOON #
-🦞 LOBSTER #
-🦟 MOSQUITO #
-🦠 MICROBE #
-🦡 BADGER #
-🦢 SWAN #
-🦰 EMOJI COMPONENT RED HAIR #
-🦱 EMOJI COMPONENT CURLY HAIR #
-🦲 EMOJI COMPONENT BALD #
-🦳 EMOJI COMPONENT WHITE HAIR #
-🦴 BONE #
-🦵 LEG #
-🦶 FOOT #
-🦷 TOOTH #
-🦸 SUPERHERO #
-🦹 SUPERVILLAIN #
-🧀 CHEESE WEDGE
-🧁 CUPCAKE #
-🧂 SALT SHAKER #
-🧐 FACE WITH MONOCLE
-🧑 ADULT
-🧒 CHILD
-🧓 OLDER ADULT
-🧔 BEARDED PERSON
-🧕 PERSON WITH HEADSCARF
-🧖 PERSON IN STEAMY ROOM
-🧗 PERSON CLIMBING
-🧘 PERSON IN LOTUS POSITION
-🧙 MAGE
-🧚 FAIRY
-🧛 VAMPIRE
-🧜 MERPERSON
-🧝 ELF
-🧞 GENIE
-🧟 ZOMBIE
-🧠 BRAIN
-🧡 ORANGE HEART
-🧢 BILLED CAP
-🧣 SCARF
-🧤 GLOVES
-🧥 COAT
-🧦 SOCKS
-🧧 RED GIFT ENVELOPE #
-🧨 FIRECRACKER #
-🧩 JIGSAW PUZZLE PIECE #
-🧪 TEST TUBE #
-🧫 PETRI DISH #
-🧬 DNA DOUBLE HELIX #
-🧭 COMPASS #
-🧮 ABACUS #
-🧯 FIRE EXTINGUISHER #
-🧰 TOOLBOX #
-🧱 BRICK #
-🧲 MAGNET #
-🧳 LUGGAGE #
-🧴 LOTION BOTTLE #
-🧵 SPOOL OF THREAD #
-🧶 BALL OF YARN #
-🧷 SAFETY PIN #
-🧸 TEDDY BEAR #
-🧹 BROOM #
-🧺 BASKET #
-🧻 ROLL OF PAPER #
-🧼 BAR OF SOAP #
-🧽 SPONGE #
-🧾 RECEIPT #
-🧿 NAZAR AMULET #
+😠 angry face
+😡 pouting face
+😢 crying face
+😣 persevering face
+😤 face with look of triumph
+😥 disappointed but relieved face
+😦 frowning face with open mouth
+😧 anguished face
+😨 fearful face
+😩 weary face
+😪 sleepy face
+😫 tired face
+😬 grimacing face
+😭 loudly crying face
+😮 face with open mouth
+😯 hushed face
+😰 face with open mouth and cold sweat
+😱 face screaming in fear
+😲 astonished face
+😳 flushed face
+😴 sleeping face
+😵 dizzy face
+😶 face without mouth
+😷 face with medical mask
+😸 grinning cat face with smiling eyes
+😹 cat face with tears of joy
+😺 smiling cat face with open mouth
+😻 smiling cat face with heart-shaped eyes
+😼 cat face with wry smile
+😽 kissing cat face with closed eyes
+😾 pouting cat face
+😿 crying cat face
+🙀 weary cat face
+🙁 slightly frowning face
+🙂 slightly smiling face
+🙃 upside-down face
+🙄 face with rolling eyes
+🙅 face with no good gesture
+🙆 face with ok gesture
+🙇 person bowing deeply
+🙈 see-no-evil monkey
+🙉 hear-no-evil monkey
+🙊 speak-no-evil monkey
+🙋 happy person raising one hand
+🙌 person raising both hands in celebration
+🙍 person frowning
+🙎 person with pouting face
+🙏 person with folded hands
+🚀 rocket
+🚁 helicopter
+🚂 steam locomotive
+🚃 railway car
+🚄 high-speed train
+🚅 high-speed train with bullet nose
+🚆 train
+🚇 metro
+🚈 light rail
+🚉 station
+🚊 tram
+🚋 tram car
+🚌 bus
+🚍 oncoming bus
+🚎 trolleybus
+🚏 bus stop
+🚐 minibus
+🚑 ambulance
+🚒 fire engine
+🚓 police car
+🚔 oncoming police car
+🚕 taxi
+🚖 oncoming taxi
+🚗 automobile
+🚘 oncoming automobile
+🚙 recreational vehicle
+🚚 delivery truck
+🚛 articulated lorry
+🚜 tractor
+🚝 monorail
+🚞 mountain railway
+🚟 suspension railway
+🚠 mountain cableway
+🚡 aerial tramway
+🚢 ship
+🚣 rowboat
+🚤 speedboat
+🚥 horizontal traffic light
+🚦 vertical traffic light
+🚧 construction sign
+🚨 police cars revolving light
+🚩 triangular flag on post
+🚪 door
+🚫 no entry sign
+🚬 smoking symbol
+🚭 no smoking symbol
+🚮 put litter in its place symbol
+🚯 do not litter symbol
+🚰 potable water symbol
+🚱 non-potable water symbol
+🚲 bicycle
+🚳 no bicycles
+🚴 bicyclist
+🚵 mountain bicyclist
+🚶 pedestrian
+🚷 no pedestrians
+🚸 children crossing
+🚹 mens symbol
+🚺 womens symbol
+🚻 restroom
+🚼 baby symbol
+🚽 toilet
+🚾 water closet
+🚿 shower
+🛀 bath
+🛁 bathtub
+🛂 passport control
+🛃 customs
+🛄 baggage claim
+🛅 left luggage
+🛋️ couch and lamp
+🛌 sleeping accommodation
+🛍️ shopping bags
+🛎️ bellhop bell
+🛏️ bed
+🛐 place of worship
+🛑 octagonal sign
+🛒 shopping trolley
+🛠️ hammer and wrench
+🛡️ shield
+🛢️ oil drum
+🛣️ motorway
+🛤️ railway track
+🛥️ motor boat
+🛩️ small airplane
+🛫 airplane departure
+🛬 airplane arriving
+🛰️ satellite
+🛳️ passenger ship
+🛴 scooter
+🛵 motor scooter
+🛶 canoe
+🛷 sled
+🛸 flying saucer
+🛹 skateboard #
+🤐 zipper-mouth face
+🤑 money-mouth face
+🤒 face with thermometer
+🤓 nerd face
+🤔 thinking face
+🤕 face with head-bandage
+🤖 robot face
+🤗 hugging face
+🤘 sign of the horns
+🤙 call me hand
+🤚 raised back of hand
+🤛 left-facing fist
+🤜 right-facing fist
+🤝 handshake
+🤞 hand with index and middle fingers crossed
+🤟 i love you hand sign
+🤠 face with cowboy hat
+🤡 clown face
+🤢 nauseated face
+🤣 rolling on the floor laughing
+🤤 drooling face
+🤥 lying face
+🤦 face palm
+🤧 sneezing face
+🤨 face with one eyebrow raised
+🤩 grinning face with star eyes
+🤪 grinning face with one large and one small eye
+🤫 face with finger covering closed lips
+🤬 serious face with symbols covering mouth
+🤭 smiling face with smiling eyes and hand covering mouth
+🤮 face with open mouth vomiting
+🤯 shocked face with exploding head
+🤰 pregnant woman
+🤱 breast-feeding
+🤲 palms up together
+🤳 selfie
+🤴 prince
+🤵 man in tuxedo
+🤶 mother christmas
+🤷 shrug
+🤸 person doing cartwheel
+🤹 juggling
+🤺 fencer
+🤼 wrestlers
+🤽 water polo
+🤾 handball
+🥀 wilted flower
+🥁 drum with drumsticks
+🥂 clinking glasses
+🥃 tumbler glass
+🥄 spoon
+🥅 goal net
+🥇 first place medal
+🥈 second place medal
+🥉 third place medal
+🥊 boxing glove
+🥋 martial arts uniform
+🥌 curling stone
+🥍 lacrosse stick and ball #
+🥎 softball #
+🥏 flying disc #
+🥐 croissant
+🥑 avocado
+🥒 cucumber
+🥓 bacon
+🥔 potato
+🥕 carrot
+🥖 baguette bread
+🥗 green salad
+🥘 shallow pan of food
+🥙 stuffed flatbread
+🥚 egg
+🥛 glass of milk
+🥜 peanuts
+🥝 kiwifruit
+🥞 pancakes
+🥟 dumpling
+🥠 fortune cookie
+🥡 takeout box
+🥢 chopsticks
+🥣 bowl with spoon
+🥤 cup with straw
+🥥 coconut
+🥦 broccoli
+🥧 pie
+🥨 pretzel
+🥩 cut of meat
+🥪 sandwich
+🥫 canned food
+🥬 leafy green #
+🥭 mango #
+🥮 moon cake #
+🥯 bagel #
+🥰 smiling face with smiling eyes and three hearts #
+🥳 face with party horn and party hat #
+🥴 face with uneven eyes and wavy mouth #
+🥵 overheated face #
+🥶 freezing face #
+🥺 face with pleading eyes #
+🥼 lab coat #
+🥽 goggles #
+🥾 hiking boot #
+🥿 flat shoe #
+🦀 crab
+🦁 lion face
+🦂 scorpion
+🦃 turkey
+🦄 unicorn face
+🦅 eagle
+🦆 duck
+🦇 bat
+🦈 shark
+🦉 owl
+🦊 fox face
+🦋 butterfly
+🦌 deer
+🦍 gorilla
+🦎 lizard
+🦏 rhinoceros
+🦐 shrimp
+🦑 squid
+🦒 giraffe face
+🦓 zebra face
+🦔 hedgehog
+🦕 sauropod
+🦖 t-rex
+🦗 cricket
+🦘 kangaroo #
+🦙 llama #
+🦚 peacock #
+🦛 hippopotamus #
+🦜 parrot #
+🦝 raccoon #
+🦞 lobster #
+🦟 mosquito #
+🦠 microbe #
+🦡 badger #
+🦢 swan #
+🦰 emoji component red hair #
+🦱 emoji component curly hair #
+🦲 emoji component bald #
+🦳 emoji component white hair #
+🦴 bone #
+🦵 leg #
+🦶 foot #
+🦷 tooth #
+🦸 superhero #
+🦹 supervillain #
+🧀 cheese wedge
+🧁 cupcake #
+🧂 salt shaker #
+🧐 face with monocle
+🧑 adult
+🧒 child
+🧓 older adult
+🧔 bearded person
+🧕 person with headscarf
+🧖 person in steamy room
+🧗 person climbing
+🧘 person in lotus position
+🧙 mage
+🧚 fairy
+🧛 vampire
+🧜 merperson
+🧝 elf
+🧞 genie
+🧟 zombie
+🧠 brain
+🧡 orange heart
+🧢 billed cap
+🧣 scarf
+🧤 gloves
+🧥 coat
+🧦 socks
+🧧 red gift envelope #
+🧨 firecracker #
+🧩 jigsaw puzzle piece #
+🧪 test tube #
+🧫 petri dish #
+🧬 dna double helix #
+🧭 compass #
+🧮 abacus #
+🧯 fire extinguisher #
+🧰 toolbox #
+🧱 brick #
+🧲 magnet #
+🧳 luggage #
+🧴 lotion bottle #
+🧵 spool of thread #
+🧶 ball of yarn #
+🧷 safety pin #
+🧸 teddy bear #
+🧹 broom #
+🧺 basket #
+🧻 roll of paper #
+🧼 bar of soap #
+🧽 sponge #
+🧾 receipt #
+🧿 nazar amulet #

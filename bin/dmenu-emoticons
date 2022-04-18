@@ -5,11 +5,12 @@
 
 DATA_SOURCE_DIR=~/bin/data-sources
 
-EMOJI=$(grep -v "#" "${DATA_SOURCE_DIR}/unicode-emoticons.txt" | dmenu -i -l 20 -fn Monospace-15 | awk '{print $1}' | tr -d '\n')
+#EMOJI=$(grep -v "#" "${DATA_SOURCE_DIR}/unicode-emoticons.txt" | dmenu -i -l 20 -fn Monospace-15 | awk '{print $1}' | tr -d '\n')
+EMOJI=$(grep -v "#" "${DATA_SOURCE_DIR}/unicode-emoticons.txt" | rofi -dmenu | awk '{print $1}' | tr -d '\n')
 
-if [ -z "$EMOJI" ]; then  
-	: # if none selected, do nothing 
-else 
+if [ -z "$EMOJI" ]; then
+	: # if none selected, do nothing
+else
 	echo "${EMOJI}" | xclip -selection clipboard
-	notify-send "$(xclip -o -selection clipboard) copied to clipboard."
+	notify-send Emoticon "$(xclip -o -selection clipboard) copied to clipboard."
 fi
