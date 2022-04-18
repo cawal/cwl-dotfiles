@@ -40,6 +40,8 @@ Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
 Plug 'aloussase/gradle.vim' " Gradle
+"Plug 'chrisbra/csv.vim'
+
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other

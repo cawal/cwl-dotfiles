@@ -34,41 +34,6 @@ def autostart():
     subprocess.call([home])
 
 
-# @hook.subscribe.client_new
-# def test1(window):
-#    logger.warning("test1 :")
-#    logger.warning(dir(window))
-
-
-#
-#
-# @hook.subscribe.client_new
-# def test2(window):
-#    logger.warning("test2 :")
-
-
-# import psutil
-# @hook.subscribe.client_new
-# def _swallow(window):
-#    """Imported from: https://github.com/GroosL/dotfiles/blob/main/config/qtile/config.py"""
-#    pid = window.window.get_net_wm_pid()
-#    ppid = psutil.Process(pid).ppid()
-#    cpids = {c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()}
-#    for i in range(5):
-#        if not ppid:
-#            return
-#        if ppid in cpids:
-#            parent = window.qtile.windows_map.get(cpids[ppid])
-#            parent.minimized = True
-#            window.parent = parent
-#            return
-#        ppid = psutil.Process(ppid).ppid()
-#
-# @hook.subscribe.client_killed
-# def _unswallow(window):
-#    if hasattr(window, 'parent'):
-#        window.parent.minimized = False
-
 mod = "mod4"
 
 
@@ -136,7 +101,9 @@ keys = [
     # Move windows up or down in current stack
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "w", lazy.group["scratchpad"].dropdown_toggle("VimWiki")),
+    Key([mod], "z", lazy.group["scratchpad"].dropdown_toggle("VimWiki")),
+    Key([mod], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log")),
+    Key([mod], "s", lazy.group["scratchpad"].dropdown_toggle("qtile shell")),
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
     # Swap panes of split stack
@@ -181,7 +148,7 @@ keys = [
     Key([], "Print", lazy.spawn("flameshot gui")),
     KeyChord(
         [mod],
-        "e",
+        "w",
         # "personal databases"
         [
             Key([], "h", lazy.spawn("dmenu-http-status-codes")),
@@ -195,8 +162,6 @@ keys = [
                     "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
                 ),
             ),
-            Key([], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log")),
-            Key([], "s", lazy.group["scratchpad"].dropdown_toggle("qtile shell")),
         ],
     ),
     KeyChord(
@@ -412,11 +377,45 @@ cursor_warp = False
 floating_layout = layout.Floating(**floating_config)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-extentions = []
 reconfigure_screens = True
 
 # Rule objects to send windows to groups
 dgroups_app_rules = []
+
+# @hook.subscribe.client_new
+# def test1(window):
+#    logger.warning("test1 :")
+#    logger.warning(dir(window))
+
+
+#
+#
+# @hook.subscribe.client_new
+# def test2(window):
+#    logger.warning("test2 :")
+
+
+# import psutil
+# @hook.subscribe.client_new
+# def _swallow(window):
+#    """Imported from: https://github.com/GroosL/dotfiles/blob/main/config/qtile/config.py"""
+#    pid = window.window.get_net_wm_pid()
+#    ppid = psutil.Process(pid).ppid()
+#    cpids = {c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()}
+#    for i in range(5):
+#        if not ppid:
+#            return
+#        if ppid in cpids:
+#            parent = window.qtile.windows_map.get(cpids[ppid])
+#            parent.minimized = True
+#            window.parent = parent
+#            return
+#        ppid = psutil.Process(ppid).ppid()
+#
+# @hook.subscribe.client_killed
+# def _unswallow(window):
+#    if hasattr(window, 'parent'):
+#        window.parent.minimized = False
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
