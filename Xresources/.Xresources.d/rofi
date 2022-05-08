@@ -2,7 +2,7 @@
 
 ! UI THEME ---------------------------------------------------------------
 ! Window opacity
-rofi.opacity:                        95 
+rofi.opacity:                        95
 ! Window width
 rofi.width:                          50
 ! Number of lines
@@ -41,7 +41,7 @@ rofi.bg-urgent:                      #F7941E
 ! Foreground color for highlighted urgent row
 rofi.hlfg-urgent:                    #000000
 ! Background color for highlighted urgent row
-rofi.hlbg-urgent:                    #F7941E 
+rofi.hlbg-urgent:                    #F7941E
 
 
 
@@ -49,7 +49,7 @@ rofi.hlbg-urgent:                    #F7941E
 rofi.bgalt:                          #DDDDDD
 
 ! Border color
-rofi.bc:                             #DDDDDD 
+rofi.bc:                             #DDDDDD
 
 ! Row height (in chars)
 rofi.eh:                             2
@@ -89,7 +89,7 @@ rofi.dpi:                            -1
 
 ! Behaviour ------------------------------------------------------------
 ! Enabled modi
-rofi.modi:                           window,run,ssh
+rofi.modi:                           window,run,ssh,drun
 ! Terminal to use
 rofi.terminal:                       rofi-sensible-terminal
 ! Ssh client to use
@@ -99,7 +99,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! Run command to execute
 rofi.run-command:                    {cmd}
 ! Command to get extra run targets
-rofi.run-list-command:               
+rofi.run-list-command:
 ! Run command to execute that runs in shell
 rofi.run-shell-command:              {terminal} -e {cmd}
 ! Disable history in run/ssh
@@ -127,7 +127,7 @@ rofi.tokenize:                       true
 ! Monitor id to show on
 rofi.m:                              -1
 ! Pre-set filter
-rofi.filter:                         
+rofi.filter:
 ! Pidfile location
 rofi.pid:                            /tmp/cawal.rofi.pid
 
@@ -233,8 +233,8 @@ rofi.kb-custom-17:                   Alt+Shift+7
 ! Keybinding
 rofi.kb-custom-19:                   Alt+Shift+9
 ! Keybinding
-rofi.key-window:                     
+rofi.key-window:
 ! Keybinding
-rofi.key-run:                        
+rofi.key-run:
 ! Keybinding
-rofi.key-ssh:                        
+rofi.key-ssh:
