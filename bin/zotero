@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ${HOME}/bin/Zotero_linux-x86_64/
+./zotero
+
