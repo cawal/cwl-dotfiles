@@ -101,7 +101,7 @@ keys = [
     # Move windows up or down in current stack
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "z", lazy.group["scratchpad"].dropdown_toggle("VimWiki")),
+    Key([mod], "z", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
     Key([mod], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log")),
     Key([mod], "s", lazy.group["scratchpad"].dropdown_toggle("qtile shell")),
     # Switch window focus to other pane(s) of stack
@@ -230,6 +230,17 @@ groups.append(
                     "height": 1,
                     "width": 0.8,
                     "on_focus_lost_hide": False,
+                },
+            ),
+            DropDown(
+                "Obsidian",
+                f"Obsidian.AppImage",
+                **{
+                    **dropdown_config,
+                    "x": 0,
+                    "height": 1,
+                    "width": 1,
+                    "on_focus_lost_hide": True,
                 },
             ),
             DropDown(
