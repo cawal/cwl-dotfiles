@@ -12,7 +12,7 @@ from libqtile.config import (
     DropDown,
 )
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, qtile
 from host import hostname, list_screens, GroupToDisplayMapper
 from cwllayouts import CWLTreeTab
 from qtile_vim_marks.manager import VimMarksManager
@@ -35,6 +35,12 @@ def autostart():
 
 
 mod = "mod4"
+
+def open_calendar():  # spawn calendar widget
+    qtile.cmd_spawn('gnome-calendar')
+
+def close_calendar():  # kill calendar widget
+    qtile.cmd_spawn('killall -q gnome-calendar')
 
 
 def add_group(name):
@@ -339,7 +345,10 @@ screens = [
                 separator_widget,
                 widget.Battery(format=" {char}{percent:2.0%} "),
                 separator_widget,
-                widget.Clock(format="%Y-%m-%d %H:%M %p"),
+                widget.Clock(
+                    format="%Y-%m-%d %H:%M %p",
+                    mouse_callbacks={'Button1': open_calendar, 'Button2': close_calendar}
+                ),
                 separator_widget,
                 widget.Systray(),
             ],
