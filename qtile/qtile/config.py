@@ -182,6 +182,15 @@ keys = [
         ],
         mode="Desktop: l => lock, s=> suspend, H => hibernate",
     ),
+        KeyChord(
+        [mod, "shift"],
+        "n",
+        [
+            Key([], "p", lazy.spawn("notify-send DUNST_COMMAND_PAUSE"), lazy.ungrab_all_chords()),
+            Key([], "r", lazy.spawn("notify-send DUNST_COMMAND_RESUME"), lazy.ungrab_all_chords()),
+        ],
+        mode="Notifications: p => pause, r=> resume",
+    ),
     Key(
         [mod],
         "a",
