@@ -443,12 +443,18 @@ autokey:
 	${UPDATE}
 	${INSTALL} autokey-gtk
 
+syncthing:
+	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list	
+	${UPDATE}
+	${INSTALL} syncthing
+
 spotify:
 	sudo snap install spotify
 	#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 	#echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	#${UPDATE}
-	#${INSTALL} spotify-client
+	${UPDATE}
+	${INSTALL} spotify-client
 
 skype:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb

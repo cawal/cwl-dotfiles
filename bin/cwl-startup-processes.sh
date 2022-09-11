@@ -9,17 +9,18 @@ numlockx on &
 #killall -q notify-osd;  &
 #killall -q dunst;  &
 dunst & # -config ~/.config/i3/dunstrc &
+nitrogen --restore &
+setxkbmap -option caps:escape &
 
 # tray services
 dropbox start &
 greenclip daemon &
 kdeconnect-indicator &
+syncthing &
 
 blueman-applet &
 
 # networking
 nm-applet &
 
-nitrogen --restore &
-setxkbmap -option caps:escape &
 
