@@ -13,7 +13,7 @@ from libqtile.config import (
 )
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, qtile
-from host import hostname, list_screens, GroupToDisplayMapper
+from host import GroupToDisplayMapper
 from cwllayouts import CWLTreeTab
 from qtile_vim_marks.manager import VimMarksManager
 
@@ -36,11 +36,13 @@ def autostart():
 
 mod = "mod4"
 
+
 def open_calendar():  # spawn calendar widget
-    qtile.cmd_spawn('gnome-calendar')
+    qtile.cmd_spawn("gnome-calendar")
+
 
 def close_calendar():  # kill calendar widget
-    qtile.cmd_spawn('killall -q gnome-calendar')
+    qtile.cmd_spawn("killall -q gnome-calendar")
 
 
 def add_group(name):
@@ -182,12 +184,22 @@ keys = [
         ],
         mode="Desktop: l => lock, s=> suspend, H => hibernate",
     ),
-        KeyChord(
+    KeyChord(
         [mod, "shift"],
         "n",
         [
-            Key([], "p", lazy.spawn("notify-send DUNST_COMMAND_PAUSE"), lazy.ungrab_all_chords()),
-            Key([], "r", lazy.spawn("notify-send DUNST_COMMAND_RESUME"), lazy.ungrab_all_chords()),
+            Key(
+                [],
+                "p",
+                lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
+                lazy.ungrab_all_chords(),
+            ),
+            Key(
+                [],
+                "r",
+                lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
+                lazy.ungrab_all_chords(),
+            ),
         ],
         mode="Notifications: p => pause, r=> resume",
     ),
@@ -356,7 +368,10 @@ screens = [
                 separator_widget,
                 widget.Clock(
                     format="%Y-%m-%d %H:%M %p",
-                    mouse_callbacks={'Button1': open_calendar, 'Button2': close_calendar}
+                    mouse_callbacks={
+                        "Button1": open_calendar,
+                        "Button2": close_calendar,
+                    },
                 ),
                 separator_widget,
                 widget.Systray(),
