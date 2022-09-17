@@ -39,14 +39,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'for' : [ 'java', 'python', 'php
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin'  } " Kotlin syntax highlighting
 Plug 'leafgarland/typescript-vim', {'for': 'typescript' } " TS syntax highlighting
 Plug 'shmup/vim-sql-syntax'
-Plug 'aloussase/gradle.vim' " Gradle
+"Plug 'aloussase/gradle.vim' " Gradle
 "Plug 'chrisbra/csv.vim'
 
 
 Plug 'editorconfig/editorconfig-vim' " Use editor config files for formatting
 " Other
 Plug 'vimwiki/vimwiki' " Markdown wiki, this version use wikilinks. Change when issue closes https://github.com/vimwiki/vimwiki/issues/892
-Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup
+" Plug 'michal-h21/vimwiki-sync' " Sync wiki to git repo at startup
 Plug 'michal-h21/vim-zettel' " Zettelkasten support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
@@ -153,14 +153,8 @@ let personal_wiki.syntax = 'markdown'
 let personal_wiki.ext = '.md'
 let personal_wiki.nested_syntaxes = my_nested_syntaxes
 
-let phd_wiki = {}
-let phd_wiki.path = '~/git/lssb-writing/Projeto-Doc/wiki'
-let phd_wiki.syntax = 'markdown'
-let phd_wiki.ext = '.md'
-let phd_wiki.nested_syntaxes = my_nested_syntaxes
-
 let liber_wiki = {}
-let liber_wiki.path = '~/Dropbox/Liber-PKM'
+let liber_wiki.path = '~/Liber-PKM'
 let liber_wiki.syntax = 'markdown'
 let liber_wiki.ext = '.md'
 let liber_wiki.nested_syntaxes = my_nested_syntaxes
@@ -170,13 +164,11 @@ if hostname() == 'tachikoma'
     let g:vimwiki_list = [
         \ liber_wiki,
         \ personal_wiki,
-        \ phd_wiki
     \ ]
 else
     let g:vimwiki_list = [
         \ personal_wiki,
         \ liber_wiki,
-        \ phd_wiki
     \ ]
 
 endif
