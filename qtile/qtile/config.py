@@ -268,7 +268,7 @@ groups.append(
                     "x": 0,
                     "height": 1,
                     "width": 1,
-                    "on_focus_lost_hide": True,
+                    "on_focus_lost_hide": False,
                 },
             ),
             DropDown(
