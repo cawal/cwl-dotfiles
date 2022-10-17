@@ -110,6 +110,7 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
     Key([mod], "z", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
+    Key([mod], "b", lazy.group["scratchpad"].dropdown_toggle("blueman-manager")),
     Key([mod], "v", lazy.group["scratchpad"].dropdown_toggle("pavucontrol")),
     Key([mod], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log")),
     Key([mod], "s", lazy.group["scratchpad"].dropdown_toggle("qtile shell")),
@@ -291,6 +292,17 @@ groups.append(
                 "qtile log",
                 f"cwl-sensible-terminal -hold -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
                 **dropdown_config,
+            ),
+            DropDown(
+                "blueman-manager",
+                f"blueman-manager",
+                **{
+                    **dropdown_config,
+                    "x": 0,
+                    "height": 1,
+                    "width": 0.5,
+                    "on_focus_lost_hide": True,
+                },
             ),
         ],
     )
