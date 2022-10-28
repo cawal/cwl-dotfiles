@@ -180,14 +180,24 @@ keys = [
         [mod, "shift"],
         "BackSpace",
         [
-            Key([], "l", lazy.spawn("i3exit lock"), lazy.ungrab_all_chords()),
-            Key([], "s", lazy.spawn("i3exit suspend"), lazy.ungrab_all_chords()),
             Key(
-                ["shift"], "h", lazy.spawn("i3exit hibernate"), lazy.ungrab_all_chords()
+                [],
+                "l",
+                lazy.spawn("i3exit lock"),
+            ),
+            Key(
+                [],
+                "s",
+                lazy.spawn("i3exit suspend"),
+            ),
+            Key(
+                ["shift"],
+                "h",
+                lazy.spawn("i3exit hibernate"),
             ),
         ],
         name="Desktop: l => lock, s=> suspend, H => hibernate",
-        mode=True,
+        mode=False,
     ),
     KeyChord(
         [mod, "shift"],
@@ -196,18 +206,18 @@ keys = [
             Key(
                 [],
                 "p",
+                lazy.spawn("notify-send Dunst stopped"),
                 lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
-                lazy.ungrab_all_chords(),
             ),
             Key(
                 [],
                 "r",
                 lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
-                lazy.ungrab_all_chords(),
+                lazy.spawn("notify-send Dunst resumed"),
             ),
         ],
-        name="Notifications: p => pause, r=> resume",
-        mode=True,
+        name="<b>Notifications:</b> p => pause, r=> resume",
+        mode=False,
     ),
     Key(
         [mod],
@@ -383,7 +393,11 @@ screens = [
             [
                 widget.GroupBox(),
                 separator_widget,
-                widget.Chord(background="#F7941E"),
+                widget.Chord(
+                    background=color_urgent,
+                    foreground=color_black,
+                    name_transform=lambda t: " " + t.ljust(100),
+                ),
                 widget.Prompt(),
                 separator_widget,
                 widget.WindowName(),
