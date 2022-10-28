@@ -480,6 +480,10 @@ floating_layout = layout.Floating(
             wm_class="Eclipse",
             title="Find Actions ",
         ),
+        Match(
+            wm_class="Eclipse",
+            title="Install ",
+        ),
     ],
 )
 auto_fullscreen = True
