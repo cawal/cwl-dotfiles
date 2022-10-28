@@ -169,10 +169,12 @@ keys = [
                 [],
                 "c",
                 lazy.spawn(
-                    "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+                    "rofi -modi 'clipboard:greenclip print'"
+                    " -show clipboard -run-command '{cmd}'"
                 ),
             ),
         ],
+        name="Personal databases",
     ),
     KeyChord(
         [mod, "shift"],
@@ -184,7 +186,8 @@ keys = [
                 ["shift"], "h", lazy.spawn("i3exit hibernate"), lazy.ungrab_all_chords()
             ),
         ],
-        mode="Desktop: l => lock, s=> suspend, H => hibernate",
+        name="Desktop: l => lock, s=> suspend, H => hibernate",
+        mode=True,
     ),
     KeyChord(
         [mod, "shift"],
@@ -203,7 +206,8 @@ keys = [
                 lazy.ungrab_all_chords(),
             ),
         ],
-        mode="Notifications: p => pause, r=> resume",
+        name="Notifications: p => pause, r=> resume",
+        mode=True,
     ),
     Key(
         [mod],

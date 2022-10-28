@@ -34,7 +34,6 @@ class VimMarksManager:
     def get_goto_window_keys(self) -> Sequence[Key]:
         bindings: List[Key] = []
         for letter in self.marks.keys():
-            logger.warning(letter)
 
             def func(qtile: Qtile, letter=letter, **kwargs):
                 logger.warning(f"going to {letter}")
