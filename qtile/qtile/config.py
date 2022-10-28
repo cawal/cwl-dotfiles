@@ -476,6 +476,10 @@ floating_layout = layout.Floating(
             wm_class="Eclipse",
             title="Find/Replace ",
         ),
+        Match(
+            wm_class="Eclipse",
+            title="Find Actions ",
+        ),
     ],
 )
 auto_fullscreen = True
