@@ -136,7 +136,7 @@ keys = [
         [mod],
         "d",
         lazy.spawn(
-            "rofi -show-icons -modi combi -show combi -       combi-modi window,run,drun"
+            "rofi -show-icons -modi combi -show combi -combi-modi window,run,drun"
         ),
     ),
     Key([mod], "bracketleft", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
