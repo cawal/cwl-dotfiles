@@ -19,7 +19,7 @@ highlight CursorLineNr   ctermfg=130 gui=bold guifg=Brown
 highlight Question       ctermfg=2 gui=bold guifg=SeaGreen
 highlight StatusLine     cterm=bold,reverse gui=bold,reverse
 highlight StatusLineNC   cterm=reverse gui=reverse
-highlight VertSplit      cterm=reverse gui=reverse
+highlight VertSplit      cterm=bold gui=bold
 highlight Title          ctermfg=5 gui=bold guifg=Magenta
 highlight Visual         cterm=reverse
 highlight WarningMsg     ctermfg=1 guifg=Red
