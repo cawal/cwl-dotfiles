@@ -139,3 +139,8 @@ KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 export CLOUDSDK_PYTHON=python2
 
 kubeoff
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+# Use Silver Searcher to find files in FZF (include hidden but excludes .git)
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g ''"
