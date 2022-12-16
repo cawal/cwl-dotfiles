@@ -1,7 +1,9 @@
 import socket
 from Xlib import X, display
 from Xlib.ext import randr
-from typing import Sequence
+from Xlib.Xatom import RESOURCE_MANAGER, STRING
+from Xlib.display import Display
+from typing import Sequence,Dict
 from libqtile.config import Screen, Group
 from libqtile.log_utils import logger
 
@@ -23,6 +25,11 @@ def list_screens():
 
     return screen_names
 
+def get_xresources_variables() -> Dict[str,str]:
+    res_prop = Display().screen().root.get_full_property(RESOURCE_MANAGER, STRING)
+    res_kv = (line.split(':', 1) for line in res_prop.value.decode().split('\n'))
+    res_dict = {kv[0]: kv[1].strip() for kv in res_kv if len(kv) == 2}
+    return res_dict
 
 def group_by_name(qtile, gname):
     return [group for group in qtile.groups if group.name == gname][0]

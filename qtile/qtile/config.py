@@ -14,11 +14,16 @@ from libqtile.config import (
 )
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, qtile
-from host import GroupToDisplayMapper
+from libqtile.widget import base as widget_base
+from host import GroupToDisplayMapper, get_xresources_variables
 from cwllayouts import CWLTreeTab
 from qtile_vim_marks.manager import VimMarksManager
 
-# from libqtile.command_client import CommandClient
+
+xresources = get_xresources_variables()
+
+logger.warning(xresources)
+
 
 font = "Hack"
 color_highlight = "#F7941E"
@@ -58,7 +63,6 @@ def remove_group(name):
         qtile.groupMap.remove(name)
 
     return f
-
 
 groups = [Group(i, persist=True) for i in "1234567890"]
 mapper = GroupToDisplayMapper(groups)
@@ -388,11 +392,50 @@ pomodoro_widget = widget.Pomodoro(
     **widget_defaults,
 )
 
+
+class TestCounterWidget(widget_base._TextBox):
+    def __init__(self, **config:dict):
+        super().__init__("",**config)
+        self.value = 0
+        self.text = str(self.value)
+        self.add_callbacks(
+            {
+                "Button1" : self.add,
+                "Button2" : self.zero,
+                "Button3" : self.subtract,
+            }
+        )
+
+    def add(self):
+        self.value = self.value + 1
+        self.update()
+
+    def subtract(self):
+        self.value = self.value - 1
+        self.update()
+
+    def zero(self):
+        self.value = 0
+        self.update()
+
+    def update(self):
+        self.text = str(self.value)
+        self.drawer.draw(offsetx=self.offsetx, offsety=self.offsety, width=self.width)
+        self.bar.draw()
+
+
+
+
+
+
+
+
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.GroupBox(),
+                # TestCounterWidget(),
                 separator_widget,
                 widget.Chord(
                     background=color_urgent,
