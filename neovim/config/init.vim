@@ -252,6 +252,12 @@ function! CWLToggleZenMode()
 	:Goyo
 endfunction
 
+" Reveal the highlight group of under the cursor
+function! RevealHighlightGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
 " Forces the coloring of the spelling errors
 " TODO I think I don't need it anymore with my ~own~ colorscheme
 function! CWLToggleSpell()
@@ -391,6 +397,9 @@ nnoremap <leader>b :Buffers<cr>
 
 " toggle matching highlight for color codes
 nnoremap <leader>c :ColorToggle<cr>
+
+" reveal highlight group under cursor
+nnoremap <leader>C :call RevealHighlightGroup()<cr>
 
 " Search files with FZF + Vim-Rooter
 nnoremap <leader>f :FZF<cr>
