@@ -142,25 +142,57 @@ keys = [
     Key([mod], "bracketleft", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
     Key([mod], "bracketright", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
     Key([mod], "BackSpace", lazy.spawn("amixer -q -D pulse sset Master toggle")),
-    Key(
-        [mod], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+")
-    ),
-    Key(
-        [mod], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%-")
-    ),
-    Key([mod], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
-    # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    Key([mod, "shift"], "Tab", lazy.prev_layout()),
-    Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
-    Key([], "Print", lazy.spawn("flameshot gui")),
     KeyChord(
-        [mod],
-        "w",
-        # "personal databases"
+        [],
+        "XF86Tools",
+        [
+            Key(
+                [],
+                "p",
+                lazy.spawn("notify-send Dunst stopped"),
+                lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
+            ),
+            Key(
+                [],
+                "r",
+                lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
+                lazy.spawn("notify-send Dunst resumed"),
+            ),
+        ],
+        name="<b>Notifications:</b> [p]ause, [r]esume",
+        mode=False,
+    ),
+    Key(
+        [], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+")
+    ),
+    Key(
+        [], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%-")
+    ),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    #Key(
+    #    [],"XF86AudioStop",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86AudioPrev",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86AudioPlay",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86AudioNext",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86Mail",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86HomePage",lazy.spawn(""),
+    #),
+    #Key(
+    #    [],"XF86Calculator",lazy.spawn(""),
+    #),
+    KeyChord(
+        [],
+        "XF86Search",
         [
             Key([], "h", lazy.spawn("dmenu-http-status-codes")),
             Key([], "e", lazy.spawn("dmenu-emoticons")),
@@ -175,10 +207,25 @@ keys = [
                 ),
             ),
         ],
-        name="Personal databases",
+        name="<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard",
+    ),
+    # Toggle between different layouts as defined below
+    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod, "shift"], "Tab", lazy.prev_layout()),
+    Key([mod, "shift"], "q", lazy.window.kill()),
+    Key([mod], "r", lazy.spawncmd()),
+    Key([], "Print", lazy.spawn("flameshot gui")),
+    KeyChord(
+        [mod],
+        "c",
+        [
+            Key([], "s", lazy.spawn("dmenu-change-sound-output")),
+            Key([], "d", lazy.spawn("dmenu-display-control")),
+        ],
+        name="<b>Controls:</b> [s]ound outputs, [d]isplay light",
     ),
     KeyChord(
-        [mod, "shift"],
+        [mod, "control"],
         "BackSpace",
         [
             Key(
@@ -196,28 +243,10 @@ keys = [
                 "h",
                 lazy.spawn("i3exit hibernate"),
             ),
+            Key([], "r", lazy.restart()),
+            Key(["shift"], "q", lazy.shutdown()),
         ],
-        name="<b>Desktop:</b> l => lock, s=> suspend, H => hibernate",
-        mode=False,
-    ),
-    KeyChord(
-        [mod, "shift"],
-        "n",
-        [
-            Key(
-                [],
-                "p",
-                lazy.spawn("notify-send Dunst stopped"),
-                lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
-            ),
-            Key(
-                [],
-                "r",
-                lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
-                lazy.spawn("notify-send Dunst resumed"),
-            ),
-        ],
-        name="<b>Notifications:</b> p => pause, r=> resume",
+        name="<b>Desktop:</b> [l]ock, [s]uspend, [H]ibernate, [r]estart, [Q]uit",
         mode=False,
     ),
     Key(
@@ -225,8 +254,8 @@ keys = [
         "a",
         lazy.function(mapper.shift_group_display()),
     ),
-    KeyChord([mod], "m", marksManager.get_mark_window_keys()),
-    KeyChord([mod], "g", marksManager.get_goto_window_keys()),
+    KeyChord([mod], "m", marksManager.get_mark_window_keys(), name="<b>Mark window</b> <i>Press a letter key</i>"),
+    KeyChord([mod], "g", marksManager.get_goto_window_keys(), name="<b>Go to marked window</b> <i>Press a letter key</i>"),
 ]
 
 
