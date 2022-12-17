@@ -30,15 +30,12 @@ class GroupToDisplayMapper:
         qtile.cmd_to_screen(index)
         group_by_name(qtile, group).cmd_toscreen(toggle=False)
 
-    def shift_group_display(self):
-        def f(qtile):
-            screens = list_screens()
-            group = qtile.current_group.name
-            index = self.map.get(group, 0)
-            self.map[group] = (index + 1) % len(screens)
-            self.go_to_group(qtile,group)
-
-        return f
+    def shift_group_display(self,qtile):
+        screens = list_screens()
+        group = qtile.current_group.name
+        index = self.map.get(group, 0)
+        self.map[group] = (index + 1) % len(screens)
+        self.go_to_group(qtile,group)
 
     def add_group(self, group: str):
         if group in self.map:

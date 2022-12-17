@@ -240,7 +240,7 @@ keys = [
     Key(
         [mod],
         "a",
-        lazy.function(mapper.shift_group_display()),
+        lazy.function(mapper.shift_group_display),
     ),
     KeyChord(
         [mod],
