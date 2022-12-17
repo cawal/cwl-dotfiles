@@ -1,4 +1,4 @@
-from typing import Sequence, Dict
+from typing import Sequence, Dict, Union
 from libqtile.config import Group
 from libqtile.log_utils import logger
 from host import list_screens
@@ -20,22 +20,22 @@ class GroupToDisplayMapper:
         groups_per_screen = int(n_groups / n_screens)
         for index, group in enumerate(self.map.keys()):
             screen_index = int(index / groups_per_screen)
-            logger.warning(
-                f"Assigning group {group} to screen {screens[screen_index]}"
-            )
+            logger.warning(f"Assigning group {group} to screen {screens[screen_index]}")
             self.map[group] = screen_index
 
-    def go_to_group(self, qtile, group: str):
+    def go_to_group(self, qtile, group: Union[str, Group]):
+        if hasattr(group, "name"):
+            group = group.name
         index = self.map.get(group, 0)
         qtile.cmd_to_screen(index)
         group_by_name(qtile, group).cmd_toscreen(toggle=False)
 
-    def shift_group_display(self,qtile):
+    def shift_group_display(self, qtile):
         screens = list_screens()
         group = qtile.current_group.name
         index = self.map.get(group, 0)
         self.map[group] = (index + 1) % len(screens)
-        self.go_to_group(qtile,group)
+        self.go_to_group(qtile, group)
 
     def add_group(self, group: str):
         if group in self.map:

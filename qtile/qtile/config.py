@@ -173,12 +173,42 @@ keys = [
         lazy.layout.grow_right().when(layout="columns"),
     ),
     # Move windows up or down in current stack
-    Key([mod, "control"], "j", lazy.layout.shuffle_down(), desc="Move window down in the current stack"),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up in the current stack"),
-    Key([mod], "b", lazy.group["scratchpad"].dropdown_toggle("blueman-manager"), desc="Show bluetooth manager"),
-    Key([mod], "v", lazy.group["scratchpad"].dropdown_toggle("pavucontrol"), desc="Show audio manager"),
-    Key([mod], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log"), desc="Show qtile logs"),
-    Key([mod], "s", lazy.group["scratchpad"].dropdown_toggle("qtile shell"), desc="Show qtile shell"),
+    Key(
+        [mod, "control"],
+        "j",
+        lazy.layout.shuffle_down(),
+        desc="Move window down in the current stack",
+    ),
+    Key(
+        [mod, "control"],
+        "k",
+        lazy.layout.shuffle_up(),
+        desc="Move window up in the current stack",
+    ),
+    Key(
+        [mod],
+        "b",
+        lazy.group["scratchpad"].dropdown_toggle("blueman-manager"),
+        desc="Show bluetooth manager",
+    ),
+    Key(
+        [mod],
+        "v",
+        lazy.group["scratchpad"].dropdown_toggle("pavucontrol"),
+        desc="Show audio manager",
+    ),
+    Key(
+        [mod],
+        "l",
+        lazy.group["scratchpad"].dropdown_toggle("qtile log"),
+        desc="Show qtile logs",
+    ),
+    Key(
+        [mod],
+        "s",
+        lazy.group["scratchpad"].dropdown_toggle("qtile shell"),
+        desc="Show qtile shell",
+    ),
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
     # Swap panes of split stack
