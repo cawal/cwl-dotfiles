@@ -9,8 +9,8 @@ def group_by_name(qtile, gname: str):
 
 
 class GroupToDisplayMapper:
-    def __init__(self, groups: Sequence[Group]):
-        self.map: Dict[str, int] = dict([(group.name, 0) for group in groups])
+    def __init__(self, groups: Sequence[str]):
+        self.map: Dict[str, int] = dict([(group, 0) for group in groups])
         self.calculate_initial_config()
 
     def calculate_initial_config(self):
@@ -21,33 +21,33 @@ class GroupToDisplayMapper:
         for index, group in enumerate(self.map.keys()):
             screen_index = int(index / groups_per_screen)
             logger.warning(
-                f"Assigning group {group}" f"to screen {screens[screen_index]}"
+                f"Assigning group {group} to screen {screens[screen_index]}"
             )
             self.map[group] = screen_index
 
-    def go_to_group(self, qtile, group: Group):
-        index = self.map.get(group.name, 0)
+    def go_to_group(self, qtile, group: str):
+        index = self.map.get(group, 0)
         qtile.cmd_to_screen(index)
-        group_by_name(qtile, group.name).cmd_toscreen(toggle=False)
+        group_by_name(qtile, group).cmd_toscreen(toggle=False)
 
     def shift_group_display(self):
         def f(qtile):
             screens = list_screens()
-            g = qtile.current_group
-            index = self.map.get(g.name, 0)
-            self.map[g.name] = (index + 1) % len(screens)
-            self.go_to_group(qtile,g)
+            group = qtile.current_group.name
+            index = self.map.get(group, 0)
+            self.map[group] = (index + 1) % len(screens)
+            self.go_to_group(qtile,group)
 
         return f
 
-    def add_group(self, group_name: str):
-        if group_name in self.map:
+    def add_group(self, group: str):
+        if group in self.map:
             return
         else:
-            self.map[group_name] = 0
+            self.map[group] = 0
 
-    def remove_group(self, group_name: str):
-        if group_name not in self.map:
+    def remove_group(self, group: str):
+        if group not in self.map:
             return
         else:
-            del self.map[group_name]
+            del self.map[group]
