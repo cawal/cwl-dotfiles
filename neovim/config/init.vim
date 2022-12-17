@@ -200,6 +200,10 @@ let g:mkdp_refresh_slow = 1
 " let g:mkdp_browser = 'qutebrowser --target tab'
 " let g:mkdp_markdown_css = expand('~/node_modules/markdown-retro/css/retro.css')
 
+" NERDTree
+" ------------------------------------------------------
+let NERDTreeShowHidden=1
+
 
 " Vim-Rooter
 " ------------------------------------------------------
@@ -257,6 +261,8 @@ function! RevealHighlightGroup()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
+
+
 
 " Forces the coloring of the spelling errors
 " TODO I think I don't need it anymore with my ~own~ colorscheme
