@@ -110,7 +110,6 @@ keys = [
     # Move windows up or down in current stack
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
-    Key([mod], "z", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
     Key([mod], "b", lazy.group["scratchpad"].dropdown_toggle("blueman-manager")),
     Key([mod], "v", lazy.group["scratchpad"].dropdown_toggle("pavucontrol")),
     Key([mod], "l", lazy.group["scratchpad"].dropdown_toggle("qtile log")),
@@ -184,12 +183,10 @@ keys = [
     #Key(
     #    [],"XF86Mail",lazy.spawn(""),
     #),
-    #Key(
-    #    [],"XF86HomePage",lazy.spawn(""),
-    #),
-    #Key(
-    #    [],"XF86Calculator",lazy.spawn(""),
-    #),
+    Key([], "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
+    Key(
+        [],"XF86Calculator",lazy.spawn("cwl-sensible-terminal -e python3"),
+    ),
     KeyChord(
         [],
         "XF86Search",
