@@ -1,4 +1,5 @@
 import os
+from functools import partial
 import subprocess
 from libqtile.log_utils import logger
 from libqtile.config import (
@@ -15,7 +16,9 @@ from libqtile.config import (
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook, qtile
 from libqtile.widget import base as widget_base
-from host import GroupToDisplayMapper, get_xresources_variables
+from host import get_xresources_variables
+from group_to_display_mapper import GroupToDisplayMapper
+import user_input
 from cwllayouts import CWLTreeTab
 from qtile_vim_marks.manager import VimMarksManager
 
@@ -25,6 +28,7 @@ xresources = get_xresources_variables()
 logger.warning(xresources)
 
 
+mod = "mod4"
 font = "Hack"
 color_highlight = "#F7941E"
 color_urgent = color_highlight
@@ -32,15 +36,6 @@ color_white = "#DDDDDD"
 color_grey = "#777777"
 color_dark_grey = "#555555"
 color_black = "#222222"
-
-
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser("~/bin/cwl-startup-processes.sh")
-    subprocess.call([home])
-
-
-mod = "mod4"
 
 
 def open_calendar():  # spawn calendar widget
@@ -63,6 +58,7 @@ def remove_group(name):
         qtile.groupMap.remove(name)
 
     return f
+
 
 groups = [Group(i, persist=True) for i in "1234567890"]
 mapper = GroupToDisplayMapper(groups)
@@ -201,7 +197,7 @@ keys = [
                 lazy.spawn("i3exit hibernate"),
             ),
         ],
-        name="Desktop: l => lock, s=> suspend, H => hibernate",
+        name="<b>Desktop:</b> l => lock, s=> suspend, H => hibernate",
         mode=False,
     ),
     KeyChord(
@@ -236,7 +232,15 @@ keys = [
 
 for i in groups:
     # mod1 + letter of group = switch to group
-    keys.append(Key([mod], i.name, lazy.function(mapper.go_to_group_func(i))))
+    keys.append(
+        Key(
+            [mod],
+            i.name,
+            lazy.function(
+                partial(mapper.go_to_group, group=i),
+            ),
+        )
+    )
 
     # mod1 + shift + letter of group = switch to & move focused window to group
     keys.append(
@@ -252,7 +256,7 @@ for i in groups:
             [mod, "control"],
             i.name,
             lazy.window.togroup(i.name),
-            lazy.function(mapper.go_to_group_func(i)),
+            lazy.function(partial(mapper.go_to_group, group=i)),
         )
     )
 
@@ -394,15 +398,15 @@ pomodoro_widget = widget.Pomodoro(
 
 
 class TestCounterWidget(widget_base._TextBox):
-    def __init__(self, **config:dict):
-        super().__init__("",**config)
+    def __init__(self, **config: dict):
+        super().__init__("", **config)
         self.value = 0
         self.text = str(self.value)
         self.add_callbacks(
             {
-                "Button1" : self.add,
-                "Button2" : self.zero,
-                "Button3" : self.subtract,
+                "Button1": self.add,
+                "Button2": self.zero,
+                "Button3": self.subtract,
             }
         )
 
@@ -422,12 +426,6 @@ class TestCounterWidget(widget_base._TextBox):
         self.text = str(self.value)
         self.drawer.draw(offsetx=self.offsetx, offsety=self.offsety, width=self.width)
         self.bar.draw()
-
-
-
-
-
-
 
 
 screens = [
@@ -535,6 +533,30 @@ reconfigure_screens = True
 
 # Rule objects to send windows to groups
 dgroups_app_rules = []
+
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser("~/bin/cwl-startup-processes.sh")
+    subprocess.call([home])
+
+
+@hook.subscribe.screens_reconfigured
+def screens_reconfigured():
+    mapper.calculate_initial_config()
+
+
+@hook.subscribe.addgroup
+def group_added(group_name: str):
+    logger.warning(f"Group added: {group_name}")
+    mapper.add_group(group_name)
+
+
+@hook.subscribe.delgroup
+def group_deleted(group_name: str):
+    logger.warning(f"Group deleted: {group_name}")
+    mapper.remove_group(group_name)
+
 
 # @hook.subscribe.client_new
 # def test1(window):
