@@ -1,5 +1,4 @@
-from typing import Sequence, Dict, Union
-from libqtile.config import Group
+from typing import Sequence, Dict, Union, Protocol
 from libqtile.log_utils import logger
 from host import list_screens
 
@@ -7,10 +6,13 @@ from host import list_screens
 def group_by_name(qtile, gname: str):
     return [group for group in qtile.groups if group.name == gname][0]
 
+class NamedElement(Protocol):
+    name: str
+
 
 class GroupToDisplayMapper:
-    def __init__(self, groups: Sequence[str]):
-        self.map: Dict[str, int] = dict([(group, 0) for group in groups])
+    def __init__(self, groups: Sequence[Union[str,NamedElement]]):
+        self.map: Dict[str, int] = dict([(self._name_for_group(group), 0) for group in groups])
         self.calculate_initial_config()
 
     def calculate_initial_config(self):
@@ -23,12 +25,11 @@ class GroupToDisplayMapper:
             logger.warning(f"Assigning group {group} to screen {screens[screen_index]}")
             self.map[group] = screen_index
 
-    def go_to_group(self, qtile, group: Union[str, Group]):
-        if hasattr(group, "name"):
-            group = group.name
-        index = self.map.get(group, 0)
+    def go_to_group(self, qtile, group: Union[str, NamedElement]):
+        group_name = self._name_for_group(group)
+        index = self.map.get(group_name, 0)
         qtile.cmd_to_screen(index)
-        group_by_name(qtile, group).cmd_toscreen(toggle=False)
+        group_by_name(qtile, group_name).cmd_toscreen(toggle=False)
 
     def shift_group_display(self, qtile):
         screens = list_screens()
@@ -36,6 +37,15 @@ class GroupToDisplayMapper:
         index = self.map.get(group, 0)
         self.map[group] = (index + 1) % len(screens)
         self.go_to_group(qtile, group)
+
+    def _name_for_group(self, group: Union[str,NamedElement]):
+        if hasattr(group, "name"):
+            return group.name
+        elif isinstance(group,str):
+            return group
+        else:
+            raise Exception("`group`is not a string or has name")
+
 
     def add_group(self, group: str):
         if group in self.map:
