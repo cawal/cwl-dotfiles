@@ -7,6 +7,8 @@ let mapleader = ' '
 
 let THEME = 'neovim-0-2-2'
 
+let g:python3_host_prog = '~/.neovim_venv/bin/python'
+
 " PLUGINS --------------------------------------------------------
 call plug#begin() "vim-plug: https://github.com/junegunn/vim-plug
 

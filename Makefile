@@ -118,7 +118,8 @@ coc-node:
 	nvm install "${COC_NODE_VERSION}"
 
 python3-pynvim: python3-pip3
-	pip3 install pynvim
+	cd ~; python3 -m venv .neovim_venv
+	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
 
 python3-pip3:
 	${INSTALL} python3-pip
@@ -445,7 +446,7 @@ autokey:
 
 syncthing:
 	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
-	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list	
+	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
 	${UPDATE}
 	${INSTALL} syncthing
 
