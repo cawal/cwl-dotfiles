@@ -484,12 +484,18 @@ class TestCounterWidget(widget_base._TextBox):
         self.drawer.draw(offsetx=self.offsetx, offsety=self.offsety, width=self.width)
         self.bar.draw()
 
+group_box_config = {
+    "disable_drag": True,
+    "highlight_method": "line",
+    "highlight_color": [color_highlight, color_highlight], # Active group highlight color when using 'line' highlight method
+    "hide_unused": True,
+}
 
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.GroupBox(**group_box_config),
                 # TestCounterWidget(),
                 separator_widget,
                 widget.Chord(
@@ -525,7 +531,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.GroupBox(**group_box_config),
                 separator_widget,
                 widget.Prompt(),
                 separator_widget,
