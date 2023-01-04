@@ -429,8 +429,8 @@ floating_config = {
 
 layouts = [
     layout.Columns(**columns_config),
-    CWLTreeTab(**treetab_config),
-    #        layout.Max(),
+    #CWLTreeTab(**treetab_config),
+    layout.Max(),
 ]
 
 widget_defaults = dict(
@@ -491,6 +491,19 @@ group_box_config = {
     "hide_unused": True,
 }
 
+task_list_config = {
+    "borderwidth": 0,
+    "border": color_black,
+    "icon_size": 0,
+    "markup_floating": f'<span foreground="{color_white}">{{}}</span>',
+    "markup_focused": f'<span foreground="{color_white}">{{}}</span>',
+    "markup_maximized": f'<span foreground="{color_grey}">{{}}</span>',
+    "markup_minimized": f'<span foreground="{color_grey}">{{}}</span>',
+    "markup_normal": f'<span foreground="{color_grey}">{{}}</span>',
+    "highlight_method": "block", # border|block
+    "rounded": False,
+}
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -505,8 +518,9 @@ screens = [
                 ),
                 widget.Prompt(),
                 separator_widget,
-                widget.WindowName(),
-                separator_widget,
+                #widget.WindowName(),
+                #separator_widget,
+                widget.TaskList(**task_list_config),
                 widget.Volume(),
                 separator_widget,
                 pomodoro_widget,
@@ -535,7 +549,8 @@ screens = [
                 separator_widget,
                 widget.Prompt(),
                 separator_widget,
-                widget.WindowName(),
+                #widget.WindowName(),
+                widget.TaskList(**task_list_config),
                 separator_widget,
                 widget.Clock(format="%H:%M %p"),
             ],
