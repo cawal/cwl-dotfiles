@@ -19,7 +19,6 @@ from libqtile.widget import base as widget_base
 from host import get_xresources_variables
 from group_to_display_mapper import GroupToDisplayMapper
 import user_input
-from cwllayouts import CWLTreeTab
 from qtile_vim_marks.manager import VimMarksManager
 
 
@@ -30,6 +29,8 @@ logger.warning(xresources)
 
 mod = "mod4"
 font = "Hack"
+font = "Noto Sans"
+font_size=12
 color_highlight = "#F7941E"
 color_urgent = color_highlight
 color_white = "#DDDDDD"
@@ -434,8 +435,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Hack",
-    fontsize=11,
+    font=font,
+    fontsize=font_size,
     padding=1,
 )
 
