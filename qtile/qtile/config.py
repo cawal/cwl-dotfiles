@@ -300,18 +300,18 @@ for i in groups:
         )
     )
 
-    # mod1 + shift + letter of group = switch to & move focused window to group
+    # mod1 + control + letter of group = switch to & move focused window to group
     keys.append(
         Key(
-            [mod, "shift"],
+            [mod, "control"],
             i.name,
             lazy.window.togroup(i.name),
         )
     )
-    # mod1 + ctrl + letter of group = switch to & move focused window to group
+    # mod1 + shift + letter of group = switch to & move focused window to group
     keys.append(
         Key(
-            [mod, "control"],
+            [mod, "shift"],
             i.name,
             lazy.window.togroup(i.name),
             lazy.function(partial(mapper.go_to_group, group=i.name)),
