@@ -66,6 +66,8 @@ mapper = GroupToDisplayMapper(groups)
 marksManager = VimMarksManager(mapper.go_to_group)
 
 keys = [
+    Key([mod], "Down", lazy.screen.next_group()),
+    Key([mod], "Up", lazy.screen.prev_group()),
     KeyChord(
         [],
         "XF86Tools",
