@@ -16,7 +16,7 @@ COC_NODE_VERSION=v12.6.0
 all: desktop-environment link-all
 
 # DESKTOP EXPERIENCE
-desktop-environment: i3 flashfocus desktop-configuration clipboard-manager
+desktop-environment: i3 flashfocus desktop-configuration clipboard-manager xdotool
 
 clipboard-manager: greenclip rofi
 
@@ -196,6 +196,9 @@ libxlsxwriter:
 
 sox:
 	${INSTALL} sox
+
+xdotool:
+	${INSTALL} xdotool
 
 # DEVELOPMENT TOOLS
 
