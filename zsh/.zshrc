@@ -57,6 +57,7 @@ plugins=(
 	git
 	git-extras
 	git-flow
+    pipenv
 	mvn
 	gradle
 	nvm
@@ -96,6 +97,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias awslocal='aws --endpoint-url=http://localhost:4566'
+
 
 if type "nvim" > /dev/null; then
     alias vi="nvim"
