@@ -118,6 +118,7 @@ keys = [
         [],
         "XF86Search",
         [
+            Key([], "t", lazy.spawn("epoch-converter.sh")),
             Key([], "h", lazy.spawn("dmenu-http-status-codes")),
             Key([], "e", lazy.spawn("dmenu-emoticons")),
             Key([], "s", lazy.spawn("dmenu-change-sound-output")),
@@ -131,7 +132,7 @@ keys = [
                 ),
             ),
         ],
-        name="<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard",
+        name="<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard, [t]imestamp from epoch",
     ),
     Key(
         [mod],
