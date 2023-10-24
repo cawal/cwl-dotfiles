@@ -213,6 +213,12 @@ keys = [
         lazy.group["scratchpad"].dropdown_toggle("qtile shell"),
         desc="Show qtile shell",
     ),
+    Key(
+        [mod],
+        "z",
+        lazy.group["scratchpad"].dropdown_toggle("Obsidian"),
+        desc="Show qtile shell",
+    ),
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next()),
     # Swap panes of split stack
@@ -350,9 +356,9 @@ groups.append(
                 f"Obsidian.AppImage",
                 **{
                     **dropdown_config,
-                    "x": 0,
-                    "height": 1,
-                    "width": 1,
+                    "x": 0.01,
+                    "height": 0.98,
+                    "width": 0.98,
                     "on_focus_lost_hide": False,
                 },
             ),
