@@ -1,4 +1,5 @@
 configuration {
-	theme: "cwl-dark";
 }
-/* vim:ft=css
+
+//@theme "cwl-dark"
+@theme "/usr/share/rofi/themes/sidebar.rasi"

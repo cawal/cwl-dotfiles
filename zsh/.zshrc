@@ -65,6 +65,7 @@ plugins=(
 	kubectl
 	gcloud
 	helm
+    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -146,3 +147,5 @@ kubeoff
 export PATH="$PATH:$HOME/.rvm/bin"
 # Use Silver Searcher to find files in FZF (include hidden but excludes .git)
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
+
+. ~/.asdf/plugins/golang/set-env.zsh

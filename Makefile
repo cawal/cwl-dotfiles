@@ -11,18 +11,146 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 
 COC_NODE_VERSION=v12.6.0
+ASDF_VERSION=v0.13.1
+GO_VERSION=1.12.5
 
 
 all: desktop-environment link-all
 
+arandr:
+	${INSTALL} arandr
+
+tmate:
+	${INSTALL} tmate
+
+zsh: FORCE
+	${INSTALL} zsh
+	chsh -s /bin/zsh
+
+oh-my-zsh: pipenv
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+pipenv:
+	pip3 install pipenv
+
+greenclip:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip
+	${AT_TEMP_FOLDER} chmod +x greenclip.bin
+	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
+
+terminal:
+	${INSTALL} rxvt-unicode
+
+flashfocus:
+	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
+	pip install flashfocus
+
+rofi: FORCE
+	${INSTALL} rofi unifont
+
+vi: ripgrep silver-seacher
+	${ADD_REPOSITORY} ppa:neovim-ppa/stable
+	${UPDATE}
+	${INSTALL} neovim universal-ctags
+	pip3 install neovim
+	#pip install neovim
+
+ripgrep:
+	${SNAP_INSTALL} --classic ripgrep
+
+silver-seacher:
+	${INSTALL} silversearcher-ag
+
+python3-pynvim: python3-pip3
+	cd ~; python3 -m venv .neovim_venv
+	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
+
+clipboard-tools: greenclip
+	${INSTALL} xclip
+
+go: asdf-golang
+	asdf global golang "${GO_VERSION}"
+
+
+asdf: # https://asdf-vm.com/guide/getting-started.html
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch "${ASDF_VERSION}"
+
+asdf-golang: asdf # https://github.com/asdf-community/asdf-golang
+	asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+
+
+wallpaper:
+	${INSTALL} nitrogen
+
+
+icon-themes:
+	${INSTALL} numix-icon-theme
+
+gtk-themes:
+	${INSTALL} arc-theme
+
+sound-control:
+	${INSTALL} pavucontrol
+
+
+
+docker: docker-ce-edge docker-compose
+
+docker-ce-edge:
+	$(if $(shell which docker),$(error "Docker already installed"),)
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com
+	${AT_TEMP_FOLDER} sh get-docker.sh
+	sudo usermod -aG docker `whoami`
+
+docker-compose:
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+
+docker-remove-image-cache:
+	docker builder prune
+
+libfuse: # for APPIMAGES # https://github.com/AppImage/AppImageKit/wiki/FUSE
+	sudo add-apt-repository universe
+	sudo apt install libfuse2
+
+liber:
+
+liber-vpn: # https://liber.atlassian.net/wiki/spaces/SRE/pages/6952747080/Instala+o+Linux
+	${INSTALL} wireguard
+
+
+liber-backup:
+	mkdir ${HOME}/backup/
+	sudo cp /etc/wireguard ${HOME}/backup/etc/wireguard
+	mkdir -p ${HOME}/backup/home/cawal
+	cp ${HOME}/.gitconfig ${HOME}/.gitcredentials
+
+
+
+
 # DESKTOP EXPERIENCE
-desktop-environment: i3 flashfocus desktop-configuration clipboard-manager xdotool
+desktop-environment: qtile flashfocus desktop-configuration clipboard-manager xdotool
 
 clipboard-manager: greenclip rofi
 
 desktop-configuration: arandr
 	${INSTALL} lxappearance
 
+qtile: lockscreen FORCE
+	pip install qtile
+	# cd ${GIT_THIRD_PARTY_FOLDER}; rm -rf qtile; git clone https://github.com/qtile/qtile.git; cd qtile; sudo pip3 install .
+	sudo wget --output-document /usr/share/xsessions/qtile.desktop https://raw.githubusercontent.com/qtile/qtile/master/resources/qtile.desktop
+
+qtile-dependencies:
+	${INSTALL} python3-cffi python3-cairocffi libpangocairo-1.0-0 python3-xcffib
+	pip3 install --no-cache cairo-cffi
+	pip3 install dbus-next
+
+lockscreen:
+	${INSTALL} i3lock
+
+## I3 --------------------------
 i3: notifications i3-bar rofi wallpaper compositor i3ipc
 	#${AT_TEMP_FOLDER} /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
 	#${AT_TEMP_FOLDER} ${INSTALL_LOCAL} ./keyring.deb
@@ -35,8 +163,14 @@ i3-bar: py3status i3-python
 i3ipc:
 	pip3 install i3ipc
 
-arandr:
-	${INSTALL} arandr
+i3-python:
+	${INSTALL} python3-tz python3-tzlocal
+
+py3status:
+	${INSTALL} py3status
+
+## I3: END ---------------------
+
 
 xmonad:
 	${INSTALL} xmonad libghc-xmonad-contrib-dev xmobar
@@ -48,23 +182,17 @@ alluvium:
 compositor:
 	${INSTALL} compton
 
-py3status:
-	${INSTALL} py3status
 
 bluetooth:
 	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
 
-greenclip:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip
-	${AT_TEMP_FOLDER} chmod +x greenclip.bin
-	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
 #diodon:
 #	${INSTALL} diodon
 
 notifications: dunst
 
-dunst:
+dunst-install:
 	${INSTALL} dunst
 
 kitty:
@@ -81,59 +209,21 @@ kitty:
 	sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
 	sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
 
-i3-python:
-	${INSTALL} python3-tz python3-tzlocal
 
-
-wallpaper:
-	${INSTALL} nitrogen
-
-
-icon-themes:
-	${INSTALL} numix-icon-theme
-
-gtk-themes:
-	${INSTALL} arc-theme
 
 drivers:
 	${INSTALL} bcmwl-kernel-source
 
-flashfocus:
-	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
-	pip install flashfocus
-
-rofi: FORCE
-	${INSTALL} rofi unifont
 
 conky-notifications:
 	${INSTALL} conky-all
-
-terminal:
-	${INSTALL} rxvt-unicode
 
 
 
 # TERMINAL TOOLS
 
-vi: ripgrep silver-seacher coc-node
-	${ADD_REPOSITORY} ppa:neovim-ppa/stable
-	${UPDATE}
-	${INSTALL} neovim universal-ctags
-	pip3 install neovim
-	#pip install neovim
-
-ripgrep:
-	${SNAP_INSTALL} --classic ripgrep
-
-silver-seacher:
-	${INSTALL} silversearcher-ag
-
 coc-node:
 	nvm install "${COC_NODE_VERSION}"
-
-python3-pynvim: python3-pip3
-	cd ~; python3 -m venv .neovim_venv
-	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
 
 python3-pip3:
 	${INSTALL} python3-pip
@@ -141,8 +231,6 @@ python3-pip3:
 ranger-install:
 	${INSTALL} ranger
 
-clipboard-tools: greenclip
-	${INSTALL} xclip
 
 # tools for editing CSV files
 csvkit:
@@ -154,16 +242,6 @@ cloc:
 
 entr:
 	${INSTALL} entr
-
-tmate:
-	${INSTALL} tmate
-
-zsh: FORCE
-	${INSTALL} zsh
-	chsh -s /bin/zsh
-
-oh-my-zsh:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 cli-administration: osquery ppapurge
 
@@ -201,19 +279,6 @@ xdotool:
 	${INSTALL} xdotool
 
 # DEVELOPMENT TOOLS
-
-docker: docker-ce-edge docker-compose
-
-docker-ce-edge:
-	$(if $(shell which docker),$(error "Docker already installed"),)
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com
-	${AT_TEMP_FOLDER} sh get-docker.sh
-	sudo usermod -aG docker `whoami`
-
-docker-compose:
-	sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-	sudo chmod +x /usr/local/bin/docker-compose
-
 
 version-control:
 	${INSTALL} git mercurial mercurial-git subversion
@@ -295,11 +360,6 @@ dbeaver:
 	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dbeaver.deb
 	${AT_TEMP_FOLDER} rm dbeaver.deb
 
-# offline docs
-zeal:
-	${ADD_REPOSITORY} ppa:zeal-developers/ppa
-	${UPDATE}
-	${INSTALL} zeal
 
 mssql-tools:
 	curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -308,10 +368,7 @@ mssql-tools:
 	${INSTALL}  mssql-tools unixodbc-dev
 
 
-go:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} go.tar.gz  https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
-	${AT_TEMP_FOLDER} tar xf go.tar.tz
-	${AT_TEMP_FOLDER} sudo mv go /usr/local
+
 
 # LANGUAGE SERVERS -----------------------------------------------------
 language-servers: ls-bash ls-typescript
@@ -386,6 +443,10 @@ baobab:
 web-browser: firefox
 
 firefox:
+	sudo add-apt-repository ppa:mozillateam/ppa
+	sudo snap remove firefox
+	sudo cp apt/preferences.d/mozilla-firefox /etc/apt/preferences.d/
+	${UPDATE}
 	${INSTALL} firefox
 
 qutebrowser: FORCE
@@ -482,7 +543,10 @@ skype:
 
 # stow all configuration files ------------------------------------------
 
-link-all: link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-vscode link-zsh link-zathura
+link-all: stow link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-vscode link-zsh link-zathura
+
+stow:
+	${INSTALL} stow
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -511,6 +575,7 @@ link-neovim:
 	cd neovim; stow -R config --target=${HOME}/.config/nvim/
 
 link-ranger:
+	mkdir -p ${HOME}/.config/ranger
 	stow -R ranger --target=${HOME}/.config/ranger
 
 link-rofi:
