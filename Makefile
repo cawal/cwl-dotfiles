@@ -69,6 +69,7 @@ clipboard-tools: greenclip
 	${INSTALL} xclip
 
 go: asdf-golang
+	asdf install golang "${GO_VERSION}"
 	asdf global golang "${GO_VERSION}"
 
 
@@ -137,7 +138,7 @@ clipboard-manager: greenclip rofi
 desktop-configuration: arandr
 	${INSTALL} lxappearance
 
-qtile: lockscreen FORCE
+qtile: lockscreen qtile-dependencies FORCE
 	pip install qtile
 	# cd ${GIT_THIRD_PARTY_FOLDER}; rm -rf qtile; git clone https://github.com/qtile/qtile.git; cd qtile; sudo pip3 install .
 	sudo wget --output-document /usr/share/xsessions/qtile.desktop https://raw.githubusercontent.com/qtile/qtile/master/resources/qtile.desktop
@@ -534,10 +535,6 @@ spotify:
 	#echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 	${UPDATE}
 	${INSTALL} spotify-client
-
-skype:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} skype.deb https://repo.skype.com/latest/skypeforlinux-64.deb
-	${AT_TEMP_FOLDER} dpkg -i skype.deb
 
 
 
