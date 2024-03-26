@@ -17,6 +17,11 @@ GO_VERSION=1.12.5
 
 all: desktop-environment link-all
 
+aws-cli:
+	# depends on glibc groff less
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"; unzip awscliv2.zip; sudo ./aws/install
+
+
 arandr:
 	${INSTALL} arandr
 
