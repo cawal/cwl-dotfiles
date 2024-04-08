@@ -54,11 +54,8 @@ rofi: FORCE
 	${INSTALL} rofi unifont
 
 vi: ripgrep silver-seacher
-	${ADD_REPOSITORY} ppa:neovim-ppa/stable
-	${UPDATE}
-	${INSTALL} neovim universal-ctags
+	sudo snap install --beta nvim --classic
 	pip3 install neovim
-	#pip install neovim
 
 ripgrep:
 	${SNAP_INSTALL} --classic ripgrep
