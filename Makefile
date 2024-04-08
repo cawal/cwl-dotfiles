@@ -54,7 +54,11 @@ rofi: FORCE
 	${INSTALL} rofi unifont
 
 vi: ripgrep silver-seacher
-	sudo snap install --beta nvim --classic
+	sudo apt remove neovim neovim-runtime
+	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
+	${AT_TEMP_FOLDER} git clone https://github.com/neovim/neovim
+	${AT_TEMP_FOLDER} cd neovim && git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo
+	${AT_TEMP_FOLDER} cd neovim/build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 	pip3 install neovim
 
 ripgrep:
