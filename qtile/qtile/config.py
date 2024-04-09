@@ -1,26 +1,17 @@
 import os
-from functools import partial
 import subprocess
-from libqtile.log_utils import logger
-from libqtile.config import (
-    Key,
-    Screen,
-    Group,
-    Drag,
-    Click,
-    KeyChord,
-    ScratchPad,
-    DropDown,
-    Match,
-)
-from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook, qtile
-from libqtile.widget import base as widget_base
-from host import get_xresources_variables
-from group_to_display_mapper import GroupToDisplayMapper
-import user_input
-from qtile_vim_marks.manager import VimMarksManager
+from functools import partial
 
+import user_input
+from group_to_display_mapper import GroupToDisplayMapper
+from host import get_xresources_variables
+from libqtile import bar, hook, layout, qtile, widget
+from libqtile.command import lazy
+from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,
+                             Match, ScratchPad, Screen)
+from libqtile.log_utils import logger
+from libqtile.widget import base as widget_base
+from qtile_vim_marks.manager import VimMarksManager
 
 xresources = get_xresources_variables()
 
@@ -30,7 +21,7 @@ logger.warning(xresources)
 mod = "mod4"
 font = "Hack"
 font = "Noto Sans"
-font_size=12
+font_size = 12
 color_highlight = "#F7941E"
 color_urgent = color_highlight
 color_white = "#DDDDDD"
@@ -439,7 +430,7 @@ floating_config = {
 
 layouts = [
     layout.Columns(**columns_config),
-    #CWLTreeTab(**treetab_config),
+    # CWLTreeTab(**treetab_config),
     layout.Max(),
 ]
 
@@ -494,10 +485,14 @@ class TestCounterWidget(widget_base._TextBox):
         self.drawer.draw(offsetx=self.offsetx, offsety=self.offsety, width=self.width)
         self.bar.draw()
 
+
 group_box_config = {
     "disable_drag": True,
     "highlight_method": "line",
-    "highlight_color": [color_highlight, color_highlight], # Active group highlight color when using 'line' highlight method
+    "highlight_color": [
+        color_highlight,
+        color_highlight,
+    ],  # Active group highlight color when using 'line' highlight method
     "hide_unused": True,
 }
 
@@ -510,7 +505,7 @@ task_list_config = {
     "markup_maximized": f'<span foreground="{color_grey}">{{}}</span>',
     "markup_minimized": f'<span foreground="{color_grey}">{{}}</span>',
     "markup_normal": f'<span foreground="{color_grey}">{{}}</span>',
-    "highlight_method": "block", # border|block
+    "highlight_method": "block",  # border|block
     "rounded": False,
 }
 
@@ -528,8 +523,8 @@ screens = [
                 ),
                 widget.Prompt(),
                 separator_widget,
-                #widget.WindowName(),
-                #separator_widget,
+                # widget.WindowName(),
+                # separator_widget,
                 widget.TaskList(**task_list_config),
                 widget.Volume(),
                 separator_widget,
@@ -559,7 +554,7 @@ screens = [
                 separator_widget,
                 widget.Prompt(),
                 separator_widget,
-                #widget.WindowName(),
+                # widget.WindowName(),
                 widget.TaskList(**task_list_config),
                 separator_widget,
                 widget.Clock(format="%H:%M %p"),
