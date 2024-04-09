@@ -546,7 +546,7 @@ spotify:
 
 # stow all configuration files ------------------------------------------
 
-link-all: stow link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-vscode link-zsh link-zathura
+link-all: stow link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
 stow:
 	${INSTALL} stow
@@ -608,10 +608,6 @@ link-qutebrowser:
 link-urxvt:
 	mkdir -p ${HOME}/.urxvt/
 	stow -R urxvt --target=${HOME}/.urxvt/
-
-link-vscode:
-	mkdir -p ${HOME}/.config/Code/user
-	stow -R vscode --target=${HOME}/.config/Code/User
 
 link-zsh:
 	stow -R zsh --target=${HOME}
