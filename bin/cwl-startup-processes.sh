@@ -3,7 +3,7 @@ xrdb ~/.Xresources
 compton --backend glx --vsync drm --glx-no-stencil --config ~/.config/i3/compton.conf  &
 
 # numlock starts activated
-numlockx on &
+# numlockx on &
 
 # notification
 #killall -q notify-osd;  &
@@ -15,7 +15,7 @@ setxkbmap -option caps:escape &
 # tray services
 dropbox start &
 greenclip daemon &
-kdeconnect-indicator &
+# kdeconnect-indicator &
 syncthing &
 
 blueman-applet &

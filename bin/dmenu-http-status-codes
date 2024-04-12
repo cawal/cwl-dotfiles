@@ -11,7 +11,7 @@ show_code(){
 	#qutebrowser --target window  "${BASEPATH}/${1}" 
 }
 
-STATUS=$(grep -v "#" "${DATA_SOURCE}" | sed "s/\t/ : /" | dmenu -i -l 20 -fn Monospace-15 | awk '{print $1}' | tr -d '\n')
+STATUS=$(grep -v "#" "${DATA_SOURCE}" | sed "s/\t/ : /" | rofi -dmenu | awk '{print $1}' | tr -d '\n')
 
 if [ -z "$STATUS" ]; then  
 	: # if none selected, do nothing 
