@@ -56,6 +56,41 @@ groups = [Group(i, persist=True) for i in "1234567890"]
 mapper = GroupToDisplayMapper(groups)
 marksManager = VimMarksManager(mapper.go_to_group)
 
+search_bindings = (
+    [
+        Key([], "t", lazy.spawn("epoch-converter.sh")),
+        Key([], "h", lazy.spawn("dmenu-http-status-codes")),
+        Key([], "e", lazy.spawn("dmenu-emoticons")),
+        Key([], "s", lazy.spawn("dmenu-change-sound-output")),
+        Key([], "b", lazy.spawn("dmenu-display-control")),
+        Key(
+            [],
+            "c",
+            lazy.spawn(
+                "rofi -modi 'clipboard:greenclip print'"
+                " -show clipboard -run-command '{cmd}'"
+            ),
+        ),
+    ],
+)
+
+search_bindings_config = "<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard, [t]imestamp from epoch"
+search_bindings = [
+    Key([], "t", lazy.spawn("epoch-converter.sh")),
+    Key([], "h", lazy.spawn("dmenu-http-status-codes")),
+    Key([], "e", lazy.spawn("dmenu-emoticons")),
+    Key([], "s", lazy.spawn("dmenu-change-sound-output")),
+    Key([], "b", lazy.spawn("dmenu-display-control")),
+    Key(
+        [],
+        "c",
+        lazy.spawn(
+            "rofi -modi 'clipboard:greenclip print'"
+            " -show clipboard -run-command '{cmd}'"
+        ),
+    ),
+]
+
 keys = [
     Key([mod], "Down", lazy.screen.next_group()),
     Key([mod], "Up", lazy.screen.prev_group()),
@@ -108,22 +143,14 @@ keys = [
     KeyChord(
         [],
         "XF86Search",
-        [
-            Key([], "t", lazy.spawn("epoch-converter.sh")),
-            Key([], "h", lazy.spawn("dmenu-http-status-codes")),
-            Key([], "e", lazy.spawn("dmenu-emoticons")),
-            Key([], "s", lazy.spawn("dmenu-change-sound-output")),
-            Key([], "b", lazy.spawn("dmenu-display-control")),
-            Key(
-                [],
-                "c",
-                lazy.spawn(
-                    "rofi -modi 'clipboard:greenclip print'"
-                    " -show clipboard -run-command '{cmd}'"
-                ),
-            ),
-        ],
-        name="<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard, [t]imestamp from epoch",
+        search_bindings,
+        name=search_bindings_config
+    ),
+    KeyChord(
+        [mod],
+        "c",
+        search_bindings,
+        name=search_bindings_config
     ),
     Key(
         [mod],
