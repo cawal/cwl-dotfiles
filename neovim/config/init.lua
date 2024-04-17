@@ -366,7 +366,7 @@ require("lazy").setup({
 
 			function Find_hidden_files()
 				local builtin = require("telescope.builtin")
-				builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "!.git" } })
+				builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "-L", "!.git" } })
 			end
 
 			-- See `:help telescope.builtin`
@@ -374,7 +374,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", function()
-				builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-g", "!.git" } })
+				builtin.find_files({ find_command = { "rg", "--files", "--hidden", "-L", "-g", "!.git" } })
 			end, { desc = "[S]earch [F]iles" })
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
