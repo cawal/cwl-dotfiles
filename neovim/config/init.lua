@@ -792,6 +792,24 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		},
+		config = function()
+			vim.keymap.set("n", "<leader>st", function()
+				vim.cmd("Neotree toggle")
+			end, { desc = "[S]earch Files in a [T]ree / Close Tree" })
+			vim.keymap.set("n", "<leader>sB", function()
+				vim.cmd("Neotree buffers toggle")
+			end, { desc = "[S]earch [B]uffer in a Tree / Close Tree" })
+		end,
+	},
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
