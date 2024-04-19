@@ -567,7 +567,7 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				-- pyright = {},
+				pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -802,6 +802,14 @@ require("lazy").setup({
 			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
 		config = function()
+			require("neo-tree").setup({
+				sources = {
+					"filesystem",
+					"buffers",
+					"git_status",
+					"document_symbols",
+				},
+			})
 			vim.keymap.set("n", "<leader>st", function()
 				vim.cmd("Neotree toggle")
 			end, { desc = "[S]earch Files in a [T]ree / Close Tree" })
