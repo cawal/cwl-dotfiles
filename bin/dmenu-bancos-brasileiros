@@ -1,0 +1,19 @@
+#v/bin/sh
+# Give dmenu list of all unicode characters to copy.
+# Shows the selected character in dunst if running.
+# From https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicodehttps://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicode
+
+DATA_SOURCE=~/bin/data-sources/bancos.csv
+
+copy_to_clipboard(){
+	echo "${1}" | xclip -selection clipboard
+	notify-send Emoticon "$(xclip -o -selection clipboard) copied to clipboard."
+}
+
+STATUS=$(grep -v "#" "${DATA_SOURCE}" | cut -d , -f 1,4,2,3 | sed "s/,/ : /g" | rofi -dmenu | tr -d '\n')
+
+if [ -z "$STATUS" ]; then  
+	: # if none selected, do nothing 
+else 
+	copy_to_clipboard "${STATUS}"
+fi
