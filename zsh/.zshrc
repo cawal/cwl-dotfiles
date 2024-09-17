@@ -149,3 +149,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
 
 . ~/.asdf/plugins/golang/set-env.zsh
+
+alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
+alias ubuntu-update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
