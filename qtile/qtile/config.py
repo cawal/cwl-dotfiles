@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 from functools import partial
 
@@ -52,7 +53,19 @@ def remove_group(name):
     return f
 
 
-groups = [Group(i, persist=True) for i in "1234567890"]
+#groups = [Group(i, persist=True) for i in "1234567890"]
+groups = [
+    Group("1", persist=True),
+    Group("2", persist=True),
+    Group("3", persist=True),
+    Group("4", persist=True),
+    Group("5", persist=True),
+    Group("6", persist=True),
+    Group("7", persist=True),
+    Group("8", persist=True),
+    Group("9", persist=True),
+    Group("0", persist=True),
+]
 mapper = GroupToDisplayMapper(groups)
 marksManager = VimMarksManager(mapper.go_to_group)
 
