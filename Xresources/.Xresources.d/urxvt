@@ -53,7 +53,7 @@ urxvt.iso14755: false
 urxvt.iso14755_52: false
 urxvt.internalBorder: 10
 urxvt.saveline: 2048
-urxvt.perl-ext: default,keyboard-select,resize-font
+urxvt.perl-ext: default,keyboard-select,resize-font,-confirm-paste
 urxvt.keysym.M-Escape: perl:keyboard-select:activate
 urxvt.keyboard-select.clipboard: true
 !urxvt.urgentOnBell: true
