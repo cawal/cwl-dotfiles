@@ -1,3 +1,4 @@
 #!/bin/bash
 
 xmodmap -e "pointer = 1 2 3"
+xsetroot -cursor_name left_ptr
