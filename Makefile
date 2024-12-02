@@ -15,7 +15,9 @@ ASDF_VERSION=v0.13.1
 GO_VERSION=1.12.5
 
 
-all: desktop-environment link-all
+# all: desktop-environment link-all
+
+all: telegram entr spotify syncthing vi
 
 aws-cli:
 	# depends on glibc groff less
@@ -53,13 +55,15 @@ flashfocus:
 rofi: FORCE
 	${INSTALL} rofi unifont
 
-vi: ripgrep silver-seacher
+vi: ripgrep silver-seacher python3-pip3
 	sudo apt remove neovim neovim-runtime
 	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 	${AT_TEMP_FOLDER} git clone https://github.com/neovim/neovim
 	${AT_TEMP_FOLDER} cd neovim && git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo
 	${AT_TEMP_FOLDER} cd neovim/build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
-	pip3 install neovim
+	${INSTALL} python3-neovim
+	git config --global core.editor nvim
+	# pip3 install neovim
 
 ripgrep:
 	${SNAP_INSTALL} --classic ripgrep
@@ -545,10 +549,6 @@ syncthing:
 
 spotify:
 	sudo snap install spotify
-	#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-	#echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	${UPDATE}
-	${INSTALL} spotify-client
 
 
 
