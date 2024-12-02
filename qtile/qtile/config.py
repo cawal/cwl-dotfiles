@@ -69,31 +69,15 @@ groups = [
 mapper = GroupToDisplayMapper(groups)
 marksManager = VimMarksManager(mapper.go_to_group)
 
-search_bindings = (
-    [
-        Key([], "t", lazy.spawn("epoch-converter.sh")),
-        Key([], "h", lazy.spawn("dmenu-http-status-codes")),
-        Key([], "e", lazy.spawn("dmenu-emoticons")),
-        Key([], "s", lazy.spawn("dmenu-change-sound-output")),
-        Key([], "b", lazy.spawn("dmenu-display-control")),
-        Key(
-            [],
-            "c",
-            lazy.spawn(
-                "rofi -modi 'clipboard:greenclip print'"
-                " -show clipboard -run-command '{cmd}'"
-            ),
-        ),
-    ],
-)
 
-search_bindings_config = "<b>Databases:</b> [h]ttp status codes, [e]moticons, [c]lipboard, [t]imestamp from epoch"
+search_bindings_config = "<b>Databases:</b> [h]ttp status codes, [b]ancos, [e]moticons, [c]lipboard, [t]imestamp from epoch, [d] display-controls"
 search_bindings = [
     Key([], "t", lazy.spawn("epoch-converter.sh")),
     Key([], "h", lazy.spawn("dmenu-http-status-codes")),
     Key([], "e", lazy.spawn("dmenu-emoticons")),
     Key([], "s", lazy.spawn("dmenu-change-sound-output")),
-    Key([], "b", lazy.spawn("dmenu-display-control")),
+    Key([], "d", lazy.spawn("dmenu-display-control")),
+    Key([], "b", lazy.spawn("dmenu-bancos-brasileiros")),
     Key(
         [],
         "c",
