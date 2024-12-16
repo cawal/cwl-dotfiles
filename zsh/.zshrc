@@ -57,7 +57,6 @@ plugins=(
 	git
 	git-extras
 	git-flow
-    pipenv
 	mvn
 	gradle
 	nvm

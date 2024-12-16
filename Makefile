@@ -10,6 +10,7 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 
 
+
 COC_NODE_VERSION=v12.6.0
 ASDF_VERSION=v0.13.1
 GO_VERSION=1.12.5
@@ -17,7 +18,11 @@ GO_VERSION=1.12.5
 
 # all: desktop-environment link-all
 
-all: telegram entr spotify syncthing vi
+all: telegram entr spotify syncthing vi clipboard-tools aws-cli
+
+flashfocus:
+	${INSTALL} libxcb-render0-dev libffi-dev python3-dev python3-cffi python3-pip
+	pip install flashfocus
 
 aws-cli:
 	# depends on glibc groff less
@@ -48,9 +53,6 @@ greenclip:
 terminal:
 	${INSTALL} rxvt-unicode
 
-flashfocus:
-	${INSTALL} libxcb-render0-dev libffi-dev python-dev python-cffi python-pip
-	pip install flashfocus
 
 rofi: FORCE
 	${INSTALL} rofi unifont
@@ -71,9 +73,9 @@ ripgrep:
 silver-seacher:
 	${INSTALL} silversearcher-ag
 
-python3-pynvim: python3-pip3
-	cd ~; python3 -m venv .neovim_venv
-	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
+#python3-pynvim: python3-pip3
+#	cd ~; python3 -m venv .neovim_venv
+#	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
 
 clipboard-tools: greenclip
 	${INSTALL} xclip
@@ -133,7 +135,7 @@ libfuse: # for APPIMAGES # https://github.com/AppImage/AppImageKit/wiki/FUSE
 	sudo add-apt-repository universe
 	sudo apt install libfuse2
 
-liber:
+liber: liber-vpn
 
 liber-vpn: # https://liber.atlassian.net/wiki/spaces/SRE/pages/6952747080/Instala+o+Linux
 	${INSTALL} wireguard
@@ -405,6 +407,11 @@ ls-typescript:
 # Writing tools --------------------------------------------------------
 image-manipulation:
 	${INSTALL} inkscape gimp imagemagick gpick
+
+zotero:
+	wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
+	${UPDATE}
+	${INSTALL} zotero
 
 mendeley:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
