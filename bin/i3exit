@@ -16,7 +16,6 @@ case "$1" in
         ;;
     hibernate)
         lock && systemctl hibernate  # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate
-        /sbin/reboot
         ;;
     reboot)
         systemctl reboot # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
