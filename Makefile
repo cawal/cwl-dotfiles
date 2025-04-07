@@ -277,8 +277,8 @@ osquery:
 
 
 q:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/packages-for-q/raw/master/deb/q-text-as-data_1.7.1-2_all.deb
-	${AT_TEMP_FOLDER} dpkg -i q.deb
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb
+	${AT_TEMP_FOLDER} sudo dpkg -i q.deb
 
 htop:
 	${INSTALL} htop
