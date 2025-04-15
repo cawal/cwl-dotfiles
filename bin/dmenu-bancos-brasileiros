@@ -1,8 +1,7 @@
-#v/bin/sh
+#!/bin/sh
 # Give dmenu list of all unicode characters to copy.
 # Shows the selected character in dunst if running.
 # From https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicodehttps://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/dmenuunicode
-
 DATA_SOURCE=~/bin/data-sources/bancos.csv
 
 copy_to_clipboard(){
