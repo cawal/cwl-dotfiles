@@ -3,20 +3,51 @@ import re
 import subprocess
 from functools import partial
 
-import user_input
-from group_to_display_mapper import GroupToDisplayMapper
-from host import get_xresources_variables
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.command import lazy
 from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,
                              Match, ScratchPad, Screen)
 from libqtile.log_utils import logger
 from libqtile.widget import base as widget_base
+
+# https://patorjk.com/software/taag/#p=display&f=miniwi&t=CaWaL%20Qtile%20Config
+load_config_banner = """
+====================================
+▄▖  ▖  ▖  ▖   ▄▖▗ ▘▜     ▄▖    ▐▘▘  
+▌ ▀▌▌▞▖▌▀▌▌   ▌▌▜▘▌▐ █▌  ▌ ▛▌▛▌▜▘▌▛▌
+▙▖█▌▛ ▝▌█▌▙▖  █▌▐▖▌▐▖▙▖  ▙▖▙▌▌▌▐ ▌▙▌
+               ▘                  ▄▌
+====================================
+Starting config loading...
+====================================
+"""
+
+load_complete_config_banner = """
+===================================
+Config loaded.
+===================================
+"""
+
+logger.warning(load_config_banner)
+
+
+
+
+import user_input
+from group_to_display_mapper import GroupToDisplayMapper
+from host import get_xresources_variables, get_monitors
 from qtile_vim_marks.manager import VimMarksManager
 
 xresources = get_xresources_variables()
-
 logger.warning(xresources)
+monitors = get_monitors()
+logger.warning(monitors)
+
+
+
+
+
+
 
 
 mod = "mod4"
@@ -709,3 +740,7 @@ def group_deleted(group_name: str):
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+
+
+logger.warning(load_complete_config_banner)

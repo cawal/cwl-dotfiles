@@ -32,11 +32,18 @@ class GroupToDisplayMapper:
         group_by_name(qtile, group_name).cmd_toscreen(toggle=False)
 
     def shift_group_display(self, qtile):
-        screens = list_screens()
         group = qtile.current_group.name
+        self.rotate_group(group)
+        self.go_to_group(qtile, group)
+
+    def rotate_all_groups(self, qtile):
+        for group_name in keys(self.map):
+            self.rotate_group(group_name)
+
+    def rotate_group(self, group: str):
+        screens = list_screens()
         index = self.map.get(group, 0)
         self.map[group] = (index + 1) % len(screens)
-        self.go_to_group(qtile, group)
 
     def _name_for_group(self, group: Union[str,NamedElement]):
         if hasattr(group, "name"):

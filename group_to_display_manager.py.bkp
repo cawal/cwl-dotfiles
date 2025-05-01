@@ -1,0 +1,113 @@
+from typing import Sequence, Dict, Union, Protocol
+from libqtile.log_utils import logger
+from host import get_monitors
+from libqtile import qtile
+from libqtile.command import lazy
+
+class NamedElement(Protocol):
+    name: str
+
+
+def group_by_name(qtile, gname: str):
+    return [group for group in qtile.groups if group.name == gname][0]
+
+
+def get_named_screens(qtile, xrand_monitors: Sequence[MonitorInfor) -> Dict[str,int]:
+    """
+    Retorna uma lista de tuplas (screen, monitor_name),
+    associando cada Screen do Qtile com o nome real do monitor (via xrandr).
+    """
+    # Mapeia cada screen do Qtile ao monitor correspondente
+    screens_map = {} 
+    for index, screen in qtile.screens:
+        match = next(
+            (m for m in xrandr_monitors
+             if m.x == screen.x and m.y == screen.y
+             and m.width == screen.width and m.height == screen.height),
+            None
+        )
+        name = match["name"] if match else "unknown"
+        screens_map[name] = index
+    return screens_map
+
+    class GroupToDisplayMapper:
+        def __init__(self, groups: Sequence[Union[str,NamedElement]):
+                self.monitors = get_monitors()
+                self.primary_monitor = next(
+                        (m for m in self.monitors where m.is_primary
+                        )
+
+                        self.group_to_monitor_map=dict([
+                        (self._name_for_group(group),primary_monitor.name)
+                        for group
+            in groups]
+        )
+        self.monitor_to_screen_map = dict([
+            (m.name,None)
+            for m
+            in self.monitors]
+                                          )
+        self.map: Dict[str, int] = dict([(self._name_for_group(group), 0) for group in groups])
+        #self.calculate_initial_config()
+
+    def get_screen_index(self, group: Union[str,NamedElement]) -> int:
+        # retrieves the monitor name to the group
+        # and the the qtile index of the related
+        # screen 
+        group_name = self._name_for_group(group)
+        monitor = self.group_to_monitor_map.get(group_name,"unknown")
+        return self.monitor_to_screen_map(monitor,0) or 0
+
+    def add_group(self, group: str):
+        if group in self.group_to_monitor_map:
+            return
+        else:
+            self.group_to_monitor_map[group] = self.primary_monitor.name
+
+    def remove_group(self, group: str):
+        if group not in self.group_to_monitor_map:
+            return
+        else:
+            del self.group_to_monitor_map[group]
+
+    def go_to_group(self, qtile, group: Union[str, NamedElement]):
+        index = self.get_screen_index(group)
+        qtile.cmd_to_screen(index)
+        group_by_name(qtile, group_name).cmd_toscreen(toggle=False)
+
+
+    def get_display_names(self) -> Sequence[str]:
+        return [
+            monitor.name
+            for monitor
+            in self.monitors
+        ]
+
+    def calculate_initial_config(self):
+        screens = self.get_display_names()
+        n_screens = len(screens)
+        n_groups = len(self.map)
+        groups_per_screen = int(n_groups / n_screens)
+        for index, group in enumerate(self.map.keys()):
+            screen_index = int(index / groups_per_screen)
+            logger.warning(f"Assigning group {group} to screen {screens[screen_index]}")
+            self.map[group] = screen_index
+
+
+
+    def shift_group_display(self, qtile):
+        screens = self.get_display_names()
+        group = qtile.current_group.name
+        index = self.map.get(group, 0)
+        self.map[group] = (index + 1) % len(screens)
+        self.go_to_group(qtile, group)
+
+    def _name_for_group(self, group: Union[str,NamedElement]):
+        if hasattr(group, "name"):
+            return group.name
+        elif isinstance(group,str):
+            return group
+        else:
+            raise Exception("`group`is not a string or has name")
+
+
