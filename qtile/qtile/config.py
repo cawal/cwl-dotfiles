@@ -5,7 +5,7 @@ from functools import partial
 
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.command import lazy
-from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,
+from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,EzKey,
                              Match, ScratchPad, Screen)
 from libqtile.log_utils import logger
 from libqtile.widget import base as widget_base
@@ -33,7 +33,6 @@ logger.warning(load_config_banner)
 
 
 
-import user_input
 from group_to_display_mapper import GroupToDisplayMapper
 from host import get_xresources_variables, get_monitors
 from qtile_vim_marks.manager import VimMarksManager
@@ -43,14 +42,23 @@ logger.warning(xresources)
 monitors = get_monitors()
 logger.warning(monitors)
 
-
-
-
-
-
-
-
+###############################################
+# MODIFIERS
+###############################################
 mod = "mod4"
+___ = [] 
+win_key = ["mod4"]
+shift = ["shift"]
+control = ["control"]
+super = ["super"]
+alt = ["Alt"]
+
+
+
+
+
+
+
 font = "Hack"
 font = "Noto Sans"
 font_size = 12
@@ -76,15 +84,12 @@ def add_group(name):
 
     return f
 
-
 def remove_group(name):
     def f(qtile):
         qtile.groupMap.remove(name)
 
     return f
 
-
-#groups = [Group(i, persist=True) for i in "1234567890"]
 groups = [
     Group("1", persist=True),
     Group("2", persist=True),
@@ -103,15 +108,13 @@ marksManager = VimMarksManager(mapper.go_to_group)
 
 search_bindings_config = "<b>Databases:</b> [h]ttp status codes, [b]ancos, [e]moticons, [c]lipboard, [t]imestamp from epoch, [d] display-controls"
 search_bindings = [
-    Key([], "t", lazy.spawn("epoch-converter.sh")),
-    Key([], "h", lazy.spawn("dmenu-http-status-codes")),
-    Key([], "e", lazy.spawn("dmenu-emoticons")),
-    Key([], "s", lazy.spawn("dmenu-change-sound-output")),
-    Key([], "d", lazy.spawn("dmenu-display-control")),
-    Key([], "b", lazy.spawn("dmenu-bancos-brasileiros")),
-    Key(
-        [],
-        "c",
+    Key(___, "t", lazy.spawn("epoch-converter.sh")),
+    Key(___, "h", lazy.spawn("dmenu-http-status-codes")),
+    Key(___, "e", lazy.spawn("dmenu-emoticons")),
+    Key(___, "s", lazy.spawn("dmenu-change-sound-output")),
+    Key(___, "d", lazy.spawn("dmenu-display-control")),
+    Key(___, "b", lazy.spawn("dmenu-bancos-brasileiros")),
+    Key(___, "c",
         lazy.spawn(
             "rofi -modi 'clipboard:greenclip print'"
             " -show clipboard -run-command '{cmd}'"
@@ -120,158 +123,99 @@ search_bindings = [
 ]
 
 keys = [
-    Key([mod], "Down", lazy.screen.next_group()),
-    Key([mod], "Up", lazy.screen.prev_group()),
-    KeyChord(
-        [],
-        "XF86Tools",
+    Key(win_key, "Down", lazy.screen.next_group()),
+    Key(win_key, "Up", lazy.screen.prev_group()),
+    KeyChord( ___, "XF86Tools",
         [
-            Key(
-                [],
-                "p",
+            Key( ___, "p",
                 lazy.spawn("notify-send Dunst stopped"),
                 lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
             ),
-            Key(
-                [],
-                "r",
+            Key( ___, "r",
                 lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
                 lazy.spawn("notify-send Dunst resumed"),
             ),
-            Key([], "s", lazy.spawn("dmenu-change-sound-output")),
-            Key([], "d", lazy.spawn("dmenu-display-control")),
+            Key(___, "s", lazy.spawn("dmenu-change-sound-output")),
+            Key(___, "d", lazy.spawn("dmenu-display-control")),
         ],
         name="<b>Controls:</b> [p]ause notifications, [r]esume notifications, [s]ound outputs, [d]isplay light",
         mode=False,
     ),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
-    # Key(
-    #    [],"XF86AudioStop",lazy.spawn(""),
-    # ),
-    # Key(
-    #    [],"XF86AudioPrev",lazy.spawn(""),
-    # ),
-    # Key(
-    #    [],"XF86AudioPlay",lazy.spawn(""),
-    # ),
-    # Key(
-    #    [],"XF86AudioNext",lazy.spawn(""),
-    # ),
-    # Key(
-    #    [],"XF86Mail",lazy.spawn(""),
-    # ),
-    Key([], "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
-    Key(
-        [],
-        "XF86Calculator",
+    Key(___, "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
+    Key(___, "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
+    Key(___, "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    Key(___, "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
+    Key(___, "XF86Calculator",
         lazy.spawn("cwl-sensible-terminal -e python3"),
     ),
-    KeyChord(
-        [],
-        "XF86Search",
+    KeyChord(___, "XF86Search",
         search_bindings,
         name=search_bindings_config
     ),
-    KeyChord(
-        [mod],
-        "c",
+    KeyChord(win_key, "c",
         search_bindings,
         name=search_bindings_config
     ),
-    Key(
-        [mod],
-        "j",
+    Key(win_key, "j",
         lazy.layout.down(),
         lazy.layout.left().when(layout="columns"),
     ),
-    Key(
-        [mod],
-        "k",
+    Key(win_key, "k",
         lazy.layout.up(),
         lazy.layout.right().when(layout="columns"),
     ),
-    Key(
-        [mod],
-        "h",
+    Key(win_key, "h",
         lazy.layout.left().when(layout="columns"),
     ),
-    Key(
-        [mod],
-        "l",
+    Key(win_key, "l",
         lazy.layout.right().when(layout="columns"),
     ),
-    Key(
-        [mod, "shift"],
-        "j",
+    Key(win_key+shift, "j",
         lazy.layout.swap_column_left().when(layout="columns"),
     ),
-    Key(
-        [mod, "shift"],
-        "k",
+    Key(win_key+shift, "k",
         lazy.layout.swap_column_right().when(layout="columns"),
     ),
-    Key(
-        [mod, "shift"],
-        "h",
+    Key(win_key+shift, "h",
         lazy.layout.grow_left().when(layout="columns"),
     ),
-    Key(
-        [mod, "shift"],
-        "l",
+    Key(win_key+shift, "l",
         lazy.layout.grow_right().when(layout="columns"),
     ),
     # Move windows up or down in current stack
-    Key(
-        [mod, "control"],
-        "j",
+    Key(win_key+control, "j",
         lazy.layout.shuffle_down(),
         desc="Move window down in the current stack",
     ),
-    Key(
-        [mod, "control"],
-        "k",
+    Key(win_key+control, "k",
         lazy.layout.shuffle_up(),
         desc="Move window up in the current stack",
     ),
-    Key(
-        [mod],
-        "b",
+    Key(win_key, "b",
         lazy.group["scratchpad"].dropdown_toggle("blueman-manager"),
         desc="Show bluetooth manager",
     ),
-    Key(
-        [mod],
-        "v",
+    Key(win_key, "v",
         lazy.group["scratchpad"].dropdown_toggle("pavucontrol"),
         desc="Show audio manager",
     ),
-    Key(
-        [mod],
-        "l",
+    Key(win_key, "l",
         lazy.group["scratchpad"].dropdown_toggle("qtile log"),
         desc="Show qtile logs",
     ),
-    Key(
-        [mod],
-        "s",
+    Key(win_key, "s",
         lazy.group["scratchpad"].dropdown_toggle("qtile shell"),
         desc="Show qtile shell",
     ),
-    Key(
-        [mod],
-        "z",
+    Key(win_key, "z",
         lazy.group["scratchpad"].dropdown_toggle("Obsidian"),
         desc="Show qtile shell",
     ),
     # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
+    Key(win_key, "space", lazy.layout.next()),
     # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate()),
-    Key(
-        [mod, "control"],
-        "space",
+    Key(win_key+shift, "space", lazy.layout.rotate()),
+    Key(win_key+control, "space",
         lazy.window.toggle_floating(),
         desc="Toggles floating state of window",
     ),
@@ -279,64 +223,45 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key([mod, "control"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("cwl-sensible-terminal")),
-    Key([mod, "shift"], "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
-    Key(
-        [mod],
-        "d",
+    Key(win_key+control, "Return", lazy.layout.toggle_split()),
+    Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal")),
+    Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
+    Key(win_key, "d",
         lazy.spawn(
             "rofi -show-icons -modi combi -show combi -combi-modi window,run,drun"
         ),
     ),
-    Key([mod], "bracketleft", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
-    Key([mod], "bracketright", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
-    Key([mod], "BackSpace", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    Key(win_key, "bracketleft", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
+    Key(win_key, "bracketright", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
+    Key(win_key, "BackSpace", lazy.spawn("amixer -q -D pulse sset Master toggle")),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout()),
-    Key([mod, "shift"], "Tab", lazy.prev_layout()),
-    Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod], "r", lazy.spawncmd()),
-    Key([], "Print", lazy.spawn("flameshot gui")),
-    KeyChord(
-        [mod, "control"],
-        "BackSpace",
+    Key(win_key, "Tab", lazy.next_layout()),
+    Key(win_key+shift, "Tab", lazy.prev_layout()),
+    Key(win_key+shift, "q", lazy.window.kill()),
+    Key(win_key, "r", lazy.spawncmd()),
+    Key(___, "Print", lazy.spawn("flameshot gui")),
+    KeyChord(win_key+control, "BackSpace",
         [
-            Key(
-                [],
-                "l",
-                lazy.spawn("i3exit lock"),
-            ),
-            Key(
-                [],
-                "s",
-                lazy.spawn("i3exit suspend"),
-            ),
-            Key(
-                ["shift"],
-                "h",
-                lazy.spawn("i3exit hibernate"),
-            ),
-            Key([], "r", lazy.restart()),
-            Key(["shift"], "q", lazy.shutdown()),
+            Key(___, "l", lazy.spawn("i3exit lock")),
+            Key(___, "s", lazy.spawn("i3exit suspend")),
+            Key(shift, "h", lazy.spawn("i3exit hibernate")),
+            Key(___, "r", lazy.restart()),
+            Key(shift, "q", lazy.shutdown()),
         ],
         name="<b>Desktop:</b> [l]ock, [s]uspend, [H]ibernate, [r]estart, [Q]uit",
         mode=False,
     ),
-    Key(
-        [mod],
-        "a",
+    Key(win_key, "a",
         lazy.function(mapper.shift_group_display),
     ),
-    KeyChord(
-        [mod],
-        "m",
+    Key(win_key, "q",
+        lazy.function(mapper.rotate_all_groups_to_next_screen),
+    ),
+    KeyChord(win_key, "m",
         marksManager.get_mark_window_keys(),
         name="<b>Mark window</b> <i>Press a letter key</i>",
     ),
-    KeyChord(
-        [mod],
-        "g",
+    KeyChord(win_key, "g",
         marksManager.get_goto_window_keys(),
         name="<b>Go to marked window</b> <i>Press a letter key</i>",
     ),
@@ -346,9 +271,7 @@ keys = [
 for i in groups:
     # mod1 + letter of group = switch to group
     keys.append(
-        Key(
-            [mod],
-            i.name,
+        Key(win_key, i.name,
             lazy.function(
                 partial(mapper.go_to_group, group=i.name),
             ),
@@ -357,17 +280,13 @@ for i in groups:
 
     # mod1 + control + letter of group = switch to & move focused window to group
     keys.append(
-        Key(
-            [mod, "shift"],
-            i.name,
+        Key(win_key+shift, i.name,
             lazy.window.togroup(i.name),
         )
     )
     # mod1 + shift + letter of group = switch to & move focused window to group
     keys.append(
-        Key(
-            [mod, "control"],
-            i.name,
+        Key(win_key+control, i.name,
             lazy.window.togroup(i.name),
             lazy.function(partial(mapper.go_to_group, group=i.name)),
         )
@@ -509,38 +428,6 @@ pomodoro_widget = widget.Pomodoro(
     **widget_defaults,
 )
 
-
-class TestCounterWidget(widget_base._TextBox):
-    def __init__(self, **config: dict):
-        super().__init__("", **config)
-        self.value = 0
-        self.text = str(self.value)
-        self.add_callbacks(
-            {
-                "Button1": self.add,
-                "Button2": self.zero,
-                "Button3": self.subtract,
-            }
-        )
-
-    def add(self):
-        self.value = self.value + 1
-        self.update()
-
-    def subtract(self):
-        self.value = self.value - 1
-        self.update()
-
-    def zero(self):
-        self.value = 0
-        self.update()
-
-    def update(self):
-        self.text = str(self.value)
-        self.drawer.draw(offsetx=self.offsetx, offsety=self.offsety, width=self.width)
-        self.bar.draw()
-
-
 group_box_config = {
     "disable_drag": True,
     "highlight_method": "line",
@@ -623,15 +510,15 @@ screens = [
 # Drag floating layouts.
 mouse = [
     Drag(
-        [mod],
+        win_key,
         "Button1",
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        win_key, "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click(win_key, "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -672,6 +559,19 @@ reconfigure_screens = True
 # Rule objects to send windows to groups
 dgroups_app_rules = []
 
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# string besides java UI toolkits; you can see several discussions on the
+# mailing lists, github issues, and other WM documentation that suggest setting
+# this string if your java app doesn't work correctly. We may as well just lie
+# and say that we're a working one by default.
+#
+# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
+# java that happens to be on java's whitelist.
+wmname = "LG3D"
+
+# ===========================================
+# HOOKS
+# ===========================================
 
 @hook.subscribe.startup_once
 def autostart():
@@ -731,15 +631,6 @@ def group_deleted(group_name: str):
 #    if hasattr(window, 'parent'):
 #        window.parent.minimized = False
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, github issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
 
 
 

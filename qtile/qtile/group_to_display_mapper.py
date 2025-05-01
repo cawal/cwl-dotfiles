@@ -36,8 +36,8 @@ class GroupToDisplayMapper:
         self.rotate_group(group)
         self.go_to_group(qtile, group)
 
-    def rotate_all_groups(self, qtile):
-        for group_name in keys(self.map):
+    def rotate_all_groups_to_next_screen(self, qtile):
+        for group_name in self.map.keys():
             self.rotate_group(group_name)
 
     def rotate_group(self, group: str):
