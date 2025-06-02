@@ -32,6 +32,13 @@ aws-cli:
 arandr:
 	${INSTALL} arandr
 
+keyd: .FORCE
+	${ADD_REPOSITORY} ppa:keyd-team/ppa
+	${UPDATE}
+	${INSTALL} keyd keyd-application-mapper
+	sudo systemctl enable --now keyd
+
+
 tmate:
 	${INSTALL} tmate
 
@@ -631,6 +638,10 @@ link-zathura:
 	mkdir -p ${HOME}/.config/zathura/
 	stow -R zathura --target=${HOME}/.config/zathura/
 
+link-keyd:
+	sudo stow -R keyd_default --target=/etc/keyd/
+	mkdir -p ${HOME}/.config/keyd/
+	stow -R keyd_app --target=${HOME}/.config/keyd/
 
 
 
