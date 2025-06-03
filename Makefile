@@ -32,7 +32,7 @@ aws-cli:
 arandr:
 	${INSTALL} arandr
 
-keyd: .FORCE
+keyd:
 	${ADD_REPOSITORY} ppa:keyd-team/ppa
 	${UPDATE}
 	${INSTALL} keyd keyd-application-mapper
