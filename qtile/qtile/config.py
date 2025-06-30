@@ -201,6 +201,10 @@ keys = [
         lazy.group["scratchpad"].dropdown_toggle("qtile log"),
         desc="Show qtile logs",
     ),
+    Key(win_key+control, "l",
+        lazy.group["scratchpad"].dropdown_toggle("dmesg log"),
+        desc="Show dmesg logs",
+    ),
     Key(win_key, "s",
         lazy.group["scratchpad"].dropdown_toggle("qtile shell"),
         desc="Show qtile shell",
@@ -366,6 +370,11 @@ groups.append(
             DropDown(
                 "qtile log",
                 f"cwl-sensible-terminal -hold -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
+                **dropdown_config,
+            ),
+            DropDown(
+                "dmesg log",
+                f"cwl-sensible-terminal -hold -e sudo dmesg --follow",
                 **dropdown_config,
             ),
             DropDown(
