@@ -1,5 +1,13 @@
+# Config variables
 GIT_REPOS_ROOT_FOLDER = ~/git/
 GIT_THIRD_PARTY_FOLDER = ${GIT_REPOS_ROOT_FOLDER}third-party/
+
+# versions
+COC_NODE_VERSION=v12.6.0
+ASDF_VERSION=v0.13.1
+GO_VERSION=1.12.5
+
+# snippets
 INSTALL = sudo apt install -y
 INSTALL_LOCAL= sudo dpkg -i
 SNAP_INSTALL = sudo snap install
@@ -11,58 +19,47 @@ AT_TEMP_FOLDER=cd /tmp/ ;
 
 
 
-COC_NODE_VERSION=v12.6.0
-ASDF_VERSION=v0.13.1
-GO_VERSION=1.12.5
 
 
 # all: desktop-environment link-all
 
-all: telegram entr spotify syncthing vi clipboard-tools aws-cli
-
-flashfocus:
-	${INSTALL} libxcb-render0-dev libffi-dev python3-dev python3-cffi python3-pip
-	pip install flashfocus
-
-aws-cli:
-	# depends on glibc groff less
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"; unzip awscliv2.zip; sudo ./aws/install
+all: telegram entr spotify syncthing vi clipboard-tools
 
 
-arandr:
-	${INSTALL} arandr
-
+clipboard-tools: greenclip xclip
+# DAEMONS -----------------------------------------------------
 keyd:
 	${ADD_REPOSITORY} ppa:keyd-team/ppa
 	${UPDATE}
 	${INSTALL} keyd keyd-application-mapper
 	sudo systemctl enable --now keyd
 
+greenclip:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip
+	${AT_TEMP_FOLDER} chmod +x greenclip.bin
+	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
+# GUI APPS ----------------------------------------------------
+obsidian:
+	sudo snap install obsidian --classic
+
+arandr:
+	${INSTALL} arandr
+
+libfuse: # for APPIMAGES # https://github.com/AppImage/AppImageKit/wiki/FUSE
+	${ADD_REPOSITORY} universe
+	${INSTALL} libfuse2
+
+
+# TERMINAL -----------------------------------------------------
 tmate:
 	${INSTALL} tmate
 
 zsh: FORCE
 	${INSTALL} zsh
 	chsh -s /bin/zsh
-
-oh-my-zsh: pipenv
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-pipenv:
-	pip3 install pipenv
-
-greenclip:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} greenclip.bin https://github.com/erebe/greenclip/releases/download/3.3/greenclip
-	${AT_TEMP_FOLDER} chmod +x greenclip.bin
-	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
-
 terminal:
 	${INSTALL} rxvt-unicode
-
-
-rofi: FORCE
-	${INSTALL} rofi unifont
 
 vi: ripgrep silver-seacher python3-pip3
 	sudo apt remove neovim neovim-runtime
@@ -70,7 +67,10 @@ vi: ripgrep silver-seacher python3-pip3
 	${INSTALL} python3-dev python3-pip python3-neovim
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} nvim https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 	${AT_TEMP_FOLDER} chmod u+x nvim
+	sudo rm /usr/local/bin/nvim
 	${AT_TEMP_FOLDER} sudo mv nvim /usr/local/bin/
+	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 1111
+	sudo update-alternatives --set vi /usr/local/bin/nvim
 	git config --global core.editor nvim
 	# pip3 install neovim
 
@@ -80,24 +80,8 @@ ripgrep:
 silver-seacher:
 	${INSTALL} silversearcher-ag
 
-#python3-pynvim: python3-pip3
-#	cd ~; python3 -m venv .neovim_venv
-#	cd ~/.neovim_venv; source .bin/activate; pip install pynvim
-
-clipboard-tools: greenclip
+xclip:
 	${INSTALL} xclip
-
-go: asdf-golang
-	asdf install golang "${GO_VERSION}"
-	asdf global golang "${GO_VERSION}"
-
-
-asdf: # https://asdf-vm.com/guide/getting-started.html
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch "${ASDF_VERSION}"
-
-asdf-golang: asdf # https://github.com/asdf-community/asdf-golang
-	asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-
 
 github-cli:
 	(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
@@ -107,6 +91,9 @@ github-cli:
 		&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 		&& sudo apt update \
 		&& sudo apt install gh -y
+# WM ----------------------------------------------------
+rofi: FORCE
+	${INSTALL} rofi unifont
 
 wallpaper:
 	${INSTALL} nitrogen
@@ -120,6 +107,22 @@ gtk-themes:
 
 sound-control:
 	${INSTALL} pavucontrol
+
+
+# --------------------------------------------------------
+flashfocus:
+	${INSTALL} libxcb-render0-dev libffi-dev python3-dev python3-cffi python3-pip
+	pip install flashfocus
+
+
+oh-my-zsh: pipenv
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+pipenv:
+	pip3 install pipenv
+
+
+
 
 
 
@@ -138,31 +141,13 @@ docker-compose:
 docker-remove-image-cache:
 	docker builder prune
 
-libfuse: # for APPIMAGES # https://github.com/AppImage/AppImageKit/wiki/FUSE
-	sudo add-apt-repository universe
-	sudo apt install libfuse2
-
-liber: liber-vpn
-
-liber-vpn: # https://liber.atlassian.net/wiki/spaces/SRE/pages/6952747080/Instala+o+Linux
-	${INSTALL} wireguard
-
-
-liber-backup:
-	mkdir ${HOME}/backup/
-	sudo cp /etc/wireguard ${HOME}/backup/etc/wireguard
-	mkdir -p ${HOME}/backup/home/cawal
-	cp ${HOME}/.gitconfig ${HOME}/.gitcredentials
-
-
-
 
 # DESKTOP EXPERIENCE
 desktop-environment: qtile flashfocus desktop-configuration clipboard-manager xdotool
 
 clipboard-manager: greenclip rofi
 
-desktop-configuration: arandr
+desktop-configuration:
 	${INSTALL} lxappearance
 
 qtile: lockscreen qtile-dependencies FORCE
@@ -200,12 +185,6 @@ py3status:
 ## I3: END ---------------------
 
 
-xmonad:
-	${INSTALL} xmonad libghc-xmonad-contrib-dev xmobar
-
-alluvium:
-	${INSTALL} libcairo2-dev libgirepository1.0-dev
-	pip3 install alluvium
 
 compositor:
 	${INSTALL} compton
@@ -215,28 +194,10 @@ bluetooth:
 	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
 
 
-#diodon:
-#	${INSTALL} diodon
-
 notifications: dunst
 
 dunst-install:
 	${INSTALL} dunst
-
-kitty:
-	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-	cd ~/bin; ln -s ~/.local/kitty.app/bin/kitten; ln -s ~/.local/kitty.app/bin/kitty
-	# Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
-	# your system-wide PATH)
-	ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-	# Place the kitty.desktop file somewhere it can be found by the OS
-	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-	# If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
-	cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
-	# Update the paths to the kitty and its icon in the kitty.desktop file(s)
-	sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
-	sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
-
 
 
 drivers:
@@ -276,12 +237,6 @@ cli-administration: osquery ppapurge
 ppapurge:
 	${INSTALL} ppa-purge
 
-osquery:
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
-	${ADD_REPOSITORY} 'deb [arch=amd64] https://pkg.osquery.io/deb deb main'
-	${UPDATE}
-	${INSTALL} osquery
-
 
 q:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb
@@ -309,7 +264,7 @@ xdotool:
 # DEVELOPMENT TOOLS
 
 version-control:
-	${INSTALL} git mercurial mercurial-git subversion
+	${INSTALL} git
 
 shellcheck:
 	${INSTALL} shellcheck
@@ -325,8 +280,6 @@ jq:
 tcpflow:
 	${INSTALL} tcpflow
 
-web-development:
-	${INSTALL} jekyll
 
 insomnia:
 	echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
@@ -334,9 +287,6 @@ insomnia:
 	${UPDATE}
 	${INSTALL} insomnia
 
-insomnia-designer:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} insomnia-designer.deb "https://updates.insomnia.rest/downloads/ubuntu/latest?ref=&app=com.insomnia.designer&source=website"
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} insomnia-designer.deb
 
 debugging:
 	# perf:
@@ -420,13 +370,6 @@ zotero:
 	${UPDATE}
 	${INSTALL} zotero
 
-mendeley:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} mendeleydesktop.deb https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-	${INSTALL} libqtwebkit4 gconf2
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} mendeleydesktop.deb
-
-jabref-dependencies: openjdk-8
-	${INSTALL} openjfx
 
 
 writing: latex markdown office-suite gedit graphviz zathura
@@ -476,10 +419,6 @@ baobab:
 web-browser: firefox
 
 firefox:
-	sudo add-apt-repository ppa:mozillateam/ppa
-	sudo snap remove firefox
-	sudo cp apt/preferences.d/mozilla-firefox /etc/apt/preferences.d/
-	${UPDATE}
 	${INSTALL} firefox
 
 qutebrowser: FORCE
@@ -515,10 +454,10 @@ wifi-analyser:
 
 
 telegram:
-	sudo snap install telegram-desktop
+	${SNAP_INSTALL} telegram-desktop
 
 slack:
-	snap install slack --classic
+	${SNAP_INSTALL} slack --classic
 
 
 dropbox:
@@ -550,10 +489,6 @@ gedit:
 screenshot:
 	${INSTALL} flameshot
 
-autokey:
-	${ADD_REPOSITORY} ppa:sporkwitch/autokey
-	${UPDATE}
-	${INSTALL} autokey-gtk
 
 syncthing:
 	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
@@ -564,7 +499,7 @@ syncthing:
 	sudo systemctl start syncthing@cawal.service
 
 spotify:
-	sudo snap install spotify
+	${SNAP_INSTALL} spotify
 
 
 
@@ -641,6 +576,7 @@ link-zathura:
 	stow -R zathura --target=${HOME}/.config/zathura/
 
 link-keyd:
+	sudo mkdir -p /etc/keyd/
 	sudo stow -R keyd_default --target=/etc/keyd/
 	mkdir -p ${HOME}/.config/keyd/
 	stow -R keyd_app --target=${HOME}/.config/keyd/
