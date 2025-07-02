@@ -39,12 +39,106 @@ greenclip:
 	${AT_TEMP_FOLDER} chmod +x greenclip.bin
 	${AT_TEMP_FOLDER} sudo mv greenclip.bin /usr/local/bin/greenclip
 
+syncthing:
+	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+	${UPDATE}
+	${INSTALL} syncthing
+	sudo systemctl enable syncthing@cawal.service
+	sudo systemctl start syncthing@cawal.service
+
+
+keepassxc:
+	${ADD_REPOSITORY} ppa:phoerious/keepassxc
+	${UPDATE}
+	${INSTALL} keepassxc
+
+dropbox:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2025.05.20_amd64.deb 
+	# ${INSTALL} python-gtk2 libpango1.0-0
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb
+
+
 # GUI APPS ----------------------------------------------------
 obsidian:
 	sudo snap install obsidian --classic
 
 arandr:
 	${INSTALL} arandr
+
+zotero:
+	wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
+	${UPDATE}
+	${INSTALL} zotero
+
+dbeaver:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dbeaver.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dbeaver.deb
+	${AT_TEMP_FOLDER} rm dbeaver.deb
+
+image-manipulation:
+	${INSTALL} inkscape gimp imagemagick gpick
+
+office-suite:
+	${INSTALL} libreoffice
+
+ktikz:
+	${INSTALL} ktikz
+
+graphviz:
+	${INSTALL} graphviz
+
+
+video-player:
+	${INSTALL} vlc
+
+
+telegram:
+	${SNAP_INSTALL} telegram-desktop
+
+spotify:
+	${SNAP_INSTALL} spotify
+
+slack:
+	${SNAP_INSTALL} slack --classic
+
+wifi-analyser:
+	${INSTALL} linssid
+
+package-files:
+	${INSTALL} file-roller
+
+
+
+calibre:
+	${INSTALL} calibre
+
+gedit:
+	${INSTALL} gedit
+
+
+
+zathura: FORCE
+	${INSTALL} zathura
+
+
+web-browser: firefox
+
+firefox:
+	${INSTALL} firefox
+
+google-chrome:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
+
+qutebrowser: FORCE
+	${INSTALL} qutebrowser
+
+homebank:
+	${ADD_REPOSITORY} ppa:mdoyen/homebank
+	${UPDATE}
+	${INSTALL} homebank
+
 
 libfuse: # for APPIMAGES # https://github.com/AppImage/AppImageKit/wiki/FUSE
 	${ADD_REPOSITORY} universe
@@ -91,7 +185,76 @@ github-cli:
 		&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 		&& sudo apt update \
 		&& sudo apt install gh -y
+
+ranger-install:
+	${INSTALL} ranger
+
+
+# tools for editing CSV files
+csvkit:
+	${INSTALL} csvkit
+
+# count lines of codes
+cloc:
+	${INSTALL} cloc
+
+entr:
+	${INSTALL} entr
+
+xdotool:
+	${INSTALL} xdotool
+
+# DEVELOPMENT TOOLS
+
+version-control:
+	${INSTALL} git
+
+shellcheck:
+	${INSTALL} shellcheck
+
+web-service-development-tools: httpie jq tcpflow
+
+httpie:
+	${INSTALL} httpie
+
+jq:
+	${INSTALL} jq
+
+tcpflow:
+	${INSTALL} tcpflow
+
+ppapurge:
+	${INSTALL} ppa-purge
+
+q:
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb
+	${AT_TEMP_FOLDER} sudo dpkg -i q.deb
+
+htop:
+	${INSTALL} htop
+
+sox:
+	${INSTALL} sox
+
+
+curl:
+	${INSTALL} curl
+
+debugging:
+	# perf:
+	${INSTALL} linux-tools-common linux-tools-generic linux-cloud-tools-generic
+
+build-tools:
+	${INSTALL} gpp gcc checkinstall make
+
+
+markdown:
+	${INSTALL} pandoc
+
+
 # WM ----------------------------------------------------
+desktop-environment: qtile desktop-configuration clipboard-manager xdotool
+
 rofi: FORCE
 	${INSTALL} rofi unifont
 
@@ -108,13 +271,64 @@ gtk-themes:
 sound-control:
 	${INSTALL} pavucontrol
 
+clipboard-manager: greenclip rofi
 
+desktop-configuration:
+	${INSTALL} lxappearance
+lockscreen:
+	${INSTALL} i3lock
+
+compositor:
+	${INSTALL} compton
+
+
+bluetooth:
+	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
+
+
+notifications: dunst
+
+dunst-install:
+	${INSTALL} dunst
+
+
+screenruler:
+	${INSTALL} screenruler
+
+fonts:
+	${INSTALL} ubuntu-restricted-extras
+
+
+screenshot:
+	${INSTALL} flameshot
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # --------------------------------------------------------
-flashfocus:
-	${INSTALL} libxcb-render0-dev libffi-dev python3-dev python3-cffi python3-pip
-	pip install flashfocus
-
-
 oh-my-zsh: pipenv
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -143,12 +357,7 @@ docker-remove-image-cache:
 
 
 # DESKTOP EXPERIENCE
-desktop-environment: qtile flashfocus desktop-configuration clipboard-manager xdotool
 
-clipboard-manager: greenclip rofi
-
-desktop-configuration:
-	${INSTALL} lxappearance
 
 qtile: lockscreen qtile-dependencies FORCE
 	pip install qtile
@@ -160,8 +369,6 @@ qtile-dependencies:
 	pip3 install --no-cache cairo-cffi
 	pip3 install dbus-next
 
-lockscreen:
-	${INSTALL} i3lock
 
 ## I3 --------------------------
 i3: notifications i3-bar rofi wallpaper compositor i3ipc
@@ -186,19 +393,6 @@ py3status:
 
 
 
-compositor:
-	${INSTALL} compton
-
-
-bluetooth:
-	sudo apt-get install bluetooth bluez bluez-tools rfkill blueman
-
-
-notifications: dunst
-
-dunst-install:
-	${INSTALL} dunst
-
 
 drivers:
 	${INSTALL} bcmwl-kernel-source
@@ -217,34 +411,6 @@ coc-node:
 python3-pip3:
 	${INSTALL} python3-pip
 
-ranger-install:
-	${INSTALL} ranger
-
-
-# tools for editing CSV files
-csvkit:
-	${INSTALL} csvkit
-
-# count lines of codes
-cloc:
-	${INSTALL} cloc
-
-entr:
-	${INSTALL} entr
-
-cli-administration: osquery ppapurge
-
-ppapurge:
-	${INSTALL} ppa-purge
-
-
-q:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} q.deb https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb
-	${AT_TEMP_FOLDER} sudo dpkg -i q.deb
-
-htop:
-	${INSTALL} htop
-
 sc-im: libxlsxwriter
 	${INSTALL} bison libncurses5-dev libncursesw5-dev libxml2-dev libzip-dev
 	${AT_TEMP_FOLDER} git clone https://github.com/andmarti1424/sc-im.git
@@ -255,30 +421,6 @@ libxlsxwriter:
 	${AT_TEMP_FOLDER} cd libxlsxwriter; make && sudo make install
 	sudo ldconfig
 
-sox:
-	${INSTALL} sox
-
-xdotool:
-	${INSTALL} xdotool
-
-# DEVELOPMENT TOOLS
-
-version-control:
-	${INSTALL} git
-
-shellcheck:
-	${INSTALL} shellcheck
-
-web-service-development-tools: httpie jq tcpflow
-
-httpie:
-	${INSTALL} httpie
-
-jq:
-	${INSTALL} jq
-
-tcpflow:
-	${INSTALL} tcpflow
 
 
 insomnia:
@@ -287,13 +429,6 @@ insomnia:
 	${UPDATE}
 	${INSTALL} insomnia
 
-
-debugging:
-	# perf:
-	${INSTALL} linux-tools-common linux-tools-generic linux-cloud-tools-generic
-
-build-tools:
-	${INSTALL} maven gradle gpp ant checkinstall make
 
 intellij-idea:
 	snap install intellij-idea-community
@@ -310,34 +445,6 @@ nvm:
 
 node-js: nvm
 	nvm install stable
-
-oracle-java-8:
-	${ADD_REPOSITORY} ppa:webupd8team/java
-	${UPDATE}
-	${INSTALL} oracle-java8-installer
-
-oracle-java-10:
-	${ADD_REPOSITORY} ppa:linuxuprising/java
-	${UPDATE}
-	${INSTALL} oracle-java10-installer
-
-openjdk-11:
-	${INSTALL} openjdk-11-jdk
-
-openjdk-8:
-	${INSTALL} openjdk-8-jdk icedtea-8-plugin
-
-kotlin-compiler:
-	snap install --classic kotlin
-
-curl:
-	${INSTALL} curl
-
-dbeaver:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dbeaver.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dbeaver.deb
-	${AT_TEMP_FOLDER} rm dbeaver.deb
-
 
 mssql-tools:
 	curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -362,49 +469,14 @@ ls-typescript:
 
 
 # Writing tools --------------------------------------------------------
-image-manipulation:
-	${INSTALL} inkscape gimp imagemagick gpick
-
-zotero:
-	wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
-	${UPDATE}
-	${INSTALL} zotero
-
-
 
 writing: latex markdown office-suite gedit graphviz zathura
-
-zathura: FORCE
-	${INSTALL} zathura
-
-markdown:
-	${INSTALL} pandoc
-
-
 latex:
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-humanities texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 
 beamer-theme-metropolis: latex
 	${AT_TEMP_FOLDER}  git clone https://github.com/matze/mtheme.git
 	${AT_TEMP_FOLDER}  cd mtheme; make sty && make install
-
-office-suite:
-	${INSTALL} libreoffice
-
-ktikz:
-	${INSTALL} ktikz
-
-makefile2dot: graphviz
-	pip3 install --user makefile2dot
-
-graphviz:
-	${INSTALL} graphviz
-
-screenruler:
-	${INSTALL} screenruler
-
-fonts:
-	${INSTALL} ubuntu-restricted-extras
 
 # Others -------------------------------------------------
 
@@ -416,13 +488,6 @@ baobab:
 	${INSTALL} baobab
 
 
-web-browser: firefox
-
-firefox:
-	${INSTALL} firefox
-
-qutebrowser: FORCE
-	${INSTALL} qutebrowser
 
 steam: graphic-drivers
 	${INSTALL} python-apt
@@ -432,9 +497,6 @@ steam: graphic-drivers
 graphic-drivers:
 	 ${INSTALL} libvulkan1 mesa-vulkan-drivers vulkan-utils
 
-google-chrome:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
 
 
 bb: bb-dependencies
@@ -444,68 +506,15 @@ bb: bb-dependencies
 bb-dependencies:
 	${INSTALL} openssl libnss3-tools libcurl3 dbus libdbus-1-3 python-openssl
 
-homebank:
-	${ADD_REPOSITORY} ppa:mdoyen/homebank
-	${UPDATE}
-	${INSTALL} homebank
-
-wifi-analyser:
-	${INSTALL} linssid
-
-
-telegram:
-	${SNAP_INSTALL} telegram-desktop
-
-slack:
-	${SNAP_INSTALL} slack --classic
-
-
-dropbox:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb
-	${INSTALL} python-gtk2 libpango1.0-0
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dropbox.deb
-
-package-files:
-	${INSTALL} file-roller
-
-
-video-player:
-	${INSTALL} vlc
-
-keepassxc:
-	${ADD_REPOSITORY} ppa:phoerious/keepassxc
-	${UPDATE}
-	${INSTALL} keepassxc
 
 
 
-calibre:
-	${INSTALL} calibre
-
-gedit:
-	${INSTALL} gedit
-
-
-screenshot:
-	${INSTALL} flameshot
-
-
-syncthing:
-	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
-	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
-	${UPDATE}
-	${INSTALL} syncthing
-	sudo systemctl enable syncthing@cawal.service
-	sudo systemctl start syncthing@cawal.service
-
-spotify:
-	${SNAP_INSTALL} spotify
 
 
 
 # stow all configuration files ------------------------------------------
 
-link-all: stow link-bin link-conky link-gtk3 link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
+link-all: stow link-bin link-conky link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
 stow:
 	${INSTALL} stow
@@ -519,10 +528,6 @@ link-conky:
 link-dunst:
 	mkdir -p "${HOME}/.config/dunst/"
 	stow -R dunst --target=${HOME}/.config/dunst/
-
-link-gtk3:
-	mkdir -p ${HOME}/.config/gtk-3.0
-	stow -R gtk-3.0 --target=${HOME}/.config/gtk-3.0
 
 link-i3:
 	stow -R i3 --target=${HOME}/.config
