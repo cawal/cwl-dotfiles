@@ -67,10 +67,10 @@ rofi: FORCE
 vi: ripgrep silver-seacher python3-pip3
 	sudo apt remove neovim neovim-runtime
 	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
-	${AT_TEMP_FOLDER} git clone https://github.com/neovim/neovim
-	${AT_TEMP_FOLDER} cd neovim && git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo
-	${AT_TEMP_FOLDER} cd neovim/build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
-	${INSTALL} python3-neovim
+	${INSTALL} python3-dev python3-pip python3-neovim
+	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} nvim https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+	${AT_TEMP_FOLDER} chmod u+x nvim
+	${AT_TEMP_FOLDER} sudo mv nvim /usr/local/bin/
 	git config --global core.editor nvim
 	# pip3 install neovim
 
@@ -560,6 +560,8 @@ syncthing:
 	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
 	${UPDATE}
 	${INSTALL} syncthing
+	sudo systemctl enable syncthing@cawal.service
+	sudo systemctl start syncthing@cawal.service
 
 spotify:
 	sudo snap install spotify
