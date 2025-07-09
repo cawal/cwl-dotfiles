@@ -15,12 +15,13 @@ setxkbmap -option caps:escape &
 # tray services
 dropbox start &
 greenclip daemon &
-# kdeconnect-indicator &
-syncthing &
 
+syncthing &
+# bluetooth indicator 
 blueman-applet &
 
 # networking
 nm-applet &
 
-
+# keyring
+keepassxc &

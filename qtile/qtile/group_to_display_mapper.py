@@ -28,8 +28,8 @@ class GroupToDisplayMapper:
     def go_to_group(self, qtile, group: Union[str, NamedElement]):
         group_name = self._name_for_group(group)
         index = self.map.get(group_name, 0)
-        qtile.cmd_to_screen(index)
-        group_by_name(qtile, group_name).cmd_toscreen(toggle=False)
+        qtile.to_screen(index)
+        group_by_name(qtile, group_name).toscreen(toggle=False)
 
     def shift_group_display(self, qtile):
         group = qtile.current_group.name

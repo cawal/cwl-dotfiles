@@ -1,5 +1,5 @@
 from libqtile.core.manager import Qtile
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.config import Key, Group
 from libqtile.log_utils import logger
 from typing import Sequence, List, Callable
@@ -17,7 +17,7 @@ class VimMarksManager:
         if self.go_to_group_func:
             self.go_to_group_func(qtile, group)
         else:
-            group.cmd_toscreen()
+            group.toscreen()
 
     def get_mark_window_keys(self) -> Sequence[Key]:
         bindings: List[Key] = []

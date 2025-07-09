@@ -252,9 +252,14 @@ markdown:
 	${INSTALL} pandoc
 
 
-# WM ----------------------------------------------------
-desktop-environment: qtile desktop-configuration clipboard-manager xdotool
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
+# WM ----------------------------------------------------
+desktop-environment: qtile desktop-configuration clipboard-manager xdotool network-manager-applet
+
+nm-applet:
+	${INSTALL} network-manager-applet
 rofi: FORCE
 	${INSTALL} rofi unifont
 
@@ -302,6 +307,10 @@ fonts:
 screenshot:
 	${INSTALL} flameshot
 
+conky-notifications:
+	${INSTALL} conky-all
+
+
 #
 #
 #
@@ -333,24 +342,13 @@ oh-my-zsh: pipenv
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 pipenv:
-	pip3 install pipenv
+	pipx install pipenv
 
-
-
-
-
-
-docker: docker-ce-edge docker-compose
-
-docker-ce-edge:
+docker:
 	$(if $(shell which docker),$(error "Docker already installed"),)
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} get-docker.sh https://get.docker.com
-	${AT_TEMP_FOLDER} sh get-docker.sh
+	${INSTALL} docker-compose-v2
 	sudo usermod -aG docker `whoami`
 
-docker-compose:
-	sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-	sudo chmod +x /usr/local/bin/docker-compose
 
 docker-remove-image-cache:
 	docker builder prune
@@ -360,15 +358,20 @@ docker-remove-image-cache:
 
 
 qtile: lockscreen qtile-dependencies FORCE
-	pip install qtile
-	# cd ${GIT_THIRD_PARTY_FOLDER}; rm -rf qtile; git clone https://github.com/qtile/qtile.git; cd qtile; sudo pip3 install .
+	pip3 install 'qtile[widgets]'
+	cd ${GIT_THIRD_PARTY_FOLDER}; rm -rf qtile; git clone https://github.com/qtile/qtile.git; cd qtile; git checkout v0.32.0; sudo pip3 install .
 	sudo wget --output-document /usr/share/xsessions/qtile.desktop https://raw.githubusercontent.com/qtile/qtile/master/resources/qtile.desktop
 
-qtile-dependencies:
-	${INSTALL} python3-cffi python3-cairocffi libpangocairo-1.0-0 python3-xcffib
-	pip3 install --no-cache cairo-cffi
-	pip3 install dbus-next
+qtile-dependencies: pipx
+	${INSTALL} python3-cffi python3-cairocffi libpangocairo-1.0-0 python3-xcffib python3-dbus-fast libwlroots-dev libiw-dev
+	pipx install mypy
+	# pip3 install --no-cache cairo-cffi
+	# pip3 install dbus-next
 
+
+pipx:
+	sudo apt install pipx
+	pipx ensurepath
 
 ## I3 --------------------------
 i3: notifications i3-bar rofi wallpaper compositor i3ipc
@@ -398,15 +401,8 @@ drivers:
 	${INSTALL} bcmwl-kernel-source
 
 
-conky-notifications:
-	${INSTALL} conky-all
-
-
 
 # TERMINAL TOOLS
-
-coc-node:
-	nvm install "${COC_NODE_VERSION}"
 
 python3-pip3:
 	${INSTALL} python3-pip
@@ -470,7 +466,6 @@ ls-typescript:
 
 # Writing tools --------------------------------------------------------
 
-writing: latex markdown office-suite gedit graphviz zathura
 latex:
 	${INSTALL} texlive-latex-base texlive-latex-extra texlive-humanities texlive-xetex texlive-publishers biber bibtool texlive-fonts-recommended texlive-latex-extra texlive-lang-portuguese latexmk
 

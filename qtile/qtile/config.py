@@ -4,7 +4,7 @@ import subprocess
 from functools import partial
 
 from libqtile import bar, hook, layout, qtile, widget
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,EzKey,
                              Match, ScratchPad, Screen)
 from libqtile.log_utils import logger
@@ -342,7 +342,7 @@ groups.append(
             ),
             DropDown(
                 "Obsidian",
-                f"Obsidian.AppImage",
+                f"Obsidian.AppImage --no-sandbox",
                 **{
                     **dropdown_config,
                     "x": 0.01,
@@ -604,13 +604,16 @@ wmname = "LG3D"
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser("~/bin/cwl-startup-processes.sh")
-    subprocess.call([home])
+    startup_script = os.path.expanduser("~/bin/cwl-startup-processes.sh")
+    subprocess.run([startup_script])
 
 
 @hook.subscribe.screens_reconfigured
 def screens_reconfigured():
+    logger.warning("Screens reconfigured, recalculating initial config")
     mapper.calculate_initial_config()
+    subprocess.run(["nitrogen","--restore"])
+    
 
 
 @hook.subscribe.addgroup
