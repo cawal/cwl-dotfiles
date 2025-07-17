@@ -155,6 +155,21 @@ zsh: FORCE
 terminal:
 	${INSTALL} rxvt-unicode
 
+kitty:
+	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+	# Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
+	# your system-wide PATH)
+	ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+	# Place the kitty.desktop file somewhere it can be found by the OS
+	cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+	# If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
+	cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+	# Update the paths to the kitty and its icon in the kitty desktop file(s)
+	sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+	sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+	# Make xdg-terminal-exec (and hence desktop environments that support it use kitty)
+	echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+
 vi: ripgrep silver-seacher python3-pip3
 	sudo apt remove neovim neovim-runtime
 	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
@@ -251,10 +266,20 @@ build-tools:
 markdown:
 	${INSTALL} pandoc
 
-
 nvm:
+	mkdir -p ${HOME}/.nvm
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
+node-js: nvm
+	nvm install stable
+
+gcloud:
+	mv ~/bin/google-cloud-sdk ~/bin/google-cloud-sdk-old
+	curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+	tar -xf google-cloud-cli-linux-x86_64.tar.gz
+	./google-cloud-sdk/install.sh
+	mv google-cloud-cli ~/bin/
+	rm ./google-cloud-sdk/install.sh
 # WM ----------------------------------------------------
 desktop-environment: qtile desktop-configuration clipboard-manager xdotool network-manager-applet
 
@@ -435,12 +460,7 @@ sdkman:
 kotlinc:
 	sdk install kotlin
 
-nvm:
-	mkdir -p ${HOME}/.nvm
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
-node-js: nvm
-	nvm install stable
 
 mssql-tools:
 	curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
