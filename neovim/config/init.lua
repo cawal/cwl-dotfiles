@@ -903,6 +903,7 @@ require("lazy").setup({
 		---@type render.md.UserConfig
 		opts = {},
 	},
+	"github/copilot.vim",
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
