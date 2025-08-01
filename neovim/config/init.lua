@@ -905,6 +905,17 @@ require("lazy").setup({
 	},
 	"github/copilot.vim",
 	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken",
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
+	},
+	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
