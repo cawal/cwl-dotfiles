@@ -170,6 +170,10 @@ kitty:
 	# Make xdg-terminal-exec (and hence desktop environments that support it use kitty)
 	echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 
+tmux:
+	${INSTALL} tmux
+	mv ~/.tmux/ ~/tmux.bak || true
+
 vi: ripgrep silver-seacher python3-pip3
 	sudo apt remove neovim neovim-runtime
 	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
