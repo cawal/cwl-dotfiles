@@ -314,6 +314,7 @@ lockscreen:
 
 compositor:
 	${INSTALL} compton
+	${INSTALL} picom
 
 
 bluetooth:
