@@ -121,8 +121,8 @@ search_bindings = [
 ]
 
 keys = [
-    Key(win_key, "Down", lazy.screen.next_group()),
-    Key(win_key, "Up", lazy.screen.prev_group()),
+    Key(win_key, "Up", lazy.screen.next_group()),
+    Key(win_key, "Down", lazy.screen.prev_group()),
     KeyChord( ___, "XF86Tools",
         [
             Key( ___, "p",
@@ -429,6 +429,7 @@ columns_config = {
     "num_columns": 10,
     "insert_position": 1,
     "border_on_single": False,
+    "margin_on_single": 0,
     "border_width": 1,
     "margin": 2,
 }

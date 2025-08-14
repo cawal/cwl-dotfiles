@@ -64,7 +64,7 @@ plugins=(
     kubectl
     gcloud
     helm
-    # asdf
+    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
