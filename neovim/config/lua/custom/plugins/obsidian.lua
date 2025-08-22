@@ -31,7 +31,7 @@ return {
 			},
 			{
 				name = "work",
-				path = "~/Liber-PKM",
+				path = "~/Turi-PKM",
 			},
 		},
 		-- see below for full list of options 👇
@@ -40,7 +40,7 @@ return {
 		-- dir = "~/vaults/work",
 
 		-- Optional, if you keep notes in a specific subdirectory of your vault.
-		notes_subdir = "notes",
+		-- #notes_subdir = "notes",
 
 		-- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
 		-- levels defined by "vim.log.levels.*".
@@ -52,7 +52,7 @@ return {
 			-- Optional, if you want to change the date format for the ID of daily notes.
 			date_format = "%Y-%m-%d",
 			-- Optional, if you want to change the date format of the default alias of daily notes.
-			alias_format = "%B %-d, %Y",
+			alias_format = "[[%Y-%m-%d]]",
 			-- Optional, default tags to add to each new daily note created.
 			default_tags = { "daily-notes" },
 			-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
@@ -80,7 +80,7 @@ return {
 				opts = { noremap = false, expr = true, buffer = true },
 			},
 			-- Toggle check-boxes.
-			["<leader>ch"] = {
+			["<C-Space>"] = {
 				action = function()
 					return require("obsidian").util.toggle_checkbox()
 				end,
@@ -283,6 +283,7 @@ return {
 				[">"] = { char = "", hl_group = "ObsidianRightArrow" },
 				["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
 				["!"] = { char = "", hl_group = "ObsidianImportant" },
+				["/"] = { char = "/", hl_group = "ObsidianImportant" },
 				-- Replace the above with this if you don't have a patched font:
 				-- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
 				-- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
