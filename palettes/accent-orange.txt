@@ -1,0 +1,8 @@
+accent=#B66930
+background=#181C24
+foreground=#DFDFEF
+background2=#ACAFB4
+background3=#484C54
+vim_accent=#B2F5BF
+foreground2=#5A5A5B
+tmux=#7E8D50
