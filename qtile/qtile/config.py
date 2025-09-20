@@ -252,7 +252,7 @@ keys = [
         [
             Key(___, "l", lazy.spawn("i3exit lock")),
             Key(___, "s", lazy.spawn("i3exit suspend")),
-            Key(shift, "h", lazy.spawn("i3exit hibernate")),
+            Key(___, "h", lazy.spawn("i3exit hibernate")),
             Key(___, "r", lazy.restart()),
             Key(shift, "q", lazy.shutdown()),
         ],
@@ -262,7 +262,7 @@ keys = [
     Key(win_key, "a",
         lazy.function(mapper.shift_group_display),
     ),
-    Key(win_key, "q",
+    Key(win_key+shift, "a",
         lazy.function(mapper.rotate_all_groups_to_next_screen),
     ),
     KeyChord(win_key, "m",
@@ -490,6 +490,20 @@ task_list_config = {
     "rounded": False,
 }
 
+
+
+#format="%Y-%m-%d %H:%M %p",
+clock_format="%a, %d · %H:%M"
+
+clock_config = {
+    "format": clock_format,
+    "mouse_callbacks": {
+        "Button1": open_calendar,
+        "Button2": close_calendar,
+    },
+    **widget_defaults,
+}
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -513,15 +527,10 @@ screens = [
                 separator_widget,
                 widget.Battery(format=" {char}{percent:2.0%} "),
                 separator_widget,
-                widget.Clock(
-                    format="%Y-%m-%d %H:%M %p",
-                    mouse_callbacks={
-                        "Button1": open_calendar,
-                        "Button2": close_calendar,
-                    },
-                ),
+                widget.Clock(**clock_config),
                 separator_widget,
                 widget.Systray(),
+                separator_widget,
             ],
             bar_height,
             background=color_black,
@@ -535,10 +544,10 @@ screens = [
                 separator_widget,
                 widget.Prompt(),
                 separator_widget,
-                # widget.WindowName(),
                 widget.TaskList(**task_list_config),
                 separator_widget,
-                widget.Clock(format="%H:%M %p"),
+                widget.Clock(**clock_config),
+                separator_widget,
             ],
             bar_height,
             background=color_black,

@@ -109,6 +109,13 @@ stow:
 drivers:
 	${INSTALL} bcmwl-kernel-source
 
+
+xclip:
+	${INSTALL} xclip
+
+dysk: # df alternative
+	${INSTALL} dysk
+
 # NETWORK AND SECURITY
 
 
@@ -246,8 +253,6 @@ tmux:
 tmate:
 	${INSTALL} tmate
 
-xclip:
-	${INSTALL} xclip
 
 # ============================================================================
 # DEVELOPMENT TOOLS

@@ -1,3 +1,6 @@
+if [ -f "${HOME}/.zsh_local" ]; then
+    source "${HOME}/.zsh_local"
+fi
 # If you come from bash you might have to change your $PATH.
 #
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:$HOME/bin:$HOME/go/bin
