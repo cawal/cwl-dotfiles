@@ -203,8 +203,8 @@ timeout = 6
 [urgency_critical]
 frame_color= "#222222"
 foreground = "#222222"
-background = "#E57F72"
-timeout = 8
+background = "#F7941E"
+timeout = 0
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -262,5 +262,5 @@ timeout = 8
 
 [Slack]
     appname = Slack
-    urgency = critical
+    urgency = normal
 # vim: ft=cfg
