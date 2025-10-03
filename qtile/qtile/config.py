@@ -235,9 +235,12 @@ keys = [
     Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal")),
     Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
     Key(win_key, "d",
-        lazy.spawn(
-            "rofi -show-icons -modi combi -show combi -combi-modi window,run,drun"
-        ),
+        lazy.spawn("rofi -show-icons -modi combi -show combi -combi-modi drun,run"),
+        desc="Launch applications",
+    ),
+    Key(win_key, "w",
+        lazy.spawn("rofi -show-icons -modi window -show window"),
+        desc="Switch between windows",
     ),
     Key(win_key, "bracketleft", lazy.spawn("amixer -q sset Master 5%+")),
     Key(win_key, "bracketright", lazy.spawn("amixer -q sset Master 5%-")),
