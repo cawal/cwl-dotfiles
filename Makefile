@@ -699,6 +699,10 @@ link-keyd:
 	mkdir -p ${HOME}/.config/keyd/
 	stow -R keyd_app --target=${HOME}/.config/keyd/
 
+
+link-opencode:
+	stow -R opencode --target=${HOME}/.config/opencode/
+
 # Remove targets (add similar pattern for other configs as needed)
 link-qtile-remove:
 	stow -D qtile --target=${HOME}/.config/
@@ -736,6 +740,9 @@ link-login-shell-remove:
 link-keyd-remove:
 	sudo stow -D keyd_default --target=/etc/keyd/
 	stow -D keyd_app --target=${HOME}/.config/keyd/
+
+link-opencode-remove:
+	stow -D opencode --target=${HOME}/.config/opencode/
 
 link-vimium-remove:
 	stow -D vimium --target=${HOME}/.config/vimium/
