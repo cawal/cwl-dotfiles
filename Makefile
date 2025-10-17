@@ -288,6 +288,8 @@ nvm:
 node-js: nvm
 	nvm install stable
 
+python-virtualenvwrapper:
+	pipx install virtualenvwrapper
 
 
 python3-pip3:

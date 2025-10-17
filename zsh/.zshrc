@@ -60,8 +60,7 @@ plugins=(
     git
     git-extras
     git-flow
-    #mvn
-    #gradle
+    virtualenvwrapper
     nvm
     kube-ps1
     kubectl
