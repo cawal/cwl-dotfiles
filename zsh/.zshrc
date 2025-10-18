@@ -57,10 +57,14 @@ ZSH_THEME=${ZSH_THEME:-"agnoster"}
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     timer
+    docker
+    docker-compose
     git
     git-extras
     git-flow
+    gh
     virtualenvwrapper
+    terraform
     nvm
     kube-ps1
     kubectl
