@@ -85,6 +85,9 @@ keyd:
 	${INSTALL} keyd keyd-application-mapper
 	sudo systemctl enable --now keyd
 
+keyd-restart:
+	sudo systemctl restart keyd
+
 syncthing:
 	sudo curl -o /usr/share/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
 	echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
@@ -301,6 +304,12 @@ pipenv:
 pipx:
 	sudo apt install pipx
 	pipx ensurepath
+
+
+homebrew:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	#echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/cawal/.zshrc
+	sudo apt-get install build-essential
 
 # CONTAINERIZATION
 docker:
