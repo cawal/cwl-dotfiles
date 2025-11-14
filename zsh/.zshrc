@@ -164,3 +164,4 @@ alias git-open-remote='firefox `git remote get-url origin`'
 # Created by `pipx` on 2025-07-05 13:03:52
 export PATH="$PATH:/home/cawal/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(;/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
