@@ -17,9 +17,9 @@ This skill helps you translating text to Solresol
 5. Provide the final translated text in Solresol.
 
 
-## Solresol Grammar (from Wikipedia)
+## Solresol Grammar and references (from Wikipedia)
 
-Grammar
+### Grammar
 
 Apart from stress and length, Solresol words are not inflected. To keep sentences clear, especially with the possibility of information loss while communicating, certain parts of speech follow a strict word order.
 
@@ -52,7 +52,7 @@ The word fasi before a noun or adjective is augmentative; after it is superlativ
     fala good, fasi fala very good, fala fasi excellent, the best; sifa fala okay, fala sifa not very good (and similarly with lafa bad)
     sisire wind, fasi sisire gale, sisire fasi cyclone; sifa sisire breeze, sisire sifa movement of air
 
-Questions
+### Questions
 
 Questions in Solresol are not given much attention in the original documentation, nor do they have many examples.
 
@@ -81,5 +81,21 @@ In all versions of the language, there are words four syllables long, repeated "
     Milarere? – Well?
     Misirere? – Who is it?
 
-Solresol script
-You can reference supporting files like `scripts/helper.py` or `references/docs.md`.
+### Further developments
+
+Another way of using Solresol is called Ses,
+Ses was developed by George Boeree. The notes are given a representative consonant and vowel (or diphthong). The most basic words use the vowel alone; all others use more complex syllable structure.
+
+    do > p /p/, o /o̞/
+    re > k /k/, e /e̞/
+    mi > m /m/, i /i/
+    fa > f /ɸ/, a /æ/
+    sol > s /s/, u /u/
+    la > l /l/, au /ɒ/
+    ti > t /t/, ai /ʉ/
+
+In this way, one can write or pronounce words such as this one:
+
+    sol-sol-re-do > suko (cvcv) – migraine
+
+Because the plural and feminine forms of words in Solresol are indicated by stress or length of sounds, Ses uses pau (some) or fai (many) to indicate the plural, and mu (well) to indicate the feminine when necessary. You can reference supporting files like `scripts/helper.py` or `references/docs.md`.
