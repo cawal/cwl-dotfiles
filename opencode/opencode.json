@@ -22,4 +22,5 @@
     }
   },
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],
+  "plugin": ["opencode-skills@0.1.0" ], 
 }
