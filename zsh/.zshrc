@@ -63,7 +63,8 @@ plugins=(
     git-extras
     git-flow
     gh
-    virtualenvwrapper
+    poetry
+    # virtualenvwrapper
     terraform
     nvm
     kube-ps1
