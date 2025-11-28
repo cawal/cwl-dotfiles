@@ -166,3 +166,6 @@ alias git-open-remote='firefox `git remote get-url origin`'
 export PATH="$PATH:/home/cawal/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 eval "$(;/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+bindkey -e -r '^[x'
+bindkey -a -r ':'
