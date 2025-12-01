@@ -43,6 +43,10 @@ monitors = get_monitors()
 logger.warning(monitors)
 
 
+def add_new_group(qtile, group_name):
+    if group_name not in qtile.groups_map:
+        qtile.addGroup(group_name)
+
 ###############################################
 # MODIFIERS
 ###############################################
@@ -548,6 +552,8 @@ screens = [
                 widget.Prompt(),
                 separator_widget,
                 widget.TaskList(**task_list_config),
+                separator_widget,
+                pomodoro_widget,
                 separator_widget,
                 widget.Clock(**clock_config),
                 separator_widget,
