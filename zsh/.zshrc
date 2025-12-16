@@ -1,3 +1,6 @@
+if [ -f "${HOME}/.zsh_local" ]; then
+    source "${HOME}/.zsh_local"
+fi
 # If you come from bash you might have to change your $PATH.
 #
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:$HOME/bin:$HOME/go/bin
@@ -54,22 +57,29 @@ ZSH_THEME=${ZSH_THEME:-"agnoster"}
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     timer
+    docker
+    docker-compose
     git
     git-extras
     git-flow
-    #mvn
-    #gradle
+    gh
+    poetry
+    # virtualenvwrapper
+    terraform
     nvm
     kube-ps1
     kubectl
     gcloud
     helm
-    # asdf
+    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
+# Do not auto-change to a directory by typing its name
+unsetopt AUTO_CD
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -142,6 +152,10 @@ KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
 kubeoff
 
+# workaround for chrome sandbox issue in ubuntu when using mermaid
+# https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 # Use Silver Searcher to find files in FZF (include hidden but excludes .git)
@@ -154,3 +168,7 @@ alias git-open-remote='firefox `git remote get-url origin`'
 # Created by `pipx` on 2025-07-05 13:03:52
 export PATH="$PATH:/home/cawal/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(;/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+bindkey -e -r '^[x'
+bindkey -a -r ':'

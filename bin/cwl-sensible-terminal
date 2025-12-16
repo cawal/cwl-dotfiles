@@ -8,10 +8,20 @@
 # We welcome patches that add distribution-specific mechanisms to find the
 # preferred terminal emulator. On Debian, there is the x-terminal-emulator
 # symlink for example.
-for terminal in "$TERMINAL" urxvt x-terminal-emulator rxvt termit terminator Eterm aterm uxterm xterm gnome-terminal roxterm xfce4-terminal termite lxterminal mate-terminal terminology st qterminal lilyterm tilix terminix konsole; do
+terminals="kitty urxvt x-terminal-emulator rxvt termit terminator Eterm aterm uxterm xterm gnome-terminal roxterm xfce4-terminal termite lxterminal mate-terminal terminology st qterminal lilyterm tilix terminix konsole"
+use_tmux=false
+
+
+for terminal in $terminals; do
     if command -v "$terminal" > /dev/null 2>&1; then
-        exec "$terminal" "$@"
+        if [ "$#" -gt 1 ]; then
+            exec "$terminal" "$@"
+        elif [ $use_tmux = 'true' ] && command -v tmux > /dev/null 2>&1; then
+           exec "$terminal" -e tmux
+        else
+            exec "$terminal"
+        fi
     fi
 done
 
-i3-nagbar -m 'i3-sensible-terminal could not find a terminal emulator. Please install one.'
+

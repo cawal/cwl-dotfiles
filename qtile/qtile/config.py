@@ -34,13 +34,18 @@ logger.warning(load_config_banner)
 
 
 from group_to_display_mapper import GroupToDisplayMapper
-from host import get_xresources_variables, get_monitors
+from host import get_xresources_variables, get_monitors, hostname
 from qtile_vim_marks.manager import VimMarksManager
 
 xresources = get_xresources_variables()
 logger.warning(xresources)
 monitors = get_monitors()
 logger.warning(monitors)
+
+
+def add_new_group(qtile, group_name):
+    if group_name not in qtile.groups_map:
+        qtile.addGroup(group_name)
 
 ###############################################
 # MODIFIERS
@@ -51,10 +56,7 @@ win_key = ["mod4"]
 shift = ["shift"]
 control = ["control"]
 super = ["super"]
-alt = ["Alt"]
-
-
-
+alt = ["mod1"]
 
 
 
@@ -123,8 +125,8 @@ search_bindings = [
 ]
 
 keys = [
-    Key(win_key, "Down", lazy.screen.next_group()),
-    Key(win_key, "Up", lazy.screen.prev_group()),
+    Key(win_key, "Up", lazy.screen.next_group()),
+    Key(win_key, "Down", lazy.screen.prev_group()),
     KeyChord( ___, "XF86Tools",
         [
             Key( ___, "p",
@@ -141,9 +143,9 @@ keys = [
         name="<b>Controls:</b> [p]ause notifications, [r]esume notifications, [s]ound outputs, [d]isplay light",
         mode=False,
     ),
-    Key(___, "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
-    Key(___, "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
-    Key(___, "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    Key(___, "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 5%+")),
+    Key(___, "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 5%-")),
+    Key(___, "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
     Key(___, "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
     Key(___, "XF86Calculator", lazy.group["scratchpad"].dropdown_toggle("Python")),
     KeyChord(___, "XF86Search",
@@ -162,12 +164,20 @@ keys = [
         lazy.layout.up(),
         lazy.layout.right().when(layout="columns"),
     ),
-    Key(win_key, "h",
+    Key(alt, "Tab",
+        lazy.layout.down(),
         lazy.layout.left().when(layout="columns"),
     ),
-    Key(win_key, "l",
-        lazy.layout.right().when(layout="columns"),
+    Key(alt+shift, "Tab",
+        lazy.layout.down(),
+        lazy.layout.left().when(layout="columns"),
     ),
+    # Key(win_key, "h",
+    #     lazy.layout.left().when(layout="columns"),
+    # ),
+    # Key(win_key, "l",
+    #     lazy.layout.right().when(layout="columns"),
+    # ),
     Key(win_key+shift, "j",
         lazy.layout.swap_column_left().when(layout="columns"),
     ),
@@ -188,6 +198,14 @@ keys = [
     Key(win_key+control, "k",
         lazy.layout.shuffle_up(),
         desc="Move window up in the current stack",
+    ),
+    Key(win_key, "n",
+        lazy.spawn("dunstctl history-pop"),
+        desc="Show last notification",
+    ),
+    Key(win_key, "space",
+        lazy.spawn("dunstctl close"),
+        desc="Close last notification",
     ),
     Key(win_key, "b",
         lazy.group["scratchpad"].dropdown_toggle("blueman-manager"),
@@ -214,7 +232,7 @@ keys = [
         desc="Show qtile shell",
     ),
     # Switch window focus to other pane(s) of stack
-    Key(win_key, "space", lazy.layout.next()),
+    #Key(win_key, "space", lazy.layout.next()),
     # Swap panes of split stack
     Key(win_key+shift, "space", lazy.layout.rotate()),
     Key(win_key+control, "space",
@@ -229,13 +247,16 @@ keys = [
     Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal")),
     Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
     Key(win_key, "d",
-        lazy.spawn(
-            "rofi -show-icons -modi combi -show combi -combi-modi window,run,drun"
-        ),
+        lazy.spawn("rofi -show-icons -modi combi -show combi -combi-modi drun,run"),
+        desc="Launch applications",
     ),
-    Key(win_key, "bracketleft", lazy.spawn("amixer -q -D pulse sset Master 5%+")),
-    Key(win_key, "bracketright", lazy.spawn("amixer -q -D pulse sset Master 5%-")),
-    Key(win_key, "BackSpace", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    Key(win_key, "w",
+        lazy.spawn("rofi -show-icons -modi window -show window"),
+        desc="Switch between windows",
+    ),
+    Key(win_key, "bracketleft", lazy.spawn("amixer -q sset Master 5%+")),
+    Key(win_key, "bracketright", lazy.spawn("amixer -q sset Master 5%-")),
+    Key(win_key, "BackSpace", lazy.spawn("amixer -q sset Master toggle")),
     # Toggle between different layouts as defined below
     Key(win_key, "Tab", lazy.next_layout()),
     Key(win_key+shift, "Tab", lazy.prev_layout()),
@@ -246,7 +267,7 @@ keys = [
         [
             Key(___, "l", lazy.spawn("i3exit lock")),
             Key(___, "s", lazy.spawn("i3exit suspend")),
-            Key(shift, "h", lazy.spawn("i3exit hibernate")),
+            Key(___, "h", lazy.spawn("i3exit hibernate")),
             Key(___, "r", lazy.restart()),
             Key(shift, "q", lazy.shutdown()),
         ],
@@ -256,7 +277,7 @@ keys = [
     Key(win_key, "a",
         lazy.function(mapper.shift_group_display),
     ),
-    Key(win_key, "q",
+    Key(win_key+shift, "a",
         lazy.function(mapper.rotate_all_groups_to_next_screen),
     ),
     KeyChord(win_key, "m",
@@ -309,7 +330,7 @@ groups.append(
         [
             DropDown(
                 "VimWiki",
-                f"cwl-sensible-terminal -hold -e vi +VimwikiIndex",
+                f"cwl-sensible-terminal -e vi +VimwikiIndex",
                 **{
                     **dropdown_config,
                     "x": 0.1,
@@ -364,18 +385,21 @@ groups.append(
             ),
             DropDown(
                 "qtile shell",
-                "cwl-sensible-terminal -hold -e qtile shell",
+                "cwl-sensible-terminal -e qtile shell",
                 **dropdown_config,
             ),
             DropDown(
                 "qtile log",
-                f"cwl-sensible-terminal -hold -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
+                f"cwl-sensible-terminal -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
                 **dropdown_config,
             ),
             DropDown(
                 "dmesg log",
-                f"cwl-sensible-terminal -hold -e sudo dmesg --follow",
-                **dropdown_config,
+                f"cwl-sensible-terminal -e sudo dmesg --follow",
+                **{
+                    **dropdown_config,
+                    "height": 1,
+                },
             ),
             DropDown(
                 "blueman-manager",
@@ -420,6 +444,7 @@ columns_config = {
     "num_columns": 10,
     "insert_position": 1,
     "border_on_single": False,
+    "margin_on_single": 0,
     "border_width": 1,
     "margin": 2,
 }
@@ -480,6 +505,20 @@ task_list_config = {
     "rounded": False,
 }
 
+
+
+#format="%Y-%m-%d %H:%M %p",
+clock_format="%a, %d · %H:%M"
+
+clock_config = {
+    "format": clock_format,
+    "mouse_callbacks": {
+        "Button1": open_calendar,
+        "Button2": close_calendar,
+    },
+    **widget_defaults,
+}
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -503,15 +542,10 @@ screens = [
                 separator_widget,
                 widget.Battery(format=" {char}{percent:2.0%} "),
                 separator_widget,
-                widget.Clock(
-                    format="%Y-%m-%d %H:%M %p",
-                    mouse_callbacks={
-                        "Button1": open_calendar,
-                        "Button2": close_calendar,
-                    },
-                ),
+                widget.Clock(**clock_config),
                 separator_widget,
                 widget.Systray(),
+                separator_widget,
             ],
             bar_height,
             background=color_black,
@@ -525,10 +559,12 @@ screens = [
                 separator_widget,
                 widget.Prompt(),
                 separator_widget,
-                # widget.WindowName(),
                 widget.TaskList(**task_list_config),
                 separator_widget,
-                widget.Clock(format="%H:%M %p"),
+                pomodoro_widget,
+                separator_widget,
+                widget.Clock(**clock_config),
+                separator_widget,
             ],
             bar_height,
             background=color_black,
@@ -613,6 +649,7 @@ def screens_reconfigured():
     logger.warning("Screens reconfigured, recalculating initial config")
     mapper.calculate_initial_config()
     subprocess.run(["nitrogen","--restore"])
+    lazy.restart()
     
 
 
@@ -628,17 +665,13 @@ def group_deleted(group_name: str):
     mapper.remove_group(group_name)
 
 
-# @hook.subscribe.client_new
-# def test1(window):
-#    logger.warning("test1 :")
-#    logger.warning(dir(window))
+@hook.subscribe.client_new
+def test1(window):
+   logger.warning("test1 :")
 
-
-#
-#
-# @hook.subscribe.client_new
-# def test2(window):
-#    logger.warning("test2 :")
+@hook.subscribe.client_new
+def test2(window):
+   logger.warning("test2 :")
 
 
 # import psutil
@@ -657,7 +690,7 @@ def group_deleted(group_name: str):
 #            window.parent = parent
 #            return
 #        ppid = psutil.Process(ppid).ppid()
-#
+
 # @hook.subscribe.client_killed
 # def _unswallow(window):
 #    if hasattr(window, 'parent'):
