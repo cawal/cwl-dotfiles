@@ -76,7 +76,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
+# Do not auto-change to a directory by typing its name
+unsetopt AUTO_CD
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

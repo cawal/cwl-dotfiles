@@ -384,7 +384,7 @@ gcloud:
 	rm ./google-cloud-sdk/install.sh
 
 # AI TOOLS
-opencode:
+opencode-install:
 	 npm install -g opencode-ai 
 
 # SDK MANAGEMENT

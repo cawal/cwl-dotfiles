@@ -56,7 +56,7 @@ win_key = ["mod4"]
 shift = ["shift"]
 control = ["control"]
 super = ["super"]
-alt = ["Alt"]
+alt = ["mod1"]
 
 
 
@@ -163,6 +163,14 @@ keys = [
     Key(win_key, "k",
         lazy.layout.up(),
         lazy.layout.right().when(layout="columns"),
+    ),
+    Key(alt, "Tab",
+        lazy.layout.down(),
+        lazy.layout.left().when(layout="columns"),
+    ),
+    Key(alt+shift, "Tab",
+        lazy.layout.down(),
+        lazy.layout.left().when(layout="columns"),
     ),
     # Key(win_key, "h",
     #     lazy.layout.left().when(layout="columns"),
