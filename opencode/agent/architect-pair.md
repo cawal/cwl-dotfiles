@@ -1,6 +1,5 @@
 ---
 description: Helps define features and user stories
-model: gpt-4o
 tools:
   write: false
   edit: false
