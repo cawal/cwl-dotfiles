@@ -777,6 +777,62 @@ link-zathura-remove:
 
 FORCE:
 
-.PHONY: all help minimal desktop-full install-packages configure
+# ============================================================================
+# PHONY TARGETS - Prevent conflicts with directory/file names
+# ============================================================================
+
+# Main targets
+.PHONY: all help minimal desktop-full install-packages configure FORCE
+
+# Category targets
 .PHONY: core-system desktop-env terminal-env development communication media-creative utilities academic-docs
+
+# Core system tools
+.PHONY: keyd keyd-restart syncthing curl htop version-control stow drivers xclip dysk
+.PHONY: network-manager-applet nm-applet bluetooth
+
+# Desktop environment
+.PHONY: desktop-environment qtile qtile-dependencies i3 i3-bar i3ipc i3-python py3status
+.PHONY: rofi compositor wallpaper icon-themes gtk-themes fonts lockscreen notifications
+.PHONY: dunst-install desktop-configuration sound-control screenshot screenruler conky-notifications
+.PHONY: clipboard-tools clipboard-manager greenclip
+
+# Terminal environment
+.PHONY: zsh oh-my-zsh terminal kitty tmux tmate
+
+# Development tools
+.PHONY: vi ripgrep silver-seacher nvm node-js python-virtualenvwrapper python3-pip3 pipenv pipx homebrew
+.PHONY: docker docker-remove-image-cache build-tools debugging github-cli github-copilot-cli
+.PHONY: shellcheck web-service-development-tools httpie jq tcpflow
+.PHONY: language-servers ls-bash ls-typescript gcloud opencode-install sdkman kotlinc
+.PHONY: intellij-idea insomnia dbeaver mssql-tools
+
+# Communication and productivity
+.PHONY: web-browser firefox google-chrome qutebrowser telegram slack office-suite
+.PHONY: keepassxc obsidian dropbox homebank
+
+# Media and creative tools
+.PHONY: video-player audacity sox spotify image-manipulation graphviz ktikz calibre
+.PHONY: steam graphic-drivers
+
+# Utilities
+.PHONY: ranger-install package-files arandr baobab csvkit cloc entr q xdotool
+.PHONY: wifi-analyser ppapurge sc-im libxlsxwriter libfuse
+
+# Academic and documentation
+.PHONY: latex beamer-theme-metropolis markdown zathura zotero gedit
+
+# Banking and security
+.PHONY: bb bb-dependencies
+
+# Configuration management - link targets
 .PHONY: link-all link-everything link-remove-everything
+.PHONY: link-bin link-conky link-dunst link-gtk-3-0 link-i3 link-login-shell
+.PHONY: link-neovim link-ranger link-rofi link-tmux link-xmodmap link-xresources
+.PHONY: link-qtile link-qutebrowser link-urxvt link-vim link-vimium link-zsh link-zathura link-keyd link-opencode
+
+# Configuration management - remove targets
+.PHONY: link-qtile-remove link-i3-remove link-rofi-remove link-zsh-remove link-qutebrowser-remove
+.PHONY: link-vim-remove link-tmux-remove link-urxvt-remove link-ranger-remove link-xresources-remove
+.PHONY: link-login-shell-remove link-keyd-remove link-opencode-remove link-vimium-remove
+.PHONY: link-dunst-remove link-gtk-3-0-remove link-neovim-remove link-zathura-remove

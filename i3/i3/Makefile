@@ -3,6 +3,8 @@ RESULT_FILE = config
 BARS_DIRECTORY = py3status
 HOSTNAME := ${shell hostname}
 
+.PHONY: create_config bars top-left.bar top-right.bar
+
 create_config:
 	gpp -H -D${HOSTNAME}=1 -o ${RESULT_FILE} ${MASTER_FILE}
 
