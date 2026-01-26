@@ -417,6 +417,9 @@ mssql-tools:
 	${INSTALL}  mssql-tools unixodbc-dev
 
 
+skills:
+	npx skills add cawal/skill-solresol
+
 
 # ============================================================================
 # COMMUNICATION AND PRODUCTIVITY
