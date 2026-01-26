@@ -416,6 +416,8 @@ mssql-tools:
 	${UPDATE}
 	${INSTALL}  mssql-tools unixodbc-dev
 
+
+
 # ============================================================================
 # COMMUNICATION AND PRODUCTIVITY
 # ============================================================================
@@ -425,7 +427,6 @@ web-browser: firefox
 
 firefox:
 	${INSTALL} firefox
-
 google-chrome:
 	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} google-chrome.deb
@@ -445,7 +446,6 @@ slack:
 # PRODUCTIVITY
 office-suite:
 	${INSTALL} libreoffice
-
 
 
 keepassxc:
@@ -667,6 +667,10 @@ link-rofi:
 	mkdir -p ${HOME}/.config/rofi/
 	stow -R rofi --target=${HOME}/.config/rofi/
 
+link-scim:
+	mkdir -p ${HOME}/.config/sc-im/
+	stow -R sc-im --target=${HOME}/.config/sc-im/
+
 link-tmux:
 	stow -R tmux --target=${HOME}
 
@@ -779,4 +783,4 @@ FORCE:
 
 .PHONY: all help minimal desktop-full install-packages configure
 .PHONY: core-system desktop-env terminal-env development communication media-creative utilities academic-docs
-.PHONY: link-all link-everything link-remove-everything
+.PHONY: link-all link-everything link-remove-everything sc-im
