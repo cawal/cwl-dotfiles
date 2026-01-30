@@ -315,6 +315,7 @@ homebrew:
 docker:
 	$(if $(shell which docker),$(error "Docker already installed"),)
 	${INSTALL} docker-compose-v2
+	${INSTALL} docker-buildx
 	sudo usermod -aG docker `whoami`
 
 docker-remove-image-cache:
