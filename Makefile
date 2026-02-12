@@ -657,6 +657,10 @@ link-i3:
 link-login-shell:
 	stow -R login-shell --target=${HOME}
 
+link-kitty:
+	mkdir -p ${HOME}/.config/kitty/
+	stow -R kitty --target=${HOME}/.config/kitty/
+
 link-neovim:
 	mkdir -p ${HOME}/.local/share/nvim/site/autoload/
 	cd neovim; stow -R autoload --target=${HOME}/.local/share/nvim/site/autoload/
