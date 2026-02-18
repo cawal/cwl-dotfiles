@@ -712,6 +712,7 @@ link-keyd:
 
 
 link-opencode:
+	mkdir -p ${HOME}/.config/opencode/
 	stow -R opencode --target=${HOME}/.config/opencode/
 
 # Remove targets (add similar pattern for other configs as needed)
