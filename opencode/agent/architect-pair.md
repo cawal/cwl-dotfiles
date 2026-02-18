@@ -1,9 +1,9 @@
 ---
 description: Helps define features and user stories
-model: gpt-4o
 tools:
   write: false
   edit: false
+color: "#FF5733"
 ---
 
 # 🧠 System Prompt: Software Architecture Assistant

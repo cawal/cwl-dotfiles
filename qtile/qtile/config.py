@@ -42,6 +42,8 @@ logger.warning(xresources)
 monitors = get_monitors()
 logger.warning(monitors)
 
+rofi_full_screen_theme = os.path.expanduser("~/.config/rofi/launchpad")
+
 
 def add_new_group(qtile, group_name):
     if group_name not in qtile.groups_map:
@@ -247,7 +249,11 @@ keys = [
     Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal")),
     Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
     Key(win_key, "d",
-        lazy.spawn("rofi -show-icons -modi combi -show combi -combi-modi drun,run"),
+        lazy.spawn(
+            "rofi -show-icons -modi combi -show combi"
+            " -combi-modi drun,run"
+            f" -theme {rofi_full_screen_theme}"
+        ),
         desc="Launch applications",
     ),
     Key(win_key, "w",

@@ -1,4 +1,5 @@
 configuration {
+    monitor: 0; // Set the monitor to display the menu on (0 for primary monitor)
 }
 
 //@theme "cwl-dark"
