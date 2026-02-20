@@ -28,9 +28,13 @@ require("lazy").setup({
 	require("kickstart.plugins.indent_line"),
 	require("kickstart.plugins.lint"),
 
+	-- Import all custom themes from lua/custom/themes/*.lua
+	-- Themes have priority = 1000 and load before regular plugins
+	{ import = "custom.themes" },
+
 	-- Import all custom plugins from lua/custom/plugins/*.lua
 	-- This includes: sleuth, comment, gitsigns, whichkey, telescope, lsp,
-	-- formatter, completion, tokyonight, todocomments, filetree, mini, treesitter
+	-- formatter, completion, todocomments, filetree, mini, treesitter
 	-- and your custom plugins (copilot, obsidian, etc.)
 	{ import = "custom.plugins" },
 }, {
@@ -54,7 +58,6 @@ require("lazy").setup({
 		},
 	},
 })
-vim.cmd.colorscheme("accent")
 vim.cmd.colorscheme("visual_studio_code")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

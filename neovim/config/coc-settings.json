@@ -1,8 +1,0 @@
-{
-    "languageserver": {
-        "kotlin": {
-            "command": "/home/cawal/git/third-party/kotlin-language-server/server/build/scripts/server",
-            "filetypes": ["kotlin"]
-        }
-    }
-}

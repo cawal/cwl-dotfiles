@@ -1,5 +1,6 @@
 return {
 	"alligator/accent.vim",
+	priority = 1000, -- Load before other plugins
 	init = function()
 		vim.g.accent_colour = "orange"
 		vim.g.accent_darken = 1
