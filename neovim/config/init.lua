@@ -21,19 +21,15 @@ require("lazy_install") -- Load lazy.nvim plugin manager
 --  To update plugins you can run
 --    :Lazy update
 --
--- NOTE: Plugins are now modularized in lua/custom/plugins/*.lua
+-- NOTE: Plugins are now modularized in lua/custom/plugins/*.lua and themes in lua/custom/themes/*.lua
 require("lazy").setup({
-	-- Import kickstart plugins (debug, indent_line, lint)
-	require("kickstart.plugins.debug"),
-	require("kickstart.plugins.indent_line"),
-	require("kickstart.plugins.lint"),
-
 	-- Import all custom themes from lua/custom/themes/*.lua
 	-- Themes have priority = 1000 and load before regular plugins
 	{ import = "custom.themes" },
 
 	-- Import all custom plugins from lua/custom/plugins/*.lua
-	-- This includes: sleuth, comment, gitsigns, whichkey, telescope, lsp,
+	-- This includes: debug, indent_line, lint (from kickstart)
+	-- and sleuth, comment, gitsigns, whichkey, telescope, lsp,
 	-- formatter, completion, todocomments, filetree, mini, treesitter
 	-- and your custom plugins (copilot, obsidian, etc.)
 	{ import = "custom.plugins" },
