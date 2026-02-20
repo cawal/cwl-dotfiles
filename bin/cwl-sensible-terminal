@@ -9,7 +9,7 @@
 # preferred terminal emulator. On Debian, there is the x-terminal-emulator
 # symlink for example.
 terminals="kitty urxvt x-terminal-emulator rxvt termit terminator Eterm aterm uxterm xterm gnome-terminal roxterm xfce4-terminal termite lxterminal mate-terminal terminology st qterminal lilyterm tilix terminix konsole"
-use_tmux=false
+use_tmux=true
 
 
 for terminal in $terminals; do
