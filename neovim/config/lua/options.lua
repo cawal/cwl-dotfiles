@@ -64,3 +64,6 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- autoread files changed outside of Neovim
+vim.o.autoread = true
