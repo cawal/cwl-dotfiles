@@ -369,7 +369,7 @@ groups.append(
             ),
             DropDown(
                 "Obsidian",
-                f"Obsidian.AppImage --no-sandbox",
+                f"obsidian",
                 **{
                     **dropdown_config,
                     "x": 0.01,
