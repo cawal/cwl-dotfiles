@@ -407,9 +407,9 @@ insomnia:
 
 # DATABASE TOOLS
 dbeaver:
-	${AT_TEMP_FOLDER} ${DOWNLOAD_AS} dbeaver.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
-	${AT_TEMP_FOLDER} ${INSTALL_LOCAL} dbeaver.deb
-	${AT_TEMP_FOLDER} rm dbeaver.deb
+	${ADD_APT_REPOSITORY} ppa:serge-rider/dbeaver-ce
+	${UPDATE}
+	${INSTALL} dbeaver-ce
 
 mssql-tools:
 	curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
