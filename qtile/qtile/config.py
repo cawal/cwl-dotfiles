@@ -401,7 +401,7 @@ groups.append(
             ),
             DropDown(
                 "dmesg log",
-                f"cwl-sensible-terminal -e sudo dmesg --follow",
+                f"cwl-sensible-terminal -e sudo dmesg --time-format=iso --follow",
                 **{
                     **dropdown_config,
                     "height": 1,
