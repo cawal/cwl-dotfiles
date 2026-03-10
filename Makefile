@@ -349,6 +349,9 @@ github-copilot-cli:
 	&& sudo apt update \
 	&& sudo apt install gh -y
 
+gh-dash:
+	gh extension install dlvhdr/gh-dash
+
 # CODE QUALITY
 shellcheck:
 	${INSTALL} shellcheck
@@ -650,6 +653,10 @@ link-dunst:
 link-gtk-3-0:
 	mkdir -p "${HOME}/.config/gtk-3.0/"
 	stow -R gtk-3.0 --target=${HOME}/.config/gtk-3.0/
+
+link-gh-dash:
+	mkdir -p "${HOME}/.config/gh-dash/"
+	stow -R gh-dash --target=${HOME}/.config/gh-dash/
 
 link-i3:
 	stow -R i3 --target=${HOME}/.config
