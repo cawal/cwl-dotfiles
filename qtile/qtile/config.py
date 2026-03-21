@@ -205,7 +205,7 @@ keys = [
         lazy.spawn("dunstctl history-pop"),
         desc="Show last notification",
     ),
-    Key(win_key, "space",
+    Key(win_key, "BackSpace",
         lazy.spawn("dunstctl close"),
         desc="Close last notification",
     ),
@@ -262,7 +262,7 @@ keys = [
     ),
     Key(win_key, "bracketleft", lazy.spawn("amixer -q sset Master 5%+")),
     Key(win_key, "bracketright", lazy.spawn("amixer -q sset Master 5%-")),
-    Key(win_key, "BackSpace", lazy.spawn("amixer -q sset Master toggle")),
+    Key(win_key+shift, "BackSpace", lazy.spawn("amixer -q sset Master toggle")),
     # Toggle between different layouts as defined below
     Key(win_key, "Tab", lazy.next_layout()),
     Key(win_key+shift, "Tab", lazy.prev_layout()),
