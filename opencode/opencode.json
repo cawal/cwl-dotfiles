@@ -20,7 +20,12 @@
       "type": "remote",
       "url": "https://mcp.stripe.com",
       "enabled": false
-    }
+    },
+    "supabase": {
+      "type": "remote",
+      "url": "https://mcp.supabase.com/mcp?read_only=true",
+      "enabled": false
+    },
   },
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],
   "permission": {
