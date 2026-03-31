@@ -262,7 +262,7 @@ tmate:
 # ============================================================================
 
 # EDITORS
-vi: ripgrep silver-seacher python3-pip3
+vi: ripgrep silver-seacher treesitter-cli python3-pip3
 	sudo apt remove neovim neovim-runtime
 	sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 	${INSTALL} python3-dev python3-pip python3-neovim
@@ -274,6 +274,9 @@ vi: ripgrep silver-seacher python3-pip3
 	sudo update-alternatives --set vi /usr/local/bin/nvim
 	git config --global core.editor nvim
 
+
+treesitter-cli:
+	npm install -g tree-sitter-cli
 
 
 # SEARCH TOOLS
