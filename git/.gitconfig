@@ -1,0 +1,42 @@
+[alias]
+	graph-all = log --graph --all --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+[core]
+	editor = nvim
+	pager = delta
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[pager]
+	# diff = delta
+	# log = delta
+	# reflog = delta
+	# show = delta
+
+[delta]
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Monokai Extended
+	navigate = true
+	line-numbers = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[diff "daff-csv"]
+	command = daff diff --git
+
+[merge "daff-csv"]
+	name = daff tabular csv merge
+	driver = daff merge --output %A %O %A %B
+
+[include]
+	path = ~/.gitconfig.local

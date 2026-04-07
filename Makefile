@@ -272,7 +272,6 @@ vi: ripgrep silver-seacher treesitter-cli python3-pip3
 	${AT_TEMP_FOLDER} sudo mv nvim /usr/local/bin/
 	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 1111
 	sudo update-alternatives --set vi /usr/local/bin/nvim
-	git config --global core.editor nvim
 
 
 treesitter-cli:
@@ -637,7 +636,7 @@ bb-dependencies:
 
 configure: link-all
 
-link-all: stow link-bin link-conky link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
+link-all: stow link-bin link-conky link-git link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
 link-everything: link-qtile link-i3 link-rofi link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura
 
@@ -664,8 +663,19 @@ link-gh-dash:
 link-i3:
 	stow -R i3 --target=${HOME}/.config
 
-link-login-shell:
-	stow -R login-shell --target=${HOME}
+link-git: gitconfig-local
+	stow -R git --target=${HOME}
+
+gitconfig-local:
+	@if [ ! -f "${HOME}/.gitconfig.local" ]; then \
+		echo "Creating ~/.gitconfig.local (machine-specific, not tracked)..."; \
+		printf "Enter your git user.name: "; read git_name; \
+		printf "Enter your git user.email: "; read git_email; \
+		printf "Enter credential.helper (store/manager/osxkeychain, default: store): "; read git_cred; \
+		git_cred=$${git_cred:-store}; \
+		printf "[user]\n\tname = $$git_name\n\temail = $$git_email\n\n[credential]\n\thelper = $$git_cred\n" > ${HOME}/.gitconfig.local; \
+		echo "Created ~/.gitconfig.local"; \
+	fi
 
 link-kitty:
 	mkdir -p ${HOME}/.config/kitty/
@@ -767,6 +777,9 @@ link-ranger-remove:
 
 link-xresources-remove:
 	stow -D Xresources --target=${HOME}
+
+link-git-remove:
+	stow -D git --target=${HOME}
 
 link-login-shell-remove:
 	stow -D login-shell --target=${HOME}
