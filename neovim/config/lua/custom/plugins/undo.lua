@@ -63,7 +63,7 @@ return {
 	"XXiaoA/atone.nvim",
 	cmd = "Atone",
 	keys = {
-		{ "<leader>su", "<cmd>Atone toggle<CR>", desc = "[S]earch [U]ndo tree" },
+		{ "<leader>sU", "<cmd>Atone toggle<CR>", desc = "[S]how [U]ndo diffs" },
 	},
 	opts = opts, -- your configuration here
 }
