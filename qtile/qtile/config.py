@@ -209,6 +209,10 @@ keys = [
         lazy.spawn("dunstctl close"),
         desc="Close last notification",
     ),
+    Key(win_key+shift, "e",
+        lazy.group["scratchpad"].dropdown_toggle("Characters"),
+        desc="Show character map",
+    ),
     Key(win_key, "b",
         lazy.group["scratchpad"].dropdown_toggle("blueman-manager"),
         desc="Show bluetooth manager",
@@ -398,6 +402,14 @@ groups.append(
                 "qtile log",
                 f"cwl-sensible-terminal -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
                 **dropdown_config,
+            ),
+            DropDown(
+                "Characters",
+                f"gnome-characters",
+                **{
+                    **dropdown_config,
+                    "height": 1,
+                },
             ),
             DropDown(
                 "dmesg log",
