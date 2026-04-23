@@ -21,11 +21,20 @@
       "url": "https://mcp.stripe.com",
       "enabled": false
     },
-    "supabase": {
+    "turi-supabase": {
       "type": "remote",
       "url": "https://mcp.supabase.com/mcp?read_only=true",
       "enabled": false
     },
+    "turi-grafana": {
+      "type": "local",
+      "command": ["uvx", "mcp-grafana"],
+      "environment": {
+        "GRAFANA_API_KEY": "{env:TURI_GRAFANA_API_KEY}",
+        "GRAFANA_URL": "{env:TURI_GRAFANA_URL}"
+      },
+      "enabled": false
+    }
   },
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],
   "permission": {
