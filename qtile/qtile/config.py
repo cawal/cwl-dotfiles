@@ -517,7 +517,7 @@ task_list_config = {
     "markup_floating": f'<span foreground="{color_white}">[{{}}]</span>',
     "markup_focused": f'<span foreground="{color_white}">[{{}}]</span>',
     "markup_maximized": f'<span foreground="{color_grey}">{{}}</span>',
-    "markup_minimized": f'<span foreground="{color_grey}">{{}}</span>',
+    "markup_minimized": f'<span foreground="{color_grey}">_{{}}_</span>',
     "markup_normal": f'<span foreground="{color_grey}">{{}}</span>',
     "highlight_method": "block",  # border|block
     "rounded": False,
