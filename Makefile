@@ -211,6 +211,9 @@ screenruler:
 conky-notifications:
 	${INSTALL} conky-all
 
+trash:
+	${INSTALL} trash-cli
+
 # CLIPBOARD
 clipboard-tools: greenclip xclip
 
@@ -529,7 +532,7 @@ graphic-drivers:
 # ============================================================================
 
 # FILE MANAGEMENT
-ranger-install:
+ranger-install: trash
 	${INSTALL} ranger
 
 
