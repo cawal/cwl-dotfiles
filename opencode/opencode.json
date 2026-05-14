@@ -34,6 +34,11 @@
         "GRAFANA_URL": "{env:TURI_GRAFANA_URL}"
       },
       "enabled": false
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "playwright-mcp@latest"],
+      "enabled": false
     }
   },
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],

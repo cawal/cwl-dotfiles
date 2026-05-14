@@ -11,6 +11,7 @@ return {
 
 		-- Document existing key chains
 		wk.add({
+			{ "<leader>a", group = "[A]vante" },
 			{ "<leader>c", group = "[C]ode" },
 			{ "<leader>c_", hidden = true },
 			{ "<leader>d", group = "[D]ocument" },
