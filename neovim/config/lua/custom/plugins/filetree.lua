@@ -25,5 +25,8 @@ return {
 		vim.keymap.set("n", "<leader>sB", function()
 			vim.cmd("Neotree buffers toggle")
 		end, { desc = "[S]earch [B]uffer in a Tree / Close Tree" })
+		vim.keymap.set("n", "<leader>sG", function() -- lento =/
+			vim.cmd("Neotree source=git_status toggle")
+		end, { desc = "[S]earch [g]it status in a Tree / Close Tree" })
 	end,
 }
