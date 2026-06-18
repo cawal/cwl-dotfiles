@@ -13,6 +13,13 @@ return {
 		-- Examples: saiw), sd', sr)'
 		require("mini.surround").setup()
 
+		local hipatterns = require("mini.hipatterns")
+		hipatterns.setup({
+			highlighters = {
+				hex_color = hipatterns.gen_highlighter.hex_color(),
+			},
+		})
+
 		-- Simple statusline
 		local statusline = require("mini.statusline")
 		statusline.setup({ use_icons = vim.g.have_nerd_font })

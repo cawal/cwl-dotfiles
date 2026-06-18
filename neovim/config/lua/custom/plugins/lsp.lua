@@ -14,7 +14,19 @@ return {
 		{ "j-hui/fidget.nvim", opts = {} },
 
 		-- Lua LSP configuration for Neovim config, runtime and plugins
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/lazydev.nvim", ft = "lua", opts = {} },
+
+		-- JSON/YAML schemas for common config files
+		"b0o/SchemaStore.nvim",
+
+		-- Better TypeScript server control than plain ts_ls
+		{
+			"pmizio/typescript-tools.nvim",
+			dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		},
+
+		-- Toggle between compact and expanded diagnostic display
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
 	config = function()
 		-- This function gets run when an LSP attaches to a buffer
@@ -63,7 +75,38 @@ return {
 
 		-- Define language servers to install and configure
 		local servers = {
-			pyright = {},
+			pyright = {
+				settings = {
+					python = {
+						analysis = {
+							autoImportCompletions = true,
+							diagnosticMode = "workspace",
+							typeCheckingMode = "basic",
+						},
+					},
+				},
+			},
+			ruff = {},
+			html = {},
+			cssls = {},
+			tailwindcss = {},
+			taplo = {},
+			jsonls = {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			},
+			yamlls = {
+				settings = {
+					yaml = {
+						schemaStore = { enable = false, url = "" },
+						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -75,6 +118,31 @@ return {
 			},
 		}
 
+		require("typescript-tools").setup({
+			capabilities = capabilities,
+			settings = {
+				separate_diagnostic_server = true,
+				publish_diagnostic_on = "insert_leave",
+				jsx_close_tag = {
+					enable = true,
+					filetypes = { "javascriptreact", "typescriptreact" },
+				},
+				tsserver_file_preferences = {
+					includeCompletionsForImportStatements = true,
+					includeCompletionsForModuleExports = true,
+					includeInlayEnumMemberValueHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayVariableTypeHints = true,
+				},
+				complete_function_calls = true,
+				tsserver_max_memory = 4096,
+			},
+		})
+
 		-- Setup Mason
 		require("mason").setup()
 
@@ -82,6 +150,12 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Lua formatter
+			"black",
+			"eslint_d",
+			"isort",
+			"prettier",
+			"ruff",
+			"sqlfluff",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -95,5 +169,15 @@ return {
 				end,
 			},
 		})
+
+		require("lsp_lines").setup()
+		vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+		vim.keymap.set("n", "<leader>l", function()
+			local config = vim.diagnostic.config() or {}
+			vim.diagnostic.config({
+				virtual_text = not config.virtual_text,
+				virtual_lines = config.virtual_text,
+			})
+		end, { desc = "Toggle diagnostic lines" })
 	end,
 }

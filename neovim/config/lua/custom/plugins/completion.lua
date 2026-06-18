@@ -19,13 +19,29 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 
 		-- Completion sources
+		"onsails/lspkind.nvim",
+		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"kristijanhusak/vim-dadbod-completion",
+		"roobert/tailwindcss-colorizer-cmp.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
+		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
+		require("tailwindcss-colorizer-cmp").setup({ color_square_width = 2 })
+
+		local kind_formatter = lspkind.cmp_format({
+			mode = "symbol_text",
+			menu = {
+				buffer = "[buf]",
+				luasnip = "[snip]",
+				nvim_lsp = "[LSP]",
+				path = "[path]",
+			},
+		})
 
 		cmp.setup({
 			snippet = {
@@ -34,6 +50,13 @@ return {
 				end,
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
+			formatting = {
+				fields = { "abbr", "kind", "menu" },
+				format = function(entry, vim_item)
+					vim_item = kind_formatter(entry, vim_item)
+					return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+				end,
+			},
 
 			mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item(),
@@ -57,6 +80,14 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "buffer" },
+			},
+		})
+
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "vim-dadbod-completion" },
+				{ name = "buffer" },
 			},
 		})
 	end,

@@ -1,28 +1,47 @@
--- treesitter.lua
--- Advanced syntax highlighting and code understanding
--- Provides better syntax highlighting than default vim
---
--- return {
--- 	"nvim-treesitter/nvim-treesitter",
--- 	branch = "main",
--- 	lazy = false,
--- 	build = ":TSUpdate",
--- 	opts = {
--- 		ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
--- 		auto_install = true,
--- 		highlight = {
--- 			enable = true,
--- 			additional_vim_regex_highlighting = { "ruby" },
--- 		},
--- 		indent = { enable = true, disable = { "ruby" } },
--- 	},
--- 	config = function(_, opts)
--- 		require("nvim-treesitter.configs").setup(opts)
--- 	end,
--- }
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
 	lazy = false,
 	build = ":TSUpdate",
+	keys = {
+		{ "<leader>it", "<cmd>InspectTree<CR>", desc = "[I]nspect [T]ree" },
+		{ "<leader>ie", "<cmd>Inspect<CR>", desc = "[I]nspect tree-sitter [E]lement" },
+	},
+	config = function()
+		require("nvim-treesitter").setup({
+			ensure_install = {
+				"bash",
+				"css",
+				"html",
+				"javascript",
+				"jsdoc",
+				"json",
+				"jsonc",
+				"lua",
+				"luadoc",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"query",
+				"regex",
+				"sql",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"yaml",
+			},
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("custom-treesitter-start", { clear = true }),
+			callback = function(args)
+				local ok = pcall(vim.treesitter.get_parser, args.buf)
+				if ok then
+					pcall(vim.treesitter.start, args.buf)
+				end
+			end,
+		})
+	end,
 }
