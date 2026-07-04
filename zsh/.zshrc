@@ -165,6 +165,19 @@ alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get cle
 alias ubuntu-update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
 alias git-open-remote='firefox `git remote get-url origin`'
 
+function opencode() {
+    local first="$1"
+
+    case "$first" in
+        completion|acp|mcp|attach|run|debug|providers|auth|agent|upgrade|uninstall|serve|web|models|stats|export|import|github|pr|session|plugin|plug|db|-h|--help|-v|--version|--port)
+            command opencode "$@"
+            ;;
+        *)
+            command opencode --port "$@"
+            ;;
+    esac
+}
+
 # Created by `pipx` on 2025-07-05 13:03:52
 export PATH="$PATH:/home/cawal/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
