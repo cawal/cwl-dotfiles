@@ -396,6 +396,12 @@ gcloud:
 opencode-install:
 	 npm install -g opencode-ai 
 
+opencode-update:
+	 npm update -g opencode-ai 
+
+notion-cli:
+	curl -fsSL https://ntn.dev | bash
+
 # SDK MANAGEMENT
 sdkman:
 	curl -s https://get.sdkman.io | bash

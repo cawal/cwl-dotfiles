@@ -39,6 +39,10 @@
       "type": "local",
       "command": ["npx", "-y", "playwright-mcp@latest"],
       "enabled": false
+    },
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp"
     }
   },
   "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],
