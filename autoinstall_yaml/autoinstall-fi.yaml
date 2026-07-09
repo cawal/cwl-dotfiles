@@ -1,0 +1,190 @@
+# Ubuntu autoinstall profile for tachikoma.
+# WARNING: this storage layout wipes the selected disk.
+autoinstall:
+  version: 1
+
+  locale: pt_BR.UTF-8
+  keyboard:
+    layout: br
+    variant: ""
+    toggle: null
+
+  timezone: America/Sao_Paulo
+
+  refresh-installer:
+    update: true
+
+  source:
+    # For Ubuntu Desktop ISO. Use ubuntu-server for Ubuntu Server ISO.
+    id: ubuntu-desktop
+    search_drivers: true
+
+  apt:
+    mirror-selection:
+      primary:
+        - country-mirror
+        - uri: http://archive.ubuntu.com/ubuntu
+    fallback: offline-install
+    geoip: true
+
+  identity:
+    realname: "Cawal"
+    username: cawal
+    hostname: tachikoma
+    # Replace with a SHA-512 hash, for example:
+    # mkpasswd --method=SHA-512 --rounds=4096
+    password: "$6$REPLACE_WITH_HASHED_PASSWORD"
+
+  ssh:
+    install-server: true
+    authorized-keys: []
+    allow-pw: true
+
+  codecs:
+    install: true
+
+  drivers:
+    install: true
+
+  oem:
+    install: auto
+
+  updates: all
+  shutdown: reboot
+
+  storage:
+    # File-backed swap managed by curtin, not a dedicated swap partition.
+    swap:
+      size: 16G
+    config:
+      - id: disk0
+        type: disk
+        ptable: gpt
+        wipe: superblock-recursive
+        preserve: false
+        grub_device: false
+        match:
+          size: largest
+
+      - id: esp
+        type: partition
+        device: disk0
+        size: 1G
+        flag: boot
+        number: 1
+        grub_device: true
+        wipe: superblock
+
+      - id: esp-format
+        type: format
+        fstype: fat32
+        volume: esp
+
+      - id: boot
+        type: partition
+        device: disk0
+        size: 2G
+        number: 2
+        wipe: superblock
+
+      - id: boot-format
+        type: format
+        fstype: ext4
+        volume: boot
+
+      - id: lvm-partition
+        type: partition
+        device: disk0
+        size: -1
+        number: 3
+        wipe: superblock
+
+      - id: vg0
+        type: lvm_volgroup
+        name: vg0
+        devices:
+          - lvm-partition
+
+      - id: lv-root
+        type: lvm_partition
+        name: root
+        volgroup: vg0
+        size: 80G
+        wipe: superblock
+
+      - id: lv-home
+        type: lvm_partition
+        name: home
+        volgroup: vg0
+        size: 200G
+        wipe: superblock
+
+      - id: lv-var
+        type: lvm_partition
+        name: var
+        volgroup: vg0
+        size: 150G
+        wipe: superblock
+
+      - id: root-format
+        type: format
+        fstype: ext4
+        volume: lv-root
+
+      - id: home-format
+        type: format
+        fstype: ext4
+        volume: lv-home
+
+      - id: var-format
+        type: format
+        fstype: ext4
+        volume: lv-var
+
+      - id: root-mount
+        type: mount
+        device: root-format
+        path: /
+
+      - id: boot-mount
+        type: mount
+        device: boot-format
+        path: /boot
+
+      - id: esp-mount
+        type: mount
+        device: esp-format
+        path: /boot/efi
+
+      - id: home-mount
+        type: mount
+        device: home-format
+        path: /home
+
+      - id: var-mount
+        type: mount
+        device: var-format
+        path: /var
+
+  packages:
+    - apt-transport-https
+    - build-essential
+    - ca-certificates
+    - curl
+    - docker.io
+    - git
+    - gnupg
+    - lsb-release
+    - make
+    - neovim
+    - openssh-server
+    - stow
+    - vim
+
+  late-commands:
+    - curtin in-target -- systemctl enable ssh
+    - curtin in-target -- usermod -aG docker cawal
+
+  error-commands:
+    - tar -czf /installer-logs.tar.gz /var/log/installer/
+    - journalctl -b > /installer-journal.log

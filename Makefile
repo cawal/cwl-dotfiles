@@ -56,7 +56,7 @@ desktop-env: qtile i3 rofi compositor wallpaper icon-themes gtk-themes lockscree
 
 terminal-env: zsh tmux kitty terminal tmate
 
-development: vi node-js docker github-cli build-tools shellcheck web-service-development-tools language-servers
+development: vi node-js nix docker github-cli build-tools shellcheck web-service-development-tools language-servers
 
 communication: firefox telegram slack office-suite
 
@@ -295,6 +295,17 @@ nvm:
 
 node-js: nvm
 	nvm install stable
+
+nix: curl
+	@if command -v nix >/dev/null 2>&1; then \
+		echo "Nix already installed: $$(nix --version)"; \
+	else \
+		curl -L https://nixos.org/nix/install | sh -s -- --daemon; \
+	fi
+	sudo mkdir -p /etc/nix
+	grep -qxF "experimental-features = nix-command flakes" /etc/nix/nix.conf 2>/dev/null || echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+	@echo "Nix installation configured. Open a new shell or run: . /etc/profile.d/nix.sh"
+	@echo "Test with: nix --version && nix shell nixpkgs#hello -c hello"
 
 python-virtualenvwrapper:
 	pipx install virtualenvwrapper
@@ -645,7 +656,7 @@ bb-dependencies:
 
 configure: link-all
 
-link-all: stow link-bin link-conky link-git link-login-shell link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
+link-all:  link-bin link-conky link-git  link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
 link-everything: link-qtile link-i3 link-rofi link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura
 
@@ -822,6 +833,6 @@ link-zathura-remove:
 
 FORCE:
 
-.PHONY: all help minimal desktop-full install-packages configure
+.PHONY: all help minimal desktop-full install-packages configure nix
 .PHONY: core-system desktop-env terminal-env development communication media-creative utilities academic-docs
 .PHONY: link-all link-everything link-remove-everything sc-im
