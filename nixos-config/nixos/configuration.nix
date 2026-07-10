@@ -87,7 +87,7 @@
   users.users."cawal" = {
     isNormalUser = true;
     description = "cawal";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -95,6 +95,25 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Enable AppImage support
+  programs.appimage = {
+    enable = true;
+    binfmt = true;  # Allows running AppImages like regular executables
+  };
+
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;  # Start Docker daemon on boot
+  };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;  # Power on Bluetooth adapter on boot
+  };
+  services.blueman.enable = true;  # Blueman GUI for managing Bluetooth
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
