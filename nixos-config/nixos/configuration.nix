@@ -47,8 +47,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -186,9 +186,9 @@
      
      # Node.js ecosystem
      nodejs_22           # Node.js (LTS)
-     nodePackages.pnpm   # pnpm package manager
+     pnpm                # pnpm package manager (now at top level)
      # npx comes with nodejs
-     nodePackages.mermaid-cli  # Mermaid diagrams CLI
+     mermaid-cli         # Mermaid diagrams CLI (now at top level)
      
      # Java & Diagram tools
      jre                 # Java Runtime (for PlantUML)
