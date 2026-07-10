@@ -179,7 +179,6 @@
      zsh
      rofi
      nitrogen
-     keyd
      arandr
      xrandr
 
@@ -273,6 +272,46 @@
 
 services.keyd = {
   enable = true;
+  keyboards = {
+    default = {
+      ids = [ "*" ];  # Apply to all keyboards
+      settings = {
+        global = {
+          macro_timeout = 600;
+          macro_repeat_timeout = 50;
+          layer_indicator = 1;
+          chord_timeout = 50;
+          chord_hold_timeout = 0;
+          oneshot_timeout = 0;
+          disable_modifier_guard = 0;
+          overload_tap_timeout = 200;
+        };
+        
+        main = {
+          # Maps capslock to escape when pressed and nav layer when held
+          capslock = "overload(nav, esc)";
+          
+          # Space acts as Meta when held
+          space = "lettermod(meta, space, 150, 200)";
+          
+          # Remap insert to Shift+Insert (paste on X11)
+          insert = "S-insert";
+        };
+        
+        "nav:C" = {
+          # Navigation arrows on home row (vim-style)
+          h = "left";
+          j = "down";
+          k = "up";
+          l = "right";
+          
+          # Additional navigation
+          u = "home";
+          i = "end";
+        };
+      };
+    };
+  };
 };
 
 services.xserver.windowManager.qtile = {
