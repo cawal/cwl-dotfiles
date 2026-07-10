@@ -121,6 +121,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     # Core tools (already installed)
      neovim
      google-chrome
      opencode
@@ -144,6 +145,93 @@
      keyd
      arandr
      xrandr
+
+     # === FASE 3: Pacotes essenciais do workflow ===
+     
+     # Node.js ecosystem
+     nodejs_22           # Node.js (LTS)
+     nodePackages.pnpm   # pnpm package manager
+     # npx comes with nodejs
+     nodePackages.mermaid-cli  # Mermaid diagrams CLI
+     
+     # Java & Diagram tools
+     jre                 # Java Runtime (for PlantUML)
+     plantuml            # PlantUML diagrams
+     graphviz            # Dependency for PlantUML
+     
+     # Cloud & Infrastructure
+     google-cloud-sdk    # gcloud CLI
+     kubectl             # Kubernetes CLI
+     kubernetes-helm     # Helm package manager
+     terraform           # Infrastructure as Code
+     
+     # Data tools
+     yq-go               # YAML/JSON processor (Go version)
+     q-text-as-data      # Query CSV files with SQL
+     
+     # Search & CLI tools
+     silver-searcher     # ag - code search tool
+     
+     # Desktop utilities
+     greenclip           # Clipboard manager (works with rofi)
+     gpick               # Color picker
+     
+     # Development tools
+     vscode              # Visual Studio Code
+     postman             # API testing
+     insomnia            # API client
+     dbeaver-bin         # Database manager
+     
+     # Python tools
+     uv                  # Fast Python package installer
+     python3
+     python3Packages.pip
+     pipx                # Install Python apps in isolated environments
+     
+     # Communication & Entertainment
+     discord             # Chat
+     retroarch           # Gaming emulator frontend
+     
+     # Additional CLI tools
+     httpie              # HTTP client
+     entr                # Run commands when files change
+     csvkit              # CSV manipulation tools
+     cloc                # Count lines of code
+     shellcheck          # Shell script linter
+     xdotool             # X11 automation tool
+     htop                # Process viewer
+     
+     # Desktop environment (i3/qtile related)
+     i3lock              # Screen locker
+     dunst               # Notification daemon
+     picom               # Compositor
+     flameshot           # Screenshot tool
+     lxappearance        # GTK theme switcher
+     pavucontrol         # PulseAudio volume control
+     
+     # Browsers
+     qutebrowser         # Keyboard-driven browser
+     
+     # Productivity
+     libreoffice         # Office suite
+     keepassxc           # Password manager
+     
+     # Media tools
+     vlc                 # Media player
+     audacity            # Audio editor
+     inkscape            # Vector graphics
+     gimp                # Image editor
+     imagemagick         # Image manipulation CLI
+     calibre             # E-book manager
+     
+     # File management
+     file-roller         # Archive manager
+     baobab              # Disk usage analyzer
+     
+     # Network tools
+     networkmanagerapplet  # NetworkManager tray icon
+     tcpflow             # TCP flow recorder
+     tmate               # Terminal sharing
   ];
 
 services.keyd = {
