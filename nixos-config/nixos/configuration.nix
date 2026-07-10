@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-c68bbcad-9bcf-42a6-bc1b-6850e9742923".device = "/dev/disk/by-uuid/c68bbcad-9bcf-42a6-bc1b-6850e9742923";
+  #boot.initrd.luks.devices."luks-c68bbcad-9bcf-42a6-bc1b-6850e9742923".device = "/dev/disk/by-uuid/c68bbcad-9bcf-42a6-bc1b-6850e9742923";
   networking.hostName = "navi"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -111,7 +111,6 @@
      ranger
      xclip
      slack
-     syncthing
      wget
      gnumake
      gcc
@@ -123,7 +122,14 @@
      zsh
      rofi
      nitrogen
+     keyd
+     arandr
+     xrandr
   ];
+
+services.keyd = {
+  enable = true;
+};
 
 services.xserver.windowManager.qtile = {
   enable = true;
@@ -168,8 +174,22 @@ services.xserver.windowManager.qtile = {
     enable = true;
     nssmdns4 = true; # Resolves .local hostnames for IPv4
     openFirewall = true; # Opens necessary UDP ports (5353)
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
   };
-  services.syncthing.user = "cawal";
+
+  # Syncthing - accessible both locally and over network
+  services.syncthing = {
+    enable = true;
+    user = "cawal";
+    dataDir = "/home/cawal/.syncthing";
+    configDir = "/home/cawal/.config/syncthing";
+    openDefaultPorts = true; # Opens 22000 (TCP), 21027 (UDP)
+    guiAddress = "0.0.0.0:8384"; # Accessible from network (password protected via Syncthing UI)
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
