@@ -88,6 +88,7 @@
     isNormalUser = true;
     description = "cawal";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    shell = pkgs.zsh;  # Set zsh as default shell
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -95,6 +96,42 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Zsh configuration
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    
+    # Oh My Zsh integration
+    ohMyZsh = {
+      enable = true;
+      theme = "agnoster";  # Matches your .zshrc
+      plugins = [
+        "git"
+        "docker"
+        "docker-compose"
+        "kubectl"
+        "helm"
+        "terraform"
+        "gcloud"
+        "python"
+        "pip"
+        "systemd"
+        "fzf"
+      ];
+    };
+    
+    # Environment variables that should be set system-wide
+    shellInit = ''
+      # Path additions (NixOS manages most of this automatically)
+      export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+      
+      # Load local config if it exists (for machine-specific settings)
+      [[ -f "$HOME/.zsh_local" ]] && source "$HOME/.zsh_local"
+    '';
+  };
 
   # Enable AppImage support
   programs.appimage = {
