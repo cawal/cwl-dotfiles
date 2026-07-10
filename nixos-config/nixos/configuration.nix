@@ -152,6 +152,9 @@
   };
   services.blueman.enable = true;  # Blueman GUI for managing Bluetooth
 
+  # Greenclip - Clipboard manager
+  services.greenclip.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -209,7 +212,7 @@
      silver-searcher     # ag - code search tool
      
      # Desktop utilities
-     greenclip           # Clipboard manager (works with rofi)
+     # greenclip - managed as service (services.greenclip.enable)
      gpick               # Color picker
      
      # Development tools

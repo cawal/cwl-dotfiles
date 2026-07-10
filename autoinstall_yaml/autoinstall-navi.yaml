@@ -1,5 +1,12 @@
-# Ubuntu autoinstall profile for fi.
-# WARNING: this storage layout wipes the selected disk.
+# Ubuntu autoinstall profile for navi.
+#
+# Current hardware from navi.txt:
+# - Dell Inspiron 5584
+# - Internal disk: ata-SanDisk_SDSSDA240G_171014463211, 240GB SATA SSD
+# - External USB disk observed: TOSHIBA MQ04UBF100_331PP0W3T, not selected here
+#
+# WARNING: this profile wipes the internal SanDisk SSD and creates a fresh
+# encrypted LUKS + LVM layout. Back up /home before using it.
 autoinstall:
   version: 1
 
@@ -30,8 +37,8 @@ autoinstall:
   identity:
     realname: "Cawal"
     username: cawal
-    hostname: fi
-    # Replace with a SHA-512 hash, for example:
+    hostname: navi
+    # Replace in a local, non-versioned copy. Do not commit a real password hash.
     # mkpasswd --method=SHA-512 --rounds=4096
     password: "$6$REPLACE_WITH_HASHED_PASSWORD"
 
@@ -53,9 +60,8 @@ autoinstall:
   shutdown: reboot
 
   storage:
-    # File-backed swap managed by curtin, not a dedicated swap partition.
     swap:
-      size: 16G
+      size: 0
     config:
       - id: disk0
         type: disk
@@ -64,15 +70,29 @@ autoinstall:
         preserve: false
         grub_device: false
         match:
-          size: largest
+          serial: SanDisk_SDSSDA240G_171014463211
 
       - id: esp
         type: partition
         device: disk0
         size: 1G
-        flag: boot
         number: 1
+        flag: boot
         grub_device: true
+        wipe: superblock
+
+      - id: boot-partition
+        type: partition
+        device: disk0
+        size: 2G
+        number: 2
+        wipe: superblock
+
+      - id: crypt-partition
+        type: partition
+        device: disk0
+        size: -1
+        number: 3
         wipe: superblock
 
       - id: esp-format
@@ -80,50 +100,49 @@ autoinstall:
         fstype: fat32
         volume: esp
 
-      - id: boot
-        type: partition
-        device: disk0
-        size: 2G
-        number: 2
-        wipe: superblock
-
       - id: boot-format
         type: format
         fstype: ext4
-        volume: boot
+        volume: boot-partition
 
-      - id: lvm-partition
-        type: partition
-        device: disk0
-        size: -1
-        number: 3
-        wipe: superblock
+      - id: crypt0
+        type: dm_crypt
+        dm_name: crypt0
+        volume: crypt-partition
+        key: REPLACE_WITH_LUKS_PASSPHRASE
 
       - id: vg0
         type: lvm_volgroup
         name: vg0
         devices:
-          - lvm-partition
+          - crypt0
 
       - id: lv-root
         type: lvm_partition
         name: root
         volgroup: vg0
-        size: 80G
-        wipe: superblock
-
-      - id: lv-home
-        type: lvm_partition
-        name: home
-        volgroup: vg0
-        size: 200G
+        size: 50G
         wipe: superblock
 
       - id: lv-var
         type: lvm_partition
         name: var
         volgroup: vg0
-        size: 150G
+        size: 45G
+        wipe: superblock
+
+      - id: lv-swap
+        type: lvm_partition
+        name: swap
+        volgroup: vg0
+        size: 10G
+        wipe: superblock
+
+      - id: lv-home
+        type: lvm_partition
+        name: home
+        volgroup: vg0
+        size: -1
         wipe: superblock
 
       - id: root-format
@@ -131,15 +150,20 @@ autoinstall:
         fstype: ext4
         volume: lv-root
 
-      - id: home-format
-        type: format
-        fstype: ext4
-        volume: lv-home
-
       - id: var-format
         type: format
         fstype: ext4
         volume: lv-var
+
+      - id: swap-format
+        type: format
+        fstype: swap
+        volume: lv-swap
+
+      - id: home-format
+        type: format
+        fstype: ext4
+        volume: lv-home
 
       - id: root-mount
         type: mount
@@ -156,15 +180,15 @@ autoinstall:
         device: esp-format
         path: /boot/efi
 
-      - id: home-mount
-        type: mount
-        device: home-format
-        path: /home
-
       - id: var-mount
         type: mount
         device: var-format
         path: /var
+
+      - id: home-mount
+        type: mount
+        device: home-format
+        path: /home
 
   packages:
     - apt-transport-https
