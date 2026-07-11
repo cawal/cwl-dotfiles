@@ -4,11 +4,11 @@
 exec >> ~/qtile-startup.log 2>&1
 echo "=== Qtile startup script started at $(date) ==="
 
-# Apply GTK Yaru-dark theme settings
-echo "Applying Yaru-dark GTK theme..."
-dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-dark'"
+# Apply GTK Adwaita-dark theme settings
+echo "Applying Adwaita-dark GTK theme..."
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-dconf write /org/gnome/desktop/interface/icon-theme "'Yaru'"
+dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'"
 
 xrdb ~/.Xresources
 # compton --backend glx --vsync drm --glx-no-stencil --config ~/.config/i3/compton.conf  &

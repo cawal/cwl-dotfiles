@@ -67,8 +67,8 @@
     QT_QPA_PLATFORMTHEME = "gtk2";
     QT_STYLE_OVERRIDE = "adwaita-dark";
     
-    # GTK theme preference - Ubuntu Yaru dark theme
-    GTK_THEME = "Yaru-dark";
+    # GTK theme preference - Adwaita dark (reliable on NixOS)
+    GTK_THEME = "Adwaita:dark";
   };
 
   # Configure keymap in X11
@@ -163,14 +163,14 @@
   # System activation script to set GTK dark theme via dconf
   # This runs on every nixos-rebuild to ensure theme is always set
   system.activationScripts.setGtkTheme = ''
-    # Set GTK theme to Yaru-dark for all users
+    # Set GTK theme to Adwaita-dark for all users
     for user_home in /home/*; do
       if [ -d "$user_home" ]; then
         user=$(basename "$user_home")
         # Run as user to set dconf settings
-        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-dark'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'" 2>/dev/null || true
         sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'" 2>/dev/null || true
-        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Yaru'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'" 2>/dev/null || true
       fi
     done
   '';
@@ -200,8 +200,11 @@
       # Disable shadows and fading for better performance
       shadow = false;
       fading = false;
-      # Basic transparency
-      inactive-opacity = 0.95;
+      
+      # Disable transparency - causes layout issues in GTK apps (Nautilus, Baobab)
+      # Problem: inactive-opacity makes text overlap and creates visual artifacts
+      # Solution: Keep all windows 100% opaque
+      inactive-opacity = 1.0;
       active-opacity = 1.0;
     };
   };
@@ -255,8 +258,7 @@
      psmisc              # killall, fuser, pstree, etc
 
      # GTK and Qt theming
-     yaru-theme               # Ubuntu Yaru theme (preferred)
-     adwaita-icon-theme       # GNOME icon theme (fallback)
+     adwaita-icon-theme       # GNOME icon theme
      gnome-themes-extra       # Adwaita-dark and other themes
      gtk-engine-murrine       # GTK2 theme engine
      libsForQt5.qtstyleplugin-kvantum  # Qt5 theming
