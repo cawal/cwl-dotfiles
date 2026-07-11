@@ -155,9 +155,8 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
-  # Enable PAM for i3lock-color
-  security.pam.services.i3lock-color = {};
-  security.pam.services.i3lock = {};  # Fallback for scripts that call i3lock
+  # Enable PAM for xsecurelock (more reliable than i3lock)
+  security.pam.services.xsecurelock = {};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -254,7 +253,7 @@
      pandoc              # Universal document converter
      
      # Desktop environment (i3/qtile related)
-     i3lock-color        # Screen locker (fork with better PAM support)
+     xsecurelock         # Screen locker (modern, secure alternative to i3lock)
      dunst               # Notification daemon
      picom               # Compositor
      flameshot           # Screenshot tool

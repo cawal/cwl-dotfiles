@@ -656,9 +656,9 @@ bb-dependencies:
 
 configure: link-all
 
-link-all:  link-bin link-conky link-git  link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
+link-all:  link-bin link-conky link-git link-kitty link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
-link-everything: link-qtile link-i3 link-rofi link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura
+link-everything: link-qtile link-i3 link-rofi link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura link-kitty
 
 link-remove-everything: link-qtile-remove link-i3-remove link-rofi-remove link-zsh-remove link-qutebrowser-remove link-vim-remove link-tmux-remove link-urxvt-remove link-ranger-remove link-xresources-remove link-login-shell-remove link-keyd-remove link-vimium-remove link-dunst-remove link-gtk-3-0-remove link-neovim-remove link-zathura-remove
 

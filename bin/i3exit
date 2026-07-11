@@ -1,11 +1,11 @@
 #!/bin/sh
 lock() {
-    # Using i3lock-color (NixOS: better PAM support)
-    # Simple black screen lock
-    i3lock-color -c 000000
-    
-    # Alternative with blur effect (uncomment if preferred):
-    # i3lock-color --blur 5 --clock --indicator --time-str="%H:%M:%S"
+    # Using xsecurelock (NixOS: most reliable screen locker)
+    # More secure and better PAM support than i3lock
+    env XSECURELOCK_BLANK_TIMEOUT=5 \
+        XSECURELOCK_BLANK_DPMS_STATE=off \
+        XSECURELOCK_AUTH_BACKGROUND_COLOR="#000000" \
+        xsecurelock
 }
 
 case "$1" in

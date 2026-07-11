@@ -78,6 +78,10 @@ source $ZSH/oh-my-zsh.sh
 # Do not auto-change to a directory by typing its name
 unsetopt AUTO_CD
 
+# Disable terminal bell (beep sound)
+unsetopt BEEP
+setopt NO_BEEP
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
