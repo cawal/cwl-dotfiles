@@ -155,6 +155,21 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
+  # Picom (compositor) - provides transparency, shadows, animations
+  services.picom = {
+    enable = true;
+    backend = "glx";
+    vSync = true;
+    settings = {
+      # Disable shadows and fading for better performance
+      shadow = false;
+      fading = false;
+      # Basic transparency
+      inactive-opacity = 0.95;
+      active-opacity = 1.0;
+    };
+  };
+
   # Enable i3lock via programs module (fixes PAM authentication)
   # Reference: https://github.com/NixOS/nixpkgs/pull/417193
   programs.i3lock.enable = true;
