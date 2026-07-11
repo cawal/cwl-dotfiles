@@ -149,7 +149,7 @@ return {
 		-- Ensure servers and tools are installed
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua", -- Lua formatter
+			-- "stylua", -- Lua formatter - installed via NixOS system package
 			"black",
 			"eslint_d",
 			"isort",
