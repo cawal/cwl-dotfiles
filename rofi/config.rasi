@@ -3,7 +3,7 @@ configuration {
 }
 
 //@theme "cwl-dark"
-@theme "/usr/share/rofi/themes/sidebar.rasi"
+@theme "sidebar"  // No NixOS, usar nome relativo ou caminho completo
 //@theme "/home/cawal/git/cwl-dotfiles/rofi/launchpad.rasi"
 //@theme "/home/cawal/git/cwl-dotfiles/rofi/squared-nord.rasi"
 
