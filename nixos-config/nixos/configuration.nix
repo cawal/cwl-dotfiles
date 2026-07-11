@@ -258,6 +258,7 @@
      # Productivity
      libreoffice         # Office suite
      keepassxc           # Password manager
+     obsidian            # Knowledge base (Markdown notes)
      
      # Media tools
      vlc                 # Media player
