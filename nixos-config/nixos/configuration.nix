@@ -225,7 +225,9 @@
      uv                  # Fast Python package installer
      python3
      python3Packages.pip
-     pipx                # Install Python apps in isolated environments
+     (pipx.overrideAttrs (oldAttrs: {
+       doCheck = false;  # Skip tests (failing in pipx 1.8.0)
+     }))
      
      # Communication & Entertainment
      discord             # Chat
