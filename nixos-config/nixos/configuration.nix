@@ -266,6 +266,7 @@
      obsidian            # Knowledge base (Markdown notes)
      zathura             # Lightweight PDF viewer
      zotero              # Reference/citation manager
+     homebank            # Personal finance manager
      
      # Media tools
      vlc                 # Media player
@@ -383,9 +384,17 @@ services.xserver.windowManager.qtile = {
   services.syncthing = {
     enable = true;
     user = "cawal";
+    group = "users";
     openDefaultPorts = true; # Opens 22000 (TCP), 21027 (UDP)
     guiAddress = "0.0.0.0:8384"; # Accessible from network (password protected via Syncthing UI)
   };
+
+  # Ensure Syncthing directories exist with correct permissions
+  systemd.tmpfiles.rules = [
+    "d /var/lib/syncthing 0700 cawal users -"
+    "d /var/lib/syncthing/.config 0700 cawal users -"
+    "d /var/lib/syncthing/.config/syncthing 0700 cawal users -"
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
