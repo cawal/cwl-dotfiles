@@ -155,34 +155,9 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
-  # Enable PAM for i3lock-color (used by betterlockscreen)
-  # Configure as proper PAM service with unix authentication
-  security.pam.services = {
-    i3lock = {
-      text = ''
-        auth sufficient pam_unix.so try_first_pass likeauth nullok
-        auth required pam_deny.so
-        
-        account required pam_unix.so
-        
-        password sufficient pam_unix.so nullok yescrypt
-        
-        session required pam_unix.so
-      '';
-    };
-    i3lock-color = {
-      text = ''
-        auth sufficient pam_unix.so try_first_pass likeauth nullok
-        auth required pam_deny.so
-        
-        account required pam_unix.so
-        
-        password sufficient pam_unix.so nullok yescrypt
-        
-        session required pam_unix.so
-      '';
-    };
-  };
+  # Enable i3lock via programs module (fixes PAM authentication)
+  # Reference: https://github.com/NixOS/nixpkgs/pull/417193
+  programs.i3lock.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
