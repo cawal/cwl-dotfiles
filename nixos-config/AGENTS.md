@@ -58,8 +58,12 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 
 **Runbook (no live USB, tudo já committado+push antes):**
 ```bash
-# 1. obter o repo: git clone do GitHub, OU montar a partição LUKS atual e copiar
-#    (copie ANTES de destruir o disco)
+# 1. obter o repo — qualquer uma:
+#    (a) git clone do GitHub (precisa rede), OU
+#    (b) segundo pendrive ext4 com o repo já clonado (feito antes; branches locais), OU
+#    (c) montar a partição LUKS atual e copiar o repo ANTES de destruir o disco
+#    ex. (b): sudo mount /dev/sdX1 /mnt/pen && cd /mnt/pen/cwl-dotfiles
+#             git config --global --add safe.directory "$PWD"   # evita 'dubious ownership'
 # 2. cd repo && git checkout <host>-disko && cd nixos-config
 # 3. sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
 # 4. sudo nixos-generate-config --no-filesystems --root /mnt   # atualiza hardware-configuration.nix
