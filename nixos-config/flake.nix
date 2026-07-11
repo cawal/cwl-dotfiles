@@ -3,9 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
+
+    # Particionamento declarativo (LVM-on-LUKS, /home separado).
+    # Só entra no build de um host que importe seu módulo (ver branch navi-disko).
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, disko }: {
     nixosConfigurations = {
       # Navi - Laptop without NVIDIA
       navi = nixpkgs.lib.nixosSystem {

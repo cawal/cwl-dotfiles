@@ -92,6 +92,27 @@ O `fi` já está registrado, mas: (a) `hosts/fi/hardware-configuration.nix` é *
 
 ---
 
+## Esquema de disco (LVM sobre LUKS, /home separado)
+
+Padrão de particionamento para **todas as máquinas**, declarado com [disko](https://github.com/nix-community/disko) — reprodutível e versionado, sem instalador gráfico:
+
+```
+disco → GPT
+├─ ESP (1G, vfat, /boot)          não criptografado (EFI)
+└─ LUKS (100%)  ── uma senha ──→  LVM (VG "pool")
+                                   ├─ lv swap (8G)
+                                   ├─ lv root (80G, ext4, /)     ← /nix/store + /var/lib/docker
+                                   └─ lv home (resto, ext4, /home) ← seus dados
+```
+
+Por quê: **uma senha** no boot; **`/home` separado** sobrevive a reinstalar o SO (NixOS ou Ubuntu) sem restaurar backup; volumes LVM **redimensionáveis** depois (`lvresize`+`resize2fs`), sem reinstalar.
+
+- Helper reutilizável: `nixos/common/disko-lvm-luks.nix` (função `{ device, swapSize?, rootSize? }`).
+- Por host: `nixos/hosts/<host>/disko.nix` só informa o `device` (navi=`/dev/sda`; fi=ex. `/dev/nvme0n1`).
+- Wiring do build fica na branch de instalação (ver **AGENTS.md** → “Instalar/reinstalar um host com disko”), para não referenciar volumes inexistentes no sistema em execução.
+
+**Reinstalar mantendo `/home`:** boot no live USB → recuperar o repo (clone do GitHub ou copiar da partição LUKS atual antes de destruir) → `disko --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix` → `nixos-generate-config --no-filesystems --root /mnt` → `nixos-install --flake .#<host>`. Runbook completo no AGENTS.md.
+
 ## Verificar que uma mudança não quebra o setup
 
 Antes de migrar/refatorar, confirme que a nova config reproduz a antiga comparando as *closures* (é assim que a migração modular do `navi` foi validada):

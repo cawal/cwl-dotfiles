@@ -50,6 +50,25 @@ Um `switch` bem-sucedido constrói o **mesmo store path** do build que você val
 - **Reboot:** só é necessário se o `diff-closures` mostrar mudança de kernel/initrd/bootloader. Adição de pacotes de userland ativa ao vivo, sem reboot.
 - **Aplicar mudanças:** ações que alteram o sistema (`switch`), removem arquivos ou commitam devem ser confirmadas com o usuário antes.
 
+## Instalar/reinstalar um host com disko (LVM-on-LUKS, /home separado)
+
+Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>/disko.nix` com o `device`. Ver README → “Esquema de disco”.
+
+**Regra de sequenciamento (crítica):** o `disko.nix` gera `fileSystems`/`swapDevices`/`boot.initrd.luks` apontando para `/dev/mapper/pool-*`, que **só existem depois** do disko rodar. Portanto o **wiring no build** (adicionar `disko.nixosModules.disko` + `./hosts/<host>/disko.nix` aos `modules` do host no `flake.nix`, e o `hardware-configuration.nix` gerado com `--no-filesystems`) vive numa **branch de instalação** (ex.: `navi-disko`), usada **só** pelo `nixos-install`. **Nunca** faça `nixos-rebuild switch` no sistema em execução com essa branch — quebra o boot. Na branch do sistema rodando, o `disko.nix` fica **inerte** (não importado; o `disko run` o lê por caminho).
+
+**Runbook (no live USB, tudo já committado+push antes):**
+```bash
+# 1. obter o repo: git clone do GitHub, OU montar a partição LUKS atual e copiar
+#    (copie ANTES de destruir o disco)
+# 2. cd repo && git checkout <host>-disko && cd nixos-config
+# 3. sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
+# 4. sudo nixos-generate-config --no-filesystems --root /mnt   # atualiza hardware-configuration.nix
+# 5. sudo nixos-install --flake .#<host>
+# 6. reboot (pede UMA senha LUKS); validar; depois merge <host>-disko → nixos-navi
+```
+
+Validar o disko **sem tocar no disco**: na branch de instalação, `nixos-rebuild build --flake .#<host>` avalia o `disko.devices` e constrói o toplevel (só build, não monta nada).
+
 ## Estado atual (2026-07-11)
 
 - **navi:** migrado para modular e ativo. Equivalência com o sistema anterior verificada (diff de closures vazio exceto por utilitários extras aprovados).
