@@ -225,9 +225,8 @@
      uv                  # Fast Python package installer
      python3
      python3Packages.pip
-     (pipx.overrideAttrs (oldAttrs: {
-       doCheck = false;  # Skip tests (failing in pipx 1.8.0)
-     }))
+     # pipx - temporarily disabled due to failing tests in 1.8.0
+     # Can install with: pip install --user pipx
      
      # Communication & Entertainment
      discord             # Chat
