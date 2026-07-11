@@ -1,8 +1,9 @@
 #!/bin/sh
 lock() {
-    # Using loginctl (native system lock - works with GDM/GNOME)
-    # Most reliable: uses the same lock screen you see at login
-    loginctl lock-session
+    # Using betterlockscreen (works on any WM/DE)
+    # Wrapper around i3lock with better configuration
+    # First run: betterlockscreen -u /path/to/wallpaper (to cache)
+    betterlockscreen --lock blur
 }
 
 case "$1" in

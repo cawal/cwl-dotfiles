@@ -155,6 +155,9 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
+  # Enable PAM for i3lock (used by betterlockscreen)
+  security.pam.services.i3lock = {};
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -251,7 +254,7 @@
      pamtester           # Test PAM authentication (debug tool)
      
      # Desktop environment (i3/qtile related)
-     # Screen locker: using loginctl (native GNOME/GDM lock)
+     betterlockscreen    # Screen locker (i3lock wrapper, works on any WM)
      dunst               # Notification daemon
      picom               # Compositor
      flameshot           # Screenshot tool
