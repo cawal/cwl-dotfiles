@@ -101,14 +101,14 @@ disco → GPT
 ├─ ESP (1G, vfat, /boot)          não criptografado (EFI)
 └─ LUKS (100%)  ── uma senha ──→  LVM (VG "pool")
                                    ├─ lv swap (8G)
-                                   ├─ lv root (80G, ext4, /)     ← /nix/store + /var/lib/docker
+                                   ├─ lv root (ext4, /)     ← /nix/store + /var/lib/docker
                                    └─ lv home (resto, ext4, /home) ← seus dados
 ```
 
 Por quê: **uma senha** no boot; **`/home` separado** sobrevive a reinstalar o SO (NixOS ou Ubuntu) sem restaurar backup; volumes LVM **redimensionáveis** depois (`lvresize`+`resize2fs`), sem reinstalar.
 
 - Helper reutilizável: `nixos/common/disko-lvm-luks.nix` (função `{ device, swapSize?, rootSize? }`).
-- Por host: `nixos/hosts/<host>/disko.nix` só informa o `device` (navi=`/dev/sda`; fi=ex. `/dev/nvme0n1`).
+- Por host: `nixos/hosts/<host>/disko.nix` informa o `device` e, opcionalmente, `rootSize`/`swapSize` (navi=`/dev/sda`, root 70G; fi=ex. `/dev/nvme0n1`). Default do helper: root 80G.
 - Wiring do build fica na branch de instalação (ver **AGENTS.md** → “Instalar/reinstalar um host com disko”), para não referenciar volumes inexistentes no sistema em execução.
 
 **Reinstalar mantendo `/home`:** boot no live USB → recuperar o repo (clone do GitHub ou copiar da partição LUKS atual antes de destruir) → `disko --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix` → `nixos-generate-config --no-filesystems --root /mnt` → `nixos-install --flake .#<host>`. Runbook completo no AGENTS.md.
