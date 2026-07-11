@@ -67,8 +67,8 @@
     QT_QPA_PLATFORMTHEME = "gtk2";
     QT_STYLE_OVERRIDE = "adwaita-dark";
     
-    # GTK theme preference
-    GTK_THEME = "Adwaita:dark";
+    # GTK theme preference - Ubuntu Yaru dark theme
+    GTK_THEME = "Yaru-dark";
   };
 
   # Configure keymap in X11
@@ -163,14 +163,14 @@
   # System activation script to set GTK dark theme via dconf
   # This runs on every nixos-rebuild to ensure theme is always set
   system.activationScripts.setGtkTheme = ''
-    # Set GTK theme to dark for all users
+    # Set GTK theme to Yaru-dark for all users
     for user_home in /home/*; do
       if [ -d "$user_home" ]; then
         user=$(basename "$user_home")
         # Run as user to set dconf settings
-        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-dark'" 2>/dev/null || true
         sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'" 2>/dev/null || true
-        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Yaru'" 2>/dev/null || true
       fi
     done
   '';
@@ -254,7 +254,8 @@
      xrandr
 
      # GTK and Qt theming
-     adwaita-icon-theme       # GNOME icon theme
+     yaru-theme               # Ubuntu Yaru theme (preferred)
+     adwaita-icon-theme       # GNOME icon theme (fallback)
      gnome-themes-extra       # Adwaita-dark and other themes
      gtk-engine-murrine       # GTK2 theme engine
      libsForQt5.qtstyleplugin-kvantum  # Qt5 theming
