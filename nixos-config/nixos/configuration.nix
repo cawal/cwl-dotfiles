@@ -156,8 +156,9 @@
   services.greenclip.enable = true;
 
   # Enable PAM for i3lock-color (used by betterlockscreen)
-  security.pam.services.i3lock-color = {};
-  security.pam.services.i3lock = {};  # Fallback
+  # Must include unixAuth to enable password authentication
+  security.pam.services.i3lock-color.unixAuth = true;
+  security.pam.services.i3lock.unixAuth = true;  # Fallback
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
