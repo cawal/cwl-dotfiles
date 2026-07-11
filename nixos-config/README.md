@@ -305,6 +305,44 @@ journalctl --user -u syncthing -f
 systemctl --user restart syncthing
 ```
 
+### Syncthing não inicia
+
+**Erro:** `Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied")`
+
+**Causa:** Diretórios não existem ou têm permissões incorretas.
+
+**Solução:** A configuração já inclui `systemd.tmpfiles.rules` que cria os diretórios automaticamente. Se precisar corrigir manualmente:
+
+```bash
+# Criar diretórios com permissões corretas
+sudo mkdir -p /var/lib/syncthing/.config/syncthing
+sudo chown -R cawal:users /var/lib/syncthing
+sudo chmod 700 /var/lib/syncthing
+
+# Reiniciar serviço
+sudo systemctl restart syncthing
+
+# Verificar status
+sudo systemctl status syncthing
+```
+
+**Acesso à UI:** http://localhost:8384 ou http://navi.local:8384
+
+### Syncthing - Múltiplas instâncias
+
+Se você tinha Syncthing rodando como usuário antes:
+
+```bash
+# Parar instância do usuário
+systemctl --user stop syncthing
+
+# Desabilitar autostart
+systemctl --user disable syncthing
+
+# Usar apenas o serviço do sistema (recomendado)
+sudo systemctl status syncthing
+```
+
 ### Keyd não responde
 
 ```bash
@@ -372,7 +410,6 @@ Cada fase da migração está documentada em detalhes:
 - [ ] Adicionar Dropbox (opcional)
 - [ ] Testar supabase-cli (instalar via npm)
 - [ ] Configurar autostart do greenclip no Qtile
-- [ ] Ajustar .zshrc para remover nvm/asdf
 
 ### Melhorias Futuras
 
@@ -381,6 +418,13 @@ Cada fase da migração está documentada em detalhes:
 - [ ] Adicionar mais máquinas ao flake
 - [ ] Configurar backups automáticos
 - [ ] Documentar processo de instalação do zero
+
+### ✅ Concluído
+
+- [x] Syncthing rodando com permissões corretas
+- [x] Homebank instalado (5.10.2)
+- [x] .zshrc limpo (removido nvm, asdf, sdkman, aliases apt)
+- [x] Aliases NixOS adicionados (nixos-update, nixos-upgrade)
 
 ---
 

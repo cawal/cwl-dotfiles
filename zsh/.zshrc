@@ -64,14 +64,11 @@ plugins=(
     git-flow
     gh
     poetry
-    # virtualenvwrapper
     terraform
-    nvm
     kube-ps1
     kubectl
     gcloud
     helm
-    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,14 +121,9 @@ TIMER_PRECISION=2
 
 # FuZzy File Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+# NixOS manages Node.js, Python, and Java versions globally
+# For project-specific versions, use direnv or nix-shell
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/path.zsh.inc"; fi
@@ -161,8 +153,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Use Silver Searcher to find files in FZF (include hidden but excludes .git)
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
 
-alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
-alias ubuntu-update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
+# NixOS update aliases
+alias nixos-update='cd ~/git/cwl-dotfiles/nixos-config && sudo nixos-rebuild switch --flake . --impure'
+alias nixos-upgrade='sudo nixos-rebuild switch --upgrade --flake ~/git/cwl-dotfiles/nixos-config --impure'
 alias git-open-remote='firefox `git remote get-url origin`'
 
 function opencode() {
@@ -180,9 +173,9 @@ function opencode() {
 
 # Created by `pipx` on 2025-07-05 13:03:52
 export PATH="$PATH:/home/cawal/.local/bin"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# Homebrew - not needed on NixOS
-# eval "$(;/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Homebrew - not needed on NixOS (managed declaratively)
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 bindkey -e -r '^[x'
 bindkey -a -r ':'
