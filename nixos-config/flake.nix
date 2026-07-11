@@ -15,7 +15,14 @@
       # Navi - Laptop without NVIDIA
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./nixos/hosts/navi/configuration.nix ];
+        # Branch navi-disko: disko é dono do particionamento (LVM-on-LUKS).
+        # Só usar via `nixos-install` no live USB — NÃO `nixos-rebuild switch`
+        # no sistema atual (disco ainda é LUKS cru). Ver AGENTS.md.
+        modules = [
+          disko.nixosModules.disko
+          ./nixos/hosts/navi/disko.nix
+          ./nixos/hosts/navi/configuration.nix
+        ];
       };
       
       # Fi - Desktop with NVIDIA GPU + Gaming setup
