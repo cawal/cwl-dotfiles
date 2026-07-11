@@ -219,7 +219,7 @@
      
      # Development tools
      vscode              # Visual Studio Code
-     # cursor - install via AppImage from https://cursor.sh
+     claude-code         # Claude Code (Anthropic's AI coding assistant)
      postman             # API testing
      insomnia            # API client
      dbeaver-bin         # Database manager
