@@ -155,8 +155,9 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
-  # Enable PAM for i3lock (used by betterlockscreen)
-  security.pam.services.i3lock = {};
+  # Enable PAM for i3lock-color (used by betterlockscreen)
+  security.pam.services.i3lock-color = {};
+  security.pam.services.i3lock = {};  # Fallback
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
