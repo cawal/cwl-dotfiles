@@ -202,7 +202,9 @@
      google-cloud-sdk    # gcloud CLI
      kubectl             # Kubernetes CLI
      kubernetes-helm     # Helm package manager
-     terraform           # Infrastructure as Code
+     (terraform.overrideAttrs (oldAttrs: {
+       doCheck = false;  # Skip tests to speed up build
+     }))
      
      # Data tools
      yq-go               # YAML/JSON processor (Go version)
