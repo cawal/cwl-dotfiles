@@ -252,6 +252,7 @@
      nitrogen
      arandr
      xrandr
+     psmisc              # killall, fuser, pstree, etc
 
      # GTK and Qt theming
      yaru-theme               # Ubuntu Yaru theme (preferred)
