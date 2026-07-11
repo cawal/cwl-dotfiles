@@ -1,6 +1,11 @@
 if [ -f "${HOME}/.zsh_local" ]; then
     source "${HOME}/.zsh_local"
 fi
+
+# NPM global packages in user home (no sudo needed)
+export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+
 # If you come from bash you might have to change your $PATH.
 #
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:$HOME/bin:$HOME/go/bin
@@ -124,6 +129,14 @@ TIMER_FORMAT='\n[elapsed time: %d]';
 TIMER_PRECISION=2
 
 # FuZzy File Finder
+# NixOS: source fzf from system package
+if [ -f /run/current-system/sw/share/fzf/completion.zsh ]; then
+  source /run/current-system/sw/share/fzf/completion.zsh
+fi
+if [ -f /run/current-system/sw/share/fzf/key-bindings.zsh ]; then
+  source /run/current-system/sw/share/fzf/key-bindings.zsh
+fi
+# Legacy: user-installed fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # NixOS manages Node.js, Python, and Java versions globally

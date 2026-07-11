@@ -168,7 +168,8 @@
      # Core tools (already installed)
      neovim
      google-chrome
-     opencode
+     # opencode - installed via npm globally for latest updates
+     # Run: npm install -g opencode-ai
      jq
      kitty
      tmux
@@ -247,6 +248,7 @@
      csvkit              # CSV manipulation tools
      cloc                # Count lines of code
      shellcheck          # Shell script linter
+     stylua              # Lua code formatter
      xdotool             # X11 automation tool
      htop                # Process viewer
      trash-cli           # CLI for trash (rm alternative)
