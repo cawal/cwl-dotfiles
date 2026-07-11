@@ -1,11 +1,8 @@
 #!/bin/sh
 lock() {
-    # Using xsecurelock (NixOS: most reliable screen locker)
-    # More secure and better PAM support than i3lock
-    env XSECURELOCK_BLANK_TIMEOUT=5 \
-        XSECURELOCK_BLANK_DPMS_STATE=off \
-        XSECURELOCK_AUTH_BACKGROUND_COLOR="#000000" \
-        xsecurelock
+    # Using loginctl (native system lock - works with GDM/GNOME)
+    # Most reliable: uses the same lock screen you see at login
+    loginctl lock-session
 }
 
 case "$1" in

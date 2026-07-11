@@ -155,9 +155,6 @@
   # Greenclip - Clipboard manager
   services.greenclip.enable = true;
 
-  # Enable PAM for xsecurelock (more reliable than i3lock)
-  security.pam.services.xsecurelock = {};
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -251,9 +248,10 @@
      trash-cli           # CLI for trash (rm alternative)
      sox                 # Audio manipulation CLI
      pandoc              # Universal document converter
+     pamtester           # Test PAM authentication (debug tool)
      
      # Desktop environment (i3/qtile related)
-     xsecurelock         # Screen locker (modern, secure alternative to i3lock)
+     # Screen locker: using loginctl (native GNOME/GDM lock)
      dunst               # Notification daemon
      picom               # Compositor
      flameshot           # Screenshot tool
