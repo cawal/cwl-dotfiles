@@ -50,6 +50,27 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # GTK and Qt theming - Dark theme preference
+  # This sets system-wide dark theme for both GTK and Qt applications
+  programs.dconf.enable = true;  # Required for GTK settings
+  
+  # Qt theming - make Qt apps use GTK theme
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";  # Makes Qt apps follow GTK theme
+    style = "adwaita-dark";
+  };
+
+  # Environment variables for theming
+  environment.sessionVariables = {
+    # Qt theming
+    QT_QPA_PLATFORMTHEME = "gtk2";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+    
+    # GTK theme preference
+    GTK_THEME = "Adwaita:dark";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
@@ -139,6 +160,21 @@
     binfmt = true;  # Allows running AppImages like regular executables
   };
 
+  # System activation script to set GTK dark theme via dconf
+  # This runs on every nixos-rebuild to ensure theme is always set
+  system.activationScripts.setGtkTheme = ''
+    # Set GTK theme to dark for all users
+    for user_home in /home/*; do
+      if [ -d "$user_home" ]; then
+        user=$(basename "$user_home")
+        # Run as user to set dconf settings
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'" 2>/dev/null || true
+      fi
+    done
+  '';
+
   # Docker
   virtualisation.docker = {
     enable = true;
@@ -216,6 +252,15 @@
      nitrogen
      arandr
      xrandr
+
+     # GTK and Qt theming
+     adwaita-icon-theme       # GNOME icon theme
+     gnome-themes-extra       # Adwaita-dark and other themes
+     gtk-engine-murrine       # GTK2 theme engine
+     libsForQt5.qtstyleplugin-kvantum  # Qt5 theming
+     qt6Packages.qtstyleplugin-kvantum # Qt6 theming
+     libsForQt5.qt5ct         # Qt5 configuration tool
+     qt6Packages.qt6ct        # Qt6 configuration tool
 
      # === FASE 3: Pacotes essenciais do workflow ===
      

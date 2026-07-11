@@ -4,6 +4,12 @@
 exec >> ~/qtile-startup.log 2>&1
 echo "=== Qtile startup script started at $(date) ==="
 
+# Apply GTK dark theme settings
+echo "Applying GTK dark theme..."
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'"
+
 xrdb ~/.Xresources
 # compton --backend glx --vsync drm --glx-no-stencil --config ~/.config/i3/compton.conf  &
 
