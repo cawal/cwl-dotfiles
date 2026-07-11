@@ -219,6 +219,7 @@
      
      # Development tools
      vscode              # Visual Studio Code
+     # cursor - install via AppImage from https://cursor.sh
      postman             # API testing
      insomnia            # API client
      dbeaver-bin         # Database manager
@@ -374,8 +375,6 @@ services.xserver.windowManager.qtile = {
   services.syncthing = {
     enable = true;
     user = "cawal";
-    dataDir = "/home/cawal/.syncthing";
-    configDir = "/home/cawal/.config/syncthing";
     openDefaultPorts = true; # Opens 22000 (TCP), 21027 (UDP)
     guiAddress = "0.0.0.0:8384"; # Accessible from network (password protected via Syncthing UI)
   };
