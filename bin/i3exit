@@ -1,7 +1,11 @@
 #!/bin/sh
 lock() {
-    #i3lock  -ti /home/cawal/Dropbox/Imagens/Wallpapers/Typographic/ouroboros-rgb-big.png
-    i3lock  -c 000000
+    # Using i3lock-color (NixOS: better PAM support)
+    # Simple black screen lock
+    i3lock-color -c 000000
+    
+    # Alternative with blur effect (uncomment if preferred):
+    # i3lock-color --blur 5 --clock --indicator --time-str="%H:%M:%S"
 }
 
 case "$1" in
@@ -15,14 +19,12 @@ case "$1" in
         lock && systemctl suspend
         ;;
     hibernate)
-        lock && systemctl hibernate  # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate
+        lock && systemctl hibernate
         ;;
     reboot)
-        systemctl reboot # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+        systemctl reboot
         ;;
     shutdown)
-        #dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
-        #/sbin/poweroff
         systemctl halt
 	;;
     *)
