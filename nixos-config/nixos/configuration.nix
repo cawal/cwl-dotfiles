@@ -247,6 +247,7 @@
      csvkit              # CSV manipulation tools
      cloc                # Count lines of code
      shellcheck          # Shell script linter
+     stylua              # Lua code formatter (for neovim)
      xdotool             # X11 automation tool
      htop                # Process viewer
      trash-cli           # CLI for trash (rm alternative)
