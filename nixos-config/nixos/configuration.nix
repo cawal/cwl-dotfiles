@@ -159,6 +159,19 @@
   # Reference: https://github.com/NixOS/nixpkgs/pull/417193
   programs.i3lock.enable = true;
 
+  # Enable nix-ld to run unpatched dynamic binaries on NixOS
+  # This allows tools like Mason (neovim) to install compiled binaries
+  # Reference: https://github.com/Mic92/nix-ld
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    curl
+    glib
+    libgcc
+  ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

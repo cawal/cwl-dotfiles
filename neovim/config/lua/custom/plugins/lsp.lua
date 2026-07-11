@@ -147,9 +147,10 @@ return {
 		require("mason").setup()
 
 		-- Ensure servers and tools are installed
+		-- Note: With nix-ld enabled, Mason can install compiled binaries
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			-- "stylua", -- Lua formatter - installed via NixOS system package
+			"stylua", -- Lua formatter (works with nix-ld)
 			"black",
 			"eslint_d",
 			"isort",
