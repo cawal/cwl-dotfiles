@@ -233,6 +233,8 @@
      
      # Communication & Entertainment
      discord             # Chat
+     telegram-desktop    # Telegram messenger
+     spotify             # Music streaming
      retroarch           # Gaming emulator frontend
      
      # Additional CLI tools
@@ -243,6 +245,9 @@
      shellcheck          # Shell script linter
      xdotool             # X11 automation tool
      htop                # Process viewer
+     trash-cli           # CLI for trash (rm alternative)
+     sox                 # Audio manipulation CLI
+     pandoc              # Universal document converter
      
      # Desktop environment (i3/qtile related)
      i3lock              # Screen locker
@@ -259,6 +264,8 @@
      libreoffice         # Office suite
      keepassxc           # Password manager
      obsidian            # Knowledge base (Markdown notes)
+     zathura             # Lightweight PDF viewer
+     zotero              # Reference/citation manager
      
      # Media tools
      vlc                 # Media player
