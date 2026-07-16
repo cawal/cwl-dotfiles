@@ -83,7 +83,10 @@
     description = "cawal";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
+    hashedPassword = "$6$xdrSPGQv8tiSI.E5$qqhLAACbeTvf9v8dNirNBQBISHXdj9BHG4NkjjBMuUS7HTnn8YfbPlG41/rD7owDWc1jTlgc3yxkWbhqgwR.00";
   };
+
+  users.mutableUsers = true;
 
   # Enable nix-ld to run unpatched dynamic binaries on NixOS
   # This allows tools like Mason (neovim) to install compiled binaries
@@ -107,6 +110,7 @@
     neovim
     git
     gh                  # GitHub CLI
+    delta               # Diff pager
     wget
     curl
     jq                  # JSON processor

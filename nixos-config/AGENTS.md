@@ -65,7 +65,7 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 #    ex. (b): sudo mount /dev/sdX1 /mnt/pen && cd /mnt/pen/cwl-dotfiles
 #             git config --global --add safe.directory "$PWD"   # evita 'dubious ownership'
 # 2. cd repo && git checkout <host>-disko && cd nixos-config
-# 3. sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
+# 3. sudo nix run --extra-experimental-features "flakes nix-command" github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
 # 4. sudo nixos-generate-config --no-filesystems --root /mnt   # atualiza hardware-configuration.nix
 # 5. sudo nixos-install --flake .#<host>
 # 6. reboot (pede UMA senha LUKS); validar; depois merge <host>-disko → nixos-navi
