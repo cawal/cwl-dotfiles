@@ -25,10 +25,17 @@
         ];
       };
       
-      # Fi - Desktop with NVIDIA GPU + Gaming setup
+      # Fi - Laptop with NVIDIA GPU + Gaming setup
+      # Branch fi-disko: disko é dono do particionamento (LVM-on-LUKS + LV Docker).
+      # Só usar via `nixos-install` no live USB — NÃO `nixos-rebuild switch` num
+      # sistema cujo disco ainda não tem o pool. Ver AGENTS.md.
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./nixos/hosts/fi/configuration.nix ];
+        modules = [
+          disko.nixosModules.disko
+          ./nixos/hosts/fi/disko.nix
+          ./nixos/hosts/fi/configuration.nix
+        ];
       };
     };
   };
