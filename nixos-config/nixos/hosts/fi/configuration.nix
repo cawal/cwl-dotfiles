@@ -14,14 +14,18 @@
     ../../common/development.nix
     ../../common/services.nix
     
-    # Fi-specific modules (commented out for now - add after refactoring works)
-    # ../../modules/nvidia.nix    # NVIDIA GPU drivers + CUDA
-    # ../../modules/gaming.nix    # Steam, emulators, gaming tools
+    # Fi-specific modules
+    ../../modules/nvidia.nix    # NVIDIA GPU drivers + CUDA (RTX 4060, PRIME offload)
+    ../../modules/gaming.nix    # Steam, emulators, gaming tools
   ];
 
   # Hostname
   networking.hostName = "fi";
-  
+
+  # Hibernação: swap fica no LV pool-swap (dentro do LUKS). O initrd destrava o
+  # LUKS antes de retomar. Ver hosts/fi/disko.nix (swapSize = 24G).
+  boot.resumeDevice = "/dev/mapper/pool-swap";
+
   # Syncthing data directory (specific to this host)
   services.syncthing.dataDir = "/var/lib/syncthing-fi";
   

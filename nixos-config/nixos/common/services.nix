@@ -19,8 +19,13 @@
   };
 
   # === Printing ===
-  
+
   services.printing.enable = true;
+
+  # === Firmware updates (paridade com o Ubuntu) ===
+  # Daemon fwupd + LVFS. CLI: `fwupdmgr refresh && fwupdmgr get-updates && fwupdmgr update`.
+  # Em ambientes GNOME o GNOME Software também mostra e notifica as atualizações.
+  services.fwupd.enable = true;
 
   # === Bluetooth ===
   

@@ -67,6 +67,16 @@
   # Enable Nix flakes and new nix command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Garbage collection automático: remove gerações antigas semanalmente para
+  # manter o /nix/store (no /) enxuto. Troque 30d p/ 15d se quiser mais agressivo.
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  # Deduplica arquivos idênticos no /nix/store por hardlink.
+  nix.optimise.automatic = true;
+
   # Define user account
   users.users."cawal" = {
     isNormalUser = true;
