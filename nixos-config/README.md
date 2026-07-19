@@ -88,7 +88,9 @@ Referência rápida de onde já moram opções: `programs.zsh`→desktop · `ser
 
 ### Ativar `fi` (pendente)
 
-O `fi` já está registrado e sua config está pronta (NVIDIA RTX 4060 c/ PRIME offload + gaming ativos, LV de Docker de 250G, swap 24G p/ hibernação). Falta só instalar na máquina real: (a) `hosts/fi/hardware-configuration.nix` ainda é **placeholder** — será substituído pelo scan real (`nixos-generate-config --no-filesystems --root /mnt`) durante o `nixos-install`; (b) o wiring do disko no `flake.nix` vive na branch de instalação `fi-disko`. Runbook completo em **AGENTS.md**.
+O `fi` já está registrado e sua config está pronta (NVIDIA RTX 4060 c/ PRIME offload + gaming ativos, LV de Docker de 250G, swap 24G p/ hibernação, `hashedPassword` do usuário já setado). Falta só instalar na máquina real: (a) `hosts/fi/hardware-configuration.nix` é um **stub** — será substituído pelo scan real (`nixos-generate-config --no-filesystems --root /mnt`) durante o `nixos-install`; (b) o wiring do disko no `flake.nix` vive na branch de instalação `fi-disko`.
+
+👉 **Guia de instalação completo, passo a passo: [INSTALL-FI.md](./INSTALL-FI.md).**
 
 ---
 
