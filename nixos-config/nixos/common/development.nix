@@ -71,6 +71,7 @@
     plantuml            # PlantUML diagrams
     graphviz            # Graph visualization (PlantUML dependency)
     pandoc              # Universal document converter
+
     
     # === CLI Development Tools ===
     

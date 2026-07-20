@@ -69,9 +69,9 @@
 
   # Ensure Syncthing directories exist with correct permissions
   systemd.tmpfiles.rules = [
-    "d /var/lib/syncthing 0700 cawal users -"
-    "d /var/lib/syncthing/.config 0700 cawal users -"
-    "d /var/lib/syncthing/.config/syncthing 0700 cawal users -"
+    "d ${config.services.syncthing.dataDir} 0700 cawal users -"
+    "d ${config.services.syncthing.dataDir}/.config 0700 cawal users -"
+    "d ${config.services.syncthing.dataDir}/.config/syncthing 0700 cawal users -"
   ];
 
   # === Keyd - Keyboard remapping daemon ===

@@ -63,9 +63,7 @@ plugins=(
     git-extras
     git-flow
     gh
-    poetry
     terraform
-    kube-ps1
     kubectl
     gcloud
     helm
@@ -135,25 +133,25 @@ if [ -f "${HOME}/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/bin/googl
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/completion.zsh.inc"; fi
 
-# The next line enables shell command completion for kubectl
-#if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+## The next line enables shell command completion for kubectl
+##if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+##
+#PROMPT='$(kube_ps1)'$PROMPT
 #
-PROMPT='$(kube_ps1)'$PROMPT
-
-function get_cluster_short() {
-      echo "$1" | cut -d _ -f2
-}
-
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-kubeoff
+#function get_cluster_short() {
+#      echo "$1" | cut -d _ -f2
+#}
+#
+#KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+#
+#kubeoff
 
 # workaround for chrome sandbox issue in ubuntu when using mermaid
 # https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
-export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
+#
+## Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"
 # Use Silver Searcher to find files in FZF (include hidden but excludes .git)
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
 
