@@ -56,10 +56,16 @@
     overrideDevices = false;
     overrideFolders = false;
 
-    # HTTPS na GUI. O Syncthing gera um certificado self-signed em
-    # <config>/https-cert.pem — o navegador vai avisar que não é confiável
-    # (esperado); aceite a exceção uma vez.
-    settings.gui.tls = true;
+    # IMPORTANTE: NÃO declarar `settings.gui.*` aqui.
+    # O módulo do NixOS cria o serviço `syncthing-init`, que a cada rebuild/boot
+    # faz `curl -X PUT '{"tls":true}' /rest/config/gui`. Como o PUT SUBSTITUI o
+    # objeto GUI inteiro, ele apagava o user/password configurados pela web UI
+    # (voltava a mensagem "sem senha"). Sem nenhum `settings.gui`, o init não
+    # toca na GUI e user/password/tls persistem no config.xml.
+    #
+    # HTTPS na GUI: habilite uma vez pela web UI (Settings → GUI → "Use HTTPS
+    # for GUI"). O Syncthing gera um cert self-signed em <config>/https-cert.pem
+    # e o navegador vai avisar que não é confiável (esperado); aceite a exceção.
   };
 
   # Libera a GUI do Syncthing (8384) na LAN. O bind 0.0.0.0 acima só escuta;
