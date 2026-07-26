@@ -6,7 +6,7 @@ fi
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin:$HOME/bin:$HOME/go/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
+#export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,15 +63,10 @@ plugins=(
     git-extras
     git-flow
     gh
-    poetry
-    # virtualenvwrapper
     terraform
-    nvm
-    kube-ps1
     kubectl
     gcloud
     helm
-    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -80,6 +75,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 # Do not auto-change to a directory by typing its name
 unsetopt AUTO_CD
+
+# Disable terminal bell (beep sound)
+unsetopt BEEP
+setopt NO_BEEP
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -124,14 +123,9 @@ TIMER_PRECISION=2
 
 # FuZzy File Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+# NixOS manages Node.js, Python, and Java versions globally
+# For project-specific versions, use direnv or nix-shell
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/path.zsh.inc"; fi
@@ -139,30 +133,31 @@ if [ -f "${HOME}/bin/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/bin/googl
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/bin/google-cloud-sdk/completion.zsh.inc"; fi
 
-# The next line enables shell command completion for kubectl
-#if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+## The next line enables shell command completion for kubectl
+##if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+##
+#PROMPT='$(kube_ps1)'$PROMPT
 #
-PROMPT='$(kube_ps1)'$PROMPT
-
-function get_cluster_short() {
-      echo "$1" | cut -d _ -f2
-}
-
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-kubeoff
+#function get_cluster_short() {
+#      echo "$1" | cut -d _ -f2
+#}
+#
+#KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+#
+#kubeoff
 
 # workaround for chrome sandbox issue in ubuntu when using mermaid
 # https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
-export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
+#
+## Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"
 # Use Silver Searcher to find files in FZF (include hidden but excludes .git)
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
 
-alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
-alias ubuntu-update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get clean && sudo apt autoremove -y'
+# NixOS update aliases
+alias nixos-update='cd ~/git/cwl-dotfiles/nixos-config && sudo nixos-rebuild switch --flake . --impure'
+alias nixos-upgrade='sudo nixos-rebuild switch --upgrade --flake ~/git/cwl-dotfiles/nixos-config --impure'
 alias git-open-remote='firefox `git remote get-url origin`'
 
 function opencode() {
@@ -180,8 +175,9 @@ function opencode() {
 
 # Created by `pipx` on 2025-07-05 13:03:52
 export PATH="$PATH:/home/cawal/.local/bin"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-eval "$(;/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Homebrew - not needed on NixOS (managed declaratively)
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 bindkey -e -r '^[x'
 bindkey -a -r ':'

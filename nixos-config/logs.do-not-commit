@@ -1,0 +1,50 @@
+jul 10 22:18:24 navi syncthing[31537]: 2026-07-10 22:18:24 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:18:24 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:18:24 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 2.
+jul 10 22:18:25 navi systemd[1]: Started Syncthing service.
+jul 10 22:18:25 navi syncthing[31551]: 2026-07-10 22:18:25 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 3.
+jul 10 22:18:25 navi systemd[1]: Started Syncthing service.
+jul 10 22:18:25 navi syncthing[31602]: 2026-07-10 22:18:25 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 4.
+jul 10 22:18:25 navi systemd[1]: Started Syncthing service.
+jul 10 22:18:25 navi syncthing[31618]: 2026-07-10 22:18:25 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 5.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Start request repeated too quickly.
+jul 10 22:18:25 navi systemd[1]: syncthing.service: Failed with result 'start-limit-hit'.
+jul 10 22:18:25 navi systemd[1]: Failed to start Syncthing service.
+jul 10 22:19:29 navi systemd[1]: Started Syncthing service.
+jul 10 22:19:29 navi syncthing[32343]: 2026-07-10 22:19:29 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 1.
+jul 10 22:19:29 navi systemd[1]: Started Syncthing service.
+jul 10 22:19:29 navi syncthing[32437]: 2026-07-10 22:19:29 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 2.
+jul 10 22:19:29 navi systemd[1]: Started Syncthing service.
+jul 10 22:19:29 navi syncthing[32452]: 2026-07-10 22:19:29 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:19:29 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 3.
+jul 10 22:19:29 navi systemd[1]: Started Syncthing service.
+jul 10 22:19:30 navi syncthing[32509]: 2026-07-10 22:19:30 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 4.
+jul 10 22:19:30 navi systemd[1]: Started Syncthing service.
+jul 10 22:19:30 navi syncthing[32522]: 2026-07-10 22:19:30 ERR Failed to ensure directory exists (error="mkdir /var/lib/syncthing: permission denied" log.pkg=main)
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Main process exited, code=exited, status=1/FAILURE
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Failed with result 'exit-code'.
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Scheduled restart job, restart counter is at 5.
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Start request repeated too quickly.
+jul 10 22:19:30 navi systemd[1]: syncthing.service: Failed with result 'start-limit-hit'.
+jul 10 22:19:30 navi systemd[1]: Failed to start Syncthing service.

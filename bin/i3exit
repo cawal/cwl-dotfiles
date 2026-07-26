@@ -1,7 +1,9 @@
 #!/bin/sh
 lock() {
-    #i3lock  -ti /home/cawal/Dropbox/Imagens/Wallpapers/Typographic/ouroboros-rgb-big.png
-    i3lock  -c 000000
+    # Using betterlockscreen (works on any WM/DE)
+    # Wrapper around i3lock with better configuration
+    # First run: betterlockscreen -u /path/to/wallpaper (to cache)
+    betterlockscreen --lock blur
 }
 
 case "$1" in
@@ -15,14 +17,12 @@ case "$1" in
         lock && systemctl suspend
         ;;
     hibernate)
-        lock && systemctl hibernate  # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate
+        lock && systemctl hibernate
         ;;
     reboot)
-        systemctl reboot # dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+        systemctl reboot
         ;;
     shutdown)
-        #dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
-        #/sbin/poweroff
         systemctl halt
 	;;
     *)
