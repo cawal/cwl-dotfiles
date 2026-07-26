@@ -67,13 +67,26 @@
   # Enable Nix flakes and new nix command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Garbage collection automático: remove gerações antigas semanalmente para
+  # manter o /nix/store (no /) enxuto. Troque 30d p/ 15d se quiser mais agressivo.
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  # Deduplica arquivos idênticos no /nix/store por hardlink.
+  nix.optimise.automatic = true;
+
   # Define user account
   users.users."cawal" = {
     isNormalUser = true;
     description = "cawal";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
+    hashedPassword = "$6$xdrSPGQv8tiSI.E5$qqhLAACbeTvf9v8dNirNBQBISHXdj9BHG4NkjjBMuUS7HTnn8YfbPlG41/rD7owDWc1jTlgc3yxkWbhqgwR.00";
   };
+
+  users.mutableUsers = true;
 
   # Enable nix-ld to run unpatched dynamic binaries on NixOS
   # This allows tools like Mason (neovim) to install compiled binaries
@@ -97,6 +110,7 @@
     neovim
     git
     gh                  # GitHub CLI
+    delta               # Diff pager
     wget
     curl
     jq                  # JSON processor

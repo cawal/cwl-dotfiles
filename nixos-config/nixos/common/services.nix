@@ -19,8 +19,13 @@
   };
 
   # === Printing ===
-  
+
   services.printing.enable = true;
+
+  # === Firmware updates (paridade com o Ubuntu) ===
+  # Daemon fwupd + LVFS. CLI: `fwupdmgr refresh && fwupdmgr get-updates && fwupdmgr update`.
+  # Em ambientes GNOME o GNOME Software também mostra e notifica as atualizações.
+  services.fwupd.enable = true;
 
   # === Bluetooth ===
   
@@ -42,9 +47,25 @@
     user = "cawal";
     group = "users";
     openDefaultPorts = true;  # Opens 22000 (TCP), 21027 (UDP)
-    guiAddress = "0.0.0.0:8384";  # Accessible from network
+    guiAddress = "0.0.0.0:8384";  # GUI faz bind em todas as interfaces
     # dataDir will be set per-host in hosts/*/configuration.nix
+
+    # Folders/devices seguem gerenciados pela GUI — NÃO deixar o módulo
+    # sobrescrevê-los. Sem isso, o settings abaixo apagaria tudo o que foi
+    # configurado pela web UI (overrideDevices/Folders default = true).
+    overrideDevices = false;
+    overrideFolders = false;
+
+    # HTTPS na GUI. O Syncthing gera um certificado self-signed em
+    # <config>/https-cert.pem — o navegador vai avisar que não é confiável
+    # (esperado); aceite a exceção uma vez.
+    settings.gui.tls = true;
   };
+
+  # Libera a GUI do Syncthing (8384) na LAN. O bind 0.0.0.0 acima só escuta;
+  # é o firewall que abre a porta. openDefaultPorts abre 22000/21027 (sync),
+  # mas NÃO a 8384 — daí a regra explícita aqui.
+  networking.firewall.allowedTCPPorts = [ 8384 ];
 
   # Ensure Syncthing directories exist with correct permissions
   systemd.tmpfiles.rules = [

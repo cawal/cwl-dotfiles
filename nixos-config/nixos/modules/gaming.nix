@@ -5,10 +5,11 @@
 
 {
   # Enable 32-bit graphics drivers (required for many games)
-  hardware.opengl = {
+  # NixOS 24.11+ renomeou hardware.opengl -> hardware.graphics
+  # (driSupport foi removido, sempre ligado; driSupport32Bit -> enable32Bit).
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
   
   # Steam
@@ -41,10 +42,6 @@
     
     # Discord (communication)
     discord
-    
-    # Wine (for running Windows games/apps)
-    wineWowPackages.stable  # Wine with 32-bit and 64-bit support
-    winetricks              # Wine configuration helper
   ];
   
   # GameMode service (optimizes system for gaming)

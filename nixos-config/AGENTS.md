@@ -65,7 +65,7 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 #    ex. (b): sudo mount /dev/sdX1 /mnt/pen && cd /mnt/pen/cwl-dotfiles
 #             git config --global --add safe.directory "$PWD"   # evita 'dubious ownership'
 # 2. cd repo && git checkout <host>-disko && cd nixos-config
-# 3. sudo nix run github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
+# 3. sudo nix run --extra-experimental-features "flakes nix-command" github:nix-community/disko/latest -- --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix
 # 4. sudo nixos-generate-config --no-filesystems --root /mnt   # atualiza hardware-configuration.nix
 # 5. sudo nixos-install --flake .#<host>
 # 6. reboot (pede UMA senha LUKS); validar; depois merge <host>-disko → nixos-navi
@@ -73,8 +73,10 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 
 Validar o disko **sem tocar no disco**: na branch de instalação, `nixos-rebuild build --flake .#<host>` avalia o `disko.devices` e constrói o toplevel (só build, não monta nada).
 
-## Estado atual (2026-07-11)
+## Estado atual (2026-07-19)
 
 - **navi:** migrado para modular e ativo. Equivalência com o sistema anterior verificada (diff de closures vazio exceto por utilitários extras aprovados).
-- **fi:** PENDENTE — `hardware-configuration.nix` é placeholder; `modules/nvidia.nix` e `modules/gaming.nix` comentados em `hosts/fi/configuration.nix`. Ativar ao instalar na máquina real.
+- **fi:** config PRONTA, instalação PENDENTE. `hosts/fi/configuration.nix` já importa `modules/nvidia.nix` (RTX 4060, PRIME offload) + `modules/gaming.nix`, com `boot.resumeDevice` p/ hibernação. `hosts/fi/disko.nix` define NVMe `/dev/nvme0n1` com swap 24G, root 100G, LV Docker 250G e /home no resto. Falta: (a) substituir o `hardware-configuration.nix` placeholder pelo scan real no install; (b) confirmar o `intelBusId` do iGPU (`lspci`); (c) o wiring do disko no `flake.nix` fica na branch `fi-disko`.
+- **Limpeza automática (todos os hosts):** `virtualisation.docker.autoPrune` (semanal, `--all`) em `common/development.nix`; `nix.gc` (semanal, 30d) + `nix.optimise` em `common/base.nix`.
+- **Isolamento do Docker:** o helper `disko-lvm-luks.nix` aceita `dockerSize` — quando setado, cria LV próprio p/ `/var/lib/docker` (usado no fi; navi não usa, Docker fica no root).
 - Docs `FASE*.md`/`CUSTOM-PACKAGES.md` descrevem o monolito original (histórico); a estrutura viva é a modular.

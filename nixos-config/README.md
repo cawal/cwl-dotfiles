@@ -5,7 +5,7 @@ Configuração NixOS **declarativa e multi-host**, compartilhada entre máquinas
 | Host   | Máquina                     | Particularidades                          |
 |--------|-----------------------------|-------------------------------------------|
 | `navi` | laptop (em uso)             | sem GPU dedicada                          |
-| `fi`   | desktop (a instalar)        | NVIDIA + gaming (módulos ainda desativados) |
+| `fi`   | laptop (a instalar)         | NVIDIA RTX 4060 + gaming; Docker pesado (LV próprio) |
 
 Ambos rodam **NixOS 26.05**, desktop **Qtile**, shell **Zsh + Oh My Zsh**, com SSH, Syncthing e mDNS (`<host>.local`).
 
@@ -88,7 +88,7 @@ Referência rápida de onde já moram opções: `programs.zsh`→desktop · `ser
 
 ### Ativar `fi` (pendente)
 
-O `fi` já está registrado, mas: (a) `hosts/fi/hardware-configuration.nix` é **placeholder** — substituir pelo scan real ao instalar; (b) em `hosts/fi/configuration.nix`, **descomentar** `../../modules/nvidia.nix` e `../../modules/gaming.nix`.
+O `fi` já está registrado e sua config está pronta (NVIDIA RTX 4060 c/ PRIME offload + gaming ativos, LV de Docker de 250G, swap 24G p/ hibernação). Falta só instalar na máquina real: (a) `hosts/fi/hardware-configuration.nix` ainda é **placeholder** — será substituído pelo scan real (`nixos-generate-config --no-filesystems --root /mnt`) durante o `nixos-install`; (b) o wiring do disko no `flake.nix` vive na branch de instalação `fi-disko`. Runbook completo em **AGENTS.md**.
 
 ---
 
@@ -100,15 +100,16 @@ Padrão de particionamento para **todas as máquinas**, declarado com [disko](ht
 disco → GPT
 ├─ ESP (1G, vfat, /boot)          não criptografado (EFI)
 └─ LUKS (100%)  ── uma senha ──→  LVM (VG "pool")
-                                   ├─ lv swap (8G)
-                                   ├─ lv root (ext4, /)     ← /nix/store + /var/lib/docker
+                                   ├─ lv swap (8G; navi=8G, fi=24G p/ hibernação)
+                                   ├─ lv root (ext4, /)     ← /nix/store (+ /var/lib/docker se não houver LV docker)
+                                   ├─ lv docker (ext4, /var/lib/docker)  ← opcional (dockerSize); fi=250G
                                    └─ lv home (resto, ext4, /home) ← seus dados
 ```
 
-Por quê: **uma senha** no boot; **`/home` separado** sobrevive a reinstalar o SO (NixOS ou Ubuntu) sem restaurar backup; volumes LVM **redimensionáveis** depois (`lvresize`+`resize2fs`), sem reinstalar.
+Por quê: **uma senha** no boot; **`/home` separado** sobrevive a reinstalar o SO (NixOS ou Ubuntu) sem restaurar backup; volumes LVM **redimensionáveis** depois (`lvresize`+`resize2fs`), sem reinstalar. Um **LV dedicado ao Docker** (fi) impede que imagens acumuladas encham o `/` e travem o sistema.
 
-- Helper reutilizável: `nixos/common/disko-lvm-luks.nix` (função `{ device, swapSize?, rootSize? }`).
-- Por host: `nixos/hosts/<host>/disko.nix` informa o `device` e, opcionalmente, `rootSize`/`swapSize` (navi=`/dev/sda`, root 70G; fi=ex. `/dev/nvme0n1`). Default do helper: root 80G.
+- Helper reutilizável: `nixos/common/disko-lvm-luks.nix` (função `{ device, swapSize?, rootSize?, dockerSize? }`).
+- Por host: `nixos/hosts/<host>/disko.nix` informa o `device` e, opcionalmente, `rootSize`/`swapSize`/`dockerSize` (navi=`/dev/sda`, root 70G, sem LV docker; fi=`/dev/nvme0n1`, swap 24G, root 100G, docker 250G). Default do helper: root 80G, swap 8G, sem LV docker.
 - Wiring do build fica na branch de instalação (ver **AGENTS.md** → “Instalar/reinstalar um host com disko”), para não referenciar volumes inexistentes no sistema em execução.
 
 **Reinstalar mantendo `/home`:** boot no live USB → recuperar o repo (clone do GitHub ou copiar da partição LUKS atual antes de destruir) → `disko --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix` → `nixos-generate-config --no-filesystems --root /mnt` → `nixos-install --flake .#<host>`. Runbook completo no AGENTS.md.

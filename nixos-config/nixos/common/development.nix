@@ -8,6 +8,14 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
+
+    # Limpeza periódica automática (timer systemd docker-prune.service).
+    # Evita acúmulo de imagens/containers/redes não usados enchendo o disco.
+    autoPrune = {
+      enable = true;
+      dates = "weekly";      # calendário systemd; troque p/ "daily" se acumular rápido
+      flags = [ "--all" ];   # remove imagens não usadas (não só dangling). NÃO mexe em volumes.
+    };
   };
 
   # Enable AppImage support
