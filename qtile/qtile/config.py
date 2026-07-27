@@ -339,17 +339,6 @@ groups.append(
         "scratchpad",
         [
             DropDown(
-                "VimWiki",
-                f"cwl-sensible-terminal -e vi +VimwikiIndex",
-                **{
-                    **dropdown_config,
-                    "x": 0.1,
-                    "height": 1,
-                    "width": 0.8,
-                    "on_focus_lost_hide": False,
-                },
-            ),
-            DropDown(
                 "Python",
                 "cwl-sensible-terminal -e ipython",
                 **{
@@ -361,19 +350,8 @@ groups.append(
                 },
             ),
             DropDown(
-                "Ruby",
-                "cwl-sensible-terminal -e irb",
-                **{
-                    **dropdown_config,
-                    "x": 0.01,
-                    "height": 0.98,
-                    "width": 0.98,
-                    "on_focus_lost_hide": False,
-                },
-            ),
-            DropDown(
                 "Obsidian",
-                f"obsidian",
+                "obsidian",
                 **{
                     **dropdown_config,
                     "x": 0.01,
@@ -384,7 +362,7 @@ groups.append(
             ),
             DropDown(
                 "pavucontrol",
-                f"pavucontrol",
+                "pavucontrol",
                 **{
                     **dropdown_config,
                     "x": 0,
@@ -400,12 +378,12 @@ groups.append(
             ),
             DropDown(
                 "qtile log",
-                f"cwl-sensible-terminal -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
+                "cwl-sensible-terminal -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
                 **dropdown_config,
             ),
             DropDown(
                 "Characters",
-                f"gnome-characters",
+                "gnome-characters",
                 **{
                     **dropdown_config,
                     "height": 1,
@@ -413,7 +391,7 @@ groups.append(
             ),
             DropDown(
                 "dmesg log",
-                f"cwl-sensible-terminal -e sudo dmesg --time-format=iso --follow",
+                "cwl-sensible-terminal -e sudo dmesg --time-format=iso --follow",
                 **{
                     **dropdown_config,
                     "height": 1,
@@ -421,7 +399,7 @@ groups.append(
             ),
             DropDown(
                 "blueman-manager",
-                f"blueman-manager",
+                "blueman-manager",
                 **{
                     **dropdown_config,
                     "x": 0,
