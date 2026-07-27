@@ -129,6 +129,7 @@
     
     # File management
     ranger              # Terminal file manager
+    yazi              # Terminal file manager
     xclip               # Clipboard utility
     
     # System monitoring

@@ -64,6 +64,7 @@
     
     # Database tools
     dbeaver-bin         # Universal database manager
+    supabase-cli        # supabase CLI
     
     # === Diagram & Documentation ===
     
