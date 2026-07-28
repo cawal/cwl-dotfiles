@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
 
     # Particionamento declarativo (LVM-on-LUKS, /home separado).
-    # Só entra no build de um host que importe seu módulo (ver branch navi-disko).
+    # Wiring do disko na master p/ ambos os hosts. Ver AGENTS.md → disko.
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -31,9 +31,9 @@
       # Navi - Laptop without NVIDIA
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        # Branch navi-disko: disko é dono do particionamento (LVM-on-LUKS).
-        # Só usar via `nixos-install` no live USB — NÃO `nixos-rebuild switch`
-        # no sistema atual (disco ainda é LUKS cru). Ver AGENTS.md.
+        # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
+        # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
+        # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/navi/disko.nix
@@ -45,9 +45,9 @@
       };
       
       # Fi - Laptop with NVIDIA GPU + Gaming setup
-      # Branch fi-disko: disko é dono do particionamento (LVM-on-LUKS + LV Docker).
-      # Só usar via `nixos-install` no live USB — NÃO `nixos-rebuild switch` num
-      # sistema cujo disco ainda não tem o pool. Ver AGENTS.md.
+      # disko é dono do particionamento (LVM-on-LUKS + LV Docker). Instalado —
+      # `switch` é seguro (o pool existe). Só num disco NOVO sem o pool use
+      # `nixos-install`, nunca `switch`. Ver AGENTS.md.
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

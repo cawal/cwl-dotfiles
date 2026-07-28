@@ -77,7 +77,7 @@ Validar o disko **sem tocar no disco**: `nixos-rebuild build --flake .#<host>` (
 
 - **Reestruturação (2026-07-28):** o `flake.nix` foi movido de `nixos-config/` para a **raiz do repo**; os módulos ficam em `nixos/`, a config home-manager em `nixos/home/`, e estes docs em `nixos/` + `nixos/docs/`. Comandos rodam da raiz (`--flake .#<host>`). O sistema gerado é idêntico (drvPath inalterado). Home-manager ativo em navi e fi (gerencia o yazi via `programs.yazi`).
 
-- **navi:** migrado para modular e ativo. Equivalência com o sistema anterior verificada (diff de closures vazio exceto por utilitários extras aprovados).
+- **navi:** migrado para modular, reinstalado com disko (pool ativo) e em uso. Equivalência com o sistema anterior verificada (diff de closures vazio exceto por utilitários extras aprovados).
 - **fi:** instalado e ativo (é esta máquina). Importa `modules/nvidia.nix` (RTX 4060, PRIME offload) + `modules/gaming.nix`, com `boot.resumeDevice` p/ hibernação. `hosts/fi/disko.nix` define NVMe `/dev/nvme0n1` (swap 24G, root 100G, LV Docker 250G, /home no resto) — os `fileSystems` vêm do disko; o `hardware-configuration.nix` é o scan `--no-filesystems` (por isso não lista `fileSystems`). Wiring do disko na `master` (branch `fi-disko` mergeada). **Guia: [INSTALL-FI.md](./docs/INSTALL-FI.md).**
 - **Limpeza automática (todos os hosts):** `virtualisation.docker.autoPrune` (semanal, `--all`) em `common/development.nix`; `nix.gc` (semanal, 30d) + `nix.optimise` em `common/base.nix`.
 - **Isolamento do Docker:** o helper `disko-lvm-luks.nix` aceita `dockerSize` — quando setado, cria LV próprio p/ `/var/lib/docker` (usado no fi; navi não usa, Docker fica no root).
