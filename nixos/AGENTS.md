@@ -1,6 +1,6 @@
 # AGENTS.md — guia para agentes nesta config NixOS
 
-Contexto operacional para trabalhar em `nixos-config/`. Leia junto com o [README.md](./README.md) (organização dos módulos). Estas regras têm precedência sobre defaults genéricos.
+Contexto operacional para trabalhar nesta config (dir `nixos/`). O `flake.nix` fica na **raiz do repo** (`~/git/cwl-dotfiles`), então os comandos `nixos-rebuild --flake .#<host>` rodam de lá. Leia junto com o [README.md](./README.md) (organização dos módulos). Estas regras têm precedência sobre defaults genéricos.
 
 ## Modelo mental
 
@@ -31,7 +31,7 @@ nixos-rebuild build --flake .#navi && mv result result-new
 
 # Config de REFERÊNCIA (ex.: revisão anterior) via worktree, mesmo flake.lock:
 git worktree add /tmp/ref <rev> && \
-  nixos-rebuild build --flake /tmp/ref/nixos-config#navi && mv result result-old
+  nixos-rebuild build --flake /tmp/ref#navi && mv result result-old
 
 # Diferença de pacotes:
 nix store diff-closures ./result-old ./result-new
@@ -56,6 +56,8 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 
 **Regra de sequenciamento (crítica):** o `disko.nix` gera `fileSystems`/`swapDevices`/`boot.initrd.luks` apontando para `/dev/mapper/pool-*`, que **só existem depois** do disko rodar. Portanto o **wiring no build** (adicionar `disko.nixosModules.disko` + `./hosts/<host>/disko.nix` aos `modules` do host no `flake.nix`, e o `hardware-configuration.nix` gerado com `--no-filesystems`) vive numa **branch de instalação** (ex.: `navi-disko`), usada **só** pelo `nixos-install`. **Nunca** faça `nixos-rebuild switch` no sistema em execução com essa branch — quebra o boot. Na branch do sistema rodando, o `disko.nix` fica **inerte** (não importado; o `disko run` o lê por caminho).
 
+> ⚠️ **As branches `*-disko` ainda usam o layout antigo `nixos-config/`** (flake dentro da subpasta). O runbook abaixo reflete isso (`cd nixos-config`, `--flake .`). Ao rebasear essas branches sobre o master reestruturado, o flake passa a ficar na raiz: remova o `cd nixos-config` e ajuste os caminhos.
+
 **Runbook (no live USB, tudo já committado+push antes):**
 ```bash
 # 1. obter o repo — qualquer uma:
@@ -74,6 +76,8 @@ Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>
 Validar o disko **sem tocar no disco**: na branch de instalação, `nixos-rebuild build --flake .#<host>` avalia o `disko.devices` e constrói o toplevel (só build, não monta nada).
 
 ## Estado atual (2026-07-19)
+
+- **Reestruturação (2026-07-28):** o `flake.nix` foi movido de `nixos-config/` para a **raiz do repo**; os módulos ficam em `nixos/`, a config home-manager em `nixos/home/`, e estes docs em `nixos/` + `nixos/docs/`. Comandos rodam da raiz (`--flake .#<host>`). O sistema gerado é idêntico (drvPath inalterado). Home-manager ativo em navi e fi (gerencia o yazi via `programs.yazi`).
 
 - **navi:** migrado para modular e ativo. Equivalência com o sistema anterior verificada (diff de closures vazio exceto por utilitários extras aprovados).
 - **fi:** config PRONTA, instalação PENDENTE. `hosts/fi/configuration.nix` já importa `modules/nvidia.nix` (RTX 4060, PRIME offload) + `modules/gaming.nix`, com `boot.resumeDevice` p/ hibernação. `hosts/fi/disko.nix` define NVMe `/dev/nvme0n1` com swap 24G, root 100G, LV Docker 250G e /home no resto. Falta: (a) substituir o `hardware-configuration.nix` stub pelo scan real no install; (b) confirmar o `intelBusId` do iGPU (`lspci`); (c) o wiring do disko no `flake.nix` fica na branch `fi-disko`. **Guia completo: [INSTALL-FI.md](./INSTALL-FI.md).**

@@ -16,7 +16,7 @@ Ambos rodam **NixOS 26.05**, desktop **Qtile**, shell **Zsh + Oh My Zsh**, com S
 O host é escolhido pelo **nome do atributo** em `nixosConfigurations` (`navi`/`fi`). Rodando sem `#host`, o `nixos-rebuild` usa o **hostname** da máquina como default — então em cada máquina basta:
 
 ```bash
-cd ~/git/cwl-dotfiles/nixos-config
+cd ~/git/cwl-dotfiles   # o flake.nix vive na raiz do repo
 
 # Testar (ativa até o próximo boot, não persiste no bootloader)
 sudo nixos-rebuild test   --flake .
@@ -37,26 +37,34 @@ Para construir/aplicar um host explicitamente (ex.: gerar a config do `fi` a par
 ## Organização da config
 
 ```
-nixos-config/
+cwl-dotfiles/                 # raiz do repo — o flake vive aqui
 ├── flake.nix                 # Entrada: define nixosConfigurations.{navi,fi}
-├── flake.lock                # Pin do nixpkgs (não editar à mão)
-└── nixos/
-    ├── common/               # ── COMPARTILHADO por TODOS os hosts ──
-    │   ├── base.nix          # boot, rede (NetworkManager), SSH, Avahi, locale,
-    │   │                     #   usuários, nix-ld, Firefox, pacotes de sistema base
-    │   ├── desktop.nix       # X11/GNOME, Picom, temas GTK/Qt, Zsh+Oh My Zsh,
-    │   │                     #   apps de desktop (rofi, nautilus, obsidian, slack…)
-    │   ├── development.nix    # Docker, AppImage, Node/Python/Java, cloud
-    │   │                     #   (gcloud/kubectl/helm/terraform), IDEs, DB, diagramas
-    │   └── services.nix       # Pipewire, impressão, Bluetooth, Greenclip,
-    │                         #   Syncthing (base), keyd, Qtile (windowManager)
-    ├── modules/              # ── OPCIONAIS, importados por host que precisa ──
-    │   ├── nvidia.nix         # driver NVIDIA + CUDA
-    │   └── gaming.nix         # Steam, Lutris, emuladores, gamemode
-    └── hosts/
-        └── <host>/
-            ├── configuration.nix           # ponto de entrada do host
-            └── hardware-configuration.nix   # scan de hardware (gerado por host)
+├── flake.lock                # Pin do nixpkgs + home-manager (não editar à mão)
+├── nixos/
+│   ├── AGENTS.md             # guia para agentes (este dir)
+│   ├── README.md             # este arquivo
+│   ├── common/               # ── COMPARTILHADO por TODOS os hosts ──
+│   │   ├── base.nix          # boot, rede (NetworkManager), SSH, Avahi, locale,
+│   │   │                     #   usuários, nix-ld, Firefox, overlays, pacotes base
+│   │   ├── desktop.nix       # X11/GNOME, Picom, temas GTK/Qt, Zsh+Oh My Zsh, apps
+│   │   ├── development.nix   # Docker, AppImage, Node/Python/Java, cloud, IDEs, DB
+│   │   ├── services.nix      # Pipewire, impressão, Bluetooth, Greenclip,
+│   │   │                     #   Syncthing (base), keyd, Qtile (windowManager)
+│   │   └── fonts.nix         # fontes do sistema (Nerd Fonts, Noto)
+│   ├── modules/              # ── OPCIONAIS, importados por host que precisa ──
+│   │   ├── nvidia.nix        # driver NVIDIA + CUDA
+│   │   └── gaming.nix        # Steam, Lutris, emuladores, gamemode
+│   ├── overlays/             # pacotes próprios fora do nixpkgs (ex.: ntn)
+│   ├── home/                 # home-manager (config do usuário cawal)
+│   │   ├── cawal.nix         # lista única do que o HM gerencia
+│   │   └── yazi/             # config + init do yazi (plugins vêm do nixpkgs)
+│   ├── hosts/
+│   │   └── <host>/
+│   │       ├── configuration.nix           # ponto de entrada do host
+│   │       ├── disko.nix                    # particionamento (usado no install)
+│   │       └── hardware-configuration.nix   # scan de hardware (gerado por host)
+│   └── docs/                 # FASE*, INSTALL-FI, CUSTOM-PACKAGES, FONTS (histórico/guias)
+└── kitty/ zsh/ qtile/ …      # demais dotfiles (stow ou, aos poucos, home-manager)
 ```
 
 ### Regra de ouro: onde colocar cada coisa?

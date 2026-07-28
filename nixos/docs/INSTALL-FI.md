@@ -149,7 +149,7 @@ systemctl hibernate       # religar → sessão deve voltar
 Como o `fi` foi instalado *greenfield* com o pool já existindo, depois de instalado é
 seguro rodar `nixos-rebuild switch` normalmente:
 ```bash
-cd ~/git/cwl-dotfiles/nixos-config
+cd ~/git/cwl-dotfiles   # flake na raiz do repo (pós-reestruturação)
 sudo nixos-rebuild switch --flake .#fi
 ```
 As limpezas rodam sozinhas (Docker prune semanal, `nix.gc` 30d). Para forçar na mão:

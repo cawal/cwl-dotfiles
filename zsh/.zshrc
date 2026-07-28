@@ -156,8 +156,8 @@ if [ -f "${HOME}/bin/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/bin
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git --ignore '*.class' -f -g ''"
 
 # NixOS update aliases
-alias nixos-update='cd ~/git/cwl-dotfiles/nixos-config && sudo nixos-rebuild switch --flake . --impure'
-alias nixos-upgrade='sudo nixos-rebuild switch --upgrade --flake ~/git/cwl-dotfiles/nixos-config --impure'
+alias nixos-update='cd ~/git/cwl-dotfiles && sudo nixos-rebuild switch --flake . --impure'
+alias nixos-upgrade='sudo nixos-rebuild switch --upgrade --flake ~/git/cwl-dotfiles --impure'
 alias git-open-remote='firefox `git remote get-url origin`'
 
 function opencode() {

@@ -27,7 +27,7 @@
   # O HM gera ~/.config/yazi/ a partir daqui. Os plugins vêm PRONTOS do
   # nixpkgs (nada de vendorizar). Os keymap/theme/settings são os seus TOMLs
   # de sempre — apenas lidos com fromTOML, então continuam arquivos editáveis
-  # no repo (em nixos-config/home/yazi/).
+  # no repo (em nixos/home/yazi/).
   #
   # ATENÇÃO: com isto, o HM passa a ser DONO de ~/.config/yazi. O pacote stow
   # `yazi/` (na raiz do dotfiles) e o alvo `link-yazi` do Makefile devem sair

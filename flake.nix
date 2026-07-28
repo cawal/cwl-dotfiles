@@ -18,12 +18,12 @@
   outputs = { self, nixpkgs, disko, home-manager }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
-      # nixos-rebuild; a config do usuário vive em ./home/cawal.nix.
+      # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
       homeManager = {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
-        home-manager.users.cawal = import ./home/cawal.nix;
+        home-manager.users.cawal = import ./nixos/home/cawal.nix;
       };
     in
     {
