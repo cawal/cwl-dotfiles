@@ -1,0 +1,29 @@
+# theme.toml — mesclado com o tema/flavor padrão do Yazi.
+# Só é preciso declarar o que se quer sobrescrever.
+
+# --- Sinais de status do git (plugin git.yazi) -----------------------------
+# Cores de cada estado exibido na linemode. Ajuste ao seu gosto.
+[git]
+modified  = { fg = "yellow" }
+added     = { fg = "green" }
+untracked = { fg = "blue" }
+ignored   = { fg = "darkgray" }
+deleted   = { fg = "red", bold = true }
+updated   = { fg = "magenta" }
+clean     = { fg = "green" }
+
+# Texto dos sinais (opcional — descomente para personalizar):
+# modified_sign  = "M"
+# added_sign     = "A"
+# untracked_sign = "?"
+# deleted_sign   = "D"
+# clean_sign     = "✓"
+
+# --- Exemplo de outras seções de tema (deixadas comentadas) ----------------
+# Descomente e ajuste para começar a customizar o visual geral do Yazi.
+# [mgr]
+# cwd = { fg = "cyan" }
+# hovered = { reversed = true }
+# [status]
+# separator_open  = ""
+# separator_close = ""

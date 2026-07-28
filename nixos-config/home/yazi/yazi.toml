@@ -1,0 +1,17 @@
+# yazi.toml — settings do Yazi.
+# Mesclado com os padrões: só é preciso declarar o que muda/acrescenta.
+# Instalado via stow em ~/.config/yazi/ (ver Makefile: link-yazi).
+
+# --- Fetchers do plugin git.yazi -------------------------------------------
+# Mostram o status do git como linemode na lista de arquivos.
+# NOTA: as linhas `id` foram omitidas de propósito — só são necessárias em
+# Yazi <= v26.1.22. Este sistema roda Yazi 26.5.x, então não entram.
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
