@@ -15,7 +15,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, disko, home-manager }: {
+  outputs = { self, nixpkgs, disko, home-manager }:
+    let
+      # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
+      # nixos-rebuild; a config do usuário vive em ./home/cawal.nix.
+      homeManager = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+        home-manager.users.cawal = import ./home/cawal.nix;
+      };
+    in
+    {
     nixosConfigurations = {
       # Navi - Laptop without NVIDIA
       navi = nixpkgs.lib.nixosSystem {
@@ -27,6 +38,9 @@
           disko.nixosModules.disko
           ./nixos/hosts/navi/disko.nix
           ./nixos/hosts/navi/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          homeManager
         ];
       };
       
@@ -41,14 +55,8 @@
           ./nixos/hosts/fi/disko.nix
           ./nixos/hosts/fi/configuration.nix
 
-          # home-manager (piloto neste host). Ativa junto do nixos-rebuild.
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.cawal = import ./home/cawal.nix;
-          }
+          homeManager
         ];
       };
     };
