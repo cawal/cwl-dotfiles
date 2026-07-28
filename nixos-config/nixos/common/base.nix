@@ -104,6 +104,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Overlay de pacotes próprios (não existentes no nixpkgs). Ver
+  # ../overlays/default.nix. Expõe coisas como `pkgs.ntn`.
+  nixpkgs.overlays = [ (import ../overlays) ];
+
   # Core system packages - tools needed on all machines
   environment.systemPackages = with pkgs; [
     # Core CLI tools
@@ -150,11 +154,18 @@
     
     # Browser
     google-chrome
+
+    # Pacotes próprios (via ../overlays) — não existem no nixpkgs
+    ntn                 # Notion CLI
   ];
 
   # Firefox managed by the NixOS module (generates policies.json, native
   # messaging hosts) — matches the monolith's `programs.firefox.enable`.
   programs.firefox.enable = true;
+  programs.neovim = {
+    viAlias.enable = true;
+    vimAlias.enable = true;
+  };
 
   # System version (for reference)
   system.stateVersion = "26.05";

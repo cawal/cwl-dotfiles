@@ -1,213 +1,198 @@
 # Pacotes Personalizados no NixOS
 
-## Problema
+## Quando usar isto
 
-Alguns pacotes não estão disponíveis no repositório oficial nixpkgs, como o `greenclip`.
+Só quando um programa **não existe no nixpkgs**. Antes de empacotar qualquer
+coisa, verifique se já não está lá:
 
-## Solução: Overlays no Flake
+```bash
+nix search nixpkgs <nome>
+```
 
-Criamos um overlay customizado no `flake.nix` para adicionar pacotes que não existem no nixpkgs.
+> **Nota histórica:** este documento já descreveu o `greenclip` como exemplo de
+> pacote via overlay. Isso estava **errado** — o greenclip vem direto do
+> nixpkgs, habilitado por `services.greenclip.enable = true;` em
+> `nixos/common/services.nix`. Nenhum overlay foi necessário para ele. O
+> exemplo real e funcional de pacote próprio é o `ntn` (Notion CLI), descrito
+> abaixo.
 
 ---
 
-## Como Funciona
+## Estrutura real
 
-### 1. Definir o Overlay no flake.nix
+O overlay de pacotes próprios fica em `nixos/overlays/`:
 
-```nix
-customOverlay = final: prev: {
-  greenclip = final.haskellPackages.callCabal2nix "greenclip" (final.fetchFromGitHub {
-    owner = "erebe";
-    repo = "greenclip";
-    rev = "v4.2";
-    sha256 = final.lib.fakeSha256;  # Placeholder - será atualizado
-  }) {};
-};
+```
+nixos/overlays/
+  default.nix   # overlay agregador: final: prev: { ntn = ...; }
+  ntn.nix       # uma derivation por arquivo (assinatura callPackage)
 ```
 
-### 2. Aplicar o Overlay
+Ele é aplicado em `nixos/common/base.nix`, que **todos os hosts importam**:
 
 ```nix
-nixosConfigurations.navi = nixpkgs.lib.nixosSystem {
-  modules = [ 
-    ./nixos/configuration.nix
-    { nixpkgs.overlays = [ customOverlay ]; }
-  ];
-};
+# nixos/common/base.nix
+nixpkgs.overlays = [ (import ../overlays) ];
 ```
 
-### 3. Usar o Pacote
-
-No `configuration.nix`, simplesmente adicione:
+Com isso, cada pacote definido no overlay vira `pkgs.<nome>` e pode ser usado
+em qualquer lugar como se fosse do nixpkgs:
 
 ```nix
 environment.systemPackages = with pkgs; [
-  greenclip  # Agora disponível via overlay
+  ntn   # Notion CLI, vindo do overlay
 ];
 ```
 
 ---
 
-## Obtendo o Hash Correto
+## Adicionar uma nova ferramenta
 
-### Método 1: Deixar o Nix falhar e mostrar o hash
-
-1. Use `final.lib.fakeSha256` como placeholder
-2. Execute `sudo nixos-rebuild test --flake . --impure`
-3. O erro mostrará o hash correto:
+1. Crie `nixos/overlays/<nome>.nix` com assinatura `callPackage`
+   (`{ lib, stdenvNoCC, fetchurl, ... }:`).
+2. Registre em `nixos/overlays/default.nix`:
+   ```nix
+   final: prev: {
+     ntn   = final.callPackage ./ntn.nix { };
+     <nome> = final.callPackage ./<nome>.nix { };
+   }
    ```
-   error: hash mismatch in fixed-output derivation
-   got:    sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=
-   ```
-4. Copie o hash `got:` e atualize o flake.nix
+3. Use `pkgs.<nome>` em `systemPackages`.
+4. `sudo nixos-rebuild switch --flake .#<host>`.
 
-### Método 2: Usar nix-prefetch-github
+---
 
-```bash
-nix-shell -p nix-prefetch-github
-nix-prefetch-github erebe greenclip --rev v4.2
+## O caso comum: binário pré-compilado (recomendado)
+
+A maioria das CLIs modernas (Bun, Go, Rust, ou "npm" que na verdade só
+embrulha um binário) distribui um **executável pronto**. Nesses casos,
+`node2nix`/`buildNpmPackage` são o caminho errado — dão voltas para, no fim, só
+copiar o binário. Pegue-o direto com `fetchurl` e instale.
+
+Exemplo real: **`ntn`** (`nixos/overlays/ntn.nix`). O pacote npm `ntn` é só um
+wrapper; o binário real é um executável Bun **estático** (static-PIE, sem loader
+dinâmico nem libs externas) já embutido no tarball do npm em `dist/`. Por ser
+estático, nem precisa de `autoPatchelfHook`:
+
+```nix
+{ lib, stdenvNoCC, fetchurl }:
+
+stdenvNoCC.mkDerivation (finalAttrs: {
+  pname = "ntn";
+  version = "0.21.4";
+
+  src = fetchurl {
+    url = "https://registry.npmjs.org/ntn/-/ntn-${finalAttrs.version}.tgz";
+    hash = "sha256-60VVf4GRV/FjJrK5L1OT4zM3Y8f7NJi6h7FzcTry7Sk=";
+  };
+
+  sourceRoot = "package";   # o tarball do npm extrai para package/
+
+  installPhase = ''
+    runHook preInstall
+    install -Dm755 dist/ntn-linux-x64/ntn $out/bin/ntn
+    runHook postInstall
+  '';
+
+  meta = {
+    description = "Notion CLI (ntn)";
+    homepage = "https://developers.notion.com/cli";
+    license = lib.licenses.mit;
+    platforms = [ "x86_64-linux" ];
+    mainProgram = "ntn";
+  };
+})
 ```
 
-Saída:
-```json
-{
-  "owner": "erebe",
-  "repo": "greenclip",
-  "rev": "v4.2",
-  "sha256": "hash-aqui"
+### Se o binário for dinâmico (não estático)
+
+Num NixOS ele falharia por falta do loader/libs. Aí use `autoPatchelfHook`:
+
+```nix
+{ lib, stdenv, fetchurl, autoPatchelfHook, stdenvNoCC }:
+
+stdenv.mkDerivation {
+  # ...
+  nativeBuildInputs = [ autoPatchelfHook ];
+  buildInputs = [ stdenv.cc.cc.lib /* zlib, openssl, etc conforme `ldd` pedir */ ];
+  # ...
 }
 ```
 
 ---
 
-## Próximos Passos
+## Pinar / atualizar versão
 
-Após o rebuild falhar na primeira vez:
+Tudo é pinado por `version` + `hash` no arquivo da derivation. Para atualizar:
 
-1. Copiar o hash correto do erro
-2. Atualizar `flake.nix`:
-   ```nix
-   sha256 = "sha256-HASH-CORRETO-AQUI=";
+1. Troque `version`.
+2. Recalcule o hash SRI:
+   ```bash
+   nix-prefetch-url https://registry.npmjs.org/ntn/-/ntn-<versão>.tgz \
+     | xargs nix hash to-sri --type sha256
    ```
-3. Executar novamente: `sudo nixos-rebuild test --flake . --impure`
+3. Cole em `hash` e faça `nixos-rebuild`.
+
+Truque alternativo: ponha `hash = lib.fakeHash;`, rode o build e copie o hash
+`got:` do erro.
 
 ---
 
-## Outros Pacotes Haskell
+## Empacotar a partir do código-fonte (menos comum)
 
-Greenclip é um pacote Haskell, por isso usamos `haskellPackages.callCabal2nix`.
-
-Para outros tipos de pacotes:
+Quando NÃO há binário pronto e você precisa compilar. O hash da build
+(`vendorHash`/`cargoHash`/`npmDepsHash`) começa como `lib.fakeHash` e é
+corrigido a partir do erro do primeiro build.
 
 ### Go
 ```nix
-meu-pacote-go = final.buildGoModule {
-  pname = "meu-pacote";
-  version = "1.0.0";
-  src = final.fetchFromGitHub { ... };
-  vendorHash = final.lib.fakeSha256;  # Mesmo processo
-};
+{ buildGoModule, fetchFromGitHub, lib }:
+buildGoModule {
+  pname = "meu-pacote"; version = "1.0.0";
+  src = fetchFromGitHub { owner = "..."; repo = "..."; rev = "v1.0.0"; hash = lib.fakeHash; };
+  vendorHash = lib.fakeHash;
+}
 ```
 
 ### Rust
 ```nix
-meu-pacote-rust = final.rustPlatform.buildRustPackage {
-  pname = "meu-pacote";
-  version = "1.0.0";
-  src = final.fetchFromGitHub { ... };
-  cargoHash = final.lib.fakeSha256;
-};
+{ rustPlatform, fetchFromGitHub, lib }:
+rustPlatform.buildRustPackage {
+  pname = "meu-pacote"; version = "1.0.0";
+  src = fetchFromGitHub { owner = "..."; repo = "..."; rev = "v1.0.0"; hash = lib.fakeHash; };
+  cargoHash = lib.fakeHash;
+}
 ```
 
-### Python
+### Node (JS de verdade, com deps)
+Só quando o pacote é realmente JavaScript com dependências (não um wrapper de
+binário). `buildNpmPackage` precisa do repositório com `package-lock.json`:
 ```nix
-meu-pacote-python = final.python3Packages.buildPythonPackage {
-  pname = "meu-pacote";
-  version = "1.0.0";
-  src = final.fetchFromGitHub { ... };
-  # ...
-};
+{ buildNpmPackage, fetchFromGitHub, lib }:
+buildNpmPackage {
+  pname = "meu-pacote"; version = "1.0.0";
+  src = fetchFromGitHub { owner = "..."; repo = "..."; rev = "v1.0.0"; hash = lib.fakeHash; };
+  npmDepsHash = lib.fakeHash;
+}
 ```
 
-### Binário pré-compilado
-```nix
-meu-app = final.stdenv.mkDerivation {
-  pname = "meu-app";
-  version = "1.0.0";
-  src = final.fetchurl {
-    url = "https://exemplo.com/app.tar.gz";
-    sha256 = final.lib.fakeSha256;
-  };
-  installPhase = ''
-    mkdir -p $out/bin
-    cp app $out/bin/
-  '';
-};
-```
-
----
-
-## Exemplo Completo: Adicionar outro pacote
-
-Vamos adicionar o `raindrop` (se não existir):
-
-```nix
-customOverlay = final: prev: {
-  greenclip = ...;  # já existe
-  
-  raindrop = final.buildNpmPackage {
-    pname = "raindrop";
-    version = "1.0.0";
-    src = final.fetchFromGitHub {
-      owner = "owner-nome";
-      repo = "raindrop";
-      rev = "v1.0.0";
-      sha256 = final.lib.fakeSha256;
-    };
-    npmDepsHash = final.lib.fakeSha256;
-  };
-};
-```
+Para instalar **várias** CLIs npm de uma lista declarativa, considere o
+`node2nix` (gera expressões a partir de um `node-packages.json`) — mas ele tem
+um passo de codegen manual e só compensa se o pacote for JS puro.
 
 ---
 
 ## Troubleshooting
 
-### Erro: "attribute 'greenclip' missing"
+### `error: attribute 'ntn' missing`
+O overlay não está sendo aplicado. Confira se
+`nixpkgs.overlays = [ (import ../overlays) ];` está em `base.nix` e se o host
+importa `base.nix`.
 
-**Causa:** O overlay não foi aplicado corretamente.
+### `hash mismatch`
+O `hash` da derivation não bate com o que foi baixado. Copie o hash `got:` do
+erro (ver seção "Pinar / atualizar versão").
 
-**Solução:** Verificar que o overlay está em `nixpkgs.overlays`:
-
-```nix
-modules = [ 
-  ./nixos/configuration.nix
-  { nixpkgs.overlays = [ customOverlay ]; }  # ← importante
-];
-```
-
-### Erro: Build falha com dependências faltando
-
-**Causa:** Dependências do sistema não declaradas.
-
-**Solução:** Adicionar `buildInputs`:
-
-```nix
-greenclip = final.haskellPackages.callCabal2nix "greenclip" ... {
-  buildInputs = with final; [ xorg.libX11 xorg.libXrandr ];
-};
-```
-
-### Erro: Hash mismatch após atualizar versão
-
-**Causa:** Hash antigo no flake.
-
-**Solução:** Usar `final.lib.fakeSha256` novamente e pegar o novo hash.
-
----
-
-## Referências
-
-- [NixOS Wiki - Overlays](https://nixos.wiki/wiki/Overlays)
-- [Nix Pills - Overlays](https://nixos.org/guides/nix-pills/nixpkgs-overriding-packages.html)
-- [callCabal2nix docs](https://haskell4nix.readthedocs.io/nixpkgs-users-guide.html#how-to-build-a-haskell-project-using-cabal2nix)
+### Binário não roda (`No such file or directory`)
+O binário é dinâmico e precisa de `autoPatchelfHook` (ver acima), ou faltou uma
+lib em `buildInputs` — rode `ldd <binário>` para descobrir quais.
