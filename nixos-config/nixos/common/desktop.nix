@@ -4,6 +4,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./fonts.nix   # fontes do sistema (Nerd Fonts, Noto)
+  ];
+
   # Enable X11 windowing system
   services.xserver.enable = true;
 

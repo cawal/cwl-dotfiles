@@ -124,6 +124,7 @@
     psmisc              # killall, fuser, pstree, etc
     gnumake
     gcc
+    tree
     
     # Terminal & multiplexer
     kitty               # GPU-accelerated terminal
