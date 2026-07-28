@@ -7,8 +7,10 @@ máquina pronta com NVIDIA (PRIME offload), Docker isolado e limpezas automátic
 > ⚠️ **Este processo APAGA todo o disco do `fi`** (`/dev/nvme0n1`). O `/home` também é
 > recriado — faça backup do que precisar antes.
 
-Todo o wiring do disko vive na branch **`fi-disko`** (ver [AGENTS.md](./AGENTS.md) →
-"Instalar/reinstalar um host com disko"). Use-a **só** para o `nixos-install`.
+O wiring do disko está na **`master`** para os dois hosts (a branch `fi-disko` foi
+mergeada; ver [AGENTS.md](../AGENTS.md) → "Instalar/reinstalar um host com disko").
+No sistema já instalado é seguro; para uma instalação **nova** (disco sem o pool)
+use `nixos-install`, nunca `switch`.
 
 ---
 
@@ -35,7 +37,7 @@ Todo o wiring do disko vive na branch **`fi-disko`** (ver [AGENTS.md](./AGENTS.m
 ## Pré-requisitos
 
 - Live USB do **NixOS** (de preferência a mesma série, 25.11/26.05) com internet.
-- O repositório já commitado e no GitHub na branch `fi-disko` (feito).
+- O repositório já commitado e no GitHub na `master` (a branch `fi-disko` foi mergeada).
 - Saber a senha que você quer para o **LUKS** (define no passo 4) e para o **root**
   (define no passo 6). A senha do usuário `cawal` já vem da config (`hashedPassword`).
 
@@ -43,10 +45,11 @@ Todo o wiring do disko vive na branch **`fi-disko`** (ver [AGENTS.md](./AGENTS.m
 
 ## Passo a passo (no live USB)
 
-### 1. Recuperar o repositório e entrar na branch de instalação
+### 1. Recuperar o repositório
 ```bash
 git clone https://github.com/cawal/cwl-dotfiles.git && cd cwl-dotfiles
-git checkout fi-disko && cd nixos-config
+# A master já tem o wiring do disko + o layout novo (flake na raiz);
+# a branch fi-disko foi mergeada. Os comandos abaixo rodam da raiz do repo.
 ```
 > Alternativa sem rede: 2º pendrive com o repo já clonado, ou copiar da partição LUKS
 > atual **antes** de destruir o disco. Se usar pendrive, rode

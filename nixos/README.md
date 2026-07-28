@@ -94,11 +94,11 @@ Referência rápida de onde já moram opções: `programs.zsh`→desktop · `ser
 3. Registrar em `flake.nix`: `nixosConfigurations.<novo> = nixpkgs.lib.nixosSystem { system = "x86_64-linux"; modules = [ ./nixos/hosts/<novo>/configuration.nix ]; };`
 4. Aplicar na máquina: `sudo nixos-rebuild switch --flake .#<novo>`.
 
-### Ativar `fi` (pendente)
+### `fi` — instalado
 
-O `fi` já está registrado e sua config está pronta (NVIDIA RTX 4060 c/ PRIME offload + gaming ativos, LV de Docker de 250G, swap 24G p/ hibernação, `hashedPassword` do usuário já setado). Falta só instalar na máquina real: (a) `hosts/fi/hardware-configuration.nix` é um **stub** — será substituído pelo scan real (`nixos-generate-config --no-filesystems --root /mnt`) durante o `nixos-install`; (b) o wiring do disko no `flake.nix` vive na branch de instalação `fi-disko`.
+O `fi` está instalado e ativo (NVIDIA RTX 4060 c/ PRIME offload + gaming, LV de Docker de 250G, swap 24G p/ hibernação, `hashedPassword` do usuário setado). O wiring do disko está na `master` (branch `fi-disko` mergeada); os `fileSystems` vêm do `disko.nix` e o `hardware-configuration.nix` é o scan `--no-filesystems`.
 
-👉 **Guia de instalação completo, passo a passo: [INSTALL-FI.md](./INSTALL-FI.md).**
+👉 **Guia de (re)instalação passo a passo: [INSTALL-FI.md](./docs/INSTALL-FI.md).**
 
 ---
 
@@ -120,7 +120,7 @@ Por quê: **uma senha** no boot; **`/home` separado** sobrevive a reinstalar o S
 
 - Helper reutilizável: `nixos/common/disko-lvm-luks.nix` (função `{ device, swapSize?, rootSize?, dockerSize? }`).
 - Por host: `nixos/hosts/<host>/disko.nix` informa o `device` e, opcionalmente, `rootSize`/`swapSize`/`dockerSize` (navi=`/dev/sda`, root 70G, sem LV docker; fi=`/dev/nvme0n1`, swap 24G, root 100G, docker 250G). Default do helper: root 80G, swap 8G, sem LV docker.
-- Wiring do build fica na branch de instalação (ver **AGENTS.md** → “Instalar/reinstalar um host com disko”), para não referenciar volumes inexistentes no sistema em execução.
+- Wiring do disko está na `master` para os dois hosts (ver **AGENTS.md** → “Instalar/reinstalar um host com disko”). É seguro no sistema em execução porque o pool já existe; o perigo seria só num disco **sem o pool ainda** (instalação nova) — aí use `nixos-install`, não `switch`.
 
 **Reinstalar mantendo `/home`:** boot no live USB → recuperar o repo (clone do GitHub ou copiar da partição LUKS atual antes de destruir) → `disko --mode destroy,format,mount ./nixos/hosts/<host>/disko.nix` → `nixos-generate-config --no-filesystems --root /mnt` → `nixos-install --flake .#<host>`. Runbook completo no AGENTS.md.
 

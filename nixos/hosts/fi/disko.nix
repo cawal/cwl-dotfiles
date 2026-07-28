@@ -1,9 +1,10 @@
 # Disko do host fi — LVM sobre LUKS com /home e /var/lib/docker separados.
 # Disco NVMe único (nvme0n1, SK hynix ~1024G). Ver ../../common/disko-lvm-luks.nix.
 #
-# NÃO é importado pela config do fi na branch do sistema. É consumido:
-#   - pelo `disko run ./nixos/hosts/fi/disko.nix` no live USB, e
-#   - pelo build do sistema na branch de instalação fi-disko (via flake.nix).
+# Importado pela config do fi (via flake.nix, na master) — gera
+# fileSystems/swapDevices/boot.initrd.luks. Seguro no sistema em execução
+# porque o pool /dev/mapper/pool-* já existe. Também consumido pelo
+# `disko run ./nixos/hosts/fi/disko.nix` no live USB durante a instalação.
 # Ver AGENTS.md → "Instalar/reinstalar um host com disko".
 import ../../common/disko-lvm-luks.nix {
   device = "/dev/nvme0n1";
