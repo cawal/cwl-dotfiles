@@ -109,9 +109,9 @@ setopt NO_BEEP
 alias awslocal='aws --endpoint-url=http://localhost:4566'
 
 
-if type "nvim" > /dev/null; then
-    alias vi="nvim"
-fi
+#if type "nvim" > /dev/null; then
+#    alias vi="nvim"
+#fi
 
 # Vim-like quit (because sometimes I type it in zsh)
 alias :q='exit'

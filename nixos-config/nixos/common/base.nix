@@ -111,7 +111,6 @@
   # Core system packages - tools needed on all machines
   environment.systemPackages = with pkgs; [
     # Core CLI tools
-    neovim
     git
     gh                  # GitHub CLI
     delta               # Diff pager
@@ -164,8 +163,10 @@
   # messaging hosts) — matches the monolith's `programs.firefox.enable`.
   programs.firefox.enable = true;
   programs.neovim = {
-    viAlias.enable = true;
-    vimAlias.enable = true;
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
   };
 
   # System version (for reference)
