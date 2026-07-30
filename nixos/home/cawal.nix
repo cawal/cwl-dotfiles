@@ -10,6 +10,29 @@
 
 { config, pkgs, ... }:
 
+let
+  # Dispatcher chamado pelos atalhos do yazi sob o prefixo `o` (move, open,
+  # rename, delete, prop, backlinks, links, outline, search, create). Opera
+  # num vault do Obsidian via CLI, corrigindo wikilinks nas operações de
+  # arquivo. Precisa de nome estável no PATH porque o keymap.toml é estático.
+  obsidian-yazi = pkgs.writeShellApplication {
+    name = "obsidian-yazi";
+    runtimeInputs = [
+      pkgs.libnotify # notify-send (feedback via toast)
+    ];
+    text = builtins.readFile ./yazi/obsidian-yazi.sh;
+  };
+
+  # Define wallpaper do desktop (nitrogen) e/ou do lockscreen (betterlockscreen).
+  # Chamado pelos atalhos de wallpaper do yazi. nitrogen/betterlockscreen vêm do
+  # system profile (ambient PATH), então só o notify-send entra como runtimeInput.
+  set-wallpaper = pkgs.writeShellApplication {
+    name = "set-wallpaper";
+    runtimeInputs = [ pkgs.libnotify ];
+    text = builtins.readFile ./yazi/set-wallpaper.sh;
+  };
+in
+
 {
   home.username = "cawal";
   home.homeDirectory = "/home/cawal";
@@ -20,6 +43,13 @@
   # Deixa o HM se autogerenciar (comando `home-manager` opcional; aqui roda
   # acoplado ao nixos-rebuild).
   programs.home-manager.enable = true;
+
+  # Pacotes de usuário (HM). `obsidian-yazi` é o dispatcher dos atalhos `o …`
+  # do yazi (definido no `let` acima).
+  home.packages = [
+    obsidian-yazi
+    set-wallpaper
+  ];
 
   # =========================================================================
   # PILOTO: yazi via módulo HM (plugins do nixpkgs, config lida dos seus TOMLs)

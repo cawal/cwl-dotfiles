@@ -25,3 +25,110 @@ desc = "chmod nos arquivos selecionados"
 on   = "M"
 run  = "plugin mount"
 desc = "Gerenciador de montagem"
+
+# obsidian-yazi: atalhos que operam num vault do Obsidian via CLI, sob o
+# prefixo `o`. Operações de arquivo corrigem wikilinks. Requer o Obsidian
+# aberto no vault-alvo. Ações rápidas são assíncronas (feedback via toast do
+# notify-send); as interativas / de inspeção usam --block (input/pager).
+
+# o m — mover selecionados para o diretório atual (corrige wikilinks).
+[[mgr.prepend_keymap]]
+on   = [ "o", "m" ]
+run  = "shell 'obsidian-yazi move %s'"
+desc = "Obsidian: mover selecionados p/ dir atual"
+
+# o o — abrir a nota sob o cursor no app Obsidian.
+[[mgr.prepend_keymap]]
+on   = [ "o", "o" ]
+run  = "shell 'obsidian-yazi open %h'"
+desc = "Obsidian: abrir nota no app"
+
+# o r — renomear corrigindo wikilinks (pergunta o novo nome).
+[[mgr.prepend_keymap]]
+on   = [ "o", "r" ]
+run  = "shell 'obsidian-yazi rename %h' --block"
+desc = "Obsidian: renomear (corrige links)"
+
+# o D — apagar selecionados para a lixeira do vault (confirma).
+[[mgr.prepend_keymap]]
+on   = [ "o", "D" ]
+run  = "shell 'obsidian-yazi delete %s' --block"
+desc = "Obsidian: apagar p/ lixeira do vault"
+
+# o p — definir uma propriedade do frontmatter (pergunta nome e valor).
+[[mgr.prepend_keymap]]
+on   = [ "o", "p" ]
+run  = "shell 'obsidian-yazi prop %h' --block"
+desc = "Obsidian: definir propriedade"
+
+# o b — listar backlinks (o que aponta para a nota).
+[[mgr.prepend_keymap]]
+on   = [ "o", "b" ]
+run  = "shell 'obsidian-yazi backlinks %h' --block"
+desc = "Obsidian: backlinks da nota"
+
+# o l — listar links de saída da nota.
+[[mgr.prepend_keymap]]
+on   = [ "o", "l" ]
+run  = "shell 'obsidian-yazi links %h' --block"
+desc = "Obsidian: links de saída"
+
+# o O — mostrar o outline (headings) da nota.
+[[mgr.prepend_keymap]]
+on   = [ "o", "O" ]
+run  = "shell 'obsidian-yazi outline %h' --block"
+desc = "Obsidian: outline da nota"
+
+# o s — buscar texto no vault com contexto (pergunta a query).
+[[mgr.prepend_keymap]]
+on   = [ "o", "s" ]
+run  = "shell 'obsidian-yazi search' --block"
+desc = "Obsidian: buscar no vault"
+
+# o n — criar nota nova no diretório atual e abrir no app.
+[[mgr.prepend_keymap]]
+on   = [ "o", "n" ]
+run  = "shell 'obsidian-yazi create' --block"
+desc = "Obsidian: criar nota aqui"
+
+# --- Wallpaper (nitrogen + betterlockscreen), prefixo W --------------------
+# --orphan: o betterlockscreen -u pode demorar (gera blur); roda destacado.
+
+# W w — só o desktop (nitrogen, persistente via --save).
+[[mgr.prepend_keymap]]
+on   = [ "W", "w" ]
+for  = "linux"
+run  = "shell 'set-wallpaper desktop %h' --orphan"
+desc = "Wallpaper: desktop (nitrogen)"
+
+# W l — só o lockscreen (betterlockscreen -u).
+[[mgr.prepend_keymap]]
+on   = [ "W", "l" ]
+for  = "linux"
+run  = "shell 'set-wallpaper lock %h' --orphan"
+desc = "Wallpaper: lockscreen (betterlockscreen)"
+
+# W b — ambos (desktop + lockscreen).
+[[mgr.prepend_keymap]]
+on   = [ "W", "b" ]
+for  = "linux"
+run  = "shell 'set-wallpaper both %h' --orphan"
+desc = "Wallpaper: desktop + lockscreen"
+
+# --- y aumentado: yank do yazi + caminhos no clipboard do sistema (X11) -----
+# Cada yank também copia os selecionados como text/uri-list (com file://) via
+# xclip, para colar em outros apps. Mantém o yank interno do yazi.
+[[mgr.prepend_keymap]]
+on  = "y"
+for = "linux"
+run = [
+  'shell -- for p in %s; do echo "file://$p"; done | xclip -i -selection clipboard -t text/uri-list',
+  "yank",
+]
+desc = "Yank + copiar caminhos p/ o clipboard do sistema"
+
+# --- g r: cd para a raiz do repositório git atual (prefixo `g` nativo) ------
+[[mgr.prepend_keymap]]
+on  = [ "g", "r" ]
+run = 'shell -- root="$(git rev-parse --show-toplevel 2>/dev/null)" && ya emit cd "$root"'
+desc = "Ir para a raiz do repositório git"
