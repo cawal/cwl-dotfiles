@@ -277,7 +277,7 @@ keys = [
         [
             Key(___, "l", lazy.spawn("i3exit lock")),
             Key(___, "s", lazy.spawn("i3exit suspend")),
-            Key(___, "h", lazy.spawn("i3exit hibernate")),
+            Key(shift, "h", lazy.spawn("i3exit hibernate")),
             Key(___, "r", lazy.restart()),
             Key(shift, "q", lazy.shutdown()),
         ],
