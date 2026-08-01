@@ -56,10 +56,13 @@
     vscode              # Visual Studio Code
     opencode            # OpenCode AI assistant
     claude-code         # Claude Code (Anthropic's AI coding assistant)
-    
+    lmstudio            # GUI para rodar LLMs locais (substitui AppImage em ~/bin)
+
     # API Testing
     postman             # API testing
     insomnia            # API client alternative
+    bruno               # API client offline-first (substitui AppImage em ~/bin)
+    yaak                # API client (substitui AppImage em ~/bin)
     httpie              # HTTP client CLI
     
     # Database tools
@@ -70,8 +73,10 @@
     
     mermaid-cli         # Mermaid diagrams
     plantuml            # PlantUML diagrams
+    drawio              # Editor de diagramas draw.io (substitui AppImage em ~/bin)
     graphviz            # Graph visualization (PlantUML dependency)
     pandoc              # Universal document converter
+    languagetool        # Corretor gramatical (substitui LanguageTool-4.3 em ~/bin)
 
     
     # === CLI Development Tools ===
