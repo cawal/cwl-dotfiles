@@ -680,6 +680,10 @@ link-gh-dash:
 	mkdir -p "${HOME}/.config/gh-dash/"
 	stow -R gh-dash --target=${HOME}/.config/gh-dash/
 
+link-herdr:
+	mkdir -p "${HOME}/.config/herdr/"
+	stow -R herdr --target=${HOME}/.config/herdr/
+
 link-i3:
 	stow -R i3 --target=${HOME}/.config
 
@@ -819,6 +823,9 @@ link-dunst-remove:
 
 link-gtk-3-0-remove:
 	stow -D gtk-3.0 --target=${HOME}/.config/gtk-3.0/
+
+link-herdr-remove:
+	stow -D herdr --target=${HOME}/.config/herdr/
 
 link-neovim-remove:
 	cd neovim; stow -D autoload --target=${HOME}/.local/share/nvim/site/autoload/

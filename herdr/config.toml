@@ -1,0 +1,13 @@
+onboarding = false
+
+[ui.toast]
+delivery = "system"
+
+[ui.sound]
+enabled = false
+
+[experimental]
+pane_history = true
+
+[keys]
+prefix = "ctrl+a"

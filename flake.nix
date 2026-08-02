@@ -18,9 +18,14 @@
     # (https://wiki.nixos.org/wiki/Zen_Browser). Segue nosso nixpkgs.
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Herdr: não está no nixpkgs. Flake oficial (herdr.dev), fixado na tag de
+    # release. Para atualizar: bump da tag aqui + `nix flake update herdr`.
+    herdr.url = "github:herdrdev/herdr/v0.7.5";
+    herdr.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, zen-browser }:
+  outputs = { self, nixpkgs, disko, home-manager, zen-browser, herdr }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -37,7 +42,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser; };
+        specialArgs = { inherit zen-browser herdr; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -58,7 +63,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser; };
+        specialArgs = { inherit zen-browser herdr; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix

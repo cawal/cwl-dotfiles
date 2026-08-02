@@ -1,7 +1,7 @@
 # Development tools and workflow packages
 # Languages, cloud tools, IDEs, databases, containers
 
-{ config, pkgs, ... }:
+{ config, pkgs, herdr, ... }:
 
 {
   # Enable Docker
@@ -107,5 +107,8 @@
     trash-cli           # Safe rm alternative
     pamtester           # PAM authentication tester
     gpick               # Color picker
+
+    # Herdr (via flake, ver flake.nix) — não está no nixpkgs
+    herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
