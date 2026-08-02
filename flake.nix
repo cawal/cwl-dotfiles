@@ -13,9 +13,14 @@
     # com o nixpkgs (26.05) para evitar divergência de módulos.
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Zen Browser: não está no nixpkgs. Flake recomendado pelo wiki do NixOS
+    # (https://wiki.nixos.org/wiki/Zen_Browser). Segue nosso nixpkgs.
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, disko, home-manager }:
+  outputs = { self, nixpkgs, disko, home-manager, zen-browser }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -31,6 +36,8 @@
       # Navi - Laptop without NVIDIA
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
+        specialArgs = { inherit zen-browser; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -50,6 +57,8 @@
       # `nixos-install`, nunca `switch`. Ver AGENTS.md.
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
+        specialArgs = { inherit zen-browser; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix

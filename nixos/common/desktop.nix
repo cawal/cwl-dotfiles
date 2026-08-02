@@ -1,7 +1,7 @@
 # Desktop environment configuration
 # GNOME, Qtile, Picom, GTK/Qt theming, display tools
 
-{ config, pkgs, ... }:
+{ config, pkgs, zen-browser, ... }:
 
 {
   imports = [
@@ -145,6 +145,7 @@
     
     # Browsers
     qutebrowser           # Keyboard-driven browser
+    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default  # Zen (via flake, ver flake.nix)
     
     # Entertainment
     retroarch             # Emulator frontend
