@@ -1,7 +1,7 @@
 # Development tools and workflow packages
 # Languages, cloud tools, IDEs, databases, containers
 
-{ config, pkgs, herdr, ... }:
+{ config, pkgs,  pkgsUnstable, herdr, ... }:
 
 {
   # Enable Docker
@@ -54,7 +54,7 @@
     
     # IDEs & Editors
     vscode              # Visual Studio Code
-    opencode            # OpenCode AI assistant
+    pkgsUnstable.opencode            # OpenCode AI assistant
     claude-code         # Claude Code (Anthropic's AI coding assistant)
     lmstudio            # GUI para rodar LLMs locais (substitui AppImage em ~/bin)
 
@@ -68,7 +68,6 @@
     # Database tools
     dbeaver-bin         # Universal database manager
     supabase-cli        # supabase CLI
-    stripe-cli          # stripe CLI
     
     # === Diagram & Documentation ===
     

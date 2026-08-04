@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Particionamento declarativo (LVM-on-LUKS, /home separado).
     # Wiring do disko na master p/ ambos os hosts. Ver AGENTS.md → disko.
@@ -25,7 +26,7 @@
     herdr.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, zen-browser, herdr }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -35,6 +36,10 @@
         home-manager.backupFileExtension = "backup";
         home-manager.users.cawal = import ./nixos/home/cawal.nix;
       };
+      pkgsUnstable = import nixpkgs-unstable {
+        system = "x86_64-linux"; 
+        config.allowUnfree = true;
+      };
     in
     {
     nixosConfigurations = {
@@ -42,7 +47,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr; };
+        specialArgs = { inherit zen-browser herdr pkgsUnstable; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -63,7 +68,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr; };
+        specialArgs = { inherit zen-browser herdr pkgsUnstable; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix
