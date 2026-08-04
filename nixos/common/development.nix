@@ -68,6 +68,7 @@
     # Database tools
     dbeaver-bin         # Universal database manager
     supabase-cli        # supabase CLI
+    stripe-cli          # stripe CLI
     
     # === Diagram & Documentation ===
     
