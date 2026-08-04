@@ -11,3 +11,7 @@ pane_history = true
 
 [keys]
 prefix = "ctrl+a"
+
+[theme]
+name = "dracula"
+auto_switch = false
