@@ -44,6 +44,20 @@ in
   # acoplado ao nixos-rebuild).
   programs.home-manager.enable = true;
 
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
   # Pacotes de usuário (HM). `obsidian-yazi` é o dispatcher dos atalhos `o …`
   # do yazi (definido no `let` acima).
   home.packages = [

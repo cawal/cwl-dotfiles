@@ -33,6 +33,7 @@
     
     # GTK theme preference - Adwaita dark (reliable on NixOS)
     GTK_THEME = "Adwaita:dark";
+    GTK_ICON_THEME = "Papirus-Dark";
   };
 
   # System activation script to set GTK dark theme via dconf
@@ -45,7 +46,7 @@
         # Run as user to set dconf settings
         sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'" 2>/dev/null || true
         sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'" 2>/dev/null || true
-        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'" 2>/dev/null || true
+        sudo -u $user ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/icon-theme "'Papirus-Dark'" 2>/dev/null || true
       fi
     done
   '';
@@ -107,6 +108,7 @@
     
     # GTK and Qt theming
     adwaita-icon-theme       # GNOME icon theme
+    papirus-icon-theme       # Papirus icon theme for GTK/Qt apps and tray icons
     gnome-themes-extra       # Adwaita-dark and other themes
     gtk-engine-murrine       # GTK2 theme engine
     libsForQt5.qtstyleplugin-kvantum  # Qt5 theming
