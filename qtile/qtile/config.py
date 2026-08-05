@@ -230,12 +230,16 @@ keys = [
         desc="Show dmesg logs",
     ),
     Key(win_key, "s",
+        lazy.group["scratchpad"].dropdown_toggle("slack"),
+        desc="Show Slack",
+    ),
+    Key(win_key+shift, "s",
         lazy.group["scratchpad"].dropdown_toggle("qtile shell"),
         desc="Show qtile shell",
     ),
     Key(win_key, "z",
         lazy.group["scratchpad"].dropdown_toggle("Obsidian"),
-        desc="Show qtile shell",
+        desc="Show Obsidian",
     ),
     # Switch window focus to other pane(s) of stack
     #Key(win_key, "space", lazy.layout.next()),
@@ -377,8 +381,19 @@ groups.append(
                 **dropdown_config,
             ),
             DropDown(
+                "slack",
+                "slack",
+                **{
+                    **dropdown_config,
+                    "x": 0.01,
+                    "height": 0.98,
+                    "width": 0.98,
+                    "on_focus_lost_hide": False,
+                },
+            ),
+            DropDown(
                 "qtile log",
-                "cwl-sensible-terminal -e tail -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
+                f"cwl-sensible-terminal -e tail -n +0 -f {os.path.expanduser('~/.local/share/qtile/qtile.log')}",
                 **dropdown_config,
             ),
             DropDown(
