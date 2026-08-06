@@ -50,6 +50,17 @@ Um `switch` bem-sucedido constrói o **mesmo store path** do build que você val
 - **Reboot:** só é necessário se o `diff-closures` mostrar mudança de kernel/initrd/bootloader. Adição de pacotes de userland ativa ao vivo, sem reboot.
 - **Aplicar mudanças:** ações que alteram o sistema (`switch`), removem arquivos ou commitam devem ser confirmadas com o usuário antes.
 
+## GNOME apps na sessão qtile
+
+A sessão de trabalho é **qtile**, mas `desktop.nix` habilita `services.desktopManager.gnome.enable` + GDM. **Esse módulo GNOME já sobe TODO o backend implicitamente** — evolution-data-server, gnome-online-accounts (GOA), gnome-keyring, gnome-control-center, seahorse. **Não declare `services.gnome.*` avulsos** achando que faltam: um grep pelos nomes literais das opções dá **falso negativo**. Confirme rodando, não pelo código: `systemctl --user list-units | grep -iE 'evolution|OnlineAccounts|keyring'`.
+
+Dois atritos reais já corrigidos em `desktop.nix` (deixe como referência antes de "consertar de novo"):
+
+- **Keyring não destrancava no login do GDM.** O módulo GNOME só põe `pam_gnome_keyring` no PAM `login` (console), não no `gdm-password` (caminho real do GDM) → o chaveiro pedia senha ao acessar segredos (ex.: tokens OAuth do GOA usados pelo gnome-calendar). Fix: `security.pam.services.gdm-password.enableGnomeKeyring = true`. Só funciona se a **senha do chaveiro == senha de login** (senão ajustar no seahorse).
+- **`gnome-control-center` recusa rodar** ("only supported under GNOME and Unity, exiting"): na sessão qtile `XDG_CURRENT_DESKTOP` vem **vazio**. Fix: `XDG_CURRENT_DESKTOP = "qtile:GNOME"` em `environment.sessionVariables` (formato lista `:` — o control-center enxerga o GNOME e libera, mantendo a sessão identificada como qtile para os demais apps/portals).
+
+Regra geral: **app GNOME quebrando no qtile → primeiro cheque se o serviço já roda via `systemctl --user`** antes de adicionar módulos NixOS; costuma ser variável de ambiente ou PAM, não pacote faltando.
+
 ## Instalar/reinstalar um host com disko (LVM-on-LUKS, /home separado)
 
 Layout padrão em `nixos/common/disko-lvm-luks.nix`; cada host tem `hosts/<host>/disko.nix` com o `device`. Ver README → “Esquema de disco”.
