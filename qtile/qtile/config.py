@@ -36,6 +36,8 @@ logger.warning(load_config_banner)
 from group_to_display_mapper import GroupToDisplayMapper
 from host import get_xresources_variables, get_monitors, hostname
 from qtile_vim_marks.manager import VimMarksManager
+from qtile_command_palette.palette import CommandPalette
+from qtile_command_palette.pickers import make_rofi_picker
 
 xresources = get_xresources_variables()
 logger.warning(xresources)
@@ -93,136 +95,6 @@ def remove_group(name):
         qtile.groupMap.remove(name)
 
     return f
-
-
-###############################################
-# COMMAND PALETTE
-###############################################
-# Menu pesquisável (rofi) que lista "atalho + descrição" de todos os keybindings
-# e executa o selecionado. Backend de menu é plugável (um "picker"); por ora rofi,
-# depois dá pra ter fzf no terminal. Fase 1: inline aqui (o reload_config recarrega
-# o config.py, mas NÃO submódulos — cache em sys.modules); depois extrair p/ pacote.
-
-MOD_LABELS = {
-    "mod4": "Super",
-    "mod1": "Alt",
-    "control": "Ctrl",
-    "shift": "Shift",
-    "lock": "Lock",
-    "mod5": "Mod5",
-}
-
-
-def rofi_picker(lines, title="Commands"):
-    """Mostra `lines` no rofi -dmenu; retorna o índice selecionado (0-based) ou None.
-
-    Usa `-format i` para o rofi devolver o índice da escolha, evitando ambiguidade
-    quando dois rótulos são iguais.
-    """
-    if not lines:
-        return None
-    result = subprocess.run(
-        ["rofi", "-dmenu", "-i", "-format", "i", "-p", title],
-        input="\n".join(lines),
-        stdout=subprocess.PIPE,
-        universal_newlines=True,
-    )
-    out = result.stdout.strip()
-    if result.returncode != 0 or not out:
-        return None
-    try:
-        return int(out)
-    except ValueError:
-        return None
-
-
-class CommandPalette:
-    """Indexa a lista `keys` (achatando KeyChords) e, via um picker plugável,
-    permite buscar e executar um keybinding.
-
-    A indexação acontece em tempo de chamada (a lista `keys` é guardada por
-    referência), então bindings adicionados depois — inclusive os de grupo — entram
-    automaticamente.
-    """
-
-    def __init__(self, keys, picker=rofi_picker, title="Commands"):
-        self._keys = keys
-        self._picker = picker
-        self._title = title
-
-    # -- callback de lazy.function --
-    def show(self, qtile):
-        entries = self._index()  # [(rótulo, Key)]
-        idx = self._picker([label for label, _ in entries], self._title)
-        if idx is None or not (0 <= idx < len(entries)):
-            return
-        self._run_key(qtile, entries[idx][1])
-
-    # -- indexação (walk recursivo, achata KeyChords) --
-    def _index(self):
-        entries = []
-        self._walk(self._keys, "", entries)
-        return entries
-
-    def _walk(self, bindings, prefix, entries):
-        for b in bindings:
-            if isinstance(b, KeyChord):
-                sub_prefix = self._join(prefix, self._fmt_binding(b.modifiers, b.key))
-                self._walk(b.submappings, sub_prefix, entries)
-            elif isinstance(b, Key):
-                if not b.commands:  # ex.: o Key([], "Escape") auto-anexado aos chords
-                    continue
-                binding = self._join(prefix, self._fmt_binding(b.modifiers, b.key))
-                entries.append((f"{binding:<26} {self._label_for(b)}", b))
-
-    def _join(self, prefix, part):
-        return f"{prefix} → {part}" if prefix else part
-
-    def _fmt_binding(self, modifiers, key):
-        mods = "+".join(MOD_LABELS.get(m, m) for m in modifiers)
-        return f"{mods}+{key}" if mods else str(key)
-
-    # -- rótulos: desc= quando existir, senão gerado do LazyCall --
-    def _label_for(self, key):
-        if key.desc:
-            return key.desc
-        return " ; ".join(self._label_for_cmd(c) for c in key.commands)
-
-    def _label_for_cmd(self, cmd):
-        sel = self._sel_str(cmd.selectors)
-        name = f"{sel}.{cmd.name}" if sel else cmd.name
-        if cmd.name == "function" and cmd.args:
-            detail = self._callable_name(cmd.args[0])
-        elif cmd.args:
-            detail = " ".join(str(a) for a in cmd.args)
-        else:
-            detail = ""
-        return f"{name}: {detail}" if detail else name
-
-    def _sel_str(self, selectors):
-        parts = []
-        for s in selectors or []:
-            if not s:
-                continue
-            name = s[0]
-            value = s[1] if len(s) > 1 else None
-            parts.append(f"{name}[{value}]" if value is not None else name)
-        return ".".join(parts)
-
-    def _callable_name(self, fn):
-        if isinstance(fn, partial):
-            fn = fn.func
-        return getattr(fn, "__name__", None) or repr(fn)[:40]
-
-    # -- execução: replica o loop do Qtile.process_key_event --
-    def _run_key(self, qtile, key):
-        for cmd in key.commands:
-            if cmd.check(qtile):
-                status, val = qtile.server.call(
-                    (cmd.selectors, cmd.name, cmd.args, cmd.kwargs, False)
-                )
-                if status:  # 0 = SUCCESS; !=0 = ERROR/EXCEPTION
-                    logger.warning("command palette error %s: %s", cmd.name, val)
 
 
 groups = [
@@ -461,7 +333,14 @@ for i in groups:
     )
 
 # Command palette: indexa `keys` já montada (incl. bindings de grupo acima).
-palette = CommandPalette(keys, picker=rofi_picker)
+# Para usar um tema rofi próprio, aponte para um .rasi (nome ou caminho), ex.:
+#   command_palette_theme = os.path.expanduser("~/.config/rofi/launchpad")
+# Deixe None para o tema padrão do rofi.
+command_palette_theme = os.path.expanduser("~/.config/rofi/launchpad")
+command_palette_theme = "Arc-Dark"
+command_palette_theme = "squared-nord"
+command_palette_theme = "gruvbox-dark"
+palette = CommandPalette(keys, picker=make_rofi_picker(theme=command_palette_theme))
 keys.append(
     Key(win_key, "p", lazy.function(palette.show),
         desc="Command palette (buscar/executar atalhos)"),
