@@ -34,6 +34,13 @@
     # GTK theme preference - Adwaita dark (reliable on NixOS)
     GTK_THEME = "Adwaita:dark";
     GTK_ICON_THEME = "Papirus-Dark";
+
+    # Na sessão qtile o XDG_CURRENT_DESKTOP vem vazio, e apps como o
+    # gnome-control-center recusam rodar fora de GNOME/Unity ("Running ...
+    # is only supported under GNOME and Unity, exiting"). O formato lista
+    # `qtile:GNOME` faz o control-center enxergar o GNOME e liberar, mantendo
+    # a sessão identificada como qtile para os demais apps/portals.
+    XDG_CURRENT_DESKTOP = "qtile:GNOME";
   };
 
   # System activation script to set GTK dark theme via dconf
@@ -54,6 +61,13 @@
   # Enable i3lock via programs module (fixes PAM authentication)
   # Reference: https://github.com/NixOS/nixpkgs/pull/417193
   programs.i3lock.enable = true;
+
+  # Destrava o gnome-keyring automaticamente no login do GDM.
+  # O módulo GNOME só adiciona o pam_gnome_keyring ao PAM `login` (console),
+  # não ao `gdm-password` (caminho real da tela do GDM) — por isso o chaveiro
+  # ficava trancado e pedia senha ao acessar segredos (ex.: tokens OAuth do GOA
+  # usados pelo gnome-calendar). Requer que a senha do chaveiro == senha de login.
+  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
   # Zsh configuration
   programs.zsh = {
