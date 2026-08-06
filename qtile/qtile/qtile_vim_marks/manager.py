@@ -27,7 +27,7 @@ class VimMarksManager:
                 self.marks[letter] = qtile.current_window
                 logger.warning(f"marked {letter}")
 
-            b = Key([], letter, lazy.function(func))
+            b = Key([], letter, lazy.function(func), desc=f"Mark window as '{letter}'")
             bindings.append(b)
         return bindings
 
@@ -49,6 +49,6 @@ class VimMarksManager:
                 except Exception as e:
                     logger.warning(e)
 
-            b = Key([], letter, lazy.function(func))
+            b = Key([], letter, lazy.function(func), desc=f"Go to window marked '{letter}'")
             bindings.append(b)
         return bindings

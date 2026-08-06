@@ -115,44 +115,47 @@ marksManager = VimMarksManager(mapper.go_to_group)
 
 search_bindings_config = "<b>Databases:</b> [h]ttp status codes, [b]ancos, [e]moticons, [c]lipboard, [t]imestamp from epoch, [d] display-controls"
 search_bindings = [
-    Key(___, "t", lazy.spawn("epoch-converter.sh")),
-    Key(___, "h", lazy.spawn("dmenu-http-status-codes")),
-    Key(___, "e", lazy.spawn("dmenu-emoticons")),
-    Key(___, "s", lazy.spawn("dmenu-change-sound-output")),
-    Key(___, "d", lazy.spawn("dmenu-display-control")),
-    Key(___, "b", lazy.spawn("dmenu-bancos-brasileiros")),
+    Key(___, "t", lazy.spawn("epoch-converter.sh"), desc="Convert epoch timestamp"),
+    Key(___, "h", lazy.spawn("dmenu-http-status-codes"), desc="HTTP status codes lookup"),
+    Key(___, "e", lazy.spawn("dmenu-emoticons"), desc="Emoticons picker"),
+    Key(___, "s", lazy.spawn("dmenu-change-sound-output"), desc="Change sound output"),
+    Key(___, "d", lazy.spawn("dmenu-display-control"), desc="Display brightness control"),
+    Key(___, "b", lazy.spawn("dmenu-bancos-brasileiros"), desc="Brazilian banks lookup"),
     Key(___, "c",
         lazy.spawn(
             "rofi -modi 'clipboard:greenclip print'"
             " -show clipboard -run-command '{cmd}'"
         ),
+        desc="Clipboard history",
     ),
 ]
 
 keys = [
-    Key(win_key, "Up", lazy.screen.next_group()),
-    Key(win_key, "Down", lazy.screen.prev_group()),
+    Key(win_key, "Up", lazy.screen.next_group(), desc="Next group"),
+    Key(win_key, "Down", lazy.screen.prev_group(), desc="Previous group"),
     KeyChord( ___, "XF86Tools",
         [
             Key( ___, "p",
                 lazy.spawn("notify-send Dunst stopped"),
                 lazy.spawn("notify-send DUNST_COMMAND_PAUSE"),
+                desc="Pause notifications",
             ),
             Key( ___, "r",
                 lazy.spawn("notify-send DUNST_COMMAND_RESUME"),
                 lazy.spawn("notify-send Dunst resumed"),
+                desc="Resume notifications",
             ),
-            Key(___, "s", lazy.spawn("dmenu-change-sound-output")),
-            Key(___, "d", lazy.spawn("dmenu-display-control")),
+            Key(___, "s", lazy.spawn("dmenu-change-sound-output"), desc="Switch sound output device"),
+            Key(___, "d", lazy.spawn("dmenu-display-control"), desc="Adjust display brightness"),
         ],
         name="<b>Controls:</b> [p]ause notifications, [r]esume notifications, [s]ound outputs, [d]isplay light",
         mode=False,
     ),
-    Key(___, "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
-    Key(___, "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
-    Key(___, "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
-    Key(___, "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian")),
-    Key(___, "XF86Calculator", lazy.group["scratchpad"].dropdown_toggle("Python")),
+    Key(___, "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), desc="Raise volume (media key)"),
+    Key(___, "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), desc="Lower volume (media key)"),
+    Key(___, "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), desc="Toggle mute (media key)"),
+    Key(___, "XF86HomePage", lazy.group["scratchpad"].dropdown_toggle("Obsidian"), desc="Toggle Obsidian scratchpad"),
+    Key(___, "XF86Calculator", lazy.group["scratchpad"].dropdown_toggle("Python"), desc="Toggle Python scratchpad"),
     KeyChord(___, "XF86Search",
         search_bindings,
         name=search_bindings_config
@@ -164,18 +167,22 @@ keys = [
     Key(win_key, "j",
         lazy.layout.down(),
         lazy.layout.left().when(layout="columns"),
+        desc="Move focus down (left in columns)",
     ),
     Key(win_key, "k",
         lazy.layout.up(),
         lazy.layout.right().when(layout="columns"),
+        desc="Move focus up (right in columns)",
     ),
     Key(alt, "Tab",
         lazy.layout.down(),
         lazy.layout.left().when(layout="columns"),
+        desc="Cycle window focus (Alt+Tab)",
     ),
     Key(alt+shift, "Tab",
         lazy.layout.down(),
         lazy.layout.left().when(layout="columns"),
+        desc="Cycle window focus (Alt+Shift+Tab)",
     ),
     # Key(win_key, "h",
     #     lazy.layout.left().when(layout="columns"),
@@ -185,15 +192,19 @@ keys = [
     # ),
     Key(win_key+shift, "j",
         lazy.layout.swap_column_left().when(layout="columns"),
+        desc="Swap column left",
     ),
     Key(win_key+shift, "k",
         lazy.layout.swap_column_right().when(layout="columns"),
+        desc="Swap column right",
     ),
     Key(win_key+shift, "h",
         lazy.layout.grow_left().when(layout="columns"),
+        desc="Grow window left",
     ),
     Key(win_key+shift, "l",
         lazy.layout.grow_right().when(layout="columns"),
+        desc="Grow window right",
     ),
     # Move windows up or down in current stack
     Key(win_key+control, "j",
@@ -247,7 +258,7 @@ keys = [
     # Switch window focus to other pane(s) of stack
     #Key(win_key, "space", lazy.layout.next()),
     # Swap panes of split stack
-    Key(win_key+shift, "space", lazy.layout.rotate()),
+    Key(win_key+shift, "space", lazy.layout.rotate(), desc="Rotate panes of stack"),
     Key(win_key+control, "space",
         lazy.window.toggle_floating(),
         desc="Toggles floating state of window",
@@ -256,9 +267,9 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key(win_key+control, "Return", lazy.layout.toggle_split()),
-    Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal")),
-    Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger")),
+    Key(win_key+control, "Return", lazy.layout.toggle_split(), desc="Toggle split/unsplit stack"),
+    Key(win_key, "Return", lazy.spawn("cwl-sensible-terminal"), desc="Open terminal"),
+    Key(win_key+shift, "Return", lazy.spawn("cwl-sensible-terminal -e ranger"), desc="Open terminal with ranger"),
     Key(win_key, "d",
         lazy.spawn(
             "rofi -show-icons -modi combi -show combi"
@@ -271,31 +282,33 @@ keys = [
         lazy.spawn("rofi -show-icons -modi window -show window"),
         desc="Switch between windows",
     ),
-    Key(win_key, "bracketleft", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
-    Key(win_key, "bracketright", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
-    Key(win_key+shift, "BackSpace", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
+    Key(win_key, "bracketleft", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), desc="Raise volume"),
+    Key(win_key, "bracketright", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), desc="Lower volume"),
+    Key(win_key+shift, "BackSpace", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), desc="Toggle mute"),
     # Toggle between different layouts as defined below
-    Key(win_key, "Tab", lazy.next_layout()),
-    Key(win_key+shift, "Tab", lazy.prev_layout()),
-    Key(win_key+shift, "q", lazy.window.kill()),
-    Key(win_key, "r", lazy.spawncmd()),
-    Key(___, "Print", lazy.spawn("flameshot gui")),
+    Key(win_key, "Tab", lazy.next_layout(), desc="Next layout"),
+    Key(win_key+shift, "Tab", lazy.prev_layout(), desc="Previous layout"),
+    Key(win_key+shift, "q", lazy.window.kill(), desc="Close focused window"),
+    Key(win_key, "r", lazy.spawncmd(), desc="Run command prompt"),
+    Key(___, "Print", lazy.spawn("flameshot gui"), desc="Screenshot (flameshot)"),
     KeyChord(win_key+control, "BackSpace",
         [
-            Key(___, "l", lazy.spawn("i3exit lock")),
-            Key(___, "s", lazy.spawn("i3exit suspend")),
-            Key(shift, "h", lazy.spawn("i3exit hibernate")),
-            Key(___, "r", lazy.restart()),
-            Key(shift, "q", lazy.shutdown()),
+            Key(___, "l", lazy.spawn("i3exit lock"), desc="Lock screen"),
+            Key(___, "s", lazy.spawn("i3exit suspend"), desc="Suspend"),
+            Key(shift, "h", lazy.spawn("i3exit hibernate"), desc="Hibernate"),
+            Key(___, "r", lazy.restart(), desc="Restart qtile"),
+            Key(shift, "q", lazy.shutdown(), desc="Quit qtile"),
         ],
         name="<b>Desktop:</b> [l]ock, [s]uspend, [H]ibernate, [r]estart, [Q]uit",
         mode=False,
     ),
     Key(win_key, "a",
         lazy.function(mapper.shift_group_display),
+        desc="Shift current group to next display",
     ),
     Key(win_key+shift, "a",
         lazy.function(mapper.rotate_all_groups_to_next_screen),
+        desc="Rotate all groups to next screen",
     ),
     KeyChord(win_key, "m",
         marksManager.get_mark_window_keys(),
@@ -315,6 +328,7 @@ for i in groups:
             lazy.function(
                 partial(mapper.go_to_group, group=i.name),
             ),
+            desc=f"Go to group {i.name}",
         )
     )
 
@@ -322,6 +336,7 @@ for i in groups:
     keys.append(
         Key(win_key+shift, i.name,
             lazy.window.togroup(i.name),
+            desc=f"Move window to group {i.name}",
         )
     )
     # mod1 + shift + letter of group = switch to & move focused window to group
@@ -329,6 +344,7 @@ for i in groups:
         Key(win_key+control, i.name,
             lazy.window.togroup(i.name),
             lazy.function(partial(mapper.go_to_group, group=i.name)),
+            desc=f"Move window to group {i.name} and follow",
         )
     )
 
