@@ -15,7 +15,7 @@ from libqtile.core.manager import Qtile
 from libqtile.lazy import LazyCall
 from libqtile.log_utils import logger
 
-from .pickers import Picker, rofi_picker
+from .pickers import Picker, dmenu_picker
 
 # Entrada indexada: (rótulo exibido, Key a executar).
 Entry = Tuple[str, Key]
@@ -44,7 +44,7 @@ class CommandPalette:
     def __init__(
         self,
         keys: Sequence[Binding],
-        picker: Picker = rofi_picker,
+        picker: Picker = dmenu_picker,
         title: str = "Commands",
     ) -> None:
         self._keys = keys
