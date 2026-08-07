@@ -27,6 +27,27 @@
   # Em ambientes GNOME o GNOME Software também mostra e notifica as atualizações.
   services.fwupd.enable = true;
 
+  # === Flatpak (declarativo via nix-flatpak) ===
+  # O módulo do NixOS (services.flatpak.enable) só sobe o daemon; os `remotes` e
+  # `packages` abaixo vêm do módulo nix-flatpak (input no flake.nix da raiz) e são
+  # aplicados por um serviço de ativação a cada rebuild — mantendo o Flatpak tão
+  # declarativo quanto o resto da config. O portal XDG necessário já vem do GNOME
+  # (xdg-desktop-portal-gtk). Ver wiki: https://wiki.nixos.org/wiki/Flatpak.
+  services.flatpak = {
+    enable = true;
+
+    # Remote oficial Flathub. (O nix-flatpak já traz o flathub por padrão, mas
+    # deixamos explícito para o remote não depender de estado imperativo.)
+    remotes = [{
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }];
+
+    # Apps instalados/atualizados declarativamente no rebuild.
+    # https://flathub.org/apps/com.redis.RedisInsight
+    packages = [ "com.redis.RedisInsight" ];
+  };
+
   # === Bluetooth ===
   
   hardware.bluetooth = {

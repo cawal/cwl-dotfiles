@@ -24,9 +24,14 @@
     # release. Para atualizar: bump da tag aqui + `nix flake update herdr`.
     herdr.url = "github:herdrdev/herdr/v0.7.5";
     herdr.inputs.nixpkgs.follows = "nixpkgs";
+
+    # nix-flatpak: gestão declarativa de remotes/apps Flatpak (o módulo do
+    # NixOS só liga o daemon; remotes e apps seriam imperativos sem isto).
+    # Ver wiki: https://wiki.nixos.org/wiki/Flatpak. Config em common/services.nix.
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr, nix-flatpak }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -58,6 +63,8 @@
 
           home-manager.nixosModules.home-manager
           homeManager
+
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
       
@@ -76,6 +83,8 @@
 
           home-manager.nixosModules.home-manager
           homeManager
+
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
     };
