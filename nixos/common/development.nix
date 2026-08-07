@@ -49,6 +49,7 @@
     (terraform.overrideAttrs (oldAttrs: {
       doCheck = false;  # Skip tests to speed up build
     }))
+    redis               # Redis database (for redis-cli)
     
     # === Development Tools ===
     
