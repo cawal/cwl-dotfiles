@@ -36,7 +36,12 @@ logger.warning(load_config_banner)
 from group_to_display_mapper import GroupToDisplayMapper
 from host import get_xresources_variables, get_monitors, hostname
 from qtile_vim_marks.manager import VimMarksManager
-from qtile_command_palette.palette import CommandPalette
+from qtile_command_palette import (
+    FunctionSource,
+    KeybindingSource,
+    Palette,
+    command,
+)
 from qtile_command_palette.pickers import make_rofi_picker
 
 xresources = get_xresources_variables()
@@ -356,10 +361,42 @@ command_palette_theme = os.path.expanduser("~/.config/rofi/launchpad")
 command_palette_theme = "Arc-Dark"
 command_palette_theme = "squared-nord"
 command_palette_theme = "gruvbox-dark"
-palette = CommandPalette(keys, picker=make_rofi_picker(theme=command_palette_theme))
+_palette_picker = make_rofi_picker(theme=command_palette_theme)
+
+
+# Funções de usuário na palette: decore com @command. O nome da função vira o
+# rótulo e a 1ª linha da docstring, a descrição; a função recebe o Qtile igual a
+# um lazy.function. Pode reusar o mesmo picker rofi da palette (fecha sobre
+# `_palette_picker`) para pedir um segundo dado ao usuário.
+@command
+def bring_window(qtile):
+    """Busca uma janela por nome (em todos os grupos) e traz para o grupo atual."""
+    windows = [w for g in qtile.groups for w in g.windows if w.name]
+    if not windows:
+        return
+    current = qtile.current_group
+    labels = [f"{w.name:<40} [{w.group.name}]" for w in windows]
+    idx = _palette_picker(labels, "Trazer janela")
+    if idx is None or not (0 <= idx < len(windows)):
+        return
+    win = windows[idx]
+    win.togroup(current.name)      # move para o grupo ativo (sem trocar de grupo)
+    current.focus(win, warp=True)  # foca a janela recém-trazida
+
+
+# Menu unificado (Super+p): keybindings + funções de usuário no mesmo rofi.
+palette = Palette(
+    KeybindingSource(keys),
+    FunctionSource(),
+    picker=_palette_picker,
+    title="Commands",
+)
+# Fontes também disponíveis separadas, caso queira atalhos dedicados:
+palette_keys = Palette(KeybindingSource(keys), picker=_palette_picker, title="Keybindings")
+palette_functions = Palette(FunctionSource(), picker=_palette_picker, title="Functions")
 keys.append(
     Key(win_key, "p", lazy.function(palette.show),
-        desc="Command palette (buscar/executar atalhos)"),
+        desc="Command palette (atalhos + funções)"),
 )
 
 dropdown_config = {
