@@ -13,6 +13,16 @@ dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'"
 xrdb ~/.Xresources
 # compton --backend glx --vsync drm --glx-no-stencil --config ~/.config/i3/compton.conf  &
 
+# Integra a sessão qtile ao systemd --user. Sem isto o graphical-session.target
+# nunca é ativado (o qtile não é um DE), e serviços user como o greenclip
+# (WantedBy=graphical-session.target) ficam enabled mas não sobem. Importamos o
+# ambiente X (senão clientes X como o greenclip não acham o DISPLAY) e iniciamos
+# o qtile-session.target (declarado em nixos/common/services.nix), que puxa o
+# graphical-session.target como dependência.
+echo "Bootstrapping systemd graphical session..."
+systemctl --user import-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+systemctl --user start qtile-session.target
+
 # numlock starts activated
 # numlockx on &
 

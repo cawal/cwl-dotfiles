@@ -148,8 +148,22 @@
     };
   };
 
+  # === Sessão systemd do qtile ===
+  # O qtile (WM puro) não ativa o graphical-session.target como um DE (gnome-session)
+  # faria — então serviços user `WantedBy=graphical-session.target` (ex.: greenclip)
+  # ficavam `enabled` mas nunca subiam no login. O graphical-session.target recusa
+  # start manual (RefuseManualStart); o padrão systemd é um target de sessão próprio
+  # que faz BindsTo dele. O qtile inicia o `qtile-session.target` no startup (ver
+  # bin/cwl-startup-processes.sh: import-environment + `systemctl --user start`),
+  # o que puxa o graphical-session.target como dependência e ativa os serviços.
+  systemd.user.targets.qtile-session = {
+    description = "qtile session";
+    bindsTo = [ "graphical-session.target" ];
+    before = [ "graphical-session.target" ];
+  };
+
   # === Qtile Window Manager ===
-  
+
   services.xserver.windowManager.qtile = {
     enable = true;
     
