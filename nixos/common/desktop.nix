@@ -69,6 +69,20 @@
   # usados pelo gnome-calendar). Requer que a senha do chaveiro == senha de login.
   security.pam.services.gdm-password.enableGnomeKeyring = true;
 
+  # Portal XDG — corrige o dialog de arquivos (FileChooser) que não abria no
+  # Zen Browser e em outros apps sob a sessão qtile.
+  # O portal escolhe o backend pelo XDG_CURRENT_DESKTOP; como aqui ele é
+  # "qtile:GNOME" (ver sessionVariables acima) e não existe backend próprio do
+  # qtile, o FileChooser ficava sem implementação e o dialog não aparecia.
+  # Fixamos o backend gtk como default (equivale, no NixOS, ao
+  # `pacman -S xdg-desktop-portal-gtk` + restart do serviço citado na thread
+  # https://github.com/zen-browser/desktop/issues/7418).
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
+  };
+
   # Zsh configuration
   programs.zsh = {
     enable = true;
