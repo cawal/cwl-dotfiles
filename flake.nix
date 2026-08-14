@@ -22,7 +22,7 @@
 
     # Herdr: não está no nixpkgs. Flake oficial (herdr.dev), fixado na tag de
     # release. Para atualizar: bump da tag aqui + `nix flake update herdr`.
-    herdr.url = "github:herdrdev/herdr/v0.7.5";
+    herdr.url = "github:herdrdev/herdr/v0.8.0";
     herdr.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix-flatpak: gestão declarativa de remotes/apps Flatpak (o módulo do
