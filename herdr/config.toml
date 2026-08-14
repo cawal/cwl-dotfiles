@@ -12,7 +12,13 @@ pane_history = true
 [keys]
 prefix = "ctrl+a"
 
+[worktrees]
+directory = "~/git/worktrees"
+
 
 [theme]
 name = "dracula"
 auto_switch = false
+
+[ui]
+show_agent_labels_on_pane_borders = false
