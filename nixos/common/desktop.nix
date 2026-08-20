@@ -160,6 +160,8 @@
     zotero                # Reference manager
     homebank              # Finance manager
     calibre               # E-book manager
+    thunderbird            # Email client
+    evolution              # Email client (GNOME)
     
     # Communication
     discord

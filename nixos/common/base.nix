@@ -139,6 +139,7 @@
     # System monitoring
     htop
     iotop
+    btop
     
     # Network tools
     nmap

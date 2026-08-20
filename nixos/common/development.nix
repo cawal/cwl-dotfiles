@@ -43,6 +43,7 @@
     
     # === Cloud & Infrastructure ===
     
+    postgresql
     google-cloud-sdk    # gcloud CLI
     kubectl             # Kubernetes CLI
     kubernetes-helm     # Helm package manager
