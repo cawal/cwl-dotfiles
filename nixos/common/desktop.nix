@@ -3,6 +3,20 @@
 
 { config, pkgs, zen-browser, ... }:
 
+let
+  # Desktop entry para o Quickshell aparecer no rofi/lançadores.
+  # Não faz autostart — só disponibiliza o lançador manual. O Quickshell
+  # carrega automaticamente ~/.config/quickshell/shell.qml (via stow).
+  quickshellLauncher = pkgs.makeDesktopItem {
+    name = "quickshell";
+    desktopName = "Quickshell";
+    comment = "Barra/shell QML (barra lateral do Qtile)";
+    exec = "${pkgs.quickshell}/bin/quickshell";
+    icon = "utilities-terminal";
+    terminal = false;
+    categories = [ "Utility" ];
+  };
+in
 {
   imports = [
     ./fonts.nix   # fontes do sistema (Nerd Fonts, Noto)
@@ -123,6 +137,8 @@
   environment.systemPackages = with pkgs; [
     # Window manager & desktop tools
     rofi                # Application launcher
+    quickshell          # Barra/shell QML (usado como barra lateral do Qtile)
+    quickshellLauncher  # Desktop entry manual do Quickshell (aparece no rofi)
     nitrogen            # Wallpaper manager
     dunst               # Notification daemon
     arandr              # GUI for xrandr
