@@ -658,9 +658,9 @@ configure: link-all
 
 link-all:  link-bin link-conky link-git link-kitty link-neovim link-ranger link-rofi link-tmux link-xresources link-urxvt link-zsh link-zathura
 
-link-everything: link-qtile link-i3 link-rofi link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura link-kitty
+link-everything: link-qtile link-i3 link-rofi link-quickshell link-applications link-app-icons link-zsh link-qutebrowser link-vim link-tmux link-urxvt link-ranger link-xresources link-login-shell link-keyd link-vimium link-dunst link-gtk-3-0 link-neovim link-zathura link-kitty
 
-link-remove-everything: link-qtile-remove link-i3-remove link-rofi-remove link-zsh-remove link-qutebrowser-remove link-vim-remove link-tmux-remove link-urxvt-remove link-ranger-remove link-xresources-remove link-login-shell-remove link-keyd-remove link-vimium-remove link-dunst-remove link-gtk-3-0-remove link-neovim-remove link-zathura-remove
+link-remove-everything: link-qtile-remove link-i3-remove link-rofi-remove link-quickshell-remove link-applications-remove link-app-icons-remove link-zsh-remove link-qutebrowser-remove link-vim-remove link-tmux-remove link-urxvt-remove link-ranger-remove link-xresources-remove link-login-shell-remove link-keyd-remove link-vimium-remove link-dunst-remove link-gtk-3-0-remove link-neovim-remove link-zathura-remove
 
 link-bin:
 	stow -R bin --target=${HOME}/bin/
@@ -718,6 +718,18 @@ link-ranger:
 link-rofi:
 	mkdir -p ${HOME}/.config/rofi/
 	stow -R rofi --target=${HOME}/.config/rofi/
+
+link-quickshell:
+	mkdir -p ${HOME}/.config/quickshell/
+	stow -R quickshell --target=${HOME}/.config/quickshell/
+
+link-applications:
+	mkdir -p ${HOME}/.local/share/applications/
+	stow -R applications --target=${HOME}/.local/share/applications/
+
+link-app-icons:
+	mkdir -p ${HOME}/.local/share/icons/
+	stow -R app-icons --target=${HOME}/.local/share/icons/
 
 link-scim:
 	mkdir -p ${HOME}/.config/sc-im/
@@ -780,6 +792,15 @@ link-i3-remove:
 
 link-rofi-remove:
 	stow -D rofi --target=${HOME}/.config/rofi/
+
+link-quickshell-remove:
+	stow -D quickshell --target=${HOME}/.config/quickshell/
+
+link-applications-remove:
+	stow -D applications --target=${HOME}/.local/share/applications/
+
+link-app-icons-remove:
+	stow -D app-icons --target=${HOME}/.local/share/icons/
 
 link-zsh-remove:
 	stow -D zsh --target=${HOME}
