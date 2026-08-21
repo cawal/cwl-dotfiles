@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LM Studio
+Comment=Desktop app for local LLMs
+Exec=/home/cawal/bin/LM-Studio-0.4.13-1-x64.AppImage --no-sandbox
+Icon=/home/cawal/.local/share/icons/lm-studio.png
+Terminal=false
+Categories=Development;
+StartupNotify=true

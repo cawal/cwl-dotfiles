@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Google AI Studio Apps
+Exec=google-chrome --profile-directory=Default --app-id=bcmmjkglicliekcndffbfgcfopnidllp
+Icon=chrome-bcmmjkglicliekcndffbfgcfopnidllp-Default
+StartupWMClass=crx_bcmmjkglicliekcndffbfgcfopnidllp

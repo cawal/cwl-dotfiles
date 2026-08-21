@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NotebookLM (Turi)
+Exec=google-chrome "--profile-directory=Profile 2" --ignore-profile-directory-if-not-exists "https://notebooklm.google.com/?icid=home_maincta&_gl=1*yp7m07*_up*MQ..*_ga*NDc1NDg0NDk5LjE3NjI1MzU2NTc.*_ga_W0LDH41ZCB*czE3NjczNjI3ODUkbzQkZzEkdDE3NjczNjI3OTQkajUxJGwwJGgw&gclid=EAIaIQobChMItJrGtoPtkQMVPEZIAB3__RQ3EAAYASAAEgIMmvD_BwE&gbraid=0AAAAA-fwSsdkBWwpYMSm7EzQzftuT4xrS&original_referer=https:%2F%2Fnotebooklm.google%23&pli=1"
+Icon=/home/cawal/.config/google-chrome/Profile 2/Web Shortcut Icons/shortcut-a3bcf95aaa9431a844d52fb74721c1d0.png
+URL=https://notebooklm.google.com/?icid=home_maincta&_gl=1*yp7m07*_up*MQ..*_ga*NDc1NDg0NDk5LjE3NjI1MzU2NTc.*_ga_W0LDH41ZCB*czE3NjczNjI3ODUkbzQkZzEkdDE3NjczNjI3OTQkajUxJGwwJGgw&gclid=EAIaIQobChMItJrGtoPtkQMVPEZIAB3__RQ3EAAYASAAEgIMmvD_BwE&gbraid=0AAAAA-fwSsdkBWwpYMSm7EzQzftuT4xrS&original_referer=https:%2F%2Fnotebooklm.google%23&pli=1
+Comment=Open https://notebooklm.google.com/?icid=home_maincta&_gl=1*yp7m07*_up*MQ..*_ga*NDc1NDg0NDk5LjE3NjI1MzU2NTc.*_ga_W0LDH41ZCB*czE3NjczNjI3ODUkbzQkZzEkdDE3NjczNjI3OTQkajUxJGwwJGgw&gclid=EAIaIQobChMItJrGtoPtkQMVPEZIAB3__RQ3EAAYASAAEgIMmvD_BwE&gbraid=0AAAAA-fwSsdkBWwpYMSm7EzQzftuT4xrS&original_referer=https:%2F%2Fnotebooklm.google%23&pli=1 in a new tab in Google Chrome.

@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Gemini (Turi)
+Exec=google-chrome "--profile-directory=Profile 1" --app-id=dcijkiagpcplopahkdcihilflkepgoha
+Icon=chrome-dcijkiagpcplopahkdcihilflkepgoha-Profile_1
+StartupWMClass=crx_dcijkiagpcplopahkdcihilflkepgoha

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Notion - Turi - Tarefas
+Exec=google-chrome-stable --profile-directory=Default --app-id=mfagalkocbdbicdfjdniephmbcngmacm
+Icon=chrome-mfagalkocbdbicdfjdniephmbcngmacm-Default
+StartupWMClass=crx_mfagalkocbdbicdfjdniephmbcngmacm

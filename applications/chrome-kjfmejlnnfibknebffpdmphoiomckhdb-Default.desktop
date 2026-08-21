@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Gemini Notebook
+Exec=google-chrome-stable --profile-directory=Default --app-id=kjfmejlnnfibknebffpdmphoiomckhdb
+Icon=chrome-kjfmejlnnfibknebffpdmphoiomckhdb-Default
+StartupWMClass=crx_kjfmejlnnfibknebffpdmphoiomckhdb

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Voa
+Exec=google-chrome-stable "--profile-directory=Profile 1" --app-id=baciklakfijcbpdgjpcgcajjkhjmdnkm
+Icon=chrome-baciklakfijcbpdgjpcgcajjkhjmdnkm-Profile_1
+StartupWMClass=crx_baciklakfijcbpdgjpcgcajjkhjmdnkm
+Actions=Novo-Atendimento
+
+[Desktop Action Novo-Atendimento]
+Name=Novo Atendimento
+Exec=google-chrome-stable "--profile-directory=Profile 1" --app-id=baciklakfijcbpdgjpcgcajjkhjmdnkm --app-launch-url-for-shortcuts-menu-item=https://app.voa.health/ehr/new

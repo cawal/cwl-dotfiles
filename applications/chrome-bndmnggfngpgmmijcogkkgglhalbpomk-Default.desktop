@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Raindrop.io
+Exec=google-chrome-stable --profile-directory=Default --app-id=bndmnggfngpgmmijcogkkgglhalbpomk
+Icon=chrome-bndmnggfngpgmmijcogkkgglhalbpomk-Default
+StartupWMClass=crx_bndmnggfngpgmmijcogkkgglhalbpomk

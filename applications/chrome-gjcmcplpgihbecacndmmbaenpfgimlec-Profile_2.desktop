@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Turi - Gemini Notebook
+Exec=google-chrome "--profile-directory=Profile 2" --app-id=gjcmcplpgihbecacndmmbaenpfgimlec
+Icon=chrome-gjcmcplpgihbecacndmmbaenpfgimlec-Profile_2
+StartupWMClass=crx_gjcmcplpgihbecacndmmbaenpfgimlec
