@@ -55,7 +55,7 @@
     # === Development Tools ===
     
     # IDEs & Editors
-    vscode              # Visual Studio Code
+    pkgsUnstable.vscode              # Visual Studio Code
     pkgsUnstable.opencode            # OpenCode AI assistant
     pkgsUnstable.opencode-desktop            # OpenCode AI assistant
     claude-code         # Claude Code (Anthropic's AI coding assistant)

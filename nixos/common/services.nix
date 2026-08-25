@@ -45,7 +45,11 @@
 
     # Apps instalados/atualizados declarativamente no rebuild.
     # https://flathub.org/apps/com.redis.RedisInsight
-    packages = [ "com.redis.RedisInsight" ];
+    # https://flathub.org/apps/io.github.alamahant.Asteria
+    packages = [
+      "com.redis.RedisInsight"
+      "io.github.alamahant.Asteria"
+    ];
   };
 
   # === Bluetooth ===

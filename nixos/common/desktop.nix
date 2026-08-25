@@ -1,7 +1,7 @@
 # Desktop environment configuration
 # GNOME, Qtile, Picom, GTK/Qt theming, display tools
 
-{ config, pkgs, zen-browser, ... }:
+{ config, pkgs, zen-browser, pkgsUnstable, ... }:
 
 let
   # Desktop entry para o Quickshell aparecer no rofi/lançadores.
@@ -190,6 +190,7 @@ in
     inkscape              # Vector graphics
     gimp                  # Image editor
     imagemagick           # Image manipulation CLI
+    birdfont              # Font creation
     
     # Browsers
     qutebrowser           # Keyboard-driven browser
@@ -197,5 +198,8 @@ in
     
     # Entertainment
     retroarch             # Emulator frontend
+
+    astrolog              # Astrology software
+    pkgsUnstable.astroterm  # Terminal-based astrology software
   ];
 }
