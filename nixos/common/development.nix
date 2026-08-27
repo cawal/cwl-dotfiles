@@ -1,7 +1,7 @@
 # Development tools and workflow packages
 # Languages, cloud tools, IDEs, databases, containers
 
-{ config, pkgs,  pkgsUnstable, herdr, ... }:
+{ config, pkgs,  pkgsUnstable, herdr, llmfit, ... }:
 
 {
   # Enable Docker
@@ -113,5 +113,8 @@
 
     # Herdr (via flake, ver flake.nix) — não está no nixpkgs
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    # llmfit (via flake, ver flake.nix) — casa modelos LLM ao hardware; TUI + CLI
+    llmfit.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

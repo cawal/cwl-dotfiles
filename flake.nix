@@ -25,13 +25,18 @@
     herdr.url = "github:herdrdev/herdr/v0.8.0";
     herdr.inputs.nixpkgs.follows = "nixpkgs";
 
+    # llmfit: TUI que casa modelos LLM ao hardware. Não está no nixpkgs; usa o
+    # flake oficial. Segue nosso nixpkgs p/ não puxar um segundo nixpkgs no lock.
+    llmfit.url = "github:AlexsJones/llmfit";
+    llmfit.inputs.nixpkgs.follows = "nixpkgs";
+
     # nix-flatpak: gestão declarativa de remotes/apps Flatpak (o módulo do
     # NixOS só liga o daemon; remotes e apps seriam imperativos sem isto).
     # Ver wiki: https://wiki.nixos.org/wiki/Flatpak. Config em common/services.nix.
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr, nix-flatpak }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr, llmfit, nix-flatpak }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -52,7 +57,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr pkgsUnstable; };
+        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -75,7 +80,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr pkgsUnstable; };
+        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix
