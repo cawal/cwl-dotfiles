@@ -756,11 +756,8 @@ def group_deleted(group_name: str):
 
 @hook.subscribe.client_new
 def test1(window):
-   logger.warning("test1 :")
+   logger.warning(f"Window changed: {window.name} ({window.window.get_wm_class()})")
 
-@hook.subscribe.client_new
-def test2(window):
-   logger.warning("test2 :")
 
 
 # import psutil
