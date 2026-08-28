@@ -34,6 +34,9 @@ let
 in
 
 {
+  # Skills de agentes declarativas (modelo nix-flatpak). Ver ./skills.nix.
+  imports = [ ./skills.nix ];
+
   home.username = "cawal";
   home.homeDirectory = "/home/cawal";
 
