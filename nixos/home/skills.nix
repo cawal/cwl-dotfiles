@@ -15,8 +15,8 @@
 
 let
   # Seletor global de agentes: quem recebe as skills por padrão. Espelha o
-  # conjunto que já uso (lastSelectedAgents do lock). Vira valor comma-separated
-  # do --agent. Cada skill pode sobrescrever com o campo `agents`.
+  # conjunto que já uso (lastSelectedAgents do lock). Cada agente vira uma flag
+  # --agent própria (ver addOne). Cada skill pode sobrescrever com `agents`.
   defaultAgents = [
     "claude-code"
     "opencode"
@@ -40,8 +40,9 @@ let
     { name = "vercel-react-best-practices"; source = "vercel-labs/agent-skills"; }
     { name = "web-design-guidelines";       source = "vercel-labs/agent-skills"; }
     { name = "skill-creator";               source = "anthropics/skills"; }
-    { name = "solresol";                    source = "cawal/skill-solresol"; agents = [ "claude-code" ]; }
-    { name = "claude-handoff";                    source = "mattpocock/skills"; agents = [ "claude-code" ]; }
+    { name = "solresol";                    source = "cawal/skill-solresol"; }
+    { name = "herdr";                       source = "herdrdev/herdr"; }
+    { name = "claude-handoff";              source = "mattpocock/skills"; agents = [ "claude-code" ]; }
     { name = "find-skills";                 source = "vercel-labs/skills"; }
     { name = "tlc-spec-driven";             source = "tech-leads-club/agent-skills"; }
     { name = "defuddle";                    source = "kepano/obsidian-skills"; }
@@ -57,13 +58,18 @@ let
   binPath = lib.makeBinPath [ pkgs.nodejs pkgs.git ];
 
   addOne = s:
-    let agents = lib.concatStringsSep "," (s.agents or defaultAgents);
+    let
+      agents = s.agents or defaultAgents;
+      # O --agent NÃO aceita lista comma/space-separated: cada agente vai numa
+      # flag --agent própria (senão o CLI trata a string toda como um nome só e
+      # rejeita com "Invalid agents").
+      agentFlags = lib.concatMapStringsSep " " (a: ''--agent "${a}"'') agents;
     in ''
       if [ ! -e "$HOME/.agents/skills/${s.name}" ]; then
-        echo "skills: instalando ${s.name} (${s.source}) -> ${agents}"
+        echo "skills: instalando ${s.name} (${s.source}) -> ${lib.concatStringsSep "," agents}"
         PATH="${binPath}:$PATH" \
           npx --yes skills add "${s.source}" -s "${s.name}" \
-              --global -y --agent "${agents}" \
+              --global -y ${agentFlags} \
           || echo "skills: FALHA ao instalar ${s.name} (segue o rebuild)"
       fi
     '';
