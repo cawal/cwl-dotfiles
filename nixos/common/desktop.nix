@@ -173,7 +173,7 @@ in
     keepassxc             # Password manager
     libreoffice           # Office suite
     zathura               # PDF viewer
-    zotero                # Reference manager
+    pkgsUnstable.zotero                # Reference manager
     homebank              # Finance manager
     calibre               # E-book manager
     thunderbird            # Email client
