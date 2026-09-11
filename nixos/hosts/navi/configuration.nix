@@ -11,6 +11,7 @@
     # Common configurations shared across all hosts
     ../../common/base.nix
     ../../common/desktop.nix
+    ../../common/granola.nix
     ../../common/development.nix
     ../../common/services.nix
     

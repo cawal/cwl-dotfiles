@@ -133,6 +133,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-electron": {
+      "locked": {
+        "lastModified": 1789006805,
+        "narHash": "sha256-xB8mKMOx1IA9vTDNLmJZ6n4wCMq/cuWBBOzGCRnqxrU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1788179007,
@@ -157,6 +173,7 @@
         "llmfit": "llmfit",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-electron": "nixpkgs-electron",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "zen-browser": "zen-browser"
       }

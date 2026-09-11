@@ -5,6 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Input dedicado só para o Electron 44 (exigido pelo Granola, ver
+    # common/granola.nix). O electron_44 só apareceu num rev recente do unstable,
+    # ausente tanto no estável quanto no rev fixado em nixpkgs-unstable. Não faz
+    # follows para não ser arrastado pelo pin do outro. Bump: nix flake update
+    # nixpkgs-electron.
+    nixpkgs-electron.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # Particionamento declarativo (LVM-on-LUKS, /home separado).
     # Wiring do disko na master p/ ambos os hosts. Ver AGENTS.md → disko.
     disko.url = "github:nix-community/disko";
@@ -36,7 +43,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, disko, home-manager, zen-browser, herdr, llmfit, nix-flatpak }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-electron, disko, home-manager, zen-browser, herdr, llmfit, nix-flatpak }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -47,7 +54,12 @@
         home-manager.users.cawal = import ./nixos/home/cawal.nix;
       };
       pkgsUnstable = import nixpkgs-unstable {
-        system = "x86_64-linux"; 
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+      # Só para o Electron 44 do Granola (ver common/granola.nix).
+      pkgsElectron = import nixpkgs-electron {
+        system = "x86_64-linux";
         config.allowUnfree = true;
       };
     in
@@ -57,7 +69,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable; };
+        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable pkgsElectron; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -80,7 +92,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable; };
+        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable pkgsElectron; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix
