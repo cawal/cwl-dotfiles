@@ -18,7 +18,7 @@ directory = "~/git/worktrees"
 
 
 [theme]
-name = "dracula"
+name = "nord"
 auto_switch = false
 
 [ui]

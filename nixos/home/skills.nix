@@ -37,21 +37,22 @@ let
   # source = "<owner>/<repo>" no GitHub; name = nome da skill (valor do -s, igual
   # ao diretório instalado em ~/.agents/skills/). `agents` omitido => defaultAgents.
   skills = [
-    { name = "vercel-react-best-practices"; source = "vercel-labs/agent-skills"; }
-    { name = "web-design-guidelines";       source = "vercel-labs/agent-skills"; }
-    { name = "skill-creator";               source = "anthropics/skills"; }
-    { name = "solresol";                    source = "cawal/skill-solresol"; }
-    { name = "herdr";                       source = "herdrdev/herdr"; }
     { name = "claude-handoff";              source = "mattpocock/skills"; agents = [ "claude-code" ]; }
-    { name = "find-skills";                 source = "vercel-labs/skills"; }
-    { name = "tlc-spec-driven";             source = "tech-leads-club/agent-skills"; }
     { name = "defuddle";                    source = "kepano/obsidian-skills"; }
+    { name = "easy-bug-reports";            source = "turi-saude/skills"; }
+    { name = "find-skills";                 source = "vercel-labs/skills"; }
+    { name = "herdr";                       source = "herdrdev/herdr"; }
+    { name = "html-artifacts";              source = "cawal/html-effectiveness-skill"; }
     { name = "json-canvas";                 source = "kepano/obsidian-skills"; }
     { name = "obsidian-bases";              source = "kepano/obsidian-skills"; }
     { name = "obsidian-cli";                source = "kepano/obsidian-skills"; }
     { name = "obsidian-markdown";           source = "kepano/obsidian-skills"; }
-    { name = "html-artifacts";              source = "cawal/html-effectiveness-skill"; }
-    { name = "easy-bug-reports";            source = "turi-saude/skills"; }
+    { name = "skill-creator";               source = "anthropics/skills"; }
+    { name = "solresol";                    source = "cawal/skill-solresol"; }
+    { name = "tlc-spec-driven";             source = "tech-leads-club/agent-skills"; }
+    { name = "vercel-react-best-practices"; source = "vercel-labs/agent-skills"; }
+    { name = "web-design-guidelines";       source = "vercel-labs/agent-skills"; }
+    { name = "whatsapp-cloud-api";          source = "bellopushon/whatsapp-cloud-api"; }
   ];
 
   # npx precisa de node + git no PATH durante a ativação (o HM não os expõe).
