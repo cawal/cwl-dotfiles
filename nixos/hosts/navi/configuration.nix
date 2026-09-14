@@ -12,6 +12,7 @@
     ../../common/base.nix
     ../../common/desktop.nix
     ../../common/granola.nix
+    ../../common/raindrop.nix
     ../../common/development.nix
     ../../common/services.nix
     
