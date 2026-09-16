@@ -166,6 +166,8 @@ in
     baobab                # Disk usage analyzer
     nautilus              # File manager
     file-roller           # Archive manager
+    gnome-feeds                # RSS feed reader
+    gpodder               # GNOME podcast client
     
     # Productivity apps
     obsidian              # Note-taking
