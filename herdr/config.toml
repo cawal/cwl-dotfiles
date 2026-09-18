@@ -24,3 +24,20 @@ auto_switch = false
 [ui]
 show_agent_labels_on_pane_borders = false
 agent_panel_sort = "priority"
+
+
+[[keys.command]]
+key = "prefix+ctrl+v"
+type = "popup"
+command = "vi ."
+description = "run vi"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+ctrl+r"
+type = "popup"
+command = "ranger ."
+description = "run ranger"
+width = "80%"
+height = "80%"
