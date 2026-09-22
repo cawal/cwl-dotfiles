@@ -35,7 +35,9 @@ in
 
 {
   # Skills de agentes declarativas (modelo nix-flatpak). Ver ./skills.nix.
-  imports = [ ./skills.nix ];
+  # firefox-split: dois Firefox (Pessoal/Trabalho) + roteador de OAuth por janela
+  # em foco. Ver ./firefox-split.nix (define firefox-router.desktop, usado abaixo).
+  imports = [ ./skills.nix ./firefox-split.nix ];
 
   home.username = "cawal";
   home.homeDirectory = "/home/cawal";
@@ -123,19 +125,22 @@ in
     enable = true;
 
     defaultApplications = {
-      # --- Web / browser (Zen) ---
-      "text/html" = "zen.desktop";
-      "application/xhtml+xml" = "zen.desktop";
-      "x-scheme-handler/http" = "zen.desktop";
-      "x-scheme-handler/https" = "zen.desktop";
-      "x-scheme-handler/chrome" = "zen.desktop";
-      "x-scheme-handler/about" = "zen.desktop";    # era firefox_firefox (inexistente)
-      "x-scheme-handler/unknown" = "zen.desktop";  # era firefox_firefox (inexistente)
-      "application/x-extension-htm" = "zen.desktop";
-      "application/x-extension-html" = "zen.desktop";
-      "application/x-extension-shtml" = "zen.desktop";
-      "application/x-extension-xhtml" = "zen.desktop";
-      "application/x-extension-xht" = "zen.desktop";
+      # --- Web / browser (Firefox via roteador de contexto) ---
+      # Aponta para firefox-router.desktop (ver ./firefox-split.nix): abre a URL
+      # no Firefox Pessoal ou Trabalho conforme qual foi usado mais recentemente
+      # (senão, Pessoal). O Zen continua instalado, só deixou de ser o padrão.
+      "text/html" = "firefox-router.desktop";
+      "application/xhtml+xml" = "firefox-router.desktop";
+      "x-scheme-handler/http" = "firefox-router.desktop";
+      "x-scheme-handler/https" = "firefox-router.desktop";
+      "x-scheme-handler/chrome" = "firefox-router.desktop";
+      "x-scheme-handler/about" = "firefox-router.desktop";
+      "x-scheme-handler/unknown" = "firefox-router.desktop";
+      "application/x-extension-htm" = "firefox-router.desktop";
+      "application/x-extension-html" = "firefox-router.desktop";
+      "application/x-extension-shtml" = "firefox-router.desktop";
+      "application/x-extension-xhtml" = "firefox-router.desktop";
+      "application/x-extension-xht" = "firefox-router.desktop";
 
       # --- Imagens (Loupe; era eog, que não existe mais no GNOME atual) ---
       "image/png" = "org.gnome.Loupe.desktop";

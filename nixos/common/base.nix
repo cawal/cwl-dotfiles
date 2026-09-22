@@ -163,6 +163,12 @@
   # Firefox managed by the NixOS module (generates policies.json, native
   # messaging hosts) — matches the monolith's `programs.firefox.enable`.
   programs.firefox.enable = true;
+  # O padrão de http/https é o firefox-router.desktop (ver home/firefox-split.nix),
+  # não o firefox.desktop — então o Firefox SEMPRE se veria como "não-padrão" e
+  # tentaria se autopromover (falhando no mimeapps.list read-only do HM) e mostraria
+  # o banner. Desligamos a checagem: o roteador é o padrão por design. Vale para as
+  # duas instâncias (Pessoal/Trabalho), pois é policy no nível da instalação.
+  programs.firefox.policies.DontCheckDefaultBrowser = true;
   programs.neovim = {
     enable = true;
     defaultEditor = true;
