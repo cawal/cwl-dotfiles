@@ -58,7 +58,7 @@
     pkgsUnstable.vscode              # Visual Studio Code
     pkgsUnstable.opencode            # OpenCode AI assistant
     pkgsUnstable.opencode-desktop            # OpenCode AI assistant
-    claude-code         # Claude Code (Anthropic's AI coding assistant)
+    pkgsUnstable.claude-code   # Claude Code (Anthropic) — no unstable p/ acompanhar os releases quase-diários
     lmstudio            # GUI para rodar LLMs locais (substitui AppImage em ~/bin)
 
     # API Testing
