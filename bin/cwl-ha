@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# cwl-ha — liga/desliga o Home Assistant sob demanda no fi.
+#
+# O serviço não sobe no boot (autoStart = false em nixos/common/home-assistant.nix),
+# então este script é o interruptor. Ver docs/home-assistant.md.
+
+set -euo pipefail
+
+UNIT="docker-home-assistant.service"
+CONTAINER="home-assistant"
+URL="http://localhost:8123"
+
+usage() {
+	cat <<-EOF
+		Uso: $(basename "$0") <comando>
+
+		  start     liga o Home Assistant (1º start baixa a imagem, ~1 GiB)
+		  stop      desliga e libera a RAM
+		  restart   reinicia (use após bump de imagem ou resume estranho)
+		  status    estado do serviço + memória livre da máquina
+		  logs      acompanha o log em tempo real (Ctrl-C sai)
+		  top       consumo atual do container e o teto configurado
+		  open      abre $URL no navegador
+
+		Estado agora: $(systemctl is-active "$UNIT" 2>/dev/null || true)
+	EOF
+}
+
+is_running() {
+	systemctl is-active --quiet "$UNIT"
+}
+
+case "${1:-}" in
+start)
+	sudo systemctl start "$UNIT"
+	echo "Home Assistant subindo. UI em $URL (a primeira inicialização demora ~1 min)."
+	;;
+stop)
+	sudo systemctl stop "$UNIT"
+	echo "Home Assistant parado."
+	free -h | head -2
+	;;
+restart)
+	sudo systemctl restart "$UNIT"
+	echo "Home Assistant reiniciado."
+	;;
+status)
+	systemctl status --no-pager "$UNIT" || true
+	echo
+	free -h | head -2
+	;;
+logs)
+	journalctl -u "$UNIT" -f
+	;;
+top)
+	if is_running; then
+		docker stats --no-stream "$CONTAINER"
+	else
+		echo "Home Assistant está parado (sem consumo)."
+	fi
+	;;
+open)
+	xdg-open "$URL" >/dev/null 2>&1 &
+	;;
+*)
+	usage
+	;;
+esac

@@ -14,6 +14,7 @@
     ../../common/granola.nix
     ../../common/raindrop.nix
     ../../common/zotero-webdav.nix   # WebDAV p/ file sync do Zotero (só no fi)
+    ../../common/home-assistant.nix  # Home Assistant on-demand (só no fi)
     ../../common/development.nix
     ../../common/services.nix
     

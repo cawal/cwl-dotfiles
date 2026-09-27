@@ -14,7 +14,13 @@
     autoPrune = {
       enable = true;
       dates = "weekly";      # calendário systemd; troque p/ "daily" se acumular rápido
-      flags = [ "--all" ];   # remove imagens não usadas (não só dangling). NÃO mexe em volumes.
+      # Só camadas dangling. NÃO use "--all": ele remove toda imagem sem
+      # container associado, e o Home Assistant roda sob demanda — com o
+      # serviço parado o oci-containers apaga o container (autoRemoveOnStop),
+      # a imagem fica órfã e a poda semanal a deletava, forçando re-download
+      # de ~1 GiB no start seguinte. Limpeza agressiva vira manual:
+      #   docker system prune -a
+      flags = [ ];           # NÃO mexe em volumes.
     };
   };
 

@@ -35,9 +35,14 @@ Definidos em `nixos/common/*`. Portas abertas no firewall:
 |    22 |  TCP  | OpenSSH               | `common/base.nix`          | Só usuário `cawal`, root off |
 |  5353 |  UDP  | Avahi/mDNS            | `common/base.nix`          | Publica `fi.local`           |
 |  7777 |  TCP  | **WebDAV (Zotero)**   | `common/zotero-webdav.nix` | nginx + módulo dav           |
+|  8123 |  TCP  | Home Assistant        | `common/home-assistant.nix` | **sob demanda** (não sobe no boot) |
 |  8384 |  TCP  | Syncthing (Web UI)    | `common/services.nix`      | `0.0.0.0:8384`               |
 | 22000 |  TCP  | Syncthing (sync)      | `common/services.nix`      | `openDefaultPorts`           |
 | 21027 |  UDP  | Syncthing (discovery) | `common/services.nix`      | `openDefaultPorts`           |
+
+> O **Home Assistant** (`docs/home-assistant.md`) é o único serviço desta lista
+> que roda **sob demanda**: a porta fica aberta no firewall, mas o serviço só
+> existe depois de um `cwl-ha start`. Todos os demais sobem no boot.
 
 ### Topologia de rede
 
@@ -269,7 +274,8 @@ sudo systemctl reload nginx
 | Arquivo                            | Papel                                    |
 | ---------------------------------- | ---------------------------------------- |
 | `nixos/common/zotero-webdav.nix`   | Módulo do servidor WebDAV (nginx + dav)  |
-| `nixos/hosts/fi/configuration.nix` | Importa o módulo (só no `fi`)            |
+| `nixos/common/home-assistant.nix`  | Home Assistant on-demand (só `fi`)       |
+| `nixos/hosts/fi/configuration.nix` | Importa os módulos exclusivos do `fi`    |
 | `nixos/common/services.nix`        | Syncthing, firewall, serviços de sistema |
 | `nixos/common/base.nix`            | Rede, SSH, Avahi/mDNS                    |
 | `flake.nix`                        | Define os hosts `fi` e `navi`            |
