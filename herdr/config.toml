@@ -18,11 +18,11 @@ detach = "prefix+d"
 reload_config = "prefix+r"
 goto = "ctrl+g"
 workspace_picker = ["prefix+w", "alt+w"]
-split_vertical = ["prefix+|", "ctrl+d"]
-split_horizontal = ["prefix+-", "ctrl+shift+d"]
+split_vertical = ["prefix+|", "prefix+v"]
+split_horizontal = ["prefix+-", "prefix+h"]
 zoom = ["prefix+z", "alt+z"]
 resize_mode = "prefix+,"
-toggle_sidebar = "ctrl+shift+b"
+toggle_sidebar = "prefix+s"
 copy_mode = "alt+enter"
 
 # Navigation
@@ -37,7 +37,7 @@ next_workspace = ["ctrl+alt+down"]
 rename_workspace = "alt+r"
 new_tab = "ctrl+t"
 rename_tab = "ctrl+r"
-close_pane = "ctrl+w"
+close_pane = "prefix+w"
 
 [worktrees]
 directory = "~/git/worktrees"
