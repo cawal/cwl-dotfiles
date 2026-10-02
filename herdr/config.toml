@@ -11,7 +11,33 @@ pane_history = true
 kitty_graphics = true
 
 [keys]
-prefix = "ctrl+a"
+prefix = "ctrl+space"
+# General
+settings = "prefix+,"
+detach = "prefix+d"
+reload_config = "prefix+r"
+goto = "ctrl+g"
+workspace_picker = ["prefix+w", "alt+w"]
+split_vertical = ["prefix+|", "ctrl+d"]
+split_horizontal = ["prefix+-", "ctrl+shift+d"]
+zoom = ["prefix+z", "alt+z"]
+resize_mode = "prefix+,"
+toggle_sidebar = "ctrl+shift+b"
+copy_mode = "alt+enter"
+
+# Navigation
+focus_agent = "ctrl+alt+1..9"
+switch_tab = "ctrl+1..9"
+switch_workspace = "alt+1..9"
+last_pane = "alt+tab"
+previous_workspace = ["ctrl+alt+up"]
+next_workspace = ["ctrl+alt+down"]
+
+# Workspace and tab management
+rename_workspace = "alt+r"
+new_tab = "ctrl+t"
+rename_tab = "ctrl+r"
+close_pane = "ctrl+w"
 
 [worktrees]
 directory = "~/git/worktrees"
