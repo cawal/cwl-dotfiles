@@ -1,0 +1,219 @@
+/**
+ * cwl-window.rasi — seletor de janelas em tela cheia, lista centralizada.
+ *
+ * Baseado em adi1090x/rofi (launchers/type-4/style-6), com as cores e fontes
+ * embutidas para não depender dos arquivos shared/ do repositório original.
+ *
+ * Uso: rofi -show-icons -modi window -show window -theme cwl-window
+ */
+
+/*****----- Configuration -----*****/
+configuration {
+    show-icons:                  true;
+    display-window:              "Window :";
+    window-format:               "{w}  ·  {c}  ·  {t}";
+}
+
+/*****----- Global Properties -----*****/
+* {
+    /* Paleta onedark (mesma do tema de referência) */
+    background:                  #1E2127FF;
+    background-alt:              #282B31FF;
+    foreground:                  #FFFFFFFF;
+    selected:                    #61AFEFFF;
+    active:                      #98C379FF;
+    urgent:                      #E06C75FF;
+
+    border-colour:               var(selected);
+    handle-colour:               var(selected);
+    background-colour:           var(background);
+    foreground-colour:           var(foreground);
+    alternate-background:        var(background-alt);
+    normal-background:           var(background);
+    normal-foreground:           var(foreground);
+    urgent-background:           var(urgent);
+    urgent-foreground:           var(background);
+    active-background:           var(active);
+    active-foreground:           var(background);
+    selected-normal-background:  var(selected);
+    selected-normal-foreground:  var(background);
+    selected-urgent-background:  var(active);
+    selected-urgent-foreground:  var(background);
+    selected-active-background:  var(urgent);
+    selected-active-foreground:  var(background);
+
+    font:                        "Noto Sans 14";
+    font:                        "Hack Nerd Font 11";
+}
+
+/*****----- Main Window -----*****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  true;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    cursor:                      "default";
+    background-color:            @background-colour;
+}
+
+/*****----- Main Box -----*****/
+/* O padding é o que centraliza o conteúdo: lateral define a largura da lista
+   (25% de cada lado => 50% da tela), topo define a altura do bloco. */
+mainbox {
+    enabled:                     true;
+    spacing:                     20px;
+    margin:                      0px;
+    padding:                     25% 25% 25% 25%;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            @background-colour;
+    text-color:                  @foreground-colour;
+    children:                    [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+entry {
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "";
+    placeholder-color:           inherit;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       10;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                false;
+    fixed-columns:               true;
+
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            transparent;
+    text-color:                  @foreground-colour;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     5px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            transparent;
+    text-color:                  @foreground-colour;
+    cursor:                      pointer;
+}
+element normal.normal {
+    background-color:            var(normal-background);
+    text-color:                  var(normal-foreground);
+}
+element normal.urgent {
+    background-color:            var(urgent-background);
+    text-color:                  var(urgent-foreground);
+}
+element normal.active {
+    background-color:            var(active-background);
+    text-color:                  var(active-foreground);
+}
+element selected.normal {
+    background-color:            var(alternate-background);
+    text-color:                  var(foreground-colour);
+}
+element selected.urgent {
+    background-color:            var(selected-urgent-background);
+    text-color:                  var(selected-urgent-foreground);
+}
+element selected.active {
+    background-color:            var(selected-active-background);
+    text-color:                  var(selected-active-foreground);
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        24px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/*****----- Message -----*****/
+message {
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            transparent;
+    text-color:                  @foreground-colour;
+}
+textbox {
+    padding:                     8px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            @alternate-background;
+    text-color:                  @foreground-colour;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    highlight:                   none;
+    placeholder-color:           @foreground-colour;
+    blink:                       true;
+    markup:                      true;
+}
+error-message {
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @border-colour;
+    background-color:            @background-colour;
+    text-color:                  @foreground-colour;
+}

@@ -50,6 +50,7 @@ monitors = get_monitors()
 logger.warning(monitors)
 
 rofi_full_screen_theme = os.path.expanduser("~/.config/rofi/launchpad")
+rofi_window_theme = os.path.expanduser("~/.config/rofi/cwl-window")
 
 
 def add_new_group(qtile, group_name):
@@ -284,15 +285,24 @@ keys = [
         desc="Launch applications",
     ),
     Key(win_key, "w",
-        lazy.spawn("rofi -show-icons -modi window -show window"),
+        lazy.spawn(
+            "rofi -show-icons -modi window -show window"
+            f" -theme {rofi_window_theme}"
+        ),
         desc="Switch between windows",
     ),
     Key(win_key, "Space",
-        lazy.spawn("rofi -show-icons -modi window -show window"),
+        lazy.spawn(
+            "rofi -show-icons -modi window -show window"
+            f" -theme {rofi_window_theme}"
+        ),
         desc="Switch between windows",
     ),
     Key(win_key, "f",
-        lazy.spawn("rofi -show-icons -modi window -show window"),
+        lazy.spawn(
+            "rofi -show-icons -modi window -show window"
+            f" -theme {rofi_window_theme}"
+        ),
         desc="Switch between windows",
     ),
     Key(win_key, "bracketleft", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), desc="Raise volume"),

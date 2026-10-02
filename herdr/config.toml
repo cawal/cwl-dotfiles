@@ -28,6 +28,8 @@ copy_mode = "alt+enter"
 # Navigation
 focus_agent = "ctrl+alt+1..9"
 switch_tab = "ctrl+1..9"
+next_tab = "prefix+tab"
+previous_tab = "prefix+shift+tab"
 switch_workspace = "alt+1..9"
 last_pane = "alt+tab"
 previous_workspace = ["ctrl+alt+up"]
