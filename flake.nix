@@ -29,7 +29,7 @@
 
     # Herdr: não está no nixpkgs. Flake oficial (herdr.dev), fixado na tag de
     # release. Para atualizar: bump da tag aqui + `nix flake update herdr`.
-    herdr.url = "github:herdrdev/herdr/v0.8.0";
+    herdr.url = "github:herdrdev/herdr/v0.9.3";
     herdr.inputs.nixpkgs.follows = "nixpkgs";
 
     # llmfit: TUI que casa modelos LLM ao hardware. Não está no nixpkgs; usa o
