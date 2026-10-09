@@ -65,6 +65,9 @@
     pkgsUnstable.opencode            # OpenCode AI assistant
     pkgsUnstable.opencode-desktop            # OpenCode AI assistant
     pkgsUnstable.claude-code   # Claude Code (Anthropic) — no unstable p/ acompanhar os releases quase-diários
+    #pkgsUnstable.antigravity-ide          # AntiGravity IDE (substitui AppImage em ~/bin) 
+
+
     lmstudio            # GUI para rodar LLMs locais (substitui AppImage em ~/bin)
 
     # API Testing
@@ -85,6 +88,7 @@
     drawio              # Editor de diagramas draw.io (substitui AppImage em ~/bin)
     graphviz            # Graph visualization (PlantUML dependency)
     pandoc              # Universal document converter
+    #texlive              # LaTeX typesetting system
     languagetool        # Corretor gramatical (substitui LanguageTool-4.3 em ~/bin)
 
     
@@ -116,6 +120,7 @@
     trash-cli           # Safe rm alternative
     pamtester           # PAM authentication tester
     gpick               # Color picker
+    poppler-utils        # PDF utilities (pdftotext, pdfinfo, etc.)
 
     # Herdr (via flake, ver flake.nix) — não está no nixpkgs
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
