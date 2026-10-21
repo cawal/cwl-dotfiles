@@ -54,7 +54,7 @@ core-system: keyd curl htop version-control stow drivers network-manager-applet
 
 desktop-env: qtile i3 rofi compositor wallpaper icon-themes gtk-themes lockscreen notifications
 
-terminal-env: zsh tmux kitty terminal tmate
+terminal-env: zsh tmux kitty terminal
 
 development: vi node-js nix docker github-cli build-tools shellcheck web-service-development-tools language-servers
 
@@ -255,9 +255,6 @@ kitty:
 tmux:
 	${INSTALL} tmux
 	mv ~/.tmux/ ~/tmux.bak || true
-
-tmate:
-	${INSTALL} tmate
 
 
 # ============================================================================

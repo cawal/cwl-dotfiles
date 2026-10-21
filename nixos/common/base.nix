@@ -1,7 +1,7 @@
 # Base system configuration shared across all hosts
 # Core settings: bootloader, networking, locale, users, system packages
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgsUnstable, ... }:
 
 {
   # Bootloader - systemd-boot with EFI
@@ -128,7 +128,6 @@
     # Terminal & multiplexer
     kitty               # GPU-accelerated terminal
     tmux                # Terminal multiplexer
-    tmate               # Terminal sharing
     zsh                 # Shell
     
     # File management
@@ -163,6 +162,18 @@
   # Firefox managed by the NixOS module (generates policies.json, native
   # messaging hosts) — matches the monolith's `programs.firefox.enable`.
   programs.firefox.enable = true;
+  # Firefox do unstable. O estável 26.05 (pin de 2026-07-08) está em 152.0.5 e o
+  # upstream já vai em 158 — seis majors de correções de segurança num navegador.
+  #
+  # Por que só o pacote e não um bump do pin estável: o bump completo pede 12.1 GiB
+  # de download e ~34.6 GiB descompactados, e o `/` (pool-root, 98G) não aguenta as
+  # duas gerações do switch — testado em 2026-10-21, encheu o disco. Trocar só este
+  # pacote custa 476 MiB. Ver rootSize em hosts/fi/disko.nix se um dia a raiz crescer.
+  #
+  # Continua sendo o pacote DO MÓDULO, então policies.json e native messaging seguem
+  # valendo, e os wrappers de firefox-split.nix (que chamam `firefox` do PATH) pegam
+  # este binário sem virar um Firefox paralelo.
+  programs.firefox.package = pkgsUnstable.firefox;
   # O padrão de http/https é o firefox-router.desktop (ver home/firefox-split.nix),
   # não o firefox.desktop — então o Firefox SEMPRE se veria como "não-padrão" e
   # tentaria se autopromover (falhando no mimeapps.list read-only do HM) e mostraria
