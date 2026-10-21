@@ -1,4 +1,4 @@
-// https://opencode.ai/docs/config/
+// https://opencode.ai/v2/docs/config/
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "plan",
@@ -45,19 +45,34 @@
       "url": "https://mcp.notion.com/mcp"
     }
   },
-  "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md","CLAUDE.md"],
-  "permission": {
-    "bash": "allow",
-    "edit": "allow",
-    "write": "allow",
-    "read": "allow",
-    "grep": "allow",
-    "glob": "allow",
-    "list": "allow",
-    "patch": "allow",
-    "todowrite": "allow",
-    "todoread": "allow",
-    "webfetch": "allow",
-    "question": "allow",
-  },
+  "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md", "CLAUDE.md"],
+
+  // Migrado do mapa V1 `permission` para o array ordenado V2 `permissions`
+  // (ver https://opencode.ai/v2/docs/migrate-v1/). Renomeações: bash -> shell,
+  // write/patch -> edit (fundidos numa regra só). A última regra que casa vence,
+  // então exceções mais específicas entram DEPOIS da regra ampla.
+  //
+  // NÃO misturar com o `permission` do V1: o V2 tem precedência sobre a forma
+  // antiga quando as duas definem o mesmo valor canônico, e o resultado seria
+  // perder estes allows silenciosamente.
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "webfetch", "resource": "*", "effect": "allow" },
+    { "action": "question", "resource": "*", "effect": "allow" },
+
+    // O V1 PERGUNTAVA antes de acessar caminho fora do projeto; o V2 LIBERA por
+    // padrão. Esta regra restaura o comportamento antigo — tirar daqui só se
+    // quiser mesmo que o agente ande fora do projeto sem avisar.
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ],
+
+  // Os todos saem desligados por padrão no V2; isto repõe o que o `todowrite`/
+  // `todoread` = allow davam no V1. Flag experimental: pode mudar de nome.
+  "experimental": {
+    "todo": true
+  }
 }
