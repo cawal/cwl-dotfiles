@@ -156,14 +156,15 @@ psql "$(supabase status -o json | jq -r .DB_URL)" -f /home/cawal/supabase-test-d
 
 ## Passo 7 — habilitar as atualizações automáticas
 
-Com a raiz em ~196G úteis, as duas closures passam a caber com folga. Em
-`nixos/common/security.nix`, descomente o bloco de `system.autoUpgrade`:
+Com a raiz em 197G úteis e 128G livres, as duas closures passam a caber com
+folga. O bloco já está habilitado em `nixos/common/security.nix`:
 
 ```nix
 system.autoUpgrade = {
   enable = true;
   flake = "/home/cawal/git/cwl-dotfiles#fi";
   operation = "boot";          # ativa no próximo boot, sem switch ao vivo
+  upgrade = false;             # `--upgrade` é flag de canal, inútil com flake
   dates = "Mon 03:00";
   randomizedDelaySec = "45min";
   persistent = true;
@@ -171,7 +172,13 @@ system.autoUpgrade = {
 };
 ```
 
-e então:
+O comando resultante, conferido por `nix eval` antes do switch:
+
+```
+nixos-rebuild boot --refresh --flake /home/cawal/git/cwl-dotfiles#fi
+```
+
+Aplique com:
 
 ```bash
 sudo nixos-rebuild switch --flake /home/cawal/git/cwl-dotfiles#fi

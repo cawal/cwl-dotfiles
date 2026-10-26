@@ -51,43 +51,64 @@
 
   # === Atualizações automáticas (equivalente ao Software Update) ===
   #
-  # O equivalente NixOS do unattended-upgrades é `system.autoUpgrade`, e ele
-  # está DESLIGADO de propósito: o pool-root de fi não cabe o que um bump do
-  # pin estável produz. Um switch é atômico, então as duas closures coexistem
-  # (~40 GiB cada em 98 GiB de LV); testado em 2026-10-21, encheu o disco e o
-  # build falhou. Ligar autoUpgrade aqui hoje significaria um timer semanal que
-  # enche a raiz sem supervisão.
-  #
-  # Para ligar isto (e fechar o item do checklist de SI de verdade), falta UM
-  # passo manual: encolher o pool-docker e crescer o pool-root para 200 GiB.
-  # O procedimento está escrito e revisado em docs/RESIZE-LV-FI.md, e o
-  # hosts/fi/disko.nix JÁ declara o layout de destino (200G/150G) — o disko não
-  # redimensiona disco vivo, então a declaração está lá para a reinstalação
-  # futura, e o redimensionamento em si é o documento.
-  #
-  # Feito o resize, descomente o bloco abaixo e rode o switch:
-  #
-  #   system.autoUpgrade = {
-  #     enable = true;
-  #     flake = "/home/cawal/git/cwl-dotfiles#fi";
-  #     operation = "boot";      # nova geração no próximo boot, sem switch
-  #     dates = "Mon 03:00";     # ao vivo numa máquina em uso
-  #     randomizedDelaySec = "45min";
-  #     persistent = true;
-  #     allowReboot = false;
-  #   };
-  #
-  # Assim, SEM `flags`, o timer reconstrói o que já está no lock — ou seja, não
-  # atualiza nada. Isso é deliberadamente útil na primeira semana: prova que o
-  # timer roda e constrói sem encher a raiz. Para atualizar de fato, acrescente
-  # `flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ]`, ciente de que
-  # (a) --update-input está deprecado no Nix e (b) o timer passa a fazer commit
-  # como root no repositório. As ressalvas estão no Passo 7 do documento.
-  #
-  # Enquanto isso, o que ESTÁ automatizado e é auditável:
-  #   - assinaturas de antimalware: timer clamav-freshclam (horário);
-  #   - firmware: services.fwupd (ver common/services.nix);
-  #   - coleta de lixo do store: nix.gc semanal (ver common/base.nix);
-  #   - o pin das dependências é versionado em git: `git log -- flake.lock`
-  #     mostra a cadência real de atualização.
+  # Equivalente NixOS do unattended-upgrades. Ficou desligado até 2026-10-26
+  # por falta de espaço, não por escolha: um switch é atômico, então a closure
+  # atual e a nova coexistem (~40 GiB cada), o que não cabia nos 98 GiB úteis
+  # da raiz — testado em 2026-10-21, encheu o disco e o build falhou. Com o
+  # resize dos LVs (raiz em 197 GiB úteis, 128 livres) isso deixou de valer.
+  # Ver docs/RESIZE-LV-FI.md.
+  system.autoUpgrade = {
+    enable = true;
+    flake = "/home/cawal/git/cwl-dotfiles#fi";
+
+    # `boot`, não `switch`: a geração nova é construída e vira o padrão no
+    # próximo boot, em vez de trocar o sistema por baixo de uma máquina em uso
+    # às 3 da manhã. Reverter é escolher a geração anterior no menu de boot.
+    operation = "boot";
+
+    # O módulo acrescenta `--upgrade` ao nixos-rebuild quando `channel` é null,
+    # e isso é um flag de CANAIS (nix-channel --update) que nada faz com flake —
+    # a opção existe justamente para desligá-lo nesse caso. Sem isto o comando
+    # semanal carrega um flag inútil, no melhor caso ignorado.
+    upgrade = false;
+
+    dates = "Mon 03:00";
+    randomizedDelaySec = "45min";
+
+    # Sem isto, uma semana em que a máquina estivesse desligada no horário
+    # seria simplesmente perdida.
+    persistent = true;
+
+    # Nada de reboot automático numa estação de trabalho: quem reinicia é o
+    # operador, e é no reboot que a geração nova entra.
+    allowReboot = false;
+
+    # NÃO há `flags` aqui, e isso é deliberado nesta primeira fase: sem elas o
+    # timer reconstrói o que já está no flake.lock, ou seja, NÃO atualiza nada.
+    # Serve para provar que o timer roda, constrói e gera a geração sem encher
+    # a raiz — risco zero. Para passar a atualizar de fato:
+    #
+    #   flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    #
+    # ciente de duas coisas: (a) `--update-input` está deprecado no Nix (2.34.7
+    # aqui, ainda aceita) em favor de `nix flake update <input>`, e se cair a
+    # alternativa é um preStart rodando isso no repositório; (b) com
+    # `--commit-lock-file` o timer passa a fazer commit COMO ROOT no repo, que
+    # precisa estar limpo no horário agendado. Passo 7 de docs/RESIZE-LV-FI.md.
+  };
+
+  # O nix.gc semanal com `--delete-older-than 30d` (ver common/base.nix) deve
+  # ser MANTIDO como está, não apertado: atualização não supervisionada é
+  # justamente a situação em que se quer uma geração antiga para dar rollback.
+  # Guardar histórico é barato — 6 gerações ocupavam 38,8–39,6 GiB num store de
+  # 43 GiB (medido em 2026-10-21), porque compartilham quase tudo.
+
+  # Resumo do que está automatizado e é auditável por timer systemd:
+  #   - sistema: nixos-upgrade.timer (semanal, geração nova no próximo boot);
+  #   - assinaturas de antimalware: clamav-freshclam.timer (horário);
+  #   - varredura de antimalware: clamdscan.timer (semanal);
+  #   - firmware: fwupd-refresh.timer (ver common/services.nix);
+  #   - coleta de lixo do store: nix-gc.timer (ver common/base.nix).
+  # A cadência das atualizações de pacote segue versionada em git:
+  # `git log -- flake.lock`.
 }
