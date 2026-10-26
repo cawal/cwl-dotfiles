@@ -83,19 +83,43 @@
     # operador, e é no reboot que a geração nova entra.
     allowReboot = false;
 
-    # NÃO há `flags` aqui, e isso é deliberado nesta primeira fase: sem elas o
-    # timer reconstrói o que já está no flake.lock, ou seja, NÃO atualiza nada.
-    # Serve para provar que o timer roda, constrói e gera a geração sem encher
-    # a raiz — risco zero. Para passar a atualizar de fato:
+    # Sem `flags` o timer reconstruiria o lock atual, ou seja, não atualizaria
+    # NADA — e aí o `operation = "boot"` acima não teria update nenhum para
+    # deixar pronto. Estas flags são o que faz o mecanismo de fato avançar.
     #
-    #   flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    # `--update-input` está deprecado no Nix (2.34.7 aqui, ainda aceita) em
+    # favor de `nix flake update <input>`. Se um dia cair, a substituição é um
+    # preStart rodando `nix flake update` no repositório.
     #
-    # ciente de duas coisas: (a) `--update-input` está deprecado no Nix (2.34.7
-    # aqui, ainda aceita) em favor de `nix flake update <input>`, e se cair a
-    # alternativa é um preStart rodando isso no repositório; (b) com
-    # `--commit-lock-file` o timer passa a fazer commit COMO ROOT no repo, que
-    # precisa estar limpo no horário agendado. Passo 7 de docs/RESIZE-LV-FI.md.
+    # Os DOIS pins são atualizados de propósito. O `nixpkgs` estável move o
+    # sistema; o `nixpkgs-unstable` move o firefox (ver common/base.nix), que é
+    # o componente de maior exposição da máquina — deixá-lo de fora esvaziaria
+    # o sentido de segurança disto. O herdr não se move: está pinado por tag.
+    # SEM `--commit-lock-file`, por escolha: o nix atualiza o flake.lock na
+    # árvore de trabalho e deixa o bump como diff NÃO commitado, para você
+    # revisar e commitar na sua cadência. O build da semana usa o lock novo de
+    # todo modo (o nix constrói da árvore suja, avisando que ela está suja).
+    #
+    # O que se paga por isso: entre o disparo do timer e o seu commit, o
+    # sistema instalado não corresponde a nenhum commit. A amarração
+    # commit↔sistema volta quando você commita o lock.
+    #
+    # O ganho é não ter o root rodando `git commit` aqui dentro — o git recusa
+    # isso num repositório de outro dono ("detected dubious ownership"), e a
+    # exceção que ele abre para `sudo git` depende de SUDO_UID, que não existe
+    # num serviço systemd. Evitar o commit evita a classe inteira do problema.
+    flags = [
+      "--update-input" "nixpkgs"
+      "--update-input" "nixpkgs-unstable"
+    ];
   };
+
+  # O nix reescreve o flake.lock rodando como root, e o arquivo novo nasce
+  # dele. Sem devolver a posse, o próximo `nix flake update` que VOCÊ rodar
+  # falha por permissão — e descobrir isso num momento ruim é pior que uma
+  # linha aqui. O `-` faz o systemd ignorar falha (ex.: lock inalterado).
+  systemd.services.nixos-upgrade.serviceConfig.ExecStartPost =
+    "-${pkgs.coreutils}/bin/chown cawal:users /home/cawal/git/cwl-dotfiles/flake.lock";
 
   # O nix.gc semanal com `--delete-older-than 30d` (ver common/base.nix) deve
   # ser MANTIDO como está, não apertado: atualização não supervisionada é

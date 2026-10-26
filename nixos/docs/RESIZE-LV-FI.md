@@ -185,21 +185,40 @@ sudo nixos-rebuild switch --flake /home/cawal/git/cwl-dotfiles#fi
 systemctl list-timers | grep nixos-upgrade
 ```
 
-Três ressalvas que valem a leitura antes de ligar:
+As `flags` são o que faz o timer de fato **avançar as versões** — sem elas ele
+reconstruiria o lock atual e o `operation = "boot"` não teria update nenhum
+para deixar pronto:
 
-1. **Assim, sem `flags`, o timer reconstrói o que já está no lock — ou seja, não
-   atualiza nada.** Isso é útil de propósito na primeira semana: valida que o
-   timer roda, constrói e gera a geração sem encher o disco, com risco zero.
-   Para passar a atualizar de verdade, acrescente
-   `flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ]`.
-2. `--update-input` está **deprecado** no Nix (hoje 2.34.7 aqui, ainda aceita) em
-   favor de `nix flake update <input>`. Se um dia parar de funcionar, a
-   alternativa é um `preStart` no serviço rodando `nix flake update nixpkgs` no
-   repositório.
-3. Com `--commit-lock-file`, o timer **faz commit no repositório** — commits
-   autorados por `root` em `flake.lock`, e a árvore precisa estar limpa no
-   horário agendado. Se isso incomodar, a saída é a mesma do item 2: um passo
-   explícito, em vez de delegar a mutação do git ao módulo.
+```nix
+flags = [ "--update-input" "nixpkgs" "--update-input" "nixpkgs-unstable" ];
+```
+
+Os dois pins são atualizados de propósito. O `nixpkgs` estável move o sistema;
+o `nixpkgs-unstable` move o Firefox (ver `common/base.nix`), que é o componente
+de maior exposição da máquina — deixá-lo de fora esvaziaria o sentido de
+segurança disto. O `herdr` não se move: está pinado por tag.
+
+Três ressalvas:
+
+1. **O lock não é commitado.** O nix atualiza o `flake.lock` na árvore de
+   trabalho e deixa o bump como diff não commitado, para revisão na sua
+   cadência. O build da semana usa o lock novo de todo modo — o nix constrói da
+   árvore suja, avisando que ela está suja. O que se paga: entre o disparo do
+   timer e o seu commit, o sistema instalado não corresponde a nenhum commit, e
+   a amarração commit↔sistema só volta quando você commita.
+2. A alternativa seria `--commit-lock-file`, descartada de propósito: ela faz o
+   **root** rodar `git commit` num repositório que pertence ao `cawal`, e o git
+   recusa com `detected dubious ownership`. A exceção que ele abre para
+   `sudo git` depende de `SUDO_UID`, que não existe dentro de um serviço
+   systemd. Não commitar evita a classe inteira do problema.
+3. `--update-input` está **deprecado** no Nix (2.34.7 aqui, ainda aceita) em
+   favor de `nix flake update <input>`. Se parar de funcionar, a substituição é
+   um `preStart` no serviço rodando `nix flake update` no repositório.
+
+Como o nix reescreve o `flake.lock` rodando como root, o arquivo novo nasce
+dele — e aí o próximo `nix flake update` que **você** rodar falha por
+permissão. Por isso o serviço tem um `ExecStartPost` devolvendo a posse do
+arquivo para `cawal:users`.
 
 `nix.gc` continua semanal com `--delete-older-than 30d`, e isso deve ser
 **mantido**, não apertado: atualização não supervisionada é justamente a
