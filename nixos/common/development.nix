@@ -121,6 +121,7 @@
     pamtester           # PAM authentication tester
     gpick               # Color picker
     poppler-utils        # PDF utilities (pdftotext, pdfinfo, etc.)
+    openssl                # SSL/TLS toolkit (for openssl command)
 
     # Herdr (via flake, ver flake.nix) — não está no nixpkgs
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
