@@ -17,6 +17,7 @@
     ../../common/home-assistant.nix  # Home Assistant on-demand (só no fi)
     ../../common/development.nix
     ../../common/services.nix
+    ../../common/security.nix    # ClamAV + nota sobre atualizações (relatório de SI)
     
     # Fi-specific modules
     ../../modules/nvidia.nix    # NVIDIA GPU drivers + CUDA (RTX 4060, PRIME offload)

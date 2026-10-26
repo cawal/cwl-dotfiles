@@ -58,21 +58,31 @@
   # build falhou. Ligar autoUpgrade aqui hoje significaria um timer semanal que
   # enche a raiz sem supervisão.
   #
-  # Para ligar isto (e fechar o item do checklist de SI de verdade), a ordem é:
-  #   1. encolher o pool-docker (246 GiB alocados, ~32 em uso) e crescer o
-  #      pool-root para ~200 GiB — ajustando rootSize/dockerSize em
-  #      nixos/hosts/fi/disko.nix;
-  #   2. então:
-  #        system.autoUpgrade = {
-  #          enable = true;
-  #          flake = "/home/cawal/git/cwl-dotfiles#fi";
-  #          operation = "boot";     # nova geração no próximo boot, sem switch
-  #          dates = "Mon 03:00";    # ao vivo numa máquina em uso
-  #          randomizedDelaySec = "45min";
-  #          persistent = true;
-  #          allowReboot = false;
-  #        };
-  #      com flags para atualizar o lock (ver `flags` no módulo auto-upgrade).
+  # Para ligar isto (e fechar o item do checklist de SI de verdade), falta UM
+  # passo manual: encolher o pool-docker e crescer o pool-root para 200 GiB.
+  # O procedimento está escrito e revisado em docs/RESIZE-LV-FI.md, e o
+  # hosts/fi/disko.nix JÁ declara o layout de destino (200G/150G) — o disko não
+  # redimensiona disco vivo, então a declaração está lá para a reinstalação
+  # futura, e o redimensionamento em si é o documento.
+  #
+  # Feito o resize, descomente o bloco abaixo e rode o switch:
+  #
+  #   system.autoUpgrade = {
+  #     enable = true;
+  #     flake = "/home/cawal/git/cwl-dotfiles#fi";
+  #     operation = "boot";      # nova geração no próximo boot, sem switch
+  #     dates = "Mon 03:00";     # ao vivo numa máquina em uso
+  #     randomizedDelaySec = "45min";
+  #     persistent = true;
+  #     allowReboot = false;
+  #   };
+  #
+  # Assim, SEM `flags`, o timer reconstrói o que já está no lock — ou seja, não
+  # atualiza nada. Isso é deliberadamente útil na primeira semana: prova que o
+  # timer roda e constrói sem encher a raiz. Para atualizar de fato, acrescente
+  # `flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ]`, ciente de que
+  # (a) --update-input está deprecado no Nix e (b) o timer passa a fazer commit
+  # como root no repositório. As ressalvas estão no Passo 7 do documento.
   #
   # Enquanto isso, o que ESTÁ automatizado e é auditável:
   #   - assinaturas de antimalware: timer clamav-freshclam (horário);
