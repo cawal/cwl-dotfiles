@@ -37,13 +37,19 @@
     llmfit.url = "github:AlexsJones/llmfit";
     llmfit.inputs.nixpkgs.follows = "nixpkgs";
 
+    # dnsglobe: TUI que mostra a propagação de um registro DNS pelos resolvers
+    # públicos do mundo. Não está no nixpkgs; usa o flake oficial. Segue nosso
+    # nixpkgs p/ não puxar um segundo nixpkgs no lock.
+    dnsglobe.url = "github:514-labs/dnsglobe";
+    dnsglobe.inputs.nixpkgs.follows = "nixpkgs";
+
     # nix-flatpak: gestão declarativa de remotes/apps Flatpak (o módulo do
     # NixOS só liga o daemon; remotes e apps seriam imperativos sem isto).
     # Ver wiki: https://wiki.nixos.org/wiki/Flatpak. Config em common/services.nix.
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-electron, disko, home-manager, zen-browser, herdr, llmfit, nix-flatpak }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-electron, disko, home-manager, zen-browser, herdr, llmfit, dnsglobe, nix-flatpak }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -87,7 +93,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable pkgsElectron; };
+        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -110,7 +116,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit pkgsUnstable pkgsElectron; };
+        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix

@@ -1,7 +1,7 @@
 # Base system configuration shared across all hosts
 # Core settings: bootloader, networking, locale, users, system packages
 
-{ config, pkgs, pkgsUnstable, ... }:
+{ config, pkgs, pkgsUnstable, dnsglobe, ... }:
 
 {
   # Bootloader - systemd-boot with EFI
@@ -146,6 +146,8 @@
     dig
     networkmanagerapplet  # nm-applet tray icon
     tcpflow               # TCP flow recorder
+    # dnsglobe (via flake, ver flake.nix) — TUI de propagação de DNS no mapa-múndi
+    dnsglobe.packages.${pkgs.stdenv.hostPlatform.system}.default
     
     # Archive tools
     unzip
