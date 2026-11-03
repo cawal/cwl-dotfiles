@@ -12,6 +12,15 @@
     # nixpkgs-electron.
     nixpkgs-electron.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Input dedicado só para o yaak (ver common/development.nix). O build dele
+    # quebra em revisões alternadas do nixpkgs (wasm-pack não gera o .wasm),
+    # tanto aqui quanto no Hydra: em 2026-11-03 falhava no estável e no
+    # nixos-unstable fixado, e só este rev tinha o binário em cache. Fixado por
+    # rev de propósito, fora das `flags` do autoUpgrade, para um yaak quebrado
+    # não derrubar o upgrade semanal. Para atualizar: trocar o rev por um cujo
+    # yaak esteja em cache (`nix path-info --store https://cache.nixos.org`).
+    nixpkgs-yaak.url = "github:nixos/nixpkgs/ea9e3ef341e11c193537f674f821a99f9f436729";
+
     # Particionamento declarativo (LVM-on-LUKS, /home separado).
     # Wiring do disko na master p/ ambos os hosts. Ver AGENTS.md → disko.
     disko.url = "github:nix-community/disko";
@@ -49,7 +58,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-electron, disko, home-manager, zen-browser, herdr, llmfit, dnsglobe, nix-flatpak }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-electron, nixpkgs-yaak, disko, home-manager, zen-browser, herdr, llmfit, dnsglobe, nix-flatpak }:
     let
       # Módulo home-manager compartilhado por todos os hosts. Ativa junto do
       # nixos-rebuild; a config do usuário vive em ./nixos/home/cawal.nix.
@@ -86,6 +95,10 @@
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
+      # Só para o yaak (ver nixpkgs-yaak acima).
+      pkgsYaak = import nixpkgs-yaak {
+        system = "x86_64-linux";
+      };
     in
     {
     nixosConfigurations = {
@@ -93,7 +106,7 @@
       navi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron; };
+        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron pkgsYaak; };
         # disko é dono do particionamento (LVM-on-LUKS). Instalado — `switch` é
         # seguro (o pool /dev/mapper/pool-* existe). Só num disco NOVO sem o pool
         # use `nixos-install`, nunca `switch`. Ver AGENTS.md.
@@ -116,7 +129,7 @@
       fi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Disponibiliza inputs do flake (ex.: zen-browser) para os módulos.
-        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron; };
+        specialArgs = { inherit zen-browser herdr llmfit dnsglobe pkgsUnstable pkgsElectron pkgsYaak; };
         modules = [
           disko.nixosModules.disko
           ./nixos/hosts/fi/disko.nix

@@ -1,7 +1,7 @@
 # Development tools and workflow packages
 # Languages, cloud tools, IDEs, databases, containers
 
-{ config, pkgs,  pkgsUnstable, herdr, llmfit, ... }:
+{ config, pkgs,  pkgsUnstable, pkgsYaak, herdr, llmfit, ... }:
 
 {
   # Enable Docker
@@ -74,7 +74,7 @@
     postman             # API testing
     insomnia            # API client alternative
     bruno               # API client offline-first (substitui AppImage em ~/bin)
-    yaak                # API client (substitui AppImage em ~/bin)
+    pkgsYaak.yaak       # API client (substitui AppImage em ~/bin) — input próprio, ver nixpkgs-yaak no flake.nix
     httpie              # HTTP client CLI
     
     # Database tools
