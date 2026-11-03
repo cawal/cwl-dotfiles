@@ -107,11 +107,25 @@
     # O ganho é não ter o root rodando `git commit` aqui dentro — o git recusa
     # isso num repositório de outro dono ("detected dubious ownership"), e a
     # exceção que ele abre para `sudo git` depende de SUDO_UID, que não existe
-    # num serviço systemd. Evitar o commit evita a classe inteira do problema.
+    # num serviço systemd. Isso não livra o *build*, que também abre o repo:
+    # para isso há o `safe.directory` logo abaixo.
     flags = [
       "--update-input" "nixpkgs"
       "--update-input" "nixpkgs-unstable"
     ];
+  };
+
+  # O nix abre o flake via libgit2, que recusa repositório de outro dono
+  # ("not owned by current user", libgit2 error code = 7). Foi assim que o
+  # disparo de 2026-11-02 morreu em 0,25 s, sem build nenhum. O teste à mão
+  # tinha passado porque o libgit2 aceita SUDO_UID, que o systemd não define.
+  # Um serviço de root também não tem HOME, então o ~/.gitconfig do root não
+  # adianta. O que vale é o /etc/gitconfig, lido pelo libgit2 do nix e pelo
+  # git. A exceção cobre só este caminho e não muda a fronteira de confiança,
+  # porque o root já constrói o sistema a partir deste repo.
+  programs.git = {
+    enable = true;
+    config.safe.directory = [ "/home/cawal/git/cwl-dotfiles" ];
   };
 
   # O nix reescreve o flake.lock rodando como root, e o arquivo novo nasce
