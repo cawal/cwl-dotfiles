@@ -175,6 +175,19 @@
     package = pkgs.python3Packages.qtile.overrideAttrs (oldAttrs: {
       doCheck = false;
       doInstallCheck = false;
+
+      # Desde o 0.37 a sessão Wayland do pacote se chama `qtile.desktop`, o
+      # mesmo nome da X11 (antes era `qtile-wayland.desktop`). O GDM lembra a
+      # sessão pelo nome, resolve para a Wayland e o login cai numa tela vazia,
+      # porque a config daqui é X11 (xlib, greenclip). Renomear a Wayland de
+      # volta para `qtile-wayland` faz "qtile" ser só a X11 de novo e mantém a
+      # Wayland no menu de sessões do GDM, como "Qtile (Wayland)".
+      postInstall = (oldAttrs.postInstall or "") + ''
+        mv $out/share/wayland-sessions/qtile.desktop \
+           $out/share/wayland-sessions/qtile-wayland.desktop
+        sed -i 's/^Name=Qtile$/Name=Qtile (Wayland)/' \
+           $out/share/wayland-sessions/qtile-wayland.desktop
+      '';
     });
 
     extraPackages = python3Packages: with python3Packages; [
