@@ -139,6 +139,7 @@
     htop
     iotop
     btop
+    xev # X event viewer (for debugging keyboard/mouse events)
     
     # Network tools
     nmap
