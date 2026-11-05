@@ -30,7 +30,9 @@
     heroic                # Epic Games & GOG launcher
     
     # Emulators
-    retroarch             # Multi-system emulator frontend
+    # O pacote `retroarch` vem sem cores e sem o Core Downloader
+    # (--disable-update_cores); o -free já traz os cores de licença livre.
+    retroarch-free        # Multi-system emulator frontend
     
     # Gaming utilities
     mangohud              # Performance overlay (FPS, temps, etc)

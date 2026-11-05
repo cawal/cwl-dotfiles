@@ -199,8 +199,6 @@ in
     zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default  # Zen (via flake, ver flake.nix)
     
     # Entertainment
-    retroarch             # Emulator frontend
-
     astrolog              # Astrology software
     pkgsUnstable.astroterm  # Terminal-based astrology software
   ];
