@@ -29,11 +29,6 @@
     lutris                # Open source gaming platform (Wine, Proton, etc)
     heroic                # Epic Games & GOG launcher
     
-    # Emulators
-    # O pacote `retroarch` vem sem cores e sem o Core Downloader
-    # (--disable-update_cores); o -free já traz os cores de licença livre.
-    retroarch-free        # Multi-system emulator frontend
-    
     # Gaming utilities
     mangohud              # Performance overlay (FPS, temps, etc)
     gamemode              # Optimize system performance for games
@@ -46,6 +41,11 @@
     discord
   ];
   
+  # RetroArch via Flatpak, não pelo nixpkgs: o build do nixpkgs desliga o Core
+  # Downloader e, na 1.22.2, carregar core pelo menu dá SIGSEGV em x_input_state.
+  services.flatpak.packages = [ "org.libretro.RetroArch" ];
+  services.flatpak.overrides."org.libretro.RetroArch".Context.filesystems = [ "~/Jogos" ];
+
   # GameMode service (optimizes system for gaming)
   programs.gamemode.enable = true;
 }
