@@ -5,3 +5,6 @@
 
 # Logs locais (o nome já diz) — mantidos no disco, fora do git
 logs.do-not-commit
+
+# Symlink de build do Nix (nix build / nixos-rebuild build)
+result
