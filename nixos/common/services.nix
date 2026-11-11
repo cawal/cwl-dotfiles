@@ -64,6 +64,13 @@
   
   services.greenclip.enable = true;
 
+  # O módulo só põe o greenclip em WantedBy=graphical-session.target, então
+  # parar o target não para o serviço. No fim da sessão o X sumia, o greenclip
+  # caía em loop de restart (`Restart=always`), estourava o start-limit e ficava
+  # morto até alguém dar reset-failed (aconteceu em 2026-11-06). Com PartOf ele
+  # para e sobe junto com a sessão gráfica (ver qtile-session.target abaixo).
+  systemd.user.services.greenclip.partOf = [ "graphical-session.target" ];
+
   # === Syncthing ===
   # Note: Folders and devices configured via web UI (http://localhost:8384)
   

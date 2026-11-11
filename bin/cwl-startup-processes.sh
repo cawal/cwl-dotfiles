@@ -21,6 +21,10 @@ xrdb ~/.Xresources
 # graphical-session.target como dependência.
 echo "Bootstrapping systemd graphical session..."
 systemctl --user import-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+# O logout limpo já para o target (hook shutdown no config.py), mas se a
+# sessão anterior morreu (crash do X) ele ficou ativo e o start viraria no-op.
+# Parar antes garante que os serviços PartOf (greenclip) subam de novo aqui.
+systemctl --user stop qtile-session.target
 systemctl --user start qtile-session.target
 
 # numlock starts activated

@@ -751,6 +751,19 @@ def autostart():
     subprocess.run([startup_script])
 
 
+@hook.subscribe.shutdown
+def stop_systemd_session():
+    """Encerra o qtile-session.target no logout.
+
+    O systemd --user sobrevive ao logout, então sem isto o target (e o
+    graphical-session.target) continua ativo, e o `start` do próximo login
+    não faz nada. Parar o target derruba os serviços PartOf da sessão
+    gráfica (ex.: greenclip) antes de o X sumir. Só dispara no stop: o
+    restart do qtile usa outro hook e mantém a sessão.
+    """
+    subprocess.run(["systemctl", "--user", "stop", "qtile-session.target"])
+
+
 @hook.subscribe.screens_reconfigured
 def screens_reconfigured():
     logger.warning("Screens reconfigured, recalculating initial config")
