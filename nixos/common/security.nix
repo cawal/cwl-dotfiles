@@ -135,6 +135,22 @@
   systemd.services.nixos-upgrade.serviceConfig.ExecStartPost =
     "-${pkgs.coreutils}/bin/chown cawal:users /home/cawal/git/cwl-dotfiles/flake.lock";
 
+  # === Pacotes marcados como inseguros, liberados por decisão ===
+  #
+  # O nixpkgs recusa avaliar pacote com `knownVulnerabilities`, e isso derruba o
+  # autoUpgrade inteiro: o disparo de 2026-11-16 falhou só por causa do
+  # qutebrowser. Cada exceção aqui é aceite de risco explícito e vale só para a
+  # versão exata: quando o nixpkgs mudar a versão, ela deixa de valer e o build
+  # volta a falhar, forçando reavaliar.
+  #
+  # qutebrowser 3.7.0: "Still accepts eMudhra TLS certs." A CA eMudhra perdeu a
+  # confiança dos navegadores e o QtWebEngine ainda a aceita. O risco é um
+  # certificado dela, emitido indevidamente, passar por válido no qutebrowser.
+  # Os navegadores principais (firefox, zen) não são afetados.
+  nixpkgs.config.permittedInsecurePackages = [
+    "qutebrowser-3.7.0"
+  ];
+
   # O nix.gc semanal com `--delete-older-than 30d` (ver common/base.nix) deve
   # ser MANTIDO como está, não apertado: atualização não supervisionada é
   # justamente a situação em que se quer uma geração antiga para dar rollback.
