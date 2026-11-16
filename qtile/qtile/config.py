@@ -103,18 +103,24 @@ def remove_group(name):
     return f
 
 
-groups = [
-    Group("1", persist=True),
-    Group("2", persist=True),
-    Group("3", persist=True),
-    Group("4", persist=True),
-    Group("5", persist=True),
-    Group("6", persist=True),
-    Group("7", persist=True),
-    Group("8", persist=True),
-    Group("9", persist=True),
-    Group("0", persist=True),
+# Cada entrada: (tecla, Group). A tecla é o que se aperta com Super
+# (+Shift/+Control); o nome do Group é independente dela e pode virar algo
+# como "web". Regras de janela: Group(..., matches=[Match(wm_class="firefox")]).
+# A ordem importa: o GroupToDisplayMapper distribui os groups entre as telas
+# nessa ordem (metade inicial na 1ª tela, o resto na 2ª).
+workspace_groups = [
+    ("1", Group("1", persist=True)),
+    ("2", Group("2", persist=True)),
+    ("3", Group("3", persist=True)),
+    ("4", Group("4", persist=True)),
+    ("5", Group("5", persist=True)),
+    ("6", Group("6", persist=True)),
+    ("7", Group("7", persist=True)),
+    ("8", Group("8", persist=True)),
+    ("9", Group("9", persist=True)),
+    ("0", Group("0", persist=True)),
 ]
+groups = [group for _, group in workspace_groups]
 mapper = GroupToDisplayMapper(groups)
 marksManager = VimMarksManager(mapper.go_to_group)
 
@@ -344,30 +350,30 @@ keys = [
 ]
 
 
-for i in groups:
-    # mod1 + letter of group = switch to group
+for key, group in workspace_groups:
+    # Super + tecla = vai para o group (na tela dele, ver GroupToDisplayMapper)
     keys.append(
-        Key(win_key, i.name,
+        Key(win_key, key,
             lazy.function(
-                partial(mapper.go_to_group, group=i.name),
+                partial(mapper.go_to_group, group=group.name),
             ),
-            desc=f"Go to group {i.name}",
+            desc=f"Go to group {group.name}",
         )
     )
 
-    # mod1 + control + letter of group = switch to & move focused window to group
+    # Super + Shift + tecla = move a janela focada para o group, sem seguir
     keys.append(
-        Key(win_key+shift, i.name,
-            lazy.window.togroup(i.name),
-            desc=f"Move window to group {i.name}",
+        Key(win_key+shift, key,
+            lazy.window.togroup(group.name),
+            desc=f"Move window to group {group.name}",
         )
     )
-    # mod1 + shift + letter of group = switch to & move focused window to group
+    # Super + Control + tecla = move a janela focada para o group e segue junto
     keys.append(
-        Key(win_key+control, i.name,
-            lazy.window.togroup(i.name),
-            lazy.function(partial(mapper.go_to_group, group=i.name)),
-            desc=f"Move window to group {i.name} and follow",
+        Key(win_key+control, key,
+            lazy.window.togroup(group.name),
+            lazy.function(partial(mapper.go_to_group, group=group.name)),
+            desc=f"Move window to group {group.name} and follow",
         )
     )
 
