@@ -753,15 +753,18 @@ def autostart():
 
 @hook.subscribe.shutdown
 def stop_systemd_session():
-    """Encerra o qtile-session.target no logout.
+    """Encerra a sessão gráfica do systemd --user no logout.
 
-    O systemd --user sobrevive ao logout, então sem isto o target (e o
-    graphical-session.target) continua ativo, e o `start` do próximo login
-    não faz nada. Parar o target derruba os serviços PartOf da sessão
-    gráfica (ex.: greenclip) antes de o X sumir. Só dispara no stop: o
-    restart do qtile usa outro hook e mantém a sessão.
+    O systemd --user sobrevive ao logout, então sem isto o
+    graphical-session.target continua ativo e o `start` do próximo login
+    não faz nada. Para-se o graphical-session.target, e não o
+    qtile-session.target: o BindsTo só propaga dele para o qtile-session, e
+    o StopWhenUnneeded dele não age porque o xdg-desktop-portal-gnome é
+    Requisite e PartOf dele ao mesmo tempo (um segura o outro). Parar aqui
+    derruba os serviços PartOf (greenclip, portal) antes de o X sumir.
+    Só dispara no stop: o restart do qtile usa outro hook e mantém a sessão.
     """
-    subprocess.run(["systemctl", "--user", "stop", "qtile-session.target"])
+    subprocess.run(["systemctl", "--user", "stop", "graphical-session.target"])
 
 
 @hook.subscribe.screens_reconfigured
