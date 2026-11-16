@@ -1,3 +1,4 @@
+import math
 from typing import Sequence, Dict, Union, Protocol
 from libqtile.log_utils import logger
 from host import list_screens
@@ -19,7 +20,9 @@ class GroupToDisplayMapper:
         screens = list_screens()
         n_screens = len(screens)
         n_groups = len(self.map)
-        groups_per_screen = int(n_groups / n_screens)
+        # Arredonda para cima: com int() (para baixo), 9 groups em 2 telas davam
+        # 4 por tela e o 9º caía no índice de tela 2, que não existe (IndexError).
+        groups_per_screen = math.ceil(n_groups / n_screens)
         for index, group in enumerate(self.map.keys()):
             screen_index = int(index / groups_per_screen)
             logger.warning(f"Assigning group {group} to screen {screens[screen_index]}")
