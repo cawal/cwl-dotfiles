@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Herdr
+GenericName=Terminal multiplexer for coding agents
+Comment=herdr direto no kitty, sem tmux por fora (imagens kitty graphics funcionam; ver herdr#5116)
+Exec=kitty --class herdr herdr
+Icon=herdr
+Terminal=false
+Categories=Development;System;TerminalEmulator;
+Keywords=terminal;agents;multiplexer;
+StartupWMClass=herdr
+StartupNotify=true
