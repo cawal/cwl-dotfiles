@@ -14,6 +14,17 @@ return {
 				vim.env.PUPPETEER_EXECUTABLE_PATH = chrome
 			end
 		end
+
+		-- O vellum só desenha imagens se reconhecer kitty/Ghostty, e decide isso
+		-- pelo env (KITTY_WINDOW_ID, TERM, TERM_PROGRAM) ou perguntando ao tmux.
+		-- Num pane do herdr nada disso aparece: TERM_PROGRAM=herdr, e os panes
+		-- herdam o env do *servidor* do herdr, não do kitty onde o cliente roda.
+		-- O herdr fala o protocolo kitty graphics, então marcamos o pane como
+		-- kitty só para este nvim. Ressalva: com o cliente do herdr dentro do
+		-- tmux as imagens somem (herdr#5116); use o atalho Herdr, que abre no kitty.
+		if vim.env.TERM_PROGRAM == "herdr" and not vim.env.KITTY_WINDOW_ID then
+			vim.env.KITTY_WINDOW_ID = "herdr"
+		end
 	end,
 	opts = {
 		-- O herdr descarta sem aviso imagens acima de ~5,9 MP (ver README do
