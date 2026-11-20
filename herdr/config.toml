@@ -1,5 +1,9 @@
 onboarding = false
 
+[terminal]
+kitty_graphics = true
+
+
 [ui.toast]
 delivery = "system"
 
@@ -8,7 +12,6 @@ enabled = false
 
 [experimental]
 pane_history = true
-kitty_graphics = true
 
 [keys]
 prefix = ["ctrl+space", "ctrl+a"]
