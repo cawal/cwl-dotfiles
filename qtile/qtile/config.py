@@ -1,4 +1,3 @@
-from ast import match_case
 import os
 import re
 import subprocess
@@ -7,7 +6,7 @@ from functools import partial
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.lazy import lazy
 from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,EzKey,
-                             Match, ScratchPad, Screen, Match)
+                             Match, ScratchPad, Screen)
 from libqtile.log_utils import logger
 from libqtile.widget import base as widget_base
 
