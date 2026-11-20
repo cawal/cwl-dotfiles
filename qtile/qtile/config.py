@@ -1,3 +1,4 @@
+from ast import match_case
 import os
 import re
 import subprocess
@@ -6,7 +7,7 @@ from functools import partial
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.lazy import lazy
 from libqtile.config import (Click, Drag, DropDown, Group, Key, KeyChord,EzKey,
-                             Match, ScratchPad, Screen)
+                             Match, ScratchPad, Screen, Match)
 from libqtile.log_utils import logger
 from libqtile.widget import base as widget_base
 
@@ -101,6 +102,7 @@ def remove_group(name):
         qtile.groupMap.remove(name)
 
     return f
+
 
 
 # Cada entrada: (tecla, Group). A tecla é o que se aperta com Super
@@ -822,7 +824,26 @@ def test1(window):
 #    if hasattr(window, 'parent'):
 #        window.parent.minimized = False
 
+match_herdr = Match(wm_class="kitty", title=re.compile(r"^herdr"))
+match_firefox_main = Match(wm_class="firefox-trabalho", title=re.compile(r"^main"))
+match_firefox_board = Match(wm_class="firefox-trabalho", title=re.compile(r"^board"))
+match_firefox_other = Match(wm_class="firefox-trabalho", title=re.compile(r"^other"))
 
+
+@hook.subscribe.client_name_updated
+def move_matching_windows_on_update(window):
+    rules = [
+        (match_herdr, "1"),
+        (match_firefox_main,"6"),
+        (match_firefox_board, "7"),
+        (match_firefox_other, "5"),
+    ]
+
+    for rule in rules:
+        match, target_group = rule
+        if window.match(match):
+            window.togroup(target_group)
+            break
 
 
 logger.warning(load_complete_config_banner)
