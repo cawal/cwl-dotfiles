@@ -66,7 +66,11 @@ let
       # rejeita com "Invalid agents").
       agentFlags = lib.concatMapStringsSep " " (a: ''--agent "${a}"'') agents;
     in ''
-      if [ ! -e "$HOME/.agents/skills/${s.name}" ]; then
+      # Skill de um agente só (ex.: claude-handoff, só claude-code) o CLI
+      # COPIA direto para o diretório do agente, sem passar pelo store
+      # ~/.agents/skills. Por isso também conta como instalada se já estiver
+      # em ~/.claude/skills; sem isso, ela era reinstalada a cada rebuild.
+      if [ ! -e "$HOME/.agents/skills/${s.name}" ] && [ ! -e "$HOME/.claude/skills/${s.name}" ]; then
         echo "skills: instalando ${s.name} (${s.source}) -> ${lib.concatStringsSep "," agents}"
         PATH="${binPath}:$PATH" \
           npx --yes skills add "${s.source}" -s "${s.name}" \
