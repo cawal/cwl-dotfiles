@@ -37,7 +37,8 @@ in
   # Skills de agentes declarativas (modelo nix-flatpak). Ver ./skills.nix.
   # firefox-split: dois Firefox (Pessoal/Trabalho) + roteador de OAuth por janela
   # em foco. Ver ./firefox-split.nix (define firefox-router.desktop, usado abaixo).
-  imports = [ ./skills.nix ./firefox-split.nix ];
+  # claude: config do Claude Code versionada em claude/. Ver ./claude.nix.
+  imports = [ ./skills.nix ./firefox-split.nix ./claude.nix ];
 
   home.username = "cawal";
   home.homeDirectory = "/home/cawal";

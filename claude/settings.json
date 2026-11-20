@@ -1,0 +1,49 @@
+{
+  "model": "opus[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/cawal/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send Claude 'Claude has stopped.'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "stripe@claude-plugins-official": true,
+    "thorn@claude-garden": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-garden": {
+      "source": {
+        "source": "github",
+        "repo": "aneveux/claude-garden"
+      }
+    }
+  },
+  "language": "pt br",
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true
+}
