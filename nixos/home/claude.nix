@@ -11,15 +11,19 @@
 # credenciais, transcripts e memórias; dentro do repo, um `git clean -fdX`
 # apagaria tudo e um `!` errado no .gitignore vazaria.
 #
-# Os links são VIVOS (mkOutOfStoreSymlink): o que o Claude grava (/model,
-# /config, /plugin) cai direto no repo e aparece no `git diff`. Testado em
-# 2026-11-20: `claude plugin disable/enable` grava através do symlink sem
-# trocá-lo por arquivo comum.
-{ config, lib, pkgs, ... }:
+# Os links são VIVOS: o que o Claude grava (/model, /config, /plugin) cai
+# direto no repo e aparece no `git diff`.
+#
+# Eles apontam DIRETO para o repo e são criados na activation, não via
+# home.file + mkOutOfStoreSymlink. O Claude grava o settings.json com
+# tmp + rename resolvendo só UM nível de symlink: cria o .tmp ao lado do
+# primeiro alvo. Pelo home.file esse alvo fica em /nix/store/…-home-manager-files
+# (somente leitura) e a gravação falha com EROFS (visto em 2026-11-20 no
+# `claude plugin marketplace add`). Com o link direto, o .tmp nasce no repo.
+{ lib, pkgs, ... }:
 
 let
   repo = "/home/cawal/git/cwl-dotfiles/claude";
-  link = name: config.lib.file.mkOutOfStoreSymlink "${repo}/${name}";
 
   # Arquivos e pastas linkados em ~/.claude/<nome>. As pastas vazias têm
   # .gitkeep no repo para marcar onde coisas novas entram.
@@ -81,16 +85,26 @@ let
   '';
 in
 {
-  home.file = lib.listToAttrs (map (name: {
-    name = ".claude/${name}";
-    value.source = link name;
-  }) linked);
+  # Roda depois do writeBoundary, quando o HM já removeu os links antigos dele
+  # (de quando isto era home.file). Um arquivo comum no lugar (máquina nova)
+  # vira <nome>.backup em vez de ser sobrescrito.
+  home.activation.claudeCodeLinks = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+    lib.concatMapStrings (name: ''
+      dest="$HOME/.claude/${name}"
+      if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+        echo "claude: movendo $dest para $dest.backup"
+        mv "$dest" "$dest.backup"
+      fi
+      mkdir -p "$HOME/.claude"
+      ln -sfn "${repo}/${name}" "$dest"
+    '') linked
+  );
 
   # Mesmo modelo do skills.nix: instala o que falta, nunca remove (tirar da
   # lista não desinstala; use `claude plugin uninstall` / `claude mcp remove`).
   # Cada chamada tem `|| echo`: sem rede o rebuild segue, e com tudo presente
   # o passo não faz nada.
-  home.activation.claudeCode = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+  home.activation.claudeCode = lib.hm.dag.entryAfter [ "claudeCodeLinks" ] (
     lib.concatStrings (lib.mapAttrsToList addMarketplace marketplaces)
     + lib.concatMapStrings installPlugin enabledPlugins
     + lib.concatStrings (lib.mapAttrsToList addMcp mcpUser)
