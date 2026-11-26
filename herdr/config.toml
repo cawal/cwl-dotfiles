@@ -40,8 +40,8 @@ next_workspace = ["ctrl+alt+down"]
 
 # Workspace and tab management
 rename_workspace = "alt+r"
-new_tab = "ctrl+t"
-rename_tab = "ctrl+r"
+new_tab = "alt+t"
+rename_tab = "alt+shift+r"
 close_pane = "prefix+shift+w"
 
 [worktrees]
