@@ -38,7 +38,8 @@ in
   # firefox-split: dois Firefox (Pessoal/Trabalho) + roteador de OAuth por janela
   # em foco. Ver ./firefox-split.nix (define firefox-router.desktop, usado abaixo).
   # claude: config do Claude Code versionada em claude/. Ver ./claude.nix.
-  imports = [ ./skills.nix ./firefox-split.nix ./claude.nix ];
+  # herdr-app: app desktop do herdr, instalado fora do Nix (auto-update). Ver ./herdr-app.nix.
+  imports = [ ./skills.nix ./firefox-split.nix ./claude.nix ./herdr-app.nix ];
 
   home.username = "cawal";
   home.homeDirectory = "/home/cawal";

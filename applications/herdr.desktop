@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Herdr
+Name=Herdr TUI
 GenericName=Terminal multiplexer for coding agents
 Comment=herdr direto no kitty, sem tmux por fora (imagens kitty graphics funcionam; ver herdr#5116)
 Exec=kitty --class herdr herdr

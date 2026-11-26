@@ -1,0 +1,177 @@
+{
+  "global": {
+    "alt-1": "space.select:1",
+    "alt-2": "space.select:2",
+    "alt-3": "space.select:3",
+    "alt-4": "space.select:4",
+    "alt-5": "space.select:5",
+    "alt-6": "space.select:6",
+    "alt-7": "space.select:7",
+    "alt-8": "space.select:8",
+    "alt-9": "space.select:9",
+    "alt-h": "pane.go:left",
+    "alt-j": "pane.go:down",
+    "alt-k": "pane.go:up",
+    "alt-l": "pane.go:right",
+    "alt-left": "pane.go:left",
+    "alt-right": "pane.go:right",
+    "alt-shift-h": "pane.swap:left",
+    "alt-shift-j": "pane.swap:down",
+    "alt-shift-k": "pane.swap:up",
+    "alt-shift-l": "pane.swap:right",
+    "ctrl-+": "app.zoom_in",
+    "ctrl--": "app.zoom_out",
+    "ctrl-0": "app.zoom_reset",
+    "ctrl-=": "app.zoom_in",
+    "ctrl-1": "tab.select:1",
+    "ctrl-2": "tab.select:2",
+    "ctrl-3": "tab.select:3",
+    "ctrl-4": "tab.select:4",
+    "ctrl-5": "tab.select:5",
+    "ctrl-6": "tab.select:6",
+    "ctrl-7": "tab.select:7",
+    "ctrl-8": "tab.select:8",
+    "ctrl-9": "tab.select:9",
+    "ctrl-pagedown": "tab.next",
+    "ctrl-pageup": "tab.prev",
+    "ctrl-tab": "tab.next",
+    "ctrl-shift-tab": "tab.prev",
+    "alt-]": "tab.next",
+    "alt-[": "tab.prev",
+    "ctrl-shift-pagedown": "space.next",
+    "ctrl-shift-pageup": "space.prev",
+    "alt-down": "agent.next",
+    "alt-up": "agent.prev",
+    "ctrl-?": "app.help",
+    "ctrl-shift-/": "app.help",
+    "ctrl-shift-?": "app.help",
+    "ctrl-shift-b": "layout.toggle:sidebar",
+    "ctrl-shift-n": "space.new",
+    "ctrl-shift-t": "tab.new",
+    "ctrl-shift-k": "mod.open:picker",
+    "ctrl-shift-p": "app.palette",
+    "ctrl-,": "app.settings",
+    "ctrl-shift-o": "pane.split:right",
+    "ctrl-shift-e": "pane.split:down",
+    "ctrl-shift-w": "tab.close",
+    "ctrl-shift-x": "pane.close",
+    "ctrl-shift-z": "pane.zoom",
+    "ctrl-shift-l": "layout.switch",
+    "f2": "tab.rename",
+    "shift-f2": "space.rename",
+    "ctrl-alt-1": "agent.select:1",
+    "ctrl-alt-2": "agent.select:2",
+    "ctrl-alt-3": "agent.select:3",
+    "ctrl-alt-4": "agent.select:4",
+    "ctrl-alt-5": "agent.select:5",
+    "ctrl-alt-6": "agent.select:6",
+    "ctrl-alt-7": "agent.select:7",
+    "ctrl-alt-8": "agent.select:8",
+    "ctrl-alt-9": "agent.select:9",
+    "ctrl-alt-up": "space.prev",
+    "ctrl-alt-down": "space.next",
+    "alt-w": "mod.open:picker",
+    "ctrl-g": "mod.open:picker",
+    "alt-z": "pane.zoom",
+    "alt-r": "space.rename",
+    "alt-t": "tab.new",
+    "alt-shift-r": "tab.rename",
+    "ctrl-space ,": "app.settings",
+    "ctrl-a ,": "app.settings",
+    "ctrl-space w": "mod.open:picker",
+    "ctrl-a w": "mod.open:picker",
+    "ctrl-space |": "pane.split:right",
+    "ctrl-a |": "pane.split:right",
+    "ctrl-space v": "pane.split:right",
+    "ctrl-a v": "pane.split:right",
+    "ctrl-space -": "pane.split:down",
+    "ctrl-a -": "pane.split:down",
+    "ctrl-space h": "pane.split:down",
+    "ctrl-a h": "pane.split:down",
+    "ctrl-space z": "pane.zoom",
+    "ctrl-a z": "pane.zoom",
+    "ctrl-space s": "layout.toggle:sidebar",
+    "ctrl-a s": "layout.toggle:sidebar",
+    "ctrl-space tab": "tab.next",
+    "ctrl-a tab": "tab.next",
+    "ctrl-space shift-tab": "tab.prev",
+    "ctrl-a shift-tab": "tab.prev",
+    "ctrl-space shift-w": "pane.close",
+    "ctrl-a shift-w": "pane.close",
+    "ctrl-space ctrl-v": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "vi",
+          "."
+        ],
+        "name": "vi"
+      }
+    },
+    "ctrl-a ctrl-v": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "vi",
+          "."
+        ],
+        "name": "vi"
+      }
+    },
+    "ctrl-space ctrl-r": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "ranger",
+          "."
+        ],
+        "name": "ranger"
+      }
+    },
+    "ctrl-a ctrl-r": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "ranger",
+          "."
+        ],
+        "name": "ranger"
+      }
+    },
+    "ctrl-space ctrl-g": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "gh",
+          "pr",
+          "view",
+          "--web"
+        ],
+        "name": "pr"
+      }
+    },
+    "ctrl-a ctrl-g": {
+      "command": "terminal.open",
+      "args": {
+        "argv": [
+          "gh",
+          "pr",
+          "view",
+          "--web"
+        ],
+        "name": "pr"
+      }
+    }
+  },
+  "terminal": {
+    "ctrl-backspace": "send:\u0017",
+    "ctrl-left": "send:\u001bb",
+    "ctrl-right": "send:\u001bf",
+    "ctrl-shift-c": "terminal.copy",
+    "ctrl-shift-v": "terminal.paste",
+    "ctrl-shift-f": "terminal.search",
+    "ctrl-v": "terminal.paste_image",
+    "ctrl-insert": "terminal.copy",
+    "shift-insert": "terminal.paste"
+  }
+}

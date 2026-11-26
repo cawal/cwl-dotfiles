@@ -99,6 +99,15 @@
     curl
     glib
     libgcc
+
+    # App desktop do herdr (herdr-app), instalado fora do Nix pelo script
+    # oficial para manter o auto-update dele. Binário Rust pré-compilado:
+    # linka xcb/xkbcommon e carrega Vulkan, Wayland e EGL em runtime.
+    xorg.libxcb
+    libxkbcommon
+    vulkan-loader
+    wayland
+    libGL
   ];
 
   # Allow unfree packages
