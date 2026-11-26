@@ -27,13 +27,20 @@
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
     "stripe@claude-plugins-official": true,
-    "thorn@claude-garden": true
+    "thorn@claude-garden": true,
+    "floorplan@floorplan": true
   },
   "extraKnownMarketplaces": {
     "claude-garden": {
       "source": {
         "source": "github",
         "repo": "aneveux/claude-garden"
+      }
+    },
+    "floorplan": {
+      "source": {
+        "source": "github",
+        "repo": "haydenschmitty/floorplan"
       }
     }
   },

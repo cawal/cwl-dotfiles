@@ -41,6 +41,7 @@ let
     { name = "defuddle";                    source = "kepano/obsidian-skills"; }
     { name = "easy-bug-reports";            source = "turi-saude/skills"; }
     { name = "find-skills";                 source = "vercel-labs/skills"; }
+    { name = "floorplan";                   source = "haydenschmitty/floorplan"; }
     { name = "herdr";                       source = "herdrdev/herdr"; }
     { name = "html-artifacts";              source = "cawal/html-effectiveness-skill"; }
     { name = "json-canvas";                 source = "kepano/obsidian-skills"; }
